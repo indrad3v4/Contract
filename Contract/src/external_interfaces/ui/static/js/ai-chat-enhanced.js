@@ -26,7 +26,7 @@ const aiChat = {
         this.checkEnhancedStatus();
         
         // Add system welcome message
-        this.addSystemMessage("Welcome to the daodiseo.app Assistant. How can I help you today?");
+        this.addSystemMessage("Welcome to the BIM AI Assistant. How can I help you today?");
     },
     
     // Render the chat interface
@@ -41,7 +41,7 @@ const aiChat = {
         // Create title
         const title = document.createElement('div');
         title.className = 'chat-title';
-        title.textContent = 'daodiseo.app Assistant';
+        title.textContent = 'BIM AI Assistant';
         header.appendChild(title);
         
         // Create mode toggle container

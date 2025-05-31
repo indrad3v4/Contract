@@ -1,5 +1,5 @@
 /**
- * AI Chat Component for daodiseo.app Management Dashboard
+ * AI Chat Component for BIM AI Management Dashboard
  * Connects to backend BIM Agent API for stakeholder-aware building analysis
  * Supports both standard OpenAI mode and enhanced OpenAI Agents mode
  */
@@ -69,7 +69,7 @@ const aiChat = {
     createChatUI() {
         this.elements.chatContainer.innerHTML = `
             <div class="chat-header">
-                <div class="chat-title">daodiseo.app Assistant</div>
+                <div class="chat-title">BIM AI Assistant</div>
                 <div class="chat-mode-toggle">
                     <label class="toggle-switch">
                         <input type="checkbox" id="agent-mode-toggle" checked>
@@ -98,7 +98,7 @@ const aiChat = {
         
         // Add welcome message
         this.addMessage({
-            text: "Hello! I'm your daodiseo.app assistant. I can analyze building data and answer questions about this project. What would you like to know?",
+            text: "Hello! I'm your BIM AI assistant. I can analyze building data and answer questions about this project. What would you like to know?",
             isUser: false,
         });
     },
@@ -405,7 +405,7 @@ const aiChat = {
             if (!data.available) {
                 console.warn('BIM Agent not available:', data.message);
                 this.addMessage({
-                    text: "The daodiseo.app assistant is not available at the moment. Please check the API configuration.",
+                    text: "The BIM AI assistant is not available at the moment. Please check the API configuration.",
                     isUser: false,
                     system: true,
                     error: true,

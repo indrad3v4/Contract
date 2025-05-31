@@ -1,7 +1,421 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Daodiseo Real Estate Tokenization{% endblock %}</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons - Locally Bundled (implementation fixed) -->
+    <script src="{{ url_for('static', filename='js/lib/feather.min.js') }}"></script>
+    <!-- Initialize Feather Icons immediately and again when document loads -->
+    <script>
+        // First attempt to initialize feather icons immediately
+        if (typeof feather !== 'undefined') {
+            feather.replace();
+            console.log('Feather icons initialized on load');
+        } else {
+            console.error('Feather icons library not loaded');
+        }
+    </script>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-theme.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/micro-rewards.css') }}">
+    
+    <style>
+        /* User profile menu styles */
+        .ai-avatar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(224, 13, 121, 0.2);
+        }
+        
+        /* Stakeholder button styles */
+        .stakeholder-btn.active {
+            box-shadow: 0 0 0 3px rgba(224, 13, 121, 0.3);
+        }
+        
+        /* Recommended actions list */
+        .recommended-actions .list-group-item {
+            transition: all 0.2s ease;
+        }
+        
+        .recommended-actions .list-group-item:hover {
+            background-color: rgba(224, 13, 121, 0.1) !important;
+            transform: translateX(5px);
+        }
+        
+        /* User profile dropdown animation */
+        @keyframes dropIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        #profileDropdown {
+            animation: dropIn 0.3s ease forwards;
+        }
+        
+        /* Highlight pulse animation for recommended actions */
+        @keyframes highlightPulse {
+            0% { box-shadow: 0 0 0 0 rgba(224, 13, 121, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(224, 13, 121, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(224, 13, 121, 0); }
+        }
+        
+        .highlight-pulse {
+            animation: highlightPulse 1.5s ease-out infinite;
+            border: 2px solid rgba(224, 13, 121, 0.7) !important;
+        }
+    </style>
+    
+    <!-- THREE.js for 3D visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body class="cosmic-theme">
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="app-logo">
+                    <img src="{{ url_for('static', filename='img/cosmic-logo.svg') }}" alt="BIM AI">
+                </div>
+                <div class="app-title">BIM AI</div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item {{ 'active' if request.path == '/' }}">
+                        <a href="{{ url_for('index') }}" class="nav-link">
+                            <i data-feather="grid"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ 'active' if request.path == '/viewer' }}">
+                        <a href="{{ url_for('viewer') }}" class="nav-link">
+                            <i data-feather="box"></i>
+                            <span>3D Viewer</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ 'active' if request.path == '/upload' }}">
+                        <a href="{{ url_for('upload') }}" class="nav-link">
+                            <i data-feather="upload"></i>
+                            <span>Upload</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ 'active' if request.path == '/contracts' }}">
+                        <a href="{{ url_for('contracts') }}" class="nav-link">
+                            <i data-feather="file-text"></i>
+                            <span>Contracts</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="network-status">
+                    <div class="status-indicator active"></div>
+                    <span>Odiseo Testnet</span>
+                </div>
+                <div class="wallet-connect">
+                    <button class="btn btn-sm btn-outline-info" id="connectKeplrBtn">
+                        <i data-feather="link" class="icon-inline-sm"></i>
+                        Connect Keplr Wallet
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="page-title">
+                    <h1>{% block page_title %}Dashboard{% endblock %}</h1>
+                </div>
+                <div class="top-actions">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search...">
+                        <i data-feather="search"></i>
+                    </div>
+                    <div class="user-menu">
+                        <div class="notifications" id="notificationBtn">
+                            <i data-feather="bell"></i>
+                            <span class="badge">3</span>
+                        </div>
+                        <div class="user-profile" id="userProfileBtn">
+                            <img src="{{ url_for('static', filename='img/avatar.svg') }}" alt="User">
+                            <span>John Doe</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Content -->
+            <div class="content-wrapper">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Initialize Feather Icons -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize feather icons
+            if (typeof feather !== 'undefined') {
+                feather.replace();
+            }
+            
+            // Wallet connect button in sidebar
+            const connectKeplrBtn = document.getElementById('connectKeplrBtn');
+            if (connectKeplrBtn) {
+                connectKeplrBtn.innerHTML = '<i class="icon-inline-sm"></i> Connect Keplr Wallet';
+                connectKeplrBtn.addEventListener('click', function() {
+                    connectKeplrWallet();
+                });
+            }
+            
+            // User profile button in header
+            const userProfileBtn = document.getElementById('userProfileBtn');
+            if (userProfileBtn) {
+                userProfileBtn.addEventListener('click', function() {
+                    connectKeplrWallet();
+                });
+            }
+            
+            // Notification button in header
+            const notificationBtn = document.getElementById('notificationBtn');
+            if (notificationBtn) {
+                notificationBtn.addEventListener('click', function() {
+                    showNotifications();
+                });
+            }
+            
+            // Search functionality
+            const searchBox = document.querySelector('.search-box input');
+            if (searchBox) {
+                searchBox.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        console.log('Searching for:', this.value);
+                        // Implement search functionality
+                    }
+                });
+            }
+            
+            // Function to show notifications
+            function showNotifications() {
+                // Create notification modal
+                const modal = document.createElement('div');
+                modal.className = 'modal fade';
+                modal.id = 'notificationModal';
+                modal.setAttribute('tabindex', '-1');
+                modal.setAttribute('aria-labelledby', 'notificationModalLabel');
+                modal.setAttribute('aria-hidden', 'true');
                 
+                modal.innerHTML = `
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content bg-dark text-light border-info">
+                            <div class="modal-header border-info">
+                                <h5 class="modal-title" id="notificationModalLabel">
+                                    <i data-feather="bell" class="icon-inline text-info"></i>
                                     Notifications
-                                
+                                </h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="notification-item d-flex align-items-start mb-3">
+                                    <div class="notification-icon me-3 text-success">
+                                        <i data-feather="check-circle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">Due Diligence Complete</div>
+                                        <div class="notification-text">Cosmic Tower Project has passed due diligence.</div>
+                                        <div class="notification-time text-muted small">2 hours ago</div>
+                                    </div>
+                                </div>
+                                <div class="notification-item d-flex align-items-start mb-3">
+                                    <div class="notification-icon me-3 text-info">
+                                        <i data-feather="upload"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">New IFC File Uploaded</div>
+                                        <div class="notification-text">Horizon Office Complex.ifc has been uploaded.</div>
+                                        <div class="notification-time text-muted small">5 hours ago</div>
+                                    </div>
+                                </div>
+                                <div class="notification-item d-flex align-items-start">
+                                    <div class="notification-icon me-3 text-warning">
+                                        <i data-feather="alert-circle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">Validator Request</div>
+                                        <div class="notification-text">New proposal requires validator approval.</div>
+                                        <div class="notification-time text-muted small">1 day ago</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer border-info">
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-info">View All</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(modal);
+                
+                // Initialize modal and show it
+                const notificationModal = new bootstrap.Modal(document.getElementById('notificationModal'));
+                notificationModal.show();
+                
+                // Update feather icons inside modal
+                feather.replace();
+                
+                // Remove modal from DOM when hidden
+                document.getElementById('notificationModal').addEventListener('hidden.bs.modal', function() {
+                    document.body.removeChild(modal);
+                });
+            }
+            
+            // Global wallet connection state - load from sessionStorage if available (more secure than localStorage)
+            let walletConnected = sessionStorage.getItem('walletConnected') === 'true';
+            let userWalletAddress = sessionStorage.getItem('userWalletAddress') || '';
+            
+            // Update UI based on stored connection state
+            if (walletConnected && userWalletAddress) {
+                // Update wallet button in sidebar
+                const walletBtn = document.getElementById('connectKeplrBtn');
+                if (walletBtn) {
+                    walletBtn.innerHTML = '<i data-feather="check-circle" class="icon-inline-sm"></i> Connected';
+                    walletBtn.classList.remove('btn-outline-info');
+                    walletBtn.classList.add('btn-success');
+                }
+                
+                // Update user profile in header with shortened wallet address
+                const userProfile = document.getElementById('userProfileBtn');
+                if (userProfile) {
+                    // Display shortened wallet address (first 6 and last 4 characters)
+                    const shortAddress = userWalletAddress.length > 10 
+                        ? userWalletAddress.substring(0, 6) + '...' + userWalletAddress.substring(userWalletAddress.length - 4) 
+                        : userWalletAddress;
+                    userProfile.querySelector('span').textContent = shortAddress;
+                    
+                    // Add wallet address as title for hover display
+                    userProfile.setAttribute('title', userWalletAddress);
+                    userProfile.setAttribute('data-bs-toggle', 'tooltip');
+                    userProfile.setAttribute('data-bs-placement', 'bottom');
+                    
+                    // Initialize tooltip
+                    new bootstrap.Tooltip(userProfile);
+                }
+                
+                // Update feather icons
+                feather.replace();
+            }
+            
+            // Function to highlight a dashboard section
+            function highlightDashboardSection(selector) {
+                // First, remove existing highlights
+                document.querySelectorAll('.highlight-pulse').forEach(el => {
+                    el.classList.remove('highlight-pulse');
+                });
+                
+                // Find the target element
+                let targetElement;
+                
+                // Map selector strings to actual elements
+                if (selector === '.hot-asset') {
+                    // Find card with "Hot Asset" label
+                    const cardHeaders = document.querySelectorAll('.card .card-header');
+                    for (const header of cardHeaders) {
+                        if (header.querySelector('.text-warning') || 
+                            header.textContent.includes('Idaka Project') ||
+                            header.textContent.includes('Hot Asset')) {
+                            targetElement = header.closest('.card');
+                            break;
+                        }
+                    }
+                } else if (selector === '.asset-distribution') {
+                    // Find card with pie chart icon or title
+                    const cards = document.querySelectorAll('.card');
+                    for (const card of cards) {
+                        if (card.textContent.includes('Asset Distribution') || 
+                            card.querySelector('[data-feather="pie-chart"]')) {
+                            targetElement = card;
+                            break;
+                        }
+                    }
+                } else if (selector === '.staking-apy') {
+                    // Find card with Staking APY title
+                    const statsCards = document.querySelectorAll('.stats-card, .card');
+                    for (const card of statsCards) {
+                        if (card.textContent.includes('Staking APY') || 
+                            card.textContent.includes('APY')) {
+                            targetElement = card;
+                            break;
+                        }
+                    }
+                } else {
+                    // Try direct selector
+                    targetElement = document.querySelector(selector);
+                }
+                
+                if (targetElement) {
+                    // Add highlight class
+                    targetElement.classList.add('highlight-pulse');
+                    
+                    // Scroll to the element
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                    // Remove the highlight after a delay
+                    setTimeout(() => {
+                        targetElement.classList.remove('highlight-pulse');
+                    }, 3000);
+                }
+            }
+            
+            // Function to connect Keplr wallet
+            function connectKeplrWallet() {
+                // Don't show connection modal if already connected
+                if (walletConnected) {
+                    showProfileMenu();
+                    return;
+                }
+                
+                // Create wallet modal
+                const modal = document.createElement('div');
+                modal.className = 'modal fade';
+                modal.id = 'keplrModal';
+                modal.setAttribute('tabindex', '-1');
+                modal.setAttribute('aria-labelledby', 'keplrModalLabel');
+                modal.setAttribute('aria-hidden', 'true');
+                
+                modal.innerHTML = `
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content bg-dark text-light border-info">
+                            <div class="modal-header border-info">
+                                <h5 class="modal-title" id="keplrModalLabel">
+                                    <i data-feather="link" class="icon-inline text-info"></i>
                                     Connect to Keplr Wallet
                                 </h5>
                                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -36,7 +450,7 @@
                                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
                                 <button type="button" class="btn btn-info" id="confirmKeplrConnect">
                                     <i data-feather="link" class="icon-inline-sm"></i>
-                                    Connect Keplr Wallet
+                                    Connect Wallet
                                 </button>
                             </div>
                         </div>
@@ -518,7 +932,7 @@
                     <div class="d-grid">
                         <button class="btn btn-outline-danger btn-sm" id="disconnectWalletBtn">
                             <i data-feather="log-out" class="icon-inline-sm"></i>
-                            DisConnect Keplr Wallet
+                            Disconnect Wallet
                         </button>
                     </div>
                 `;
