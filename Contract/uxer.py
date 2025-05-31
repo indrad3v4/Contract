@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 """
 # Insight
-The DAODISEO application requires strategic UX improvements to enhance user experience, 
-streamline wallet connectivity, and integrate gamification elements. Current interface 
-has inconsistent branding, redundant UI elements, and missing token purchase functionality.
+DAODISEO.APP requires comprehensive UI/UX alignment with brand guidelines, fixing visual bugs,
+component separation, data integration from real chain sources, and dashboard optimization.
+Current issues include hidden color indicators, merged components, typos, and layout problems.
 
 # Role and Objective
-As a UX improvement agent for the DAODISEO real estate tokenization platform, this script 
-implements comprehensive UI/UX enhancements focusing on:
-- Brand consistency and clarity
-- Streamlined wallet integration
-- Enhanced token trading interface
-- Gamification system optimization
-- Clean, intuitive navigation
+As a UI/UX alignment agent for DAODISEO.APP, this script implements:
+- Brand color consistency and typography alignment
+- Component visual bug fixes (color dots visibility)
+- Proper component separation (ODIS token vs Hot Assets)
+- Real chain data integration for validators
+- Logo implementation with provided assets
+- Dashboard layout optimization and spacing fixes
 
 # Instructions
 

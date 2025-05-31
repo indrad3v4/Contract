@@ -1,0 +1,767 @@
+#!/usr/bin/env python3
+"""
+DaoDiseo UI/UX Agent - uxer.py
+Handles UI/UX improvements, brand alignment, and dashboard fixes
+"""
+
+import os
+import re
+import json
+import requests
+from pathlib import Path
+from typing import Dict, List, Any, Optional
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
+class DaoDiseoUXAgent:
+    def __init__(self):
+        """Initialize the UX Agent with brand guidelines and configurations"""
+        
+        # Brand Colors - Extracted from the dashboard
+        self.brand_colors = {
+            'primary_pink': '#E91E63',      # Main brand pink
+            'secondary_pink': '#FF4081',    # Accent pink
+            'dark_pink': '#C2185B',         # Darker pink variant
+            'gradient_start': '#E91E63',    # Gradient start
+            'gradient_end': '#FF4081',      # Gradient end
+            'background_dark': '#1A1A2E',   # Dark background
+            'surface_dark': '#16213E',      # Surface dark
+            'text_primary': '#FFFFFF',      # Primary text
+            'text_secondary': '#B0BEC5',    # Secondary text
+            'success': '#4CAF50',           # Success green
+            'warning': '#FF9800',           # Warning orange
+            'error': '#F44336',             # Error red
+            'info': '#2196F3'               # Info blue
+        }
+        
+        # Typography settings
+        self.typography = {
+            'font_family_primary': '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+            'font_family_mono': '"JetBrains Mono", "Fira Code", Consolas, monospace',
+            'font_weights': {
+                'light': 300,
+                'regular': 400,
+                'medium': 500,
+                'semibold': 600,
+                'bold': 700
+            },
+            'font_sizes': {
+                'xs': '0.75rem',
+                'sm': '0.875rem',
+                'base': '1rem',
+                'lg': '1.125rem',
+                'xl': '1.25rem',
+                'xxl': '1.5rem',
+                'xxxl': '2rem'
+            }
+        }
+        
+        # Layout and spacing
+        self.spacing = {
+            'xs': '0.25rem',
+            'sm': '0.5rem',
+            'md': '1rem',
+            'lg': '1.5rem',
+            'xl': '2rem',
+            'xxl': '3rem'
+        }
+        
+        # Chain data endpoints
+        self.chain_endpoints = {
+            'rpc': 'https://testnet-rpc.daodiseo.chaintools.tech',
+            'chain_registry': 'https://raw.githubusercontent.com/daodiseomoney/chain-registry/b18ba400ee5a116fd715f8a3643628b8f64d3982/testnets/daodiseotestnet/chain.json'
+        }
+        
+    def fix_logo_implementation(self, file_path: str) -> str:
+        """
+        Fix logo implementation to use provided image instead of generating one
+        """
+        logger.info("Fixing logo implementation...")
+        
+        logo_component = '''
+<!-- Logo Component - Use provided image -->
+<div class="logo-container" style="
+    display: flex;
+    align-items: center;
+    padding: {spacing_md};
+    margin-bottom: {spacing_lg};
+">
+    <img src="/static/images/daodiseo-logo.png" 
+         alt="DaoDiseo Logo" 
+         class="brand-logo"
+         style="
+             width: 32px;
+             height: 32px;
+             margin-right: {spacing_sm};
+         "
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+    />
+    <div class="logo-fallback" style="
+        display: none;
+        width: 32px;
+        height: 32px;
+        background: linear-gradient(135deg, {primary_pink}, {secondary_pink});
+        border-radius: 8px;
+        margin-right: {spacing_sm};
+        flex-shrink: 0;
+    "></div>
+    <span class="brand-text" style="
+        font-family: {font_family_primary};
+        font-weight: {font_weight_bold};
+        font-size: {font_size_lg};
+        color: {text_primary};
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    ">DAODISEO.APP</span>
+</div>
+'''.format(
+            spacing_md=self.spacing['md'],
+            spacing_lg=self.spacing['lg'],
+            spacing_sm=self.spacing['sm'],
+            primary_pink=self.brand_colors['primary_pink'],
+            secondary_pink=self.brand_colors['secondary_pink'],
+            font_family_primary=self.typography['font_family_primary'],
+            font_weight_bold=self.typography['font_weights']['bold'],
+            font_size_lg=self.typography['font_sizes']['lg'],
+            text_primary=self.brand_colors['text_primary']
+        )
+        
+        return logo_component
+    
+    def fix_dashboard_components(self) -> str:
+        """
+        Fix dashboard component issues including color dots visibility and component separation
+        """
+        logger.info("Fixing dashboard components...")
+        
+        dashboard_css = f'''
+<style>
+/* Dashboard Component Fixes */
+.dashboard-component {{
+    position: relative;
+    background: {self.brand_colors['surface_dark']};
+    border-radius: 12px;
+    padding: {self.spacing['lg']};
+    margin-bottom: {self.spacing['md']};
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: visible;
+}}
+
+.component-indicator {{
+    position: absolute;
+    top: {self.spacing['sm']};
+    right: {self.spacing['sm']};
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    z-index: 10;
+}}
+
+.component-indicator.token-value {{
+    background: {self.brand_colors['primary_pink']};
+}}
+
+.component-indicator.total-reserves {{
+    background: {self.brand_colors['secondary_pink']};
+}}
+
+.component-indicator.staking-apy {{
+    background: {self.brand_colors['warning']};
+}}
+
+.component-indicator.daily-rewards {{
+    background: {self.brand_colors['success']};
+}}
+
+/* Separate ODIS Token Component */
+.odis-token-component {{
+    background: linear-gradient(135deg, {self.brand_colors['primary_pink']}20, {self.brand_colors['secondary_pink']}20);
+    border: 1px solid {self.brand_colors['primary_pink']}40;
+    border-radius: 12px;
+    padding: {self.spacing['lg']};
+    margin: {self.spacing['md']} 0;
+}}
+
+.odis-token-header {{
+    display: flex;
+    align-items: center;
+    margin-bottom: {self.spacing['md']};
+}}
+
+.odis-token-icon {{
+    width: 24px;
+    height: 24px;
+    background: {self.brand_colors['primary_pink']};
+    border-radius: 50%;
+    margin-right: {self.spacing['sm']};
+}}
+
+/* Hot Asset Component - Separate from ODIS */
+.hot-asset-component {{
+    background: {self.brand_colors['surface_dark']};
+    border: 1px solid {self.brand_colors['info']}40;
+    border-radius: 12px;
+    padding: {self.spacing['lg']};
+    margin: {self.spacing['md']} 0;
+}}
+
+/* Fix component spacing and layout */
+.dashboard-grid {{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: {self.spacing['lg']};
+    margin-bottom: {self.spacing['xl']};
+}}
+
+/* Ensure proper bottom spacing */
+.dashboard-content {{
+    padding-bottom: {self.spacing['xxl']};
+    min-height: calc(100vh - 200px);
+}}
+
+/* Asset Distribution Chart */
+.asset-distribution {{
+    background: {self.brand_colors['surface_dark']};
+    border-radius: 12px;
+    padding: {self.spacing['lg']};
+    margin: {self.spacing['md']} 0;
+}}
+
+/* Validators Section */
+.validators-section {{
+    background: {self.brand_colors['surface_dark']};
+    border-radius: 12px;
+    padding: {self.spacing['lg']};
+    margin: {self.spacing['md']} 0;
+}}
+
+.validator-item {{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: {self.spacing['sm']} 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}}
+
+.validator-item:last-child {{
+    border-bottom: none;
+}}
+
+.validator-name {{
+    font-family: {self.typography['font_family_primary']};
+    font-weight: {self.typography['font_weights']['medium']};
+    color: {self.brand_colors['text_primary']};
+}}
+
+.validator-status {{
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: {self.typography['font_sizes']['xs']};
+    font-weight: {self.typography['font_weights']['medium']};
+}}
+
+.validator-status.active {{
+    background: {self.brand_colors['success']}20;
+    color: {self.brand_colors['success']};
+}}
+
+.validator-status.inactive {{
+    background: {self.brand_colors['error']}20;
+    color: {self.brand_colors['error']};
+}}
+</style>
+'''
+        return dashboard_css
+    
+    async def fetch_validators_data(self) -> List[Dict[str, Any]]:
+        """
+        Fetch real validator data from the chain
+        """
+        logger.info("Fetching validators data from chain...")
+        
+        try:
+            # Fetch from RPC endpoint
+            validators_url = f"{self.chain_endpoints['rpc']}/validators"
+            response = requests.get(validators_url, timeout=10)
+            
+            if response.status_code == 200:
+                data = response.json()
+                validators = []
+                
+                if 'result' in data and 'validators' in data['result']:
+                    for validator in data['result']['validators']:
+                        validators.append({
+                            'address': validator.get('address', 'Unknown'),
+                            'pub_key': validator.get('pub_key', {}).get('value', 'Unknown'),
+                            'voting_power': int(validator.get('voting_power', 0)),
+                            'proposer_priority': int(validator.get('proposer_priority', 0)),
+                            'status': 'active' if int(validator.get('voting_power', 0)) > 0 else 'inactive'
+                        })
+                
+                return validators
+            else:
+                logger.warning(f"Failed to fetch validators: {response.status_code}")
+                return self.get_fallback_validators()
+                
+        except Exception as e:
+            logger.error(f"Error fetching validators: {e}")
+            return self.get_fallback_validators()
+    
+    def get_fallback_validators(self) -> List[Dict[str, Any]]:
+        """
+        Provide fallback validator data if chain fetch fails
+        """
+        return [
+            {
+                'address': 'daodiseovaloper1...',
+                'pub_key': 'Ed25519 Key',
+                'voting_power': 1000000,
+                'proposer_priority': 0,
+                'status': 'active'
+            },
+            {
+                'address': 'daodiseovaloper2...',
+                'pub_key': 'Ed25519 Key',
+                'voting_power': 500000,
+                'proposer_priority': -1000000,
+                'status': 'active'
+            }
+        ]
+    
+    def fix_typos(self, content: str) -> str:
+        """
+        Fix typos in the application
+        """
+        logger.info("Fixing typos...")
+        
+        # Fix "idaka" to "ithaca"
+        content = re.sub(r'\bidaka\b', 'ithaca', content, flags=re.IGNORECASE)
+        content = re.sub(r'\bIdaka\b', 'Ithaca', content)
+        content = re.sub(r'\bIDAKA\b', 'ITHACA', content)
+        
+        return content
+    
+    def generate_improved_dashboard_html(self) -> str:
+        """
+        Generate the improved dashboard HTML with all fixes applied
+        """
+        logger.info("Generating improved dashboard HTML...")
+        
+        html_content = f'''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DaoDiseo Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    {self.fix_dashboard_components()}
+    
+    <style>
+        * {{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }}
+        
+        body {{
+            font-family: {self.typography['font_family_primary']};
+            background: {self.brand_colors['background_dark']};
+            color: {self.brand_colors['text_primary']};
+            line-height: 1.6;
+        }}
+        
+        .sidebar {{
+            width: 260px;
+            height: 100vh;
+            background: {self.brand_colors['surface_dark']};
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            padding: {self.spacing['lg']};
+            position: fixed;
+            left: 0;
+            top: 0;
+            overflow-y: auto;
+        }}
+        
+        .main-content {{
+            margin-left: 260px;
+            padding: {self.spacing['lg']};
+            min-height: 100vh;
+        }}
+        
+        .dashboard-header {{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: {self.spacing['xl']};
+        }}
+        
+        .dashboard-title {{
+            font-size: {self.typography['font_sizes']['xxxl']};
+            font-weight: {self.typography['font_weights']['bold']};
+            color: {self.brand_colors['text_primary']};
+        }}
+        
+        .stats-grid {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: {self.spacing['lg']};
+            margin-bottom: {self.spacing['xl']};
+        }}
+        
+        .stat-card {{
+            background: {self.brand_colors['surface_dark']};
+            border-radius: 12px;
+            padding: {self.spacing['lg']};
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: visible;
+        }}
+        
+        .stat-value {{
+            font-size: {self.typography['font_sizes']['xxl']};
+            font-weight: {self.typography['font_weights']['bold']};
+            color: {self.brand_colors['text_primary']};
+            margin-bottom: {self.spacing['sm']};
+        }}
+        
+        .stat-label {{
+            font-size: {self.typography['font_sizes']['sm']};
+            color: {self.brand_colors['text_secondary']};
+            font-weight: {self.typography['font_weights']['medium']};
+        }}
+        
+        .gradient-bar {{
+            height: 4px;
+            background: linear-gradient(90deg, {self.brand_colors['gradient_start']}, {self.brand_colors['gradient_end']});
+            border-radius: 2px;
+            margin-top: {self.spacing['md']};
+        }}
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        {self.fix_logo_implementation("")}
+        
+        <nav class="nav-menu">
+            <div class="nav-item active">
+                <span class="nav-icon">📊</span>
+                <span class="nav-text">Dashboard</span>
+            </div>
+            <div class="nav-item">
+                <span class="nav-icon">👁️</span>
+                <span class="nav-text">3D Viewer</span>
+            </div>
+            <div class="nav-item">
+                <span class="nav-icon">📤</span>
+                <span class="nav-text">Upload</span>
+            </div>
+            <div class="nav-item">
+                <span class="nav-icon">📋</span>
+                <span class="nav-text">Contracts</span>
+            </div>
+        </nav>
+        
+        <div class="network-status" style="margin-top: auto; padding-top: {self.spacing['xl']};">
+            <div style="color: {self.brand_colors['success']}; font-size: {self.typography['font_sizes']['sm']};">
+                🟢 DaoDiseo Testnet
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">Dashboard</h1>
+            <div class="user-info">
+                <span style="color: {self.brand_colors['warning']};">⭐ 10 pts</span>
+                <span style="background: {self.brand_colors['success']}; padding: 4px 12px; border-radius: 16px; font-size: {self.typography['font_sizes']['sm']}; margin-left: {self.spacing['sm']};">
+                    ✅ odiseo...t705
+                </span>
+            </div>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="component-indicator token-value"></div>
+                <div class="stat-value">$15,811.04</div>
+                <div class="stat-label">Token Value</div>
+                <div class="gradient-bar"></div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="component-indicator total-reserves"></div>
+                <div class="stat-value">$38,126.50</div>
+                <div class="stat-label">Total Reserves</div>
+                <div class="gradient-bar"></div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="component-indicator staking-apy"></div>
+                <div class="stat-value">9.5%</div>
+                <div class="stat-label">Staking APY</div>
+                <div class="gradient-bar"></div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="component-indicator daily-rewards"></div>
+                <div class="stat-value">0.318</div>
+                <div class="stat-label">Daily Rewards</div>
+                <div class="gradient-bar"></div>
+            </div>
+        </div>
+        
+        <!-- Separate ODIS Token Component -->
+        <div class="odis-token-component">
+            <div class="odis-token-header">
+                <div class="odis-token-icon"></div>
+                <h3 style="color: {self.brand_colors['text_primary']}; font-weight: {self.typography['font_weights']['semibold']};">
+                    ODIS Token
+                </h3>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: {self.spacing['md']};">
+                <div>
+                    <div style="font-size: {self.typography['font_sizes']['lg']}; font-weight: {self.typography['font_weights']['bold']}; color: {self.brand_colors['primary_pink']};">
+                        1,000,000
+                    </div>
+                    <div style="font-size: {self.typography['font_sizes']['sm']}; color: {self.brand_colors['text_secondary']};">
+                        Total Supply
+                    </div>
+                </div>
+                <div>
+                    <div style="font-size: {self.typography['font_sizes']['lg']}; font-weight: {self.typography['font_weights']['bold']}; color: {self.brand_colors['secondary_pink']};">
+                        $0.0158
+                    </div>
+                    <div style="font-size: {self.typography['font_sizes']['sm']}; color: {self.brand_colors['text_secondary']};">
+                        Current Price
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Hot Asset Component - Separate -->
+        <div class="hot-asset-component">
+            <h3 style="color: {self.brand_colors['text_primary']}; margin-bottom: {self.spacing['md']}; font-weight: {self.typography['font_weights']['semibold']};">
+                🔥 Hot Asset Seeking Liquidity
+            </h3>
+            <div style="color: {self.brand_colors['text_secondary']}; font-size: {self.typography['font_sizes']['sm']};">
+                Verified Asset with Due Diligence Complete
+            </div>
+            <div style="margin-top: {self.spacing['md']};">
+                <div style="background: linear-gradient(135deg, {self.brand_colors['primary_pink']}, {self.brand_colors['secondary_pink']}); height: 100px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                    <span style="color: white; font-weight: {self.typography['font_weights']['bold']};">
+                        3D Asset Visualization
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="dashboard-grid">
+            <div class="asset-distribution">
+                <h3 style="color: {self.brand_colors['text_primary']}; margin-bottom: {self.spacing['md']};">
+                    ⏱️ Asset Distribution
+                </h3>
+                <div style="color: {self.brand_colors['text_secondary']}; font-size: {self.typography['font_sizes']['sm']}; margin-bottom: {self.spacing['lg']};">
+                    Verified vs Unverified Assets
+                </div>
+                <div style="width: 200px; height: 200px; margin: 0 auto; position: relative;">
+                    <div style="width: 100%; height: 100%; border-radius: 50%; background: conic-gradient({self.brand_colors['success']} 0deg 216deg, {self.brand_colors['warning']} 216deg 360deg);"></div>
+                    <div style="position: absolute; bottom: 0; left: 0; right: 0; display: flex; justify-content: space-between; font-size: {self.typography['font_sizes']['xs']};">
+                        <span style="color: {self.brand_colors['success']};">● Verified Assets</span>
+                        <span style="color: {self.brand_colors['warning']};">● Unverified Assets</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="validators-section" id="validators-section">
+                <h3 style="color: {self.brand_colors['text_primary']}; margin-bottom: {self.spacing['md']};">
+                    Active Validators
+                </h3>
+                <div id="validators-list">
+                    <div style="color: {self.brand_colors['text_secondary']}; text-align: center; padding: {self.spacing['lg']};">
+                        Loading validators...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Fix location typo and fetch validators
+        document.addEventListener('DOMContentLoaded', function() {{
+            // Fix any remaining "idaka" typos
+            const textNodes = document.createTreeWalker(
+                document.body,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+            );
+            
+            let node;
+            while (node = textNodes.nextNode()) {{
+                if (node.textContent.includes('idaka')) {{
+                    node.textContent = node.textContent.replace(/idaka/gi, 'ithaca');
+                }}
+            }}
+            
+            // Load validators data
+            loadValidators();
+        }});
+        
+        async function loadValidators() {{
+            try {{
+                const response = await fetch('/api/validators');
+                const validators = await response.json();
+                
+                const validatorsList = document.getElementById('validators-list');
+                
+                if (validators && validators.length > 0) {{
+                    validatorsList.innerHTML = validators.map(validator => `
+                        <div class="validator-item">
+                            <div>
+                                <div class="validator-name">${{validator.address.substring(0, 20)}}...</div>
+                                <div style="font-size: {self.typography['font_sizes']['xs']}; color: {self.brand_colors['text_secondary']};">
+                                    Voting Power: ${{validator.voting_power.toLocaleString()}}
+                                </div>
+                            </div>
+                            <div class="validator-status ${{validator.status}}">
+                                ${{validator.status.toUpperCase()}}
+                            </div>
+                        </div>
+                    `).join('');
+                }} else {{
+                    validatorsList.innerHTML = `
+                        <div style="text-align: center; color: {self.brand_colors['text_secondary']}; padding: {self.spacing['lg']};">
+                            No validators data available
+                        </div>
+                    `;
+                }}
+            }} catch (error) {{
+                console.error('Failed to load validators:', error);
+                document.getElementById('validators-list').innerHTML = `
+                    <div style="text-align: center; color: {self.brand_colors['error']}; padding: {self.spacing['lg']};">
+                        Failed to load validators data
+                    </div>
+                `;
+            }}
+        }}
+    </script>
+</body>
+</html>
+'''
+        return html_content
+    
+    def create_api_endpoint_for_validators(self) -> str:
+        """
+        Create API endpoint code for fetching validators
+        """
+        api_code = f'''
+# Add this to your Flask/FastAPI application
+
+@app.route('/api/validators')
+async def get_validators():
+    """
+    API endpoint to fetch validator data from the chain
+    """
+    try:
+        import aiohttp
+        import asyncio
+        
+        async with aiohttp.ClientSession() as session:
+            async with session.get('{self.chain_endpoints["rpc"]}/validators') as response:
+                if response.status == 200:
+                    data = await response.json()
+                    validators = []
+                    
+                    if 'result' in data and 'validators' in data['result']:
+                        for validator in data['result']['validators']:
+                            validators.append({{
+                                'address': validator.get('address', 'Unknown'),
+                                'pub_key': validator.get('pub_key', {{}}).get('value', 'Unknown'),
+                                'voting_power': int(validator.get('voting_power', 0)),
+                                'proposer_priority': int(validator.get('proposer_priority', 0)),
+                                'status': 'active' if int(validator.get('voting_power', 0)) > 0 else 'inactive'
+                            }})
+                    
+                    return jsonify(validators)
+                else:
+                    return jsonify([]), 500
+                    
+    except Exception as e:
+        logger.error(f"Error fetching validators: {{e}}")
+        # Return fallback data
+        return jsonify([
+            {{
+                'address': 'daodiseovaloper1abc123def456',
+                'pub_key': 'Ed25519 Key',
+                'voting_power': 1000000,
+                'proposer_priority': 0,
+                'status': 'active'
+            }},
+            {{
+                'address': 'daodiseovaloper2xyz789uvw012',
+                'pub_key': 'Ed25519 Key',
+                'voting_power': 500000,
+                'proposer_priority': -1000000,
+                'status': 'active'
+            }}
+        ])
+'''
+        return api_code
+    
+    def generate_brand_guide(self) -> str:
+        """
+        Generate a comprehensive brand guide for the development team
+        """
+        brand_guide = f'''
+# DaoDiseo Brand Guidelines
+
+## Color Palette
+- Primary Pink: {self.brand_colors['primary_pink']}
+- Secondary Pink: {self.brand_colors['secondary_pink']}
+- Dark Pink: {self.brand_colors['dark_pink']}
+- Background Dark: {self.brand_colors['background_dark']}
+- Surface Dark: {self.brand_colors['surface_dark']}
+- Text Primary: {self.brand_colors['text_primary']}
+- Text Secondary: {self.brand_colors['text_secondary']}
+
+## Typography
+- Font Family: {self.typography['font_family_primary']}
+- Monospace: {self.typography['font_family_mono']}
+
+## Component Guidelines
+1. All components should have proper spacing using the defined spacing scale
+2. Use brand colors consistently across all UI elements
+3. Ensure proper contrast ratios for accessibility
+4. Component indicators should be visible and not hidden
+5. Separate concerns - ODIS token component should be separate from hot assets
+
+## Logo Usage
+- Always use the provided logo image
+- Fallback to gradient background with brand text if image fails
+- Brand text should always be in uppercase: "DAODISEO.APP"
+
+## Dashboard Layout
+- Maintain consistent grid spacing
+- Ensure proper bottom padding to avoid endless scrolling
+- Use proper z-index for component indicators
+- Separate different functional components visually
+'''
+        return brand_guide
+    
+    def run_ux_improvements(self, target_directory: str = "."):
+        """
+        Run all UX improvements on the application
+        """
+        logger.info("Starting UX improvements...")
+        
+        try:
+            # Create improved dashboard HTML
+            dashboard_html = self.generate_improved_dashboard_html()
+            
+            # Write improved dashboard
+            with open(os.path.join(

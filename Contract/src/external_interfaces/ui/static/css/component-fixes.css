@@ -1,0 +1,52 @@
+
+/* Dashboard Component Color Indicators Fix */
+.dashboard-card {
+    position: relative;
+    background: #16213E;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    overflow: visible !important;
+}
+
+.component-indicator {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    z-index: 1000 !important;
+    pointer-events: none;
+    box-shadow: 0 0 0 2px #16213E;
+}
+
+.component-indicator.token-value {
+    background: #E91E63;
+}
+
+.component-indicator.total-reserves {
+    background: #FF4081;
+}
+
+.component-indicator.staking-apy {
+    background: #FFB300;
+}
+
+.component-indicator.daily-rewards {
+    background: #00E676;
+}
+
+/* Ensure indicators are visible above all content */
+.dashboard-card::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 18px;
+    height: 18px;
+    background: #16213E;
+    border-radius: 50%;
+    z-index: 999;
+}

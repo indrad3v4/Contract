@@ -1,0 +1,96 @@
+
+<!-- Separate ODIS Token Component -->
+<div class="odis-token-standalone" style="
+    background: linear-gradient(135deg, #E91E6315, #FF408115);
+    border: 1px solid #E91E6340;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    position: relative;
+">
+    <div class="component-indicator token-odis" style="
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 10px;
+        height: 10px;
+        background: #E91E63;
+        border-radius: 50%;
+        z-index: 1000;
+        box-shadow: 0 0 0 2px #16213E;
+    "></div>
+    
+    <div class="odis-header" style="display: flex; align-items: center; margin-bottom: 1rem;">
+        <div class="odis-icon" style="
+            width: 24px;
+            height: 24px;
+            background: #E91E63;
+            border-radius: 50%;
+            margin-right: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 10px;
+        ">O</div>
+        <div>
+            <h5 style="margin: 0; color: #FFFFFF; font-weight: 600;">ODIS Token</h5>
+            <small style="color: #B0BEC5;">Cosmos Network</small>
+        </div>
+        <button class="btn-buy-odis" style="
+            margin-left: auto;
+            background: #E91E63;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            cursor: pointer;
+        " onclick="window.open('https://app.streamswap.io/swap?to=uodis', '_blank')">
+            Buy ODIS
+        </button>
+    </div>
+    
+    <div class="odis-price-data" style="
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    ">
+        <div>
+            <div style="color: #B0BEC5; font-size: 0.875rem;">Current Price</div>
+            <div style="color: #FFFFFF; font-size: 1.5rem; font-weight: 600;">$0.1236</div>
+            <div style="color: #00E676; font-size: 0.875rem;">↑ 2.46%</div>
+        </div>
+        <div>
+            <div style="color: #B0BEC5; font-size: 0.875rem;">24h Volume</div>
+            <div style="color: #FFFFFF; font-size: 1.25rem; font-weight: 600;">$2.5M</div>
+        </div>
+    </div>
+    
+    <div class="price-alert" style="
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    ">
+        <input type="number" placeholder="Set price alert" style="
+            flex: 1;
+            background: #0A0A0A;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 8px 12px;
+            color: #FFFFFF;
+            font-size: 0.875rem;
+        " step="0.0001">
+        <button style="
+            background: #FFB300;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            cursor: pointer;
+        ">Alert</button>
+    </div>
+</div>

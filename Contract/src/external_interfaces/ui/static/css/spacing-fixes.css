@@ -1,0 +1,57 @@
+
+/* Dashboard Spacing and Layout Fixes */
+.dashboard-content {
+    padding-bottom: 2rem !important;
+    min-height: auto !important;
+}
+
+.main-content {
+    padding-bottom: 2rem;
+    max-height: 100vh;
+    overflow-y: auto;
+}
+
+/* Remove excessive bottom spacing */
+body {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.content-wrapper {
+    padding-bottom: 1rem !important;
+    margin-bottom: 0 !important;
+}
+
+/* Ensure proper grid spacing */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem !important;
+}
+
+/* Fix component margins */
+.dashboard-card,
+.odis-token-standalone,
+.validators-section {
+    margin-bottom: 1rem !important;
+}
+
+.dashboard-card:last-child,
+.odis-token-standalone:last-child,
+.validators-section:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* Container fixes */
+.container,
+.container-fluid {
+    padding-bottom: 1rem !important;
+}
+
+/* Sidebar height fix */
+.sidebar {
+    height: 100vh;
+    max-height: 100vh;
+    overflow-y: auto;
+}

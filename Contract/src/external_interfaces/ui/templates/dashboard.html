@@ -1,10 +1,24 @@
 {% extends "base.html" %}
 
-{% block title %}Daodiseo - Real Estate Tokenization Dashboard{% endblock %}
+{% block title %}Daodiseo - Real Estate Tokenization Dashboard
+<!-- Separated ODIS Token Component -->
+{% include 'components/odis_token_separate.html' %}
+
+<!-- Real Validators Component -->
+{% include 'components/validators_real.html' %}
+
+{% endblock %}
 
 {% block extra_css %}
 <!-- Enhanced Chat CSS -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/chat-enhanced.css') }}">
+
+<!-- Separated ODIS Token Component -->
+{% include 'components/odis_token_separate.html' %}
+
+<!-- Real Validators Component -->
+{% include 'components/validators_real.html' %}
+
 {% endblock %}
 
 {% block content %}
@@ -130,7 +144,7 @@
 
                         <div class="col-md-8">
                             <div class="model-info">
-                                <div class="model-name">Idaka Project</div>
+                                <div class="model-name">ithaca Project</div>
                                 <div class="model-meta">
                                     <span class="model-meta-item">
                                         <i data-feather="layers" class="icon-inline-sm"></i>
@@ -302,7 +316,7 @@
             <div class="modal-header border-info">
                 <h5 class="modal-title" id="investModalLabel">
                     <i data-feather="dollar-sign" class="icon-inline text-info"></i>
-                    Invest in Idaka Project
+                    Invest in ithaca Project
                 </h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -439,6 +453,13 @@
         </div>
     </div>
 </div>
+
+<!-- Separated ODIS Token Component -->
+{% include 'components/odis_token_separate.html' %}
+
+<!-- Real Validators Component -->
+{% include 'components/validators_real.html' %}
+
 {% endblock %}
 
 {% block extra_js %}
@@ -593,4 +614,11 @@
         feather.replace();
     });
 </script>
+
+<!-- Separated ODIS Token Component -->
+{% include 'components/odis_token_separate.html' %}
+
+<!-- Real Validators Component -->
+{% include 'components/validators_real.html' %}
+
 {% endblock %}

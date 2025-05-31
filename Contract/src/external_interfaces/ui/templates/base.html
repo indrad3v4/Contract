@@ -89,15 +89,32 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
     
     {% block extra_css %}{% endblock %}
+
+    <!-- DAODISEO Brand Alignment CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/component-fixes.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/spacing-fixes.css') }}">
 </head>
 <body class="cosmic-theme">
     <div class="app-container">
         <!-- Sidebar -->
         <div class="sidebar">
+            
             <div class="sidebar-header">
                 <div class="app-logo">
-                    <img src="{{ url_for('static', filename='img/cosmic-logo.svg') }}" alt="DAODISEO">
+                    <img src="{{ url_for('static', filename='images/daodiseo-logo.svg') }}" alt="DAODISEO" style="width: 32px; height: 32px;">
                 </div>
+                <div class="app-title" style="
+                    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+                    font-weight: 700;
+                    font-size: 1.1rem;
+                    background: linear-gradient(135deg, #E91E63, #FF4081);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                ">DAODISEO.APP</div>
+            </div>
                 <div class="app-title">daodiseo.app</div>
             </div>
             
@@ -344,7 +361,7 @@
                     const cardHeaders = document.querySelectorAll('.card .card-header');
                     for (const header of cardHeaders) {
                         if (header.querySelector('.text-warning') || 
-                            header.textContent.includes('Idaka Project') ||
+                            header.textContent.includes('ithaca Project') ||
                             header.textContent.includes('Hot Asset')) {
                             targetElement = header.closest('.card');
                             break;
@@ -725,7 +742,7 @@
                             case 'investor':
                                 message = 'As an investor, you can explore verified real estate assets, stake ODIS tokens, and gain exposure to tokenized properties with complete due diligence.';
                                 actions = [
-                                    { icon: 'zap', text: 'Explore the Idaka Project featured on the dashboard', link: '/' },
+                                    { icon: 'zap', text: 'Explore the ithaca Project featured on the dashboard', link: '/' },
                                     { icon: 'pie-chart', text: 'Review asset distribution metrics', link: '/' },
                                     { icon: 'dollar-sign', text: 'Check current staking APY (9.5%)', link: '/' }
                                 ];
@@ -761,7 +778,7 @@
                             case 'broker':
                                 message = 'As a broker, you can showcase verified real estate opportunities, connect investors with developers, and track property transactions.';
                                 actions = [
-                                    { icon: 'zap', text: 'Present the Idaka Project to potential investors', link: '/' },
+                                    { icon: 'zap', text: 'Present the ithaca Project to potential investors', link: '/' },
                                     { icon: 'users', text: 'Analyze stakeholder distribution', link: '/' },
                                     { icon: 'trending-up', text: 'Track property investment performance', link: '/' }
                                 ];
@@ -821,7 +838,7 @@
                                 
                                 // Highlight the relevant section based on the action
                                 switch (action.text) {
-                                    case 'Explore the Idaka Project featured on the dashboard':
+                                    case 'Explore the ithaca Project featured on the dashboard':
                                         // Scroll to and highlight the Hot Asset section
                                         highlightDashboardSection('.hot-asset');
                                         break;

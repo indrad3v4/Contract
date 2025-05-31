@@ -1,0 +1,88 @@
+
+<!-- Real Validators Component -->
+<div class="validators-section" style="
+    background: #16213E;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    position: relative;
+">
+    <div class="component-indicator validators" style="
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 10px;
+        height: 10px;
+        background: #00B8D4;
+        border-radius: 50%;
+        z-index: 1000;
+        box-shadow: 0 0 0 2px #16213E;
+    "></div>
+    
+    <h5 style="color: #FFFFFF; margin-bottom: 1rem; font-weight: 600;">
+        Active Validators
+    </h5>
+    
+    <div id="validators-list" style="max-height: 300px; overflow-y: auto;">
+        <div class="loading-validators" style="text-align: center; color: #B0BEC5;">
+            Loading validators from DAODISEO chain...
+        </div>
+    </div>
+</div>
+
+<script>
+async function loadRealValidators() {
+    try {
+        const response = await fetch('/api/validators');
+        const validators = await response.json();
+        
+        const validatorsList = document.getElementById('validators-list');
+        
+        if (validators && validators.length > 0) {
+            validatorsList.innerHTML = validators.map(validator => `
+                <div style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 12px 0;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                ">
+                    <div>
+                        <div style="color: #FFFFFF; font-weight: 500;">
+                            ${validator.name || 'Validator'}
+                        </div>
+                        <div style="color: #B0BEC5; font-size: 0.875rem;">
+                            ${validator.address}
+                        </div>
+                    </div>
+                    <div style="text-align: right;">
+                        <span style="
+                            padding: 4px 8px;
+                            border-radius: 12px;
+                            font-size: 0.75rem;
+                            font-weight: 500;
+                            background: ${validator.status === 'active' ? '#00E67620' : '#FF3D7120'};
+                            color: ${validator.status === 'active' ? '#00E676' : '#FF3D71'};
+                        ">
+                            ${validator.status}
+                        </span>
+                        <div style="color: #B0BEC5; font-size: 0.75rem; margin-top: 2px;">
+                            Power: ${validator.voting_power}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        } else {
+            validatorsList.innerHTML = '<div style="text-align: center; color: #B0BEC5;">No validators data available</div>';
+        }
+    } catch (error) {
+        console.error('Failed to load validators:', error);
+        document.getElementById('validators-list').innerHTML = 
+            '<div style="text-align: center; color: #FF3D71;">Failed to load validators</div>';
+    }
+}
+
+// Load validators when page loads
+document.addEventListener('DOMContentLoaded', loadRealValidators);
+</script>
