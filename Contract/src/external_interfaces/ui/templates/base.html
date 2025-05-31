@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Daodiseo Real Estate Tokenization{% endblock %}</title>
+    <title>{% block title %}DAODISEO - Real Estate Tokenization{% endblock %}</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,7 +30,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-theme.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/micro-rewards.css') }}">
+    <link rel="stylesheet" href="{ url_for('static', filename='css/micro-rewards.css') }">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/daodiseo-ux.css') }}">
     
     <style>
         /* User profile menu styles */
@@ -95,9 +96,9 @@
         <div class="sidebar">
             <div class="sidebar-header">
                 <div class="app-logo">
-                    <img src="{{ url_for('static', filename='img/cosmic-logo.svg') }}" alt="BIM AI">
+                    <img src="{{ url_for('static', filename='img/cosmic-logo.svg') }}" alt="DAODISEO">
                 </div>
-                <div class="app-title">BIM AI</div>
+                <div class="app-title">daodiseo.app</div>
             </div>
             
             <nav class="sidebar-nav">
@@ -134,12 +135,7 @@
                     <div class="status-indicator active"></div>
                     <span>Odiseo Testnet</span>
                 </div>
-                <div class="wallet-connect">
-                    <button class="btn btn-sm btn-outline-info" id="connectKeplrBtn">
-                        <i data-feather="link" class="icon-inline-sm"></i>
-                        Connect Keplr Wallet
-                    </button>
-                </div>
+                
             </div>
         </div>
         
@@ -151,19 +147,18 @@
                     <h1>{% block page_title %}Dashboard{% endblock %}</h1>
                 </div>
                 <div class="top-actions">
-                    <div class="search-box">
-                        <input type="text" placeholder="Search...">
-                        <i data-feather="search"></i>
-                    </div>
+                    
                     <div class="user-menu">
-                        <div class="notifications" id="notificationBtn">
-                            <i data-feather="bell"></i>
-                            <span class="badge">3</span>
-                        </div>
-                        <div class="user-profile" id="userProfileBtn">
-                            <img src="{{ url_for('static', filename='img/avatar.svg') }}" alt="User">
-                            <span>John Doe</span>
-                        </div>
+                        <div class="points-system" id="pointsSystemBtn">
+                        <i data-feather="star"></i>
+                        <span class="points-badge" id="userPoints">0 pts</span>
+                    </div>
+                        <div class="wallet-connection" id="headerWalletBtn">
+                        <button class="btn btn-outline-info btn-sm" id="headerConnectKeplr">
+                            <i data-feather="link" class="icon-inline-sm"></i>
+                            Connect Keplr
+                        </button>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -1016,5 +1011,38 @@
     </script>
     
     {% block extra_js %}{% endblock %}
+
+    <!-- DAODISEO Wallet Manager -->
+    <script src="{{ url_for('static', filename='js/keplr-wallet.js') }}"></script>
+    
+    <!-- Additional ODIS Token Data Updates -->
+    <script>
+        // Simulate real-time token price updates
+        function updateTokenPrices() {
+            const prices = {
+                current: (0.1204 + (Math.random() - 0.5) * 0.01).toFixed(4),
+                change: ((Math.random() - 0.5) * 10).toFixed(2)
+            };
+            
+            const currentPriceEl = document.getElementById('odisCurrentPrice');
+            const priceChangeEl = document.getElementById('odisPriceChange');
+            
+            if (currentPriceEl) {
+                currentPriceEl.textContent = '$' + prices.current;
+            }
+            
+            if (priceChangeEl) {
+                const isPositive = parseFloat(prices.change) >= 0;
+                priceChangeEl.textContent = (isPositive ? '↑ ' : '↓ ') + Math.abs(prices.change) + '%';
+                priceChangeEl.className = isPositive ? 'price-change text-success ms-2' : 'price-change text-danger ms-2';
+            }
+        }
+        
+        // Update prices every 30 seconds
+        setInterval(updateTokenPrices, 30000);
+        
+        // Initial price update
+        setTimeout(updateTokenPrices, 2000);
+    </script>
 </body>
 </html>

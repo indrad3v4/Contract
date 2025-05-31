@@ -1,0 +1,177 @@
+/* DAODISEO UX Enhancement Styles */
+
+/* Points System in Header */
+.points-system {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: rgba(255, 193, 7, 0.1);
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.points-system:hover {
+    background: rgba(255, 193, 7, 0.2);
+    transform: translateY(-1px);
+}
+
+.points-badge {
+    font-weight: 600;
+    color: #ffc107;
+    font-size: 0.9rem;
+}
+
+/* Wallet Connection in Header */
+.wallet-connection {
+    display: flex;
+    align-items: center;
+}
+
+.wallet-connection .btn {
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ODIS Trading Widget */
+.odis-trading-widget {
+    background: linear-gradient(135deg, rgba(13, 110, 253, 0.1) 0%, rgba(13, 202, 240, 0.1) 100%);
+    border: 1px solid rgba(13, 202, 240, 0.3);
+    box-shadow: 0 4px 20px rgba(13, 202, 240, 0.1);
+}
+
+.odis-trading-widget .card-header {
+    background: rgba(13, 202, 240, 0.1);
+    border-bottom: 1px solid rgba(13, 202, 240, 0.3);
+}
+
+.token-stats .stat-item {
+    padding: 8px 0;
+}
+
+.token-stats .stat-value {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.price-display {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+}
+
+.current-price {
+    font-weight: 700;
+    font-family: 'Inter', monospace;
+}
+
+.price-change {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.price-chart-placeholder {
+    background: linear-gradient(45deg, rgba(108, 117, 125, 0.2), rgba(108, 117, 125, 0.1));
+    border: 1px dashed rgba(108, 117, 125, 0.5);
+}
+
+/* Price Alert Input */
+.price-alert-section .input-group {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.price-alert-section .form-control {
+    border-right: none;
+}
+
+.price-alert-section .btn {
+    border-left: none;
+}
+
+/* Points Notification */
+.points-notification .alert {
+    animation: slideInRight 0.5s ease-out;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Clean Header Layout */
+.top-bar {
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.top-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Sidebar Branding Update */
+.app-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    background: linear-gradient(135deg, #0dcaf0, #0d6efd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .top-actions {
+        gap: 8px;
+    }
+    
+    .wallet-connection .btn,
+    .points-system {
+        padding: 6px 10px;
+        font-size: 0.85rem;
+    }
+    
+    .price-display {
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .token-stats {
+        margin-top: 16px;
+    }
+}
+
+/* Enhanced Modal Styles */
+.modal-content.bg-dark {
+    background: linear-gradient(135deg, rgba(33, 37, 41, 0.95) 0%, rgba(52, 58, 64, 0.95) 100%) !important;
+    backdrop-filter: blur(10px);
+}
+
+/* Icon Animation */
+.icon-inline-sm {
+    transition: transform 0.2s ease;
+}
+
+.btn:hover .icon-inline-sm {
+    transform: scale(1.1);
+}
+
+/* Token Icon Styling */
+.token-icon .rounded-circle {
+    background: linear-gradient(135deg, #0dcaf0, #0d6efd) !important;
+    box-shadow: 0 2px 10px rgba(13, 202, 240, 0.3);
+}

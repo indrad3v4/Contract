@@ -1,0 +1,75 @@
+<!-- ODIS Token Trading Interface -->
+<div class="odis-trading-widget card bg-dark border-info mb-4">
+    <div class="card-header d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <div class="token-icon me-3">
+                <div class="rounded-circle bg-info d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                    <span class="text-white fw-bold">ODIS</span>
+                </div>
+            </div>
+            <div>
+                <h5 class="mb-0 text-info">ODIS Token</h5>
+                <small class="text-muted">Cosmos Network</small>
+            </div>
+        </div>
+        <button class="btn btn-info btn-sm" id="buyOdisBtn">
+            <i data-feather="shopping-cart"></i>
+            Buy ODIS
+        </button>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="token-price mb-3">
+                    <div class="price-display">
+                        <span class="current-price h3 text-white" id="odisCurrentPrice">$0.1204</span>
+                        <span class="price-change text-success ms-2" id="odisPriceChange">↑ 2.19%</span>
+                    </div>
+                </div>
+                <div class="token-stats row">
+                    <div class="col-6">
+                        <div class="stat-item">
+                            <small class="text-muted">24h High</small>
+                            <div class="stat-value text-white" id="odis24hHigh">$0.1289</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="stat-item">
+                            <small class="text-muted">24h Low</small>
+                            <div class="stat-value text-white" id="odis24hLow">$0.1156</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="stat-item">
+                            <small class="text-muted">Volume</small>
+                            <div class="stat-value text-white" id="odisVolume">$2.5M</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="stat-item">
+                            <small class="text-muted">Market Cap</small>
+                            <div class="stat-value text-white" id="odisMarketCap">$12.4M</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="price-chart-placeholder bg-secondary rounded" style="height: 120px;">
+                    <div class="d-flex align-items-center justify-content-center h-100 text-muted">
+                        <small>Price Chart</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="price-alert-section mt-3">
+            <div class="input-group">
+                <input type="number" class="form-control bg-dark text-white border-secondary" 
+                       placeholder="Set price alert" id="priceAlertInput" step="0.0001">
+                <button class="btn btn-outline-warning" type="button" id="setPriceAlertBtn">
+                    <i data-feather="bell"></i>
+                    Alert
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
