@@ -1,0 +1,169 @@
+modules = ["python-3.11", "python3", "nodejs-20"]
+
+[nix]
+channel = "stable-24_05"
+packages = ["boost", "c-ares", "freetype", "geckodriver", "grpc", "icu", "lcms2", "libimagequant", "libjpeg", "libtiff", "libwebp", "libxcrypt", "opencascade-occt", "opencollada", "openjpeg", "openssl", "pcre", "pkg-config", "swig", "tcl", "tk", "zlib"]
+
+[deployment]
+deploymentTarget = "autoscale"
+run = ["sh", "-c", "gunicorn --bind 0.0.0.0:5000 main:app"]
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "E2E Tests"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "DAODISEO Main Server"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "E2E Real Tests"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "BrowserStack Tests"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Footer Role Test"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Keplr Integration Test"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Vue Development Server"
+
+[[workflows.workflow]]
+name = "Run Flask App"
+author = 19011026
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python main.py"
+
+[[workflows.workflow]]
+name = "E2E Tests"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "bash scripts/run_selenium_tests.sh"
+
+[[workflows.workflow]]
+name = "Flask Dev + Console"
+author = 19011026
+mode = "parallel"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "export FLASK_APP=main.py FLASK_ENV=development && python -m flask run --host=0.0.0.0 --port=5000"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx browser-console-log --url http://localhost:5000"
+
+[[workflows.workflow]]
+name = "DAODISEO Main Server"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python -m flask run --host=0.0.0.0 --port=5000"
+waitForPort = 5000
+
+[[workflows.workflow]]
+name = "Keplr Integration Test"
+author = "agent"
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "bash scripts/run_keplr_integration_test.sh"
+
+[[workflows.workflow]]
+name = "E2E Real Tests"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "bash scripts/run_e2e_tests.sh"
+
+[[workflows.workflow]]
+name = "BrowserStack Tests"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "bash scripts/run_browserstack_tests.sh"
+
+[[workflows.workflow]]
+name = "Footer Role Test"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd tests && python -m pytest test_footer_role_duplication_browserstack.py::TestFooterRoleDuplication::test_footer_role_button_duplication_flow -v -s"
+
+[[workflows.workflow]]
+name = "Environment Parity Check"
+author = 19011026
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python scripts/validate_environment_parity.py"
+
+[[workflows.workflow]]
+name = "Interactive Debug Session"
+author = 19011026
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "bash scripts/run_debug_session.sh"
+
+[[workflows.workflow]]
+name = "Debug & Coverage Analysis"
+author = 19011026
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python scripts/coverage_analysis.py"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python scripts/interactive_debug_session.py"
+
+[[workflows.workflow]]
+name = "Vue Development Server"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd daodiseo-fresh/frontend && npm run dev -- --host 0.0.0.0 --port 3000"
+waitForPort = 3000
+
+[[ports]]
+localPort = 3000
+externalPort = 3000
+
+[[ports]]
+localPort = 3001
+externalPort = 3001
+
+[[ports]]
+localPort = 5000
+externalPort = 80
