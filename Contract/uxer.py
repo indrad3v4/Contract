@@ -26,8 +26,9 @@ class DAODISEOUXer:
     
     def __init__(self, app_root: str = "."):
         self.app_root = Path(app_root)
-        self.static_path = self.app_root / "static"
-        self.templates_path = self.app_root / "templates"
+        self.ui_root = self.app_root / "src" / "external_interfaces" / "ui"
+        self.static_path = self.ui_root / "static"
+        self.templates_path = self.ui_root / "templates"
         
         # DAODISEO blockchain configuration
         self.chain_config = {

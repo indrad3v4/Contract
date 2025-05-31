@@ -46,7 +46,7 @@ args = "Vue Development Server"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-args = "Contract Server"
+args = "Contract Server Updated"
 
 [[workflows.workflow]]
 name = "Run Flask App"
@@ -161,7 +161,7 @@ args = "cd daodiseo-fresh/frontend && npm run dev -- --host 0.0.0.0 --port 3000"
 waitForPort = 3000
 
 [[workflows.workflow]]
-name = "Contract Server"
+name = "Contract Server Updated"
 author = "agent"
 
 [[workflows.workflow.tasks]]
