@@ -1,37 +1,19 @@
-
 <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
   <!-- Outer ring -->
-  <path d="M100 20C144.183 20 180 55.8172 180 100C180 144.183 144.183 180 100 180C55.8172 180 20 144.183 20 100C20 55.8172 55.8172 20 100 20ZM100 40C66.8629 40 40 66.8629 40 100C40 133.137 66.8629 160 100 160C133.137 160 160 133.137 160 100C160 66.8629 133.137 40 100 40Z" fill="url(#paint0_linear)"/>
-  
+  <circle cx="100" cy="100" r="80" fill="none" stroke="#9c27b0" stroke-width="20"/>
+
+  <!-- Middle ring -->
+  <circle cx="100" cy="100" r="60" fill="none" stroke="#9c27b0" stroke-width="12"/>
+
   <!-- Inner oval -->
-  <ellipse cx="100" cy="100" rx="50" ry="70" fill="none" stroke="url(#paint1_linear)" stroke-width="12"/>
-  
+  <ellipse cx="100" cy="100" rx="25" ry="45" fill="none" stroke="#9c27b0" stroke-width="8"/>
+
   <!-- Left arc -->
-  <path d="M70 100C70 83.4315 83.4315 70 100 70V130C83.4315 130 70 116.569 70 100Z" fill="url(#paint2_linear)"/>
-  
-  <!-- Right arc -->
-  <path d="M130 100C130 116.569 116.569 130 100 130V70C116.569 70 130 83.4315 130 100Z" fill="url(#paint3_linear)"/>
-  
-  <!-- Central divider -->
-  <line x1="100" y1="30" x2="100" y2="170" stroke="white" stroke-width="2"/>
-  
-  <defs>
-    <linearGradient id="paint0_linear" x1="20" y1="20" x2="180" y2="180" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#e91e63"/>
-      <stop offset="50%" stop-color="#9c27b0"/>
-      <stop offset="100%" stop-color="#673ab7"/>
-    </linearGradient>
-    <linearGradient id="paint1_linear" x1="50" y1="30" x2="150" y2="170" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#e91e63"/>
-      <stop offset="100%" stop-color="#9c27b0"/>
-    </linearGradient>
-    <linearGradient id="paint2_linear" x1="70" y1="70" x2="100" y2="130" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#e91e63"/>
-      <stop offset="100%" stop-color="#9c27b0"/>
-    </linearGradient>
-    <linearGradient id="paint3_linear" x1="130" y1="70" x2="100" y2="130" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#9c27b0"/>
-      <stop offset="100%" stop-color="#673ab7"/>
-    </linearGradient>
-  </defs>
+  <path d="M 75 100 A 25 25 0 0 1 100 75 A 25 25 0 0 1 125 100 A 25 25 0 0 1 100 125 A 25 25 0 0 1 75 100 Z" fill="#9c27b0"/>
+
+  <!-- Right gap -->
+  <path d="M 125 100 A 25 25 0 0 0 100 75 A 25 25 0 0 0 75 100 A 25 25 0 0 0 100 125 A 25 25 0 0 0 125 100 Z" fill="white"/>
+
+  <!-- Central vertical line -->
+  <line x1="100" y1="30" x2="100" y2="170" stroke="white" stroke-width="4"/>
 </svg>
