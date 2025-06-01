@@ -363,6 +363,7 @@ body {
 .card-value {
     font-size: 28px;
     font-weight: 700;
+    font-family: 'Inter', sans-serif;
     margin-bottom: 5px;
     background: var(--gradient-glow);
     -webkit-background-clip: text;
@@ -549,6 +550,7 @@ body {
 .value-display {
     font-size: 28px;
     font-weight: 700;
+    font-family: 'Inter', sans-serif;
     color: var(--info);
 }
 
