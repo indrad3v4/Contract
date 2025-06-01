@@ -246,58 +246,43 @@ class PingPubGateway:
             return self._get_mock_validators()
             
         try:
-            # First try to get validators from RPC endpoint (real chain data)
-            rpc_endpoint = f"{self.rpc_url}/validators"
-            logger.debug(f"Requesting validators from RPC: {rpc_endpoint}")
+            # Use the proper REST API endpoint for authentic validator data
+            rest_api_url = "https://testnet-api.daodiseo.chaintools.tech"
+            validators_endpoint = f"{rest_api_url}/cosmos/staking/v1beta1/validators"
+            logger.debug(f"Requesting validators from REST API: {validators_endpoint}")
             
-            response = self.session.get(rpc_endpoint, timeout=self.timeout)
-            
-            if response.status_code == 200:
-                try:
-                    data = response.json()
-                    
-                    # Parse RPC response format
-                    if 'result' in data and 'validators' in data['result']:
-                        validators = data['result']['validators']
-                        formatted_validators = []
-                        
-                        for i, validator in enumerate(validators):
-                            # Extract validator info from RPC format
-                            formatted_validators.append({
-                                "operator_address": validator.get("address", f"validator_{i+1}"),
-                                "description": {"moniker": f"Validator Node {i+1}"},
-                                "status": "BOND_STATUS_BONDED" if validator.get("voting_power", "0") != "0" else "BOND_STATUS_UNBONDED",
-                                "voting_power": validator.get("voting_power", "0"),
-                                "commission": {"commission_rates": {"rate": "0.05"}},  # Default commission
-                                "pub_key": validator.get("pub_key", {})
-                            })
-                        
-                        logger.info(f"Successfully fetched {len(formatted_validators)} validators from RPC")
-                        return formatted_validators
-                        
-                except (json.JSONDecodeError, KeyError) as e:
-                    logger.warning(f"Failed to parse RPC validators response: {str(e)}")
-                    
-            # Fallback to explorer API
-            endpoint = f"{self.base_url}{self.validators_endpoint}"
-            logger.debug(f"Fallback: Requesting validators from explorer: {endpoint}")
-            
-            response = self.session.get(endpoint, timeout=self.timeout)
+            response = self.session.get(validators_endpoint, timeout=self.timeout)
             response.raise_for_status()
             
             data = response.json()
             
-            # Handle both array and object responses
-            if isinstance(data, list):
-                validators = data
-            elif isinstance(data, dict) and 'validators' in data:
+            # Parse the authentic validator data from Cosmos SDK REST API
+            if 'validators' in data:
                 validators = data['validators']
+                formatted_validators = []
+                
+                for validator in validators[:10]:  # Limit to top 10 for display
+                    # Extract real validator information
+                    tokens = int(validator.get("tokens", "0"))
+                    voting_power = tokens // 1000000  # Convert from uodis to ODIS
+                    
+                    formatted_validators.append({
+                        "operator_address": validator.get("operator_address", ""),
+                        "description": {
+                            "moniker": validator.get("description", {}).get("moniker", "Unknown Validator")
+                        },
+                        "status": validator.get("status", "BOND_STATUS_UNBONDED"),
+                        "voting_power": str(voting_power),
+                        "tokens": validator.get("tokens", "0"),
+                        "commission": validator.get("commission", {"commission_rates": {"rate": "0.05"}}),
+                        "jailed": validator.get("jailed", False)
+                    })
+                
+                logger.info(f"Successfully fetched {len(formatted_validators)} authentic validators from Odiseo testnet")
+                return formatted_validators
             else:
-                logger.warning("Unexpected validator data format from explorer API")
-                validators = []
-            
-            logger.debug(f"Received {len(validators)} validators from explorer")
-            return validators
+                logger.warning("No validators found in API response")
+                return []
         
         except requests.RequestException as e:
             logger.error(f"Failed to get validators from both RPC and explorer: {str(e)}")
