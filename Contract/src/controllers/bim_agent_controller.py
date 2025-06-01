@@ -9,7 +9,7 @@ from datetime import datetime
 from flask import Blueprint, jsonify, request, current_app
 import json
 
-from src.bim.bim_agent import BIMAgentManager
+from src.services.ai.bim_agent import BIMAgentManager
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)

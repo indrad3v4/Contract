@@ -9,6 +9,7 @@ from flask import Flask, render_template, url_for, request, jsonify, abort, sess
 from dotenv import load_dotenv
 
 from src.controllers.bim_controller import bim_bp
+from src.controllers.bim_agent_controller import bim_agent_bp
 from src.controllers.ifc_controller import ifc_bp
 from src.controllers.account_controller import account_bp
 from src.controllers.transaction_controller import transaction_bp
@@ -58,6 +59,7 @@ app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'  # Protect against CSRF
 
 # Register blueprints
 app.register_blueprint(bim_bp)
+app.register_blueprint(bim_agent_bp)
 app.register_blueprint(ifc_bp)
 app.register_blueprint(account_bp)
 app.register_blueprint(transaction_bp)
