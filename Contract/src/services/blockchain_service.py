@@ -280,6 +280,7 @@ class BlockchainService:
             except Exception as e:
                 logger.warning(f"Failed to get validators: {str(e)}")
                 network_alive = False
+                validators = []
                 
             # Try to get token price and staking info
             try:
@@ -322,7 +323,7 @@ class BlockchainService:
             # Get hot asset data
             hot_asset = self._get_hot_asset()
             
-            # Construct response with all data
+            # Construct response with all data including validators
             return {
                 'token_value': token_value,
                 'staking_apy': staking_apy,
@@ -331,7 +332,8 @@ class BlockchainService:
                 'verified_assets': verified_assets,
                 'unverified_assets': unverified_assets,
                 'hot_asset': hot_asset,
-                'network_status': 'active' if network_alive else 'degraded'
+                'network_status': 'active' if network_alive else 'degraded',
+                'validators': validators  # Include real validator data from blockchain
             }
             
         except Exception as e:
@@ -352,7 +354,8 @@ class BlockchainService:
                     'funded_amount': 1625000,
                     'target_amount': 2500000
                 },
-                'network_status': 'error'
+                'network_status': 'error',
+                'validators': []  # Empty array when network is unavailable
             }
     
     def _get_hot_asset(self) -> Dict[str, Any]:
