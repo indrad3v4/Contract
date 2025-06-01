@@ -71,13 +71,18 @@ app.register_blueprint(blockchain_bp)
 @app.before_request
 def csrf_protect():
     """Generate CSRF token for the session"""
+    # Skip CSRF validation for API endpoints that handle their own security
+    if request.path.startswith('/api/'):
+        return
+    
     if request.method != 'GET':
         token = session.get('csrf_token')
         header_token = request.headers.get('X-CSRF-Token')
         
         if not token or token != header_token:
             logger.warning(f"CSRF validation failed from IP: {request.remote_addr}")
-            if not app.debug:  # Only apply in production for now
+            # Only enforce CSRF in production for non-API routes
+            if not app.debug and not request.path.startswith('/api/'):
                 abort(403)  # Forbidden
 
 # Generate CSRF token for all templates
