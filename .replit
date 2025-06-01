@@ -26,22 +26,6 @@ args = "DAODISEO Main Server"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-args = "E2E Real Tests"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "BrowserStack Tests"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "Footer Role Test"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "Keplr Integration Test"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
 args = "Contract Server Updated"
 
 [[workflows.workflow]]
@@ -82,39 +66,6 @@ author = "agent"
 task = "shell.exec"
 args = "python main.py"
 waitForPort = 5000
-
-[[workflows.workflow]]
-name = "Keplr Integration Test"
-author = "agent"
-mode = "sequential"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "bash scripts/run_keplr_integration_test.sh"
-
-[[workflows.workflow]]
-name = "E2E Real Tests"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "bash scripts/run_e2e_tests.sh"
-
-[[workflows.workflow]]
-name = "BrowserStack Tests"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "bash scripts/run_browserstack_tests.sh"
-
-[[workflows.workflow]]
-name = "Footer Role Test"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "cd tests && python -m pytest test_footer_role_duplication_browserstack.py::TestFooterRoleDuplication::test_footer_role_button_duplication_flow -v -s"
 
 [[workflows.workflow]]
 name = "Environment Parity Check"
