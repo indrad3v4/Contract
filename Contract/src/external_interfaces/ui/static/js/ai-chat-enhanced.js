@@ -191,11 +191,16 @@ const aiChat = {
         // Clear input
         inputElement.value = '';
         
+        // Get CSRF token from meta tag or session
+        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || 
+                         window.csrf_token || '';
+        
         // Send message to server with the use_agent parameter
-        fetch('/api/bim/message', {
+        fetch('/api/bim-agent/chat', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': csrfToken
             },
             body: JSON.stringify({
                 message: message,
