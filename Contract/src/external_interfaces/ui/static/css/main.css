@@ -557,6 +557,7 @@ body {
 .value-change {
     font-size: 14px;
     margin-left: 5px;
+    font-family: 'Inter', sans-serif;
 }
 
 .value-change.positive {

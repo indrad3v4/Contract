@@ -46,6 +46,20 @@
     box-shadow: 0 8px 32px rgba(13, 110, 253, 0.2);
     border-radius: 12px;
     overflow: hidden;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Ensure all numbers in ODIS widget use Inter font */
+.odis-trading-widget .current-price,
+.odis-trading-widget .stat-value,
+.odis-trading-widget .price-display,
+.odis-trading-widget h1,
+.odis-trading-widget h2,
+.odis-trading-widget h3,
+.odis-trading-widget h4,
+.odis-trading-widget h5,
+.odis-trading-widget h6 {
+    font-family: 'Inter', sans-serif !important;
 }
 
 .odis-trading-widget .card-header {
@@ -84,6 +98,7 @@
     align-items: baseline;
     gap: 16px;
     margin-bottom: 8px;
+    font-family: 'Inter', sans-serif;
 }
 
 .current-price {
