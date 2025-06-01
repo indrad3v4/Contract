@@ -1,42 +1,37 @@
+
 <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background -->
-  <circle cx="100" cy="100" r="95" fill="#001e00" stroke="url(#paint0_linear)" stroke-width="5"/>
+  <!-- Outer ring -->
+  <path d="M100 20C144.183 20 180 55.8172 180 100C180 144.183 144.183 180 100 180C55.8172 180 20 144.183 20 100C20 55.8172 55.8172 20 100 20ZM100 40C66.8629 40 40 66.8629 40 100C40 133.137 66.8629 160 100 160C133.137 160 160 133.137 160 100C160 66.8629 133.137 40 100 40Z" fill="url(#paint0_linear)"/>
   
-  <!-- Building/Property Icon -->
-  <path d="M100 35L40 75V165H160V75L100 35Z" fill="none" stroke="url(#paint1_linear)" stroke-width="5" stroke-linejoin="round"/>
+  <!-- Inner oval -->
+  <ellipse cx="100" cy="100" rx="50" ry="70" fill="none" stroke="url(#paint1_linear)" stroke-width="12"/>
   
-  <!-- Windows -->
-  <rect x="60" y="95" width="15" height="15" rx="2" fill="#e00d79"/>
-  <rect x="85" y="95" width="15" height="15" rx="2" fill="#e00d79"/>
-  <rect x="110" y="95" width="15" height="15" rx="2" fill="#e00d79"/>
-  <rect x="135" y="95" width="15" height="15" rx="2" fill="#e00d79"/>
+  <!-- Left arc -->
+  <path d="M70 100C70 83.4315 83.4315 70 100 70V130C83.4315 130 70 116.569 70 100Z" fill="url(#paint2_linear)"/>
   
-  <rect x="60" y="120" width="15" height="15" rx="2" fill="#e00d79"/>
-  <rect x="85" y="120" width="15" height="15" rx="2" fill="#e00d79"/>
-  <rect x="110" y="120" width="15" height="15" rx="2" fill="#e00d79"/>
-  <rect x="135" y="120" width="15" height="15" rx="2" fill="#e00d79"/>
+  <!-- Right arc -->
+  <path d="M130 100C130 116.569 116.569 130 100 130V70C116.569 70 130 83.4315 130 100Z" fill="url(#paint3_linear)"/>
   
-  <!-- Door -->
-  <rect x="90" y="145" width="30" height="20" rx="2" fill="#b80596"/>
+  <!-- Central divider -->
+  <line x1="100" y1="30" x2="100" y2="170" stroke="white" stroke-width="2"/>
   
-  <!-- Blockchain elements -->
-  <circle cx="60" cy="60" r="10" fill="none" stroke="#009907" stroke-width="3"/>
-  <circle cx="100" cy="70" r="10" fill="none" stroke="#009907" stroke-width="3"/>
-  <circle cx="140" cy="60" r="10" fill="none" stroke="#009907" stroke-width="3"/>
-  
-  <!-- Connecting lines -->
-  <line x1="68" y1="64" x2="92" y2="70" stroke="#009907" stroke-width="2"/>
-  <line x1="108" y1="70" x2="132" y2="64" stroke="#009907" stroke-width="2"/>
-  
-  <!-- Gradients -->
   <defs>
-    <linearGradient id="paint0_linear" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#b80596"/>
-      <stop offset="1" stop-color="#e00d79"/>
+    <linearGradient id="paint0_linear" x1="20" y1="20" x2="180" y2="180" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#e91e63"/>
+      <stop offset="50%" stop-color="#9c27b0"/>
+      <stop offset="100%" stop-color="#673ab7"/>
     </linearGradient>
-    <linearGradient id="paint1_linear" x1="40" y1="35" x2="160" y2="165" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#009907"/>
-      <stop offset="1" stop-color="#b80596"/>
+    <linearGradient id="paint1_linear" x1="50" y1="30" x2="150" y2="170" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#e91e63"/>
+      <stop offset="100%" stop-color="#9c27b0"/>
+    </linearGradient>
+    <linearGradient id="paint2_linear" x1="70" y1="70" x2="100" y2="130" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#e91e63"/>
+      <stop offset="100%" stop-color="#9c27b0"/>
+    </linearGradient>
+    <linearGradient id="paint3_linear" x1="130" y1="70" x2="100" y2="130" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#9c27b0"/>
+      <stop offset="100%" stop-color="#673ab7"/>
     </linearGradient>
   </defs>
 </svg>

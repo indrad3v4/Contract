@@ -127,10 +127,11 @@
 .app-title {
     font-weight: 700;
     font-size: 1.1rem;
-    background: linear-gradient(135deg, #0dcaf0, #0d6efd);
+    background: linear-gradient(135deg, #e91e63, #9c27b0, #673ab7);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    letter-spacing: 0.5px;
 }
 
 /* Responsive Design */
