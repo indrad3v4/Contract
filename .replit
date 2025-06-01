@@ -42,10 +42,6 @@ args = "Keplr Integration Test"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-args = "Vue Development Server"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
 args = "Contract Server Updated"
 
 [[workflows.workflow]]
@@ -150,15 +146,6 @@ args = "python scripts/coverage_analysis.py"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "python scripts/interactive_debug_session.py"
-
-[[workflows.workflow]]
-name = "Vue Development Server"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "cd daodiseo-fresh/frontend && npm run dev -- --host 0.0.0.0 --port 3000"
-waitForPort = 3000
 
 [[ports]]
 localPort = 3000
