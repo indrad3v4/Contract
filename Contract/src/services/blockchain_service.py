@@ -258,7 +258,8 @@ class BlockchainService:
                 "name": validator.get("description", {}).get("moniker", "Unknown"),
                 "status": validator.get("status", "UNKNOWN"),
                 "voting_power": validator.get("voting_power", 0),
-                "commission": validator.get("commission", {}).get("commission_rates", {}).get("rate", 0)
+                "commission": validator.get("commission", {}).get("commission_rates", {}).get("rate", 0),
+                "proposals_pending": validator.get("proposals_pending", 0)
             })
         
         return formatted_validators
