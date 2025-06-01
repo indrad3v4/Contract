@@ -43,7 +43,7 @@ def chat():
 
     # Log the incoming message
     logger.debug(f"Received chat message: {message}, use_agent={use_agent}")
-
+    
     if use_agent:
         # Process with IFC agent if specified and available
         logger.debug("Attempting to use IFC Agent for query")
@@ -51,10 +51,10 @@ def chat():
             # Load the current IFC file into the IFC agent if not already loaded
             if bim_agent_manager.use_real_ifc and bim_agent_manager.current_ifc_file:
                 bim_agent_manager.ifc_agent.load_ifc_file(bim_agent_manager.current_ifc_file)
-
+                
             # Process the query using the IFC agent
             result = bim_agent_manager.ifc_agent.process_query(message)
-
+            
             # If the IFC agent is available and successful, return its result
             if result.get("success", False):
                 return jsonify({
@@ -74,7 +74,7 @@ def chat():
         except Exception as e:
             logger.error(f"Error using IFC Agent: {str(e)}")
             logger.info("Falling back to standard AI processing")
-
+    
     # Process the message with standard AI
     result = bim_agent_manager.process_message(message)
 
@@ -147,7 +147,7 @@ def get_element(element_id):
 def get_element_types():
     """Get all element types in the loaded IFC file"""
     element_types = bim_agent_manager.get_element_types()
-
+    
     return jsonify({
         "success": True,
         "element_types": element_types,
@@ -159,7 +159,7 @@ def get_element_types():
 def get_elements_by_type(element_type):
     """Get all elements of a specific type"""
     elements = bim_agent_manager.get_elements_by_type(element_type)
-
+    
     return jsonify({
         "success": True,
         "element_type": element_type,
@@ -172,7 +172,7 @@ def get_elements_by_type(element_type):
 def get_ifc_status():
     """Get the status of the currently loaded IFC file"""
     building_data = bim_agent_manager.get_building_data()
-
+    
     return jsonify({
         "success": True,
         "using_real_ifc": building_data.get("using_real_ifc", False),
