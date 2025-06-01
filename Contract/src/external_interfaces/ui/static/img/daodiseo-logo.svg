@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- DAODISEO Logo - Purple Circular Design -->
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e00d79;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6366f1;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Outer ring -->
+  <path d="M20 2C30.4934 2 39 10.5066 39 21C39 31.4934 30.4934 40 20 40C9.50659 40 1 31.4934 1 21C1 10.5066 9.50659 2 20 2Z" 
+        stroke="url(#logoGradient)" stroke-width="4" fill="none"/>
+  
+  <!-- Middle ring -->
+  <path d="M20 6C28.2843 6 35 12.7157 35 21C35 29.2843 28.2843 36 20 36C11.7157 36 5 29.2843 5 21C5 12.7157 11.7157 6 20 6Z" 
+        stroke="url(#logoGradient)" stroke-width="3" fill="none"/>
+  
+  <!-- Inner oval -->
+  <ellipse cx="20" cy="21" rx="8" ry="12" stroke="url(#logoGradient)" stroke-width="2" fill="none"/>
+  
+  <!-- Central line -->
+  <line x1="20" y1="9" x2="20" y2="33" stroke="url(#logoGradient)" stroke-width="2"/>
+</svg>
