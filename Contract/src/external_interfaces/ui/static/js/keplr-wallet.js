@@ -53,7 +53,13 @@ class DAODISEOWalletManager {
         // Header wallet connection button
         const headerWalletBtn = document.getElementById('headerConnectKeplr');
         if (headerWalletBtn) {
-            headerWalletBtn.addEventListener('click', () => this.connectWallet());
+            headerWalletBtn.addEventListener('click', () => {
+                if (this.connected) {
+                    this.disconnectWallet();
+                } else {
+                    this.connectWallet();
+                }
+            });
         }
         
         // Points system button
@@ -184,14 +190,14 @@ class DAODISEOWalletManager {
         const headerBtn = document.getElementById('headerConnectKeplr');
         
         if (this.connected && this.address) {
-            // Update header wallet button
+            // Update header wallet button - show address and disconnect option
             const shortAddress = this.address.substring(0, 6) + '...' + this.address.substring(this.address.length - 4);
             headerBtn.innerHTML = `
                 <i data-feather="check-circle" class="icon-inline-sm"></i>
                 ${shortAddress}
             `;
             headerBtn.className = 'btn btn-success btn-sm';
-            headerBtn.title = this.address;
+            headerBtn.title = `${this.address} - Click to disconnect`;
             
         } else {
             headerBtn.innerHTML = `
@@ -199,6 +205,7 @@ class DAODISEOWalletManager {
                 Connect Keplr
             `;
             headerBtn.className = 'btn btn-outline-info btn-sm';
+            headerBtn.title = 'Connect your Keplr wallet';
         }
         
         // Update feather icons
@@ -322,6 +329,47 @@ class DAODISEOWalletManager {
         this.awardPoints(3, 'Price Alert Set');
     }
     
+    disconnectWallet() {
+        // Disconnect wallet and clear all stored data
+        this.connected = false;
+        this.address = null;
+        this.balance = null;
+        this.keplr = null;
+        
+        // Clear session storage
+        sessionStorage.removeItem('walletAddress');
+        sessionStorage.removeItem('walletConnected');
+        
+        // Update UI to show disconnected state
+        this.updateUI();
+        
+        console.log('Wallet disconnected');
+        
+        // Show disconnection notification
+        this.showDisconnectNotification();
+    }
+    
+    showDisconnectNotification() {
+        const notification = document.createElement('div');
+        notification.className = 'disconnect-notification';
+        notification.innerHTML = `
+            <div class="alert alert-info alert-dismissible fade show position-fixed" 
+                 style="top: 20px; right: 20px; z-index: 9999; min-width: 300px;">
+                <strong>Wallet Disconnected</strong> You have been logged out safely.
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Auto-remove after 3 seconds
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 3000);
+    }
+
     handleKeystoreChange() {
         // Handle wallet account changes
         this.connected = false;
