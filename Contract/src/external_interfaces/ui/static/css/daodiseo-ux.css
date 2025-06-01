@@ -176,3 +176,72 @@
     background: linear-gradient(135deg, #0dcaf0, #0d6efd) !important;
     box-shadow: 0 2px 10px rgba(13, 202, 240, 0.3);
 }
+
+/* Fix for component card status dots */
+.card {
+    position: relative;
+    overflow: visible !important;
+}
+
+.card-header {
+    position: relative;
+    overflow: visible !important;
+}
+
+/* Status indicator dots in top-right corner */
+.status-dot {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    z-index: 10;
+    border: 2px solid var(--bg-dark);
+}
+
+.status-dot.success {
+    background: var(--success);
+    box-shadow: 0 0 8px rgba(0, 153, 7, 0.4);
+}
+
+.status-dot.warning {
+    background: var(--warning);
+    box-shadow: 0 0 8px rgba(243, 192, 0, 0.4);
+}
+
+.status-dot.info {
+    background: var(--info);
+    box-shadow: 0 0 8px rgba(224, 13, 121, 0.4);
+}
+
+.status-dot.primary {
+    background: var(--primary);
+    box-shadow: 0 0 8px rgba(13, 110, 253, 0.4);
+}
+
+/* Component icon in top-right */
+.component-icon {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 20px;
+    height: 20px;
+    opacity: 0.7;
+    z-index: 5;
+}
+
+/* Ensure card content doesn't overlap with status indicators */
+.card-body {
+    padding-top: 1.5rem;
+}
+
+/* Token value cards specific styling */
+.token-value-card {
+    position: relative;
+    overflow: visible;
+}
+
+.token-value-card .card-header {
+    padding-right: 2.5rem; /* Make space for the dot */
+}
