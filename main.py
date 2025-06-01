@@ -6,10 +6,18 @@ import sys
 import os
 
 # Add the Contract directory to the Python path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'Contract'))
+contract_path = os.path.join(os.path.dirname(__file__), 'Contract')
+sys.path.insert(0, contract_path)
 
-# Import the Flask app from the Contract/main.py
-from main import app
+# Import the Flask app from the Contract directory
+# Use importlib to avoid circular import issues
+import importlib.util
+spec = importlib.util.spec_from_file_location("contract_main", os.path.join(contract_path, "main.py"))
+contract_main = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(contract_main)
+
+# Get the Flask app instance
+app = contract_main.app
 
 # This is what gunicorn will look for
 if __name__ == "__main__":
