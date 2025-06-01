@@ -1,0 +1,94 @@
+2025-06-01T01:41:24Z info: Deployment: 1c986472-d10e-4c05-9a8b-c928167ed9e6
+2025-06-01T01:41:24Z info: Build: 9b30d56c-deae-4354-8b1b-bfab82111448
+2025-06-01T01:41:24Z info: Connecting to builder
+2025-06-01T01:41:27Z info: Builder connected
+2025-06-01T01:41:28Z info: Installing packages
+--> uv lock
+
+--> uv lock
+
+Resolved 88 packages in 0.92ms
+
+Resolved 88 packages in 1ms
+
+Uninstalled 78 packages in 7.20s
+
+ anthropic
+ anthropic
+0.52.1
+
+ - 
+ gitpython
+2025-06-01T01:41:38Z info: Pushing pid1 binary layer...
+2025-06-01T01:41:39Z info: Created pid1 binary layer
+2025-06-01T01:41:43Z info: Pushing hosting layer...
+2025-06-01T01:41:43Z info: Retrieved cached nix layer
+2025-06-01T01:41:44Z info: Created hosting layer
+2025-06-01T01:44:23Z info: Created Repl layer
+2025-06-01T01:44:23Z info: Pushing Repl (cache) layer...
+2025-06-01T01:44:24Z info: Created Repl (cache) layer
+2025-06-01T01:44:24Z info: Pushed image manifest
+2025-06-01T01:44:24Z info: Pushed soci index manifest
+2025-06-01T01:44:28Z info: Creating Autoscale service
+[2025-06-01 01:46:26 +0000] [23] [INFO] Listening at: http://0.0.0.0:5000 (23)
+[2025-06-01 01:46:26 +0000] [23] [INFO] Starting gunicorn 23.0.0
+IFCAgent has limited functionality due to missing dependencies
+DEBUG:httpcore.connection:connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7f587d690b90>
+DEBUG:src.services.ai.ifc_agent:OpenAI client initialized successfully for IFC Agent
+DEBUG:httpcore.http11:send_request_headers.started request=<Request [b'POST']>
+DEBUG:src.gateways.pingpub_gateway:PingPub gateway connection test successful
+  File "/home/runner/workspace/main.py", line 15, in <module>
+ModuleNotFoundError: No module named 'google.api'
+DEBUG:httpcore.connection:connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7f72e17be850>
+DEBUG:openai._base_client:Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': 'You are an expert BIM analyst.'}, {'role': 'user', 'content': 'Analyze this building:\n- File schema: IFC2X3\n- Site name: DDS Site\n- Total elements: 21\n- Element types: IfcWall\n\nProvide a professional analysis including:\n1. Building complexity assessment\n2. Key architectural features\n3. Recommendations for stakeholders\nKeep the analysis concise and professional.'}], 'model': 'gpt-3.5-turbo', 'max_tokens': 500, 'temperature': 0.7}}
+INFO:src.services.ai.bim_agent:Loaded IFC file: sample.ifc
+[2025-06-01 01:46:45 +0000] [40] [INFO] Using worker: sync
+IFCAgent has limited functionality due to missing dependencies
+DEBUG:httpcore.connection:connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7f5650cba890>
+DEBUG:httpcore.http11:send_request_body.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:receive_response_body.started request=<Request [b'POST']>
+    self.load_wsgi()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+command finished with error [sh -c gunicorn --bind 0.0.0.0:5000 main:app]: exit status 3
+DEBUG:httpcore.connection:close.complete
+[2025-06-01 01:46:50 +0000] [40] [ERROR] Shutting down: Master
+DEBUG:src.services.ai.ifc_agent:OpenAI client initialized successfully for IFC Agent
+INFO:httpx:HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+DEBUG:httpcore.http11:receive_response_body.started request=<Request [b'POST']>
+DEBUG:httpcore.connection:connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7fd429eba990>
+DEBUG:httpcore.connection:start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x7fd429e89450>
+WARNING:src.services.ai.ifc_agent:IFCAgent has limited functionality due to missing dependencies
+DEBUG:openai._base_client:Request options: {'method': 'post', 'url': '/chat/completions', 'files': None, 'json_data': {'messages': [{'role': 'system', 'content': 'You are an expert BIM analyst.'}, {'role': 'user', 'content': 'Analyze this building:\n- File schema: IFC2X3\n- Site name: DDS Site\n- Total elements: 21\n- Element types: IfcWall\n\nProvide a professional analysis including:\n1. Building complexity assessment\n2. Key architectural features\n3. Recommendations for stakeholders\nKeep the analysis concise and professional.'}], 'model': 'gpt-3.5-turbo', 'max_tokens': 500, 'temperature': 0.7}}
+command finished with error [sh -c gunicorn --bind 0.0.0.0:5000 main:app]: exit status 3
+[2025-06-01 01:47:05 +0000] [64] [INFO] Listening at: http://0.0.0.0:5000 (64)
+DEBUG:httpcore.http11:send_request_headers.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:send_request_body.complete
+DEBUG:src.gateways.pingpub_gateway:PINGPUB_API_URL=https://testnet.explorer.chaintools.tech/odiseo/api
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 47, in load_wsgiapp
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+    from src.services.transaction_service import TransactionService
+DEBUG:openai._base_client:Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+DEBUG:httpcore.http11:send_request_headers.complete
+DEBUG:httpcore.http11:receive_response_body.started request=<Request [b'POST']>
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    from cosmpy.auth.interface import Auth
+[2025-06-01 01:47:19 +0000] [78] [INFO] Worker exiting (pid: 78)
+[2025-06-01 01:47:24 +0000] [81] [INFO] Listening at: http://0.0.0.0:5000 (81)
+[2025-06-01 01:47:24 +0000] [86] [INFO] Booting worker with pid: 86
+DEBUG:openai._base_client:Sending HTTP Request: POST https://api.openai.com/v1/chat/completions
+DEBUG:httpcore.http11:send_request_headers.complete
+DEBUG:httpcore.http11:receive_response_headers.started request=<Request [b'POST']>
+DEBUG:httpcore.http11:send_request_body.complete
+DEBUG:urllib3.connectionpool:https://testnet.explorer.chaintools.tech:443 "GET /odiseo/api/validators HTTP/1.1" 200 951
+DEBUG:httpcore.http11:response_closed.started
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/gunicorn/workers/base.py", line 147, in load_wsgi
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/gunicorn/util.py", line 370, in import_app
+DEBUG:httpcore.connection:close.started
+WARNING:src.services.ai.ifc_agent:IFCAgent has limited functionality due to missing dependencies
+    worker.init_process()
+  File "/home/runner/workspace/.pythonlibs/lib/python3.11/site-packages/gunicorn/util.py", line 370, in import_app
+DEBUG:src.services.ai.ifc_agent:OpenAI client initialized successfully for IFC Agent
+[2025-06-01 01:47:47 +0000] [97] [INFO] Starting gunicorn 23.0.0
+DEBUG:httpcore.http11:send_request_headers.complete
+2025-06-01T01:48:35Z error: The deployment is failing health checks. This can happen if the application isn't responding, responds with an error, or doesn't respond in time. Health checks are sent to the / endpoint by default and must respond as soon as possible. Make sure that the / endpoint is implemented and returns a 200 status code in a timely manner. Avoid doing expensive or long running operations on the / endpoint, prefer deferring them to a different route. Check the logs for more information.
