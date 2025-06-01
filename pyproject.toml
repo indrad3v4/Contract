@@ -20,93 +20,15 @@ dependencies = [
     "ifcopenshell>=0.8.2",
     "flake8>=7.2.0",
     "python-dotenv>=1.1.0",
-    "openai>=1.13.0",
+    "openai>=1.71.0",
     "pytest-asyncio>=0.26.0",
-    "black>=25.1.0",
-    "selenium>=4.32.0",
-    "pytest-selenium>=4.1.0",
-    "import-linter>=2.3",
-    "numpy>=2.2.5",
-    "pillow>=11.2.1",
-    "trafilatura>=2.0.0",
-    "googleapis-common-protos>=1.70.0",
-    "requests>=2.32.3",
-    "selenium-wire>=5.1.0",
-    "blinker>=1.6.2",
-    "beautifulsoup4>=4.13.4",
-    "tarsafe>=0.0.5",
-    "browserstack-sdk>=1.24.1",
-    "mypy>=1.15.0",
-    "anthropic>=0.52.1",
 ]
 
-[tool.black]
-line-length = 88
-target-version = ['py311']
-include = '\.pyi?$'
-extend-exclude = '''/(\n  # Exclude these directories
-  \.git
-  | \.hg
-  | \.mypy_cache
-  | \.tox
-  | \.venv
-  | _build
-  | buck-out
-  | build
-  | dist
-)/
-'''
+[[tool.uv.index]]
+explicit = true
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
 
-[tool.flake8]
-max-line-length = 88
-extend-ignore = [
-    "E203",  # whitespace before ':'
-    "E501",  # line too long (handled by black)
-    "W503",  # line break before binary operator
-]
-exclude = [
-    ".git",
-    "__pycache__",
-    ".mypy_cache",
-    ".pytest_cache",
-    "node_modules",
-    "uploads",
-    "tests",
-    "migrations",
-]
-per-file-ignores = [
-    "__init__.py:F401",  # imported but unused
-]
-
-[tool.mypy]
-python_version = "3.11"
-strict = true
-warn_return_any = true
-warn_unused_configs = true
-disallow_untyped_defs = true
-disallow_incomplete_defs = true
-check_untyped_defs = true
-disallow_untyped_decorators = true
-no_implicit_optional = true
-warn_redundant_casts = true
-warn_unused_ignores = true
-warn_no_return = true
-warn_unreachable = true
-strict_equality = true
-exclude = [
-    "tests/",
-    "migrations/",
-    "node_modules/",
-    "__pycache__/",
-]
-
-[[tool.mypy.overrides]]
-module = [
-    "cosmpy.*",
-    "ifcopenshell.*",
-    "openai.*",
-    "selenium.*",
-    "browserstack_sdk.*",
-    "twilio.*",
-]
-ignore_missing_imports = true
+[tool.uv.sources]
+torch = [{ index = "pytorch-cpu", marker = "platform_system == 'Linux'" }]
+torchvision = [{ index = "pytorch-cpu", marker = "platform_system == 'Linux'" }]
