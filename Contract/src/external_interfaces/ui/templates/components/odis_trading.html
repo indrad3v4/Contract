@@ -1,91 +1,81 @@
-
-<!-- ODIS Token Trading Interface -->
-<div class="odis-trading-widget card bg-dark border-primary mb-4">
-    <div class="card-header d-flex align-items-center justify-content-between bg-gradient-primary">
+<!-- ODIS Token Trading Widget -->
+<div class="card h-100" style="position: relative; overflow: visible;">
+    <div class="status-dot success"></div>
+    <div class="card-header d-flex justify-content-between align-items-center">
         <div class="d-flex align-items-center">
             <div class="token-icon me-3">
-                <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center shadow" style="width: 50px; height: 50px;">
-                    <span class="text-white fw-bold fs-5">ODIS</span>
+                <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: linear-gradient(135deg, #0dcaf0, #0d6efd); color: white; box-shadow: 0 2px 10px rgba(13, 202, 240, 0.3);">
+                    <strong style="font-size: 12px;">ODIS</strong>
                 </div>
             </div>
             <div>
-                <h4 class="mb-0 text-primary fw-bold">ODIS Token</h4>
-                <small class="text-muted">Cosmos Network • Real Estate Tokenization</small>
+                <h6 class="mb-0 fw-bold">ODIS Token</h6>
+                <small class="text-muted">Cosmos Network's Real Estate Tokenization</small>
             </div>
         </div>
-        <button class="btn btn-primary btn-lg px-4" id="buyOdisBtn">
-            <i data-feather="shopping-cart" class="me-2"></i>
+        <button class="btn btn-success btn-sm px-3">
+            <i data-feather="shopping-cart" class="icon-inline-sm"></i>
             Buy ODIS
         </button>
     </div>
+
     <div class="card-body p-4">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="token-price mb-4">
-                    <div class="price-display">
-                        <span class="current-price h2 text-white fw-bold" id="odisCurrentPrice">$0.1204</span>
-                        <span class="price-change text-success ms-3 fs-5" id="odisPriceChange">↑ 2.19%</span>
-                    </div>
-                    <small class="text-muted">Last updated: Real-time</small>
-                </div>
-                <div class="token-stats row g-3">
-                    <div class="col-6">
-                        <div class="stat-item p-3 bg-secondary rounded">
-                            <small class="text-muted d-block">24h High</small>
-                            <div class="stat-value text-white fw-semibold fs-5" id="odis24hHigh">$0.1289</div>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="stat-item p-3 bg-secondary rounded">
-                            <small class="text-muted d-block">24h Low</small>
-                            <div class="stat-value text-white fw-semibold fs-5" id="odis24hLow">$0.1156</div>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="stat-item p-3 bg-secondary rounded">
-                            <small class="text-muted d-block">Volume (24h)</small>
-                            <div class="stat-value text-white fw-semibold fs-5" id="odisVolume">$2.5M</div>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="stat-item p-3 bg-secondary rounded">
-                            <small class="text-muted d-block">Market Cap</small>
-                            <div class="stat-value text-white fw-semibold fs-5" id="odisMarketCap">$12.4M</div>
-                        </div>
-                    </div>
+        <!-- Current Price Display -->
+        <div class="price-display mb-4">
+            <div class="d-flex align-items-baseline mb-2">
+                <h3 class="current-price mb-0 me-3" id="odisCurrentPrice" style="color: #0dcaf0;">$0.1236</h3>
+                <span class="price-change text-success" id="odisPriceChange">↑ 2.46%</span>
+            </div>
+            <small class="text-muted">Last updated: Real-time</small>
+        </div>
+
+        <!-- Token Statistics Grid -->
+        <div class="token-stats row g-3 mb-4">
+            <div class="col-6">
+                <div class="stat-item p-3 rounded" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(13, 110, 253, 0.2); transition: all 0.3s ease;">
+                    <div class="small text-muted mb-1">24h High</div>
+                    <div class="stat-value text-white">$0.1289</div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="price-chart-container">
-                    <div class="price-chart-placeholder bg-gradient-dark rounded border border-primary" style="height: 180px;">
-                        <div class="d-flex align-items-center justify-content-center h-100 text-primary">
-                            <div class="text-center">
-                                <i data-feather="trending-up" class="mb-2" style="width: 48px; height: 48px;"></i>
-                                <div class="fw-semibold">Live Price Chart</div>
-                                <small class="text-muted">Coming Soon</small>
-                            </div>
-                        </div>
-                    </div>
+            <div class="col-6">
+                <div class="stat-item p-3 rounded" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(13, 110, 253, 0.2); transition: all 0.3s ease;">
+                    <div class="small text-muted mb-1">24h Low</div>
+                    <div class="stat-value text-white">$0.1156</div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="stat-item p-3 rounded" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(13, 110, 253, 0.2); transition: all 0.3s ease;">
+                    <div class="small text-muted mb-1">Volume (24h)</div>
+                    <div class="stat-value text-white">$2.5M</div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="stat-item p-3 rounded" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(13, 110, 253, 0.2); transition: all 0.3s ease;">
+                    <div class="small text-muted mb-1">Market Cap</div>
+                    <div class="stat-value text-white">$12.4M</div>
                 </div>
             </div>
         </div>
-        <div class="price-alert-section mt-4 p-3 bg-warning bg-opacity-10 rounded border border-warning">
-            <div class="row align-items-center">
-                <div class="col-md-8">
-                    <div class="input-group input-group-lg">
-                        <span class="input-group-text bg-dark border-warning text-warning">
-                            <i data-feather="bell"></i>
-                        </span>
-                        <input type="number" class="form-control form-control-lg bg-dark text-white border-warning" 
-                               placeholder="Set price alert (USD)" id="priceAlertInput" step="0.0001">
-                    </div>
+
+        <!-- Price Chart Placeholder -->
+        <div class="price-chart-container mb-4">
+            <div class="price-chart-placeholder rounded d-flex align-items-center justify-content-center" style="height: 150px; background: linear-gradient(45deg, rgba(108, 117, 125, 0.2), rgba(108, 117, 125, 0.1)); border: 1px dashed rgba(108, 117, 125, 0.5); backdrop-filter: blur(5px); transition: all 0.3s ease;">
+                <div class="text-center text-muted">
+                    <i data-feather="trending-up" class="mb-2" style="width: 32px; height: 32px;"></i>
+                    <div>Live Price Chart</div>
+                    <small>Coming Soon</small>
                 </div>
-                <div class="col-md-4">
-                    <button class="btn btn-warning btn-lg w-100 fw-semibold" type="button" id="setPriceAlertBtn">
-                        <i data-feather="bell" class="me-2"></i>
-                        Set Alert
-                    </button>
-                </div>
+            </div>
+        </div>
+
+        <!-- Price Alert Section -->
+        <div class="price-alert-section" style="backdrop-filter: blur(10px);">
+            <div class="input-group" style="border-radius: 8px; overflow: hidden;">
+                <input type="number" class="form-control" placeholder="Set price alert (USD)" step="0.0001" style="border-right: none;">
+                <button class="btn btn-warning" type="button" style="border-left: none;">
+                    <i data-feather="bell" class="icon-inline-sm"></i>
+                    Set Alert
+                </button>
             </div>
         </div>
     </div>
