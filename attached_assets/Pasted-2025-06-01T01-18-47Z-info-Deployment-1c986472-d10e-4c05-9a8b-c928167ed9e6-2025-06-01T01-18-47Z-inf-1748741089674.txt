@@ -1,0 +1,80 @@
+2025-06-01T01:18:47Z info: Deployment: 1c986472-d10e-4c05-9a8b-c928167ed9e6
+2025-06-01T01:18:47Z info: Build: 4cb6636f-b77c-4222-a19f-8b0f016babee
+2025-06-01T01:18:47Z info: Connecting to builder
+2025-06-01T01:18:52Z info: Builder connected
+2025-06-01T01:18:53Z info: Installing packages
+2025-06-01T01:18:54Z info: Skipping Build as no Build command set
+2025-06-01T01:18:54Z info: Pushing pid1 binary layer...
+2025-06-01T01:18:55Z info: Created pid1 binary layer
+2025-06-01T01:19:00Z info: Pushing hosting layer...
+2025-06-01T01:19:00Z info: Retrieved cached nix layer
+2025-06-01T01:19:00Z info: Created hosting layer
+2025-06-01T01:20:42Z info: Created Repl layer
+2025-06-01T01:20:42Z info: Pushing Repl (cache) layer...
+2025-06-01T01:20:43Z info: Created Repl (cache) layer
+2025-06-01T01:20:43Z info: Pushed image manifest
+2025-06-01T01:20:43Z info: Pushed soci index manifest
+2025-06-01T01:20:47Z info: Creating Autoscale service
+starting up user application
+[2025-06-01 01:21:47 +0000] [19] [INFO] Using worker: sync
+Error initializing OpenAI client: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+Error initializing OpenAI client: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+WARNING:src.services.ai.bim_agent:No IFC files found in uploads directory.
+DEBUG:src.gateways.pingpub_gateway:CHAIN_ID=ithaca-1
+DEBUG:src.services.transaction_service:Initializing TransactionService with network config: NetworkConfig(chain_id='ithaca-1', fee_minimum_gas_price=0.025, fee_denomination='uodis', staking_denomination='uodis', url='rest+https://testnet-api.daodiseo.chaintools.tech', faucet_url=None)
+[2025-06-01 01:21:58 +0000] [27] [INFO] Booting worker with pid: 27
+[2025-06-01 01:22:00 +0000] [28] [INFO] Booting worker with pid: 28
+DEBUG:src.services.transaction_service:Using API URL: https://testnet-api.daodiseo.chaintools.tech
+CRITICAL:contract_main:SESSION_SECRET is required in production
+DEBUG:src.gateways.pingpub_gateway:CHAIN_ID=ithaca-1
+ERROR:src.services.ai.ai_agent_service:Error initializing OpenAI client: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+DEBUG:src.services.transaction_service:Using RPC URL: https://testnet-rpc.daodiseo.chaintools.tech
+DEBUG:src.services.transaction_service:Using API URL: https://testnet-api.daodiseo.chaintools.tech
+DEBUG:src.services.transaction_service:Initializing TransactionService with network config: NetworkConfig(chain_id='ithaca-1', fee_minimum_gas_price=0.025, fee_denomination='uodis', staking_denomination='uodis', url='rest+https://testnet-api.daodiseo.chaintools.tech', faucet_url=None)
+INFO:src.services.transaction_service:Successfully connected to endpoint: rest+https://testnet-api.daodiseo.chaintools.tech
+DEBUG:src.gateways.pingpub_gateway:CHAIN_ID=ithaca-1
+DEBUG:src.gateways.pingpub_gateway:PINGPUB_API_URL=https://testnet.explorer.chaintools.tech/odiseo/api
+INFO:src.services.blockchain_service:Blockchain service initialized
+[2025-06-01 01:22:16 +0000] [35] [INFO] Booting worker with pid: 35
+WARNING:src.services.ai.bim_agent:No IFC files found in uploads directory.
+DEBUG:urllib3.connectionpool:https://testnet.explorer.chaintools.tech:443 "GET /odiseo/api/validators HTTP/1.1" 200 1003
+DEBUG:src.gateways.pingpub_gateway:PingPub gateway connection test successful
+DEBUG:src.services.transaction_service:Initializing TransactionService with network config: NetworkConfig(chain_id='ithaca-1', fee_minimum_gas_price=0.025, fee_denomination='uodis', staking_denomination='uodis', url='rest+https://testnet-api.daodiseo.chaintools.tech', faucet_url=None)
+IFCAgent has limited functionality due to missing dependencies
+DEBUG:src.services.transaction_service:Initializing TransactionService with network config: NetworkConfig(chain_id='ithaca-1', fee_minimum_gas_price=0.025, fee_denomination='uodis', staking_denomination='uodis', url='rest+https://testnet-api.daodiseo.chaintools.tech', faucet_url=None)
+DEBUG:src.gateways.pingpub_gateway:CHAIN_ID=ithaca-1
+ERROR:src.services.ai.bim_agent_openai:Error initializing OpenAI client: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+WARNING:src.services.ai.bim_agent:No IFC files found in uploads directory.
+DEBUG:src.gateways.pingpub_gateway:PingPub gateway connection test successful
+WARNING:src.services.ai.ifc_agent:IFCAgent has limited functionality due to missing dependencies
+INFO:src.services.transaction_service:Attempting to connect to endpoint: rest+https://testnet-api.daodiseo.chaintools.tech
+DEBUG:urllib3.connectionpool:https://testnet.explorer.chaintools.tech:443 "GET /odiseo/api/validators HTTP/1.1" 200 1003
+Error initializing OpenAI client: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+DEBUG:urllib3.connectionpool:https://testnet.explorer.chaintools.tech:443 "GET /odiseo/api/validators HTTP/1.1" 200 1003
+IFCAgent has limited functionality due to missing dependencies
+DEBUG:src.gateways.pingpub_gateway:CHAIN_ID=ithaca-1
+DEBUG:src.gateways.pingpub_gateway:PINGPUB_API_URL=https://testnet.explorer.chaintools.tech/odiseo/api
+DEBUG:src.services.transaction_service:Initializing TransactionService with network config: NetworkConfig(chain_id='ithaca-1', fee_minimum_gas_price=0.025, fee_denomination='uodis', staking_denomination='uodis', url='rest+https://testnet-api.daodiseo.chaintools.tech', faucet_url=None)
+IFCAgent has limited functionality due to missing dependencies
+INFO:src.gateways.pingpub_gateway:PingPub Gateway successfully initialized for chain: ithaca-1
+INFO:src.services.transaction_service:Attempting to connect to endpoint: rest+https://testnet-api.daodiseo.chaintools.tech
+ERROR:src.services.ai.ai_agent_service:Error initializing OpenAI client: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+INFO:src.gateways.pingpub_gateway:PingPub Gateway successfully initialized for chain: ithaca-1
+[2025-06-01 01:22:51 +0000] [19] [ERROR] Worker (pid:49) exited with code 1
+DEBUG:src.gateways.pingpub_gateway:PingPub gateway connection test successful
+CRITICAL:contract_main:SESSION_SECRET is required in production
+DEBUG:src.gateways.pingpub_gateway:CHAIN_ID=ithaca-1
+WARNING:src.services.ai.bim_agent:No IFC files found in uploads directory.
+DEBUG:src.gateways.pingpub_gateway:PingPub gateway connection test successful
+CRITICAL:contract_main:SESSION_SECRET is required in production
+Error initializing OpenAI client: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+DEBUG:src.gateways.pingpub_gateway:CHAIN_ID=ithaca-1
+ERROR:src.services.ai.ai_agent_service:Error initializing OpenAI client: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): testnet.explorer.chaintools.tech:443
+Error initializing OpenAI client: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+CRITICAL:contract_main:SESSION_SECRET is required in production
+IFCAgent has limited functionality due to missing dependencies
+INFO:src.services.blockchain_service:Blockchain service initialized
+ERROR:src.services.ai.ai_agent_service:Error initializing OpenAI client: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+[2025-06-01 01:23:10 +0000] [57] [INFO] Worker exiting (pid: 57)
+2025-06-01T01:24:08Z error: The deployment is failing health checks. This can happen if the application isn't responding, responds with an error, or doesn't respond in time. Health checks are sent to the / endpoint by default and must respond as soon as possible. Make sure that the / endpoint is implemented and returns a 200 status code in a timely manner. Avoid doing expensive or long running operations on the / endpoint, prefer deferring them to a different route. Check the logs for more information.
