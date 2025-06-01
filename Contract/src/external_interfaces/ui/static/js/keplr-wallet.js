@@ -413,27 +413,17 @@ async function loadActiveValidators() {
         if (data.validators && data.validators.length > 0) {
             const validatorsHtml = data.validators.slice(0, 3).map((validator, index) => {
                 const moniker = validator.description?.moniker || `Validator ${index + 1}`;
-                const votingPower = validator.tokens ? (parseInt(validator.tokens) / 1000000).toFixed(0) : '0';
+                const votingPower = validator.voting_power ? parseInt(validator.voting_power) : 0;
                 const status = validator.status === 'BOND_STATUS_BONDED' ? 'Active' : 'Inactive';
-                const statusClass = status === 'Active' ? 'bg-success' : 'bg-secondary';
+                const isJailed = validator.jailed ? ' (Jailed)' : '';
                 
+                // Create a simple display format matching the original style
                 return `
-                    <div class="validator-item d-flex align-items-center justify-content-between p-3 mb-2 rounded" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(13, 110, 253, 0.2);">
-                        <div class="d-flex align-items-center">
-                            <div class="validator-avatar me-3" style="width: 32px; height: 32px; background: linear-gradient(135deg, #0dcaf0, #0d6efd); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 0.8rem;">
-                                ${moniker.charAt(0).toUpperCase()}
-                            </div>
-                            <div>
-                                <div class="validator-name" style="font-family: 'Inter', -apple-system, sans-serif; font-weight: 500; color: #fff; font-size: 0.9rem;">
-                                    ${moniker.length > 20 ? moniker.substring(0, 20) + '...' : moniker}
-                                </div>
-                                <small class="text-muted" style="font-family: 'Inter', -apple-system, sans-serif; font-weight: 400;">
-                                    ${votingPower}M voting power
-                                </small>
-                            </div>
-                        </div>
-                        <div class="validator-status">
-                            <span class="badge ${statusClass}" style="font-family: 'Inter', -apple-system, sans-serif; font-size: 0.7rem;">${status}</span>
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="token-circle ${status === 'Active' ? 'info' : 'secondary'}">V</div>
+                        <div class="flex-grow-1">
+                            <div class="fw-bold">${moniker}${isJailed}</div>
+                            <div class="small text-muted">${votingPower}M voting power</div>
                         </div>
                     </div>
                 `;
