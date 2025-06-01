@@ -72,7 +72,7 @@ def csrf_protect():
     if request.method != 'GET':
         token = session.get('csrf_token')
         header_token = request.headers.get('X-CSRF-Token')
-        
+
         if not token or token != header_token:
             logger.warning(f"CSRF validation failed from IP: {request.remote_addr}")
             if not app.debug:  # Only apply in production for now

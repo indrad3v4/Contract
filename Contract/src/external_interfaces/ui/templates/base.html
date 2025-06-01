@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() if csrf_token else '' }}">
     <title>{% block title %}DAODISEO - Real Estate Tokenization{% endblock %}</title>
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Feather Icons - Locally Bundled (implementation fixed) -->
     <script src="{{ url_for('static', filename='js/lib/feather.min.js') }}"></script>
     <!-- Initialize Feather Icons immediately and again when document loads -->
@@ -22,17 +23,17 @@
             console.error('Feather icons library not loaded');
         }
     </script>
-    
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-theme.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/micro-rewards.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/daodiseo-ux.css') }}">
-    
+
     <style>
         /* User profile menu styles */
         .ai-avatar {
@@ -44,50 +45,50 @@
             border-radius: 50%;
             background: rgba(224, 13, 121, 0.2);
         }
-        
+
         /* Stakeholder button styles */
         .stakeholder-btn.active {
             box-shadow: 0 0 0 3px rgba(224, 13, 121, 0.3);
         }
-        
+
         /* Recommended actions list */
         .recommended-actions .list-group-item {
             transition: all 0.2s ease;
         }
-        
+
         .recommended-actions .list-group-item:hover {
             background-color: rgba(224, 13, 121, 0.1) !important;
             transform: translateX(5px);
         }
-        
+
         /* User profile dropdown animation */
         @keyframes dropIn {
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
+
         #profileDropdown {
             animation: dropIn 0.3s ease forwards;
         }
-        
+
         /* Highlight pulse animation for recommended actions */
         @keyframes highlightPulse {
             0% { box-shadow: 0 0 0 0 rgba(224, 13, 121, 0.4); }
             70% { box-shadow: 0 0 0 10px rgba(224, 13, 121, 0); }
             100% { box-shadow: 0 0 0 0 rgba(224, 13, 121, 0); }
         }
-        
+
         .highlight-pulse {
             animation: highlightPulse 1.5s ease-out infinite;
             border: 2px solid rgba(224, 13, 121, 0.7) !important;
         }
     </style>
-    
+
     <!-- THREE.js for 3D visualization -->
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
-    
+
     {% block extra_css %}{% endblock %}
 </head>
 <body class="cosmic-theme">
@@ -100,7 +101,7 @@
                 </div>
                 <div class="app-title">DAODISEO.APP</div>
             </div>
-            
+
             <nav class="sidebar-nav">
                 <ul>
                     <li class="nav-item {{ 'active' if request.path == '/' }}">
@@ -129,16 +130,16 @@
                     </li>
                 </ul>
             </nav>
-            
+
             <div class="sidebar-footer">
                 <div class="network-status">
                     <div class="status-indicator active"></div>
                     <span>Odiseo Testnet</span>
                 </div>
-                
+
             </div>
         </div>
-        
+
         <!-- Main Content -->
         <div class="main-content">
             <!-- Top Bar -->
@@ -147,7 +148,7 @@
                     <h1>{% block page_title %}Dashboard{% endblock %}</h1>
                 </div>
                 <div class="top-actions">
-                    
+
                     <div class="user-menu">
                         <div class="points-system" id="pointsSystemBtn">
                         <i data-feather="star"></i>
@@ -162,17 +163,17 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Content -->
             <div class="content-wrapper">
                 {% block content %}{% endblock %}
             </div>
         </div>
     </div>
-    
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <!-- Initialize Feather Icons -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -180,7 +181,7 @@
             if (typeof feather !== 'undefined') {
                 feather.replace();
             }
-            
+
             // Wallet connect button in sidebar
             const connectKeplrBtn = document.getElementById('connectKeplrBtn');
             if (connectKeplrBtn) {
@@ -189,7 +190,7 @@
                     connectKeplrWallet();
                 });
             }
-            
+
             // User profile button in header
             const userProfileBtn = document.getElementById('userProfileBtn');
             if (userProfileBtn) {
@@ -197,7 +198,7 @@
                     connectKeplrWallet();
                 });
             }
-            
+
             // Notification button in header
             const notificationBtn = document.getElementById('notificationBtn');
             if (notificationBtn) {
@@ -205,7 +206,7 @@
                     showNotifications();
                 });
             }
-            
+
             // Search functionality
             const searchBox = document.querySelector('.search-box input');
             if (searchBox) {
@@ -216,7 +217,7 @@
                     }
                 });
             }
-            
+
             // Function to show notifications
             function showNotifications() {
                 // Create notification modal
@@ -226,7 +227,7 @@
                 modal.setAttribute('tabindex', '-1');
                 modal.setAttribute('aria-labelledby', 'notificationModalLabel');
                 modal.setAttribute('aria-hidden', 'true');
-                
+
                 modal.innerHTML = `
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content bg-dark text-light border-info">
@@ -276,26 +277,26 @@
                         </div>
                     </div>
                 `;
-                
+
                 document.body.appendChild(modal);
-                
+
                 // Initialize modal and show it
                 const notificationModal = new bootstrap.Modal(document.getElementById('notificationModal'));
                 notificationModal.show();
-                
+
                 // Update feather icons inside modal
                 feather.replace();
-                
+
                 // Remove modal from DOM when hidden
                 document.getElementById('notificationModal').addEventListener('hidden.bs.modal', function() {
                     document.body.removeChild(modal);
                 });
             }
-            
+
             // Global wallet connection state - load from sessionStorage if available (more secure than localStorage)
             let walletConnected = sessionStorage.getItem('walletConnected') === 'true';
             let userWalletAddress = sessionStorage.getItem('userWalletAddress') || '';
-            
+
             // Update UI based on stored connection state
             if (walletConnected && userWalletAddress) {
                 // Update wallet button in sidebar
@@ -305,7 +306,7 @@
                     walletBtn.classList.remove('btn-outline-info');
                     walletBtn.classList.add('btn-success');
                 }
-                
+
                 // Update user profile in header with shortened wallet address
                 const userProfile = document.getElementById('userProfileBtn');
                 if (userProfile) {
@@ -314,30 +315,30 @@
                         ? userWalletAddress.substring(0, 6) + '...' + userWalletAddress.substring(userWalletAddress.length - 4) 
                         : userWalletAddress;
                     userProfile.querySelector('span').textContent = shortAddress;
-                    
+
                     // Add wallet address as title for hover display
                     userProfile.setAttribute('title', userWalletAddress);
                     userProfile.setAttribute('data-bs-toggle', 'tooltip');
                     userProfile.setAttribute('data-bs-placement', 'bottom');
-                    
+
                     // Initialize tooltip
                     new bootstrap.Tooltip(userProfile);
                 }
-                
+
                 // Update feather icons
                 feather.replace();
             }
-            
+
             // Function to highlight a dashboard section
             function highlightDashboardSection(selector) {
                 // First, remove existing highlights
                 document.querySelectorAll('.highlight-pulse').forEach(el => {
                     el.classList.remove('highlight-pulse');
                 });
-                
+
                 // Find the target element
                 let targetElement;
-                
+
                 // Map selector strings to actual elements
                 if (selector === '.hot-asset') {
                     // Find card with "Hot Asset" label
@@ -374,21 +375,21 @@
                     // Try direct selector
                     targetElement = document.querySelector(selector);
                 }
-                
+
                 if (targetElement) {
                     // Add highlight class
                     targetElement.classList.add('highlight-pulse');
-                    
+
                     // Scroll to the element
                     targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    
+
                     // Remove the highlight after a delay
                     setTimeout(() => {
                         targetElement.classList.remove('highlight-pulse');
                     }, 3000);
                 }
             }
-            
+
             // Function to connect Keplr wallet
             function connectKeplrWallet() {
                 // Don't show connection modal if already connected
@@ -396,7 +397,7 @@
                     showProfileMenu();
                     return;
                 }
-                
+
                 // Create wallet modal
                 const modal = document.createElement('div');
                 modal.className = 'modal fade';
@@ -404,7 +405,7 @@
                 modal.setAttribute('tabindex', '-1');
                 modal.setAttribute('aria-labelledby', 'keplrModalLabel');
                 modal.setAttribute('aria-hidden', 'true');
-                
+
                 modal.innerHTML = `
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content bg-dark text-light border-info">
@@ -451,16 +452,16 @@
                         </div>
                     </div>
                 `;
-                
+
                 document.body.appendChild(modal);
-                
+
                 // Initialize modal and show it
                 const keplrModal = new bootstrap.Modal(document.getElementById('keplrModal'));
                 keplrModal.show();
-                
+
                 // Update feather icons inside modal
                 feather.replace();
-                
+
                 // Confirm button functionality
                 document.getElementById('confirmKeplrConnect').addEventListener('click', async function() {
                     try {
@@ -473,12 +474,12 @@
                                 </div>
                             </div>
                         `;
-                        
+
                         // Check if global connectKeplrWallet function exists (from kepler.js)
                         if (typeof connectKeplrWallet === 'function') {
                             // Use our global function to connect
                             const address = await connectKeplrWallet();
-                            
+
                             if (address) {
                                 // Get the updated values from sessionStorage
                                 userWalletAddress = sessionStorage.getItem('userWalletAddress');
@@ -492,7 +493,7 @@
                             if (window.keplerWallet.isConnected()) {
                                 userWalletAddress = window.keplerWallet.address;
                                 walletConnected = true;
-                                
+
                                 // Update sessionStorage for consistency (more secure than localStorage)
                                 sessionStorage.setItem('userWalletAddress', userWalletAddress);
                                 sessionStorage.setItem('walletConnected', 'true');
@@ -501,29 +502,29 @@
                             }
                         } else if (window.keplr) {
                             // Fallback to direct Keplr wallet connection
-                            
+
                             // First get network configuration from our backend
                             const networkConfigResponse = await fetch('/api/network-config');
                             const networkConfig = await networkConfigResponse.json();
-                            
+
                             // Add chain to Keplr wallet
                             await window.keplr.experimentalSuggestChain(networkConfig);
-                            
+
                             // Enable chain
                             await window.keplr.enable(networkConfig.chainId);
-                            
+
                             // Get offline signer
                             const offlineSigner = window.keplr.getOfflineSigner(networkConfig.chainId);
-                            
+
                             // Get accounts
                             const accounts = await offlineSigner.getAccounts();
                             userWalletAddress = accounts[0].address;
                             walletConnected = true;
-                            
+
                             // Update sessionStorage for consistency (more secure than localStorage)
                             sessionStorage.setItem('userWalletAddress', userWalletAddress);
                             sessionStorage.setItem('walletConnected', 'true');
-                            
+
                             // Save address to backend
                             try {
                                 await fetch('/api/account/wallet', {
@@ -539,11 +540,11 @@
                         } else {
                             throw new Error('Keplr wallet extension not found. Please install it first.');
                         }
-                        
+
                         // Save connection state to sessionStorage (more secure than localStorage)
                         sessionStorage.setItem('walletConnected', 'true');
                         sessionStorage.setItem('userWalletAddress', userWalletAddress);
-                        
+
                         // Update UI to show connected state
                         const walletBtn = document.getElementById('connectKeplrBtn');
                         if (walletBtn) {
@@ -552,7 +553,7 @@
                             walletBtn.classList.add('btn-success');
                             feather.replace();
                         }
-                        
+
                         // Update user profile
                         const userProfile = document.getElementById('userProfileBtn');
                         if (userProfile) {
@@ -562,7 +563,7 @@
                                 : userWalletAddress;
                             userProfile.querySelector('span').textContent = shortenedAddress;
                         }
-                        
+
                         // Show success message
                         statusElement.innerHTML = `
                             <div class="alert alert-success">
@@ -573,17 +574,17 @@
                             </div>
                         `;
                         feather.replace();
-                        
+
                         // Hide modal after a short delay
                         setTimeout(() => {
                             keplrModal.hide();
-                            
+
                             // Show onboarding guide
                             showOnboardingGuide();
                         }, 1000);
                     } catch (error) {
                         console.error('Keplr connection error:', error);
-                        
+
                         // Show error message
                         document.getElementById('keplrConnectionStatus').innerHTML = `
                             <div class="alert alert-danger">
@@ -596,13 +597,13 @@
                         feather.replace();
                     }
                 });
-                
+
                 // Remove modal from DOM when hidden
                 document.getElementById('keplrModal').addEventListener('hidden.bs.modal', function() {
                     document.body.removeChild(modal);
                 });
             }
-            
+
             // Function to show onboarding guide
             function showOnboardingGuide() {
                 // Create onboarding modal
@@ -612,7 +613,7 @@
                 modal.setAttribute('tabindex', '-1');
                 modal.setAttribute('aria-labelledby', 'onboardingModalLabel');
                 modal.setAttribute('aria-hidden', 'true');
-                
+
                 modal.innerHTML = `
                     <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content bg-dark text-light border-info">
@@ -662,7 +663,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div id="stakeholderResponse" class="d-none">
                                     <div class="d-flex align-items-start mb-4">
                                         <div class="ai-avatar me-3">
@@ -688,39 +689,39 @@
                         </div>
                     </div>
                 `;
-                
+
                 document.body.appendChild(modal);
-                
+
                 // Initialize modal and show it
                 const onboardingModal = new bootstrap.Modal(document.getElementById('onboardingModal'));
                 onboardingModal.show();
-                
+
                 // Update feather icons inside modal
                 feather.replace();
-                
+
                 // Add event listeners for stakeholder buttons
                 const stakeholderBtns = document.querySelectorAll('.stakeholder-btn');
                 stakeholderBtns.forEach(btn => {
                     btn.addEventListener('click', function() {
                         const stakeholder = this.getAttribute('data-stakeholder');
-                        
+
                         // Remove active class from all buttons
                         stakeholderBtns.forEach(b => b.classList.remove('active', 'btn-info'));
-                        
+
                         // Add active class to clicked button
                         this.classList.add('active', 'btn-info');
-                        
+
                         // Show stakeholder response
                         const responseEl = document.getElementById('stakeholderResponse');
                         const messageEl = document.getElementById('stakeholderMessage');
                         const actionsEl = document.getElementById('recommendedActions');
-                        
+
                         responseEl.classList.remove('d-none');
-                        
+
                         // Set message and actions based on stakeholder type
                         let message = '';
                         let actions = [];
-                        
+
                         switch(stakeholder) {
                             case 'investor':
                                 message = 'As an investor, you can explore verified real estate assets, stake ODIS tokens, and gain exposure to tokenized properties with complete due diligence.';
@@ -730,7 +731,7 @@
                                     { icon: 'dollar-sign', text: 'Check current staking APY (9.5%)', link: '/' }
                                 ];
                                 break;
-                                
+
                             case 'developer':
                                 message = 'As a developer, you can tokenize your real estate projects, manage stakeholder distribution, and access financing through the platform.';
                                 actions = [
@@ -739,7 +740,7 @@
                                     { icon: 'users', text: 'Manage stakeholder distribution', link: '/' }
                                 ];
                                 break;
-                                
+
                             case 'validator':
                                 message = 'As a validator, you play a crucial role in governance and proposal verification, ensuring network integrity and proper due diligence.';
                                 actions = [
@@ -748,7 +749,7 @@
                                     { icon: 'award', text: 'Earn validator rewards', link: '/' }
                                 ];
                                 break;
-                                
+
                             case 'architect':
                                 message = 'As an architect, you can upload and validate BIM models, improve design integrity, and connect with developers and contractors.';
                                 actions = [
@@ -757,7 +758,7 @@
                                     { icon: 'message-circle', text: 'Use AI to analyze building specifications', link: '/' }
                                 ];
                                 break;
-                                
+
                             case 'broker':
                                 message = 'As a broker, you can showcase verified real estate opportunities, connect investors with developers, and track property transactions.';
                                 actions = [
@@ -766,7 +767,7 @@
                                     { icon: 'trending-up', text: 'Track property investment performance', link: '/' }
                                 ];
                                 break;
-                                
+
                             case 'contractor':
                                 message = 'As a contractor, you can access detailed BIM models, track project tasks, and participate in contract fulfillment on the blockchain.';
                                 actions = [
@@ -775,7 +776,7 @@
                                     { icon: 'list', text: 'View verification status of projects', link: '/' }
                                 ];
                                 break;
-                                
+
                             case 'regulator':
                                 message = 'As a regulator, you can verify compliance, ensure proper due diligence, and monitor tokenized asset activities with complete transparency.';
                                 actions = [
@@ -785,9 +786,9 @@
                                 ];
                                 break;
                         }
-                        
+
                         messageEl.textContent = message;
-                        
+
                         // Generate action buttons
                         actionsEl.innerHTML = '';
                         actions.forEach(action => {
@@ -804,21 +805,21 @@
                                 <span>${action.text}</span>
                                 <i data-feather="chevron-right" class="ms-auto"></i>
                             `;
-                            
+
                             // Add click handler
                             item.addEventListener('click', function(e) {
                                 e.preventDefault();
-                                
+
                                 // Close the onboarding modal
                                 const modal = bootstrap.Modal.getInstance(document.getElementById('onboardingModal'));
                                 if (modal) {
                                     modal.hide();
                                 }
-                                
+
                                 // Handle the action based on the link without page reload
                                 const actionLink = this.dataset.actionLink;
                                 console.log(`Handling action: ${action.text} for link ${actionLink}`);
-                                
+
                                 // Highlight the relevant section based on the action
                                 switch (action.text) {
                                     case 'Explore the Idaka Project featured on the dashboard':
@@ -841,40 +842,40 @@
                                         }
                                 }
                             });
-                            
+
                             actionsEl.appendChild(item);
                         });
-                        
+
                         // Update feather icons
                         feather.replace();
-                        
+
                         // Store stakeholder preference
                         sessionStorage.setItem('userStakeholderType', stakeholder);
                     });
                 });
-                
+
                 // Continue button functionality
                 document.getElementById('continueOnboarding').addEventListener('click', function() {
                     onboardingModal.hide();
                 });
-                
+
                 // Remove modal from DOM when hidden
                 document.getElementById('onboardingModal').addEventListener('hidden.bs.modal', function() {
                     document.body.removeChild(modal);
                 });
             }
-            
+
             // Function to show profile menu
             function showProfileMenu() {
                 // Create profile dropdown
                 const dropdown = document.createElement('div');
                 dropdown.className = 'profile-dropdown';
                 dropdown.id = 'profileDropdown';
-                
+
                 // Position the dropdown based on user profile button position
                 const userProfileBtn = document.getElementById('userProfileBtn');
                 const rect = userProfileBtn.getBoundingClientRect();
-                
+
                 dropdown.style.position = 'absolute';
                 dropdown.style.top = (rect.bottom + 10) + 'px';
                 dropdown.style.right = '20px';
@@ -885,7 +886,7 @@
                 dropdown.style.padding = '1rem';
                 dropdown.style.zIndex = '1000';
                 dropdown.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.5)';
-                
+
                 dropdown.innerHTML = `
                     <div class="d-flex align-items-center mb-3">
                         <div class="bg-info rounded-circle p-2 me-3">
@@ -931,22 +932,22 @@
                         </button>
                     </div>
                 `;
-                
+
                 document.body.appendChild(dropdown);
-                
+
                 // Update feather icons
                 feather.replace();
-                
+
                 // Add event listener to disconnect button
                 document.getElementById('disconnectWalletBtn').addEventListener('click', function() {
                     // Reset wallet state
                     walletConnected = false;
                     userWalletAddress = '';
-                    
+
                     // Clear sessionStorage items
                     sessionStorage.removeItem('walletConnected');
                     sessionStorage.removeItem('userWalletAddress');
-                    
+
                     // Update UI
                     const walletBtn = document.getElementById('connectKeplrBtn');
                     if (walletBtn) {
@@ -955,24 +956,24 @@
                         walletBtn.classList.add('btn-outline-info');
                         feather.replace();
                     }
-                    
+
                     // Update user profile
                     const userProfile = document.getElementById('userProfileBtn');
                     if (userProfile) {
                         userProfile.querySelector('span').textContent = 'John Doe';
                     }
-                    
+
                     // Close dropdown
                     closeProfileMenu();
                 });
-                
+
                 // Close dropdown when clicking outside
                 document.addEventListener('click', function(e) {
                     if (!dropdown.contains(e.target) && e.target !== userProfileBtn && !userProfileBtn.contains(e.target)) {
                         closeProfileMenu();
                     }
                 });
-                
+
                 // Function to close profile menu
                 function closeProfileMenu() {
                     if (document.getElementById('profileDropdown')) {
@@ -982,21 +983,21 @@
             }
         });
     </script>
-    
+
     <!-- Keplr Wallet Integration -->
     <script src="{{ url_for('static', filename='js/kepler.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='js/blockchain-animations.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='js/micro-rewards-ui.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='js/transaction.js') }}"></script>
-    
+
     <!-- Chart.js for dashboard charts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
-    
+
     <!-- Page specific scripts -->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
     <script src="{{ url_for('static', filename='js/contracts.js') }}"></script>
-    
+
     <!-- Initialize Feather Icons -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -1009,12 +1010,12 @@
             }
         });
     </script>
-    
+
     {% block extra_js %}{% endblock %}
 
     <!-- DAODISEO Wallet Manager -->
     <script src="{{ url_for('static', filename='js/keplr-wallet.js') }}"></script>
-    
+
     <!-- Additional ODIS Token Data Updates -->
     <script>
         // Simulate real-time token price updates
@@ -1023,24 +1024,24 @@
                 current: (0.1204 + (Math.random() - 0.5) * 0.01).toFixed(4),
                 change: ((Math.random() - 0.5) * 10).toFixed(2)
             };
-            
+
             const currentPriceEl = document.getElementById('odisCurrentPrice');
             const priceChangeEl = document.getElementById('odisPriceChange');
-            
+
             if (currentPriceEl) {
                 currentPriceEl.textContent = '$' + prices.current;
             }
-            
+
             if (priceChangeEl) {
                 const isPositive = parseFloat(prices.change) >= 0;
                 priceChangeEl.textContent = (isPositive ? '↑ ' : '↓ ') + Math.abs(prices.change) + '%';
                 priceChangeEl.className = isPositive ? 'price-change text-success ms-2' : 'price-change text-danger ms-2';
             }
         }
-        
+
         // Update prices every 30 seconds
         setInterval(updateTokenPrices, 30000);
-        
+
         // Initial price update
         setTimeout(updateTokenPrices, 2000);
     </script>
