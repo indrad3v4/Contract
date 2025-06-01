@@ -90,7 +90,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- AI Assistant Panel -->
             <div class="card mt-4">
                 <div class="card-header">
@@ -105,7 +105,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Hot Asset Panel -->
         <div class="col-lg-7">
             <div class="card">
@@ -125,12 +125,9 @@
                 <div class="card-footer">
                     <div class="row">
 
-<!-- Include ODIS Token Trading Widget -->
-{% include 'components/odis_trading.html' %}
-
                         <div class="col-md-8">
                             <div class="model-info">
-                                <div class="model-name">Idaka Project</div>
+                                <div class="model-name">Ithaca Project</div>
                                 <div class="model-meta">
                                     <span class="model-meta-item">
                                         <i data-feather="layers" class="icon-inline-sm"></i>
@@ -154,7 +151,7 @@
                             </button>
                         </div>
                     </div>
-                    
+
                     <div class="progress mt-3" style="height: 10px;">
                         <div class="progress-bar bg-info" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
@@ -166,7 +163,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="row g-4 mt-4">
         <!-- Recent Transactions Panel -->
         <div class="col-lg-8">
@@ -240,7 +237,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Stakeholder Distribution Chart -->
         <div class="col-lg-4">
             <div class="card">
@@ -256,7 +253,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Validators Section -->
             <div class="card mt-4">
                 <div class="card-header">
@@ -293,6 +290,13 @@
             </div>
         </div>
     </div>
+
+    <!-- ODIS Token Trading Component -->
+    <div class="row mt-4">
+        <div class="col-12">
+            {% include 'components/odis_trading.html' %}
+        </div>
+    </div>
 </div>
 
 <!-- Investment Modal -->
@@ -302,7 +306,7 @@
             <div class="modal-header border-info">
                 <h5 class="modal-title" id="investModalLabel">
                     <i data-feather="dollar-sign" class="icon-inline text-info"></i>
-                    Invest in Idaka Project
+                    Invest in Ithaca Project
                 </h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -451,10 +455,10 @@
     document.addEventListener('DOMContentLoaded', function() {
         // Initialize AI Chat
         aiChat.init('ai-chat-container');
-        
+
         // Initialize mini BIM viewer
         bimViewer.init('mini-viewer-container');
-        
+
         // Initialize asset distribution chart
         const assetCtx = document.getElementById('asset-distribution-chart').getContext('2d');
         const assetChart = new Chart(assetCtx, {
@@ -484,7 +488,7 @@
                 }
             }
         });
-        
+
         // Initialize stakeholder chart
         const stakeholderCtx = document.getElementById('stakeholder-chart').getContext('2d');
         const stakeholderChart = new Chart(stakeholderCtx, {
@@ -516,17 +520,17 @@
                 }
             }
         });
-        
+
         // Check wallet connection when investment modal is opened
         document.getElementById('investModal').addEventListener('show.bs.modal', function() {
             // Check if wallet is connected (using localStorage)
             const walletConnected = localStorage.getItem('walletConnected') === 'true';
             const userWalletAddress = localStorage.getItem('userWalletAddress');
-            
+
             // Update wallet address field if available
             if (walletConnected && userWalletAddress) {
                 document.getElementById('walletAddress').value = userWalletAddress;
-                
+
                 // Show the proceed button, hide the connect button
                 document.getElementById('investModalConnectBtn').classList.add('d-none');
                 document.getElementById('investModalProceedBtn').classList.remove('d-none');
@@ -536,46 +540,46 @@
                 document.getElementById('investModalProceedBtn').classList.add('d-none');
             }
         });
-        
+
         // Invest modal wallet connection button
         document.getElementById('investModalConnectBtn').addEventListener('click', function() {
             // Access the main wallet connection function from base.html
             connectKeplrWallet();
-            
+
             // Close the investment modal
             const investModal = bootstrap.Modal.getInstance(document.getElementById('investModal'));
             if (investModal) {
                 investModal.hide();
             }
         });
-        
+
         // Proceed with investment button
         document.getElementById('investModalProceedBtn').addEventListener('click', function() {
             // Get investment amount
             const amount = document.getElementById('investmentAmount').value;
-            
+
             if (!amount || isNaN(amount) || parseFloat(amount) <= 0) {
                 alert('Please enter a valid investment amount.');
                 return;
             }
-            
+
             // Check if SPV/KYC confirmation is checked
             const spvKycChecked = document.getElementById('spvKycCheck').checked;
             if (!spvKycChecked) {
                 alert('Please confirm SPV/KYC verification.');
                 return;
             }
-            
+
             // Process investment
             alert(`Processing investment of ${amount} ODIS. Transaction will be signed with your Keplr wallet.`);
-            
+
             // Close modal after successful transaction
             const investModal = bootstrap.Modal.getInstance(document.getElementById('investModal'));
             if (investModal) {
                 investModal.hide();
             }
         });
-        
+
         // Open AI Assistant modal button
         document.body.addEventListener('click', function(e) {
             if (e.target.matches('[data-ai-assistant]') || e.target.closest('[data-ai-assistant]')) {
@@ -588,7 +592,7 @@
         var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl)
         });
-        
+
         // Update feather icons
         feather.replace();
     });

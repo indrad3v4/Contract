@@ -41,39 +41,85 @@
 
 /* ODIS Trading Widget */
 .odis-trading-widget {
-    background: linear-gradient(135deg, rgba(13, 110, 253, 0.1) 0%, rgba(13, 202, 240, 0.1) 100%);
-    border: 1px solid rgba(13, 202, 240, 0.3);
-    box-shadow: 0 4px 20px rgba(13, 202, 240, 0.1);
+    background: linear-gradient(135deg, rgba(13, 110, 253, 0.15) 0%, rgba(13, 202, 240, 0.15) 100%);
+    border: 2px solid rgba(13, 110, 253, 0.4);
+    box-shadow: 0 8px 32px rgba(13, 110, 253, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
 }
 
 .odis-trading-widget .card-header {
-    background: rgba(13, 202, 240, 0.1);
-    border-bottom: 1px solid rgba(13, 202, 240, 0.3);
+    background: linear-gradient(135deg, rgba(13, 110, 253, 0.2) 0%, rgba(13, 202, 240, 0.2) 100%);
+    border-bottom: 2px solid rgba(13, 110, 253, 0.4);
+    padding: 1.5rem;
+}
+
+.bg-gradient-primary {
+    background: linear-gradient(135deg, rgba(13, 110, 253, 0.2) 0%, rgba(13, 202, 240, 0.2) 100%) !important;
+}
+
+.bg-gradient-dark {
+    background: linear-gradient(135deg, rgba(33, 37, 41, 0.8) 0%, rgba(52, 58, 64, 0.8) 100%);
 }
 
 .token-stats .stat-item {
-    padding: 8px 0;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(13, 110, 253, 0.2);
+}
+
+.token-stats .stat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+    border-color: rgba(13, 110, 253, 0.4);
 }
 
 .token-stats .stat-value {
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    font-family: 'Inter', monospace;
 }
 
 .price-display {
     display: flex;
     align-items: baseline;
-    gap: 12px;
+    gap: 16px;
+    margin-bottom: 8px;
 }
 
 .current-price {
     font-weight: 700;
     font-family: 'Inter', monospace;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .price-change {
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 1.1rem;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background: rgba(25, 135, 84, 0.2);
+}
+
+.price-alert-section {
+    backdrop-filter: blur(10px);
+}
+
+.token-icon .rounded-circle {
+    border: 2px solid rgba(13, 110, 253, 0.5);
+}
+
+.price-chart-container {
+    height: 100%;
+}
+
+.price-chart-placeholder {
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.price-chart-placeholder:hover {
+    border-color: rgba(13, 110, 253, 0.6) !important;
+    box-shadow: 0 4px 16px rgba(13, 110, 253, 0.2);
 }
 
 .price-chart-placeholder {
