@@ -174,7 +174,7 @@ class BIMAgentManager:
                     
             return {
                 "success": True,
-                "message": response_text,
+                "response": response_text,
                 "metadata": metadata
             }
             
