@@ -109,7 +109,16 @@ class RewardsUIManager {
   initialize() {
     if (this.initialized) return;
     
-    // Create rewards badge
+    // Check if rewards badge already exists in header (from wallet manager)
+    const existingHeaderPoints = document.getElementById('pointsSystemBtn');
+    if (existingHeaderPoints) {
+      // Use existing header points system instead of creating duplicate
+      this.badgeElement = existingHeaderPoints;
+      this.initialized = true;
+      return;
+    }
+    
+    // Create rewards badge only if none exists
     this.createRewardsBadge();
     
     // Create rewards panel

@@ -345,4 +345,90 @@ document.addEventListener('DOMContentLoaded', function() {
     if (pointsDisplay) {
         pointsDisplay.textContent = `${currentPoints} pts`;
     }
+    
+    // Load real validators data
+    loadActiveValidators();
+    
+    // Remove duplicate rewards button from micro-rewards if it exists
+    removeDuplicateRewardsButton();
 });
+
+// Function to load real validator data from blockchain service
+async function loadActiveValidators() {
+    try {
+        const response = await fetch('/api/blockchain/stats');
+        const data = await response.json();
+        
+        const validatorsContainer = document.getElementById('validatorsContainer');
+        if (!validatorsContainer) return;
+        
+        if (data.validators && data.validators.length > 0) {
+            const validatorsHtml = data.validators.slice(0, 3).map((validator, index) => {
+                const moniker = validator.description?.moniker || `Validator ${index + 1}`;
+                const votingPower = validator.tokens ? (parseInt(validator.tokens) / 1000000).toFixed(0) : '0';
+                const status = validator.status === 'BOND_STATUS_BONDED' ? 'Active' : 'Inactive';
+                const statusClass = status === 'Active' ? 'bg-success' : 'bg-secondary';
+                
+                return `
+                    <div class="validator-item d-flex align-items-center justify-content-between p-3 mb-2 rounded" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(13, 110, 253, 0.2);">
+                        <div class="d-flex align-items-center">
+                            <div class="validator-avatar me-3" style="width: 32px; height: 32px; background: linear-gradient(135deg, #0dcaf0, #0d6efd); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 0.8rem;">
+                                ${moniker.charAt(0).toUpperCase()}
+                            </div>
+                            <div>
+                                <div class="validator-name" style="font-family: 'Inter', -apple-system, sans-serif; font-weight: 500; color: #fff; font-size: 0.9rem;">
+                                    ${moniker.length > 20 ? moniker.substring(0, 20) + '...' : moniker}
+                                </div>
+                                <small class="text-muted" style="font-family: 'Inter', -apple-system, sans-serif; font-weight: 400;">
+                                    ${votingPower}M voting power
+                                </small>
+                            </div>
+                        </div>
+                        <div class="validator-status">
+                            <span class="badge ${statusClass}" style="font-family: 'Inter', -apple-system, sans-serif; font-size: 0.7rem;">${status}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            validatorsContainer.innerHTML = validatorsHtml;
+        } else {
+            validatorsContainer.innerHTML = `
+                <div class="text-center py-3">
+                    <small class="text-muted">No validators found</small>
+                </div>
+            `;
+        }
+    } catch (error) {
+        console.error('Error loading validators:', error);
+        const validatorsContainer = document.getElementById('validatorsContainer');
+        if (validatorsContainer) {
+            validatorsContainer.innerHTML = `
+                <div class="text-center py-3">
+                    <small class="text-danger">Failed to load validators</small>
+                </div>
+            `;
+        }
+    }
+}
+
+// Function to remove duplicate rewards button
+function removeDuplicateRewardsButton() {
+    // Remove any micro-rewards badge that might be duplicated
+    const rewardsBadges = document.querySelectorAll('.micro-rewards-badge');
+    if (rewardsBadges.length > 1) {
+        // Keep only the first one (header one) and remove others
+        for (let i = 1; i < rewardsBadges.length; i++) {
+            rewardsBadges[i].remove();
+        }
+    }
+    
+    // Also remove any rewards panels that might be duplicated
+    const rewardsPanels = document.querySelectorAll('.micro-rewards-panel');
+    if (rewardsPanels.length > 1) {
+        // Keep only the first one and remove others
+        for (let i = 1; i < rewardsPanels.length; i++) {
+            rewardsPanels[i].remove();
+        }
+    }
+}
