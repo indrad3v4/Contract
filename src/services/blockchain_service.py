@@ -181,7 +181,7 @@ class BlockchainService:
                 ],
                 "memo": signed_tx.get("signed", {}).get("memo", "")
             },
-            "mode": "block"  # Wait for block confirmation
+            "mode": "BROADCAST_MODE_BLOCK"  # Wait for block confirmation
         }
         
         return broadcast_tx

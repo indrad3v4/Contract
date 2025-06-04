@@ -408,7 +408,7 @@ async function broadcastTransaction(signResponse) {
         ],
         memo: signResponse.signed.memo // Use the simple string memo
       },
-      mode: "block" // Use "block" to wait for confirmation
+      mode: "BROADCAST_MODE_BLOCK" // Wait for block confirmation
     };
 
     console.log("Broadcasting transaction:", JSON.stringify(broadcastBody, null, 2));

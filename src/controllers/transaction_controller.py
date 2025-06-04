@@ -242,7 +242,7 @@ def broadcast_transaction():
                 }],
                 "memo": signed_tx.get("memo", "")
             },
-            "mode": "block"  # Wait for confirmation
+            "mode": "BROADCAST_MODE_BLOCK"  # Wait for confirmation
         }
         
         # Broadcast the transaction

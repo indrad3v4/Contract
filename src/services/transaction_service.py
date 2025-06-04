@@ -328,7 +328,7 @@ class TransactionService:
                 # Prepare the transaction broadcast request in Amino JSON format
                 broadcast_json = {
                     "tx": tx,
-                    "mode": "block",  # Use "block" to wait for confirmation
+                    "mode": "BROADCAST_MODE_BLOCK",  # Wait for block confirmation
                 }
 
                 self.logger.debug(
