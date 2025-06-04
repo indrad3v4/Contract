@@ -607,20 +607,8 @@
                         const statusBadge = fileItem.querySelector('.badge');
                         statusBadge.textContent = 'Signed';
                         
-                        // Third phase: Broadcast the transaction
-                        const broadcastResponse = await fetch('/api/broadcast', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(signResponse)
-                        });
-                        
-                        if (!broadcastResponse.ok) {
-                            throw new Error(`Server responded with ${broadcastResponse.status}: ${await broadcastResponse.text()}`);
-                        }
-                        
-                        const broadcastData = await broadcastResponse.json();
+                        // Third phase: Broadcast the transaction using helper
+                        const broadcastData = await broadcastTransaction(signResponse);
                         console.log('Transaction broadcast:', broadcastData);
                         
                         if (!broadcastData.success) {
