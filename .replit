@@ -18,10 +18,6 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-args = "E2E Tests"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
 args = "DAODISEO Main Server"
 
 [[workflows.workflow.tasks]]
@@ -36,14 +32,6 @@ mode = "sequential"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "python main.py"
-
-[[workflows.workflow]]
-name = "E2E Tests"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "bash scripts/run_selenium_tests.sh"
 
 [[workflows.workflow]]
 name = "Flask Dev + Console"
