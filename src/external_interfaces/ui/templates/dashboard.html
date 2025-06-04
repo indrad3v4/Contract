@@ -490,9 +490,9 @@
 
         // Check wallet connection when investment modal is opened
         document.getElementById('investModal').addEventListener('show.bs.modal', function() {
-            // Check if wallet is connected (using localStorage)
-            const walletConnected = localStorage.getItem('walletConnected') === 'true';
-            const userWalletAddress = localStorage.getItem('userWalletAddress');
+            // Check if wallet is connected (using sessionStorage)
+            const walletConnected = sessionStorage.getItem('walletConnected') === 'true';
+            const userWalletAddress = sessionStorage.getItem('userWalletAddress');
 
             // Update wallet address field if available
             if (walletConnected && userWalletAddress) {

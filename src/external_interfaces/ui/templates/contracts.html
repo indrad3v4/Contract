@@ -503,8 +503,8 @@ Jurisdiction: Delaware, USA</textarea>
         // Generate Contract button click
         document.getElementById('generateContractBtn').addEventListener('click', function() {
             // Check if wallet is connected
-            const walletConnected = localStorage.getItem('walletConnected') === 'true';
-            const walletAddress = localStorage.getItem('userWalletAddress');
+            const walletConnected = sessionStorage.getItem('walletConnected') === 'true';
+            const walletAddress = sessionStorage.getItem('userWalletAddress');
             
             if (!walletConnected || !walletAddress) {
                 alert('Please connect your wallet first.');
@@ -579,8 +579,8 @@ Jurisdiction: Delaware, USA</textarea>
         // New Contract button click
         document.getElementById('newContractBtn').addEventListener('click', function() {
             // Check if wallet is connected already
-            const walletConnected = localStorage.getItem('walletConnected') === 'true';
-            const walletAddress = localStorage.getItem('userWalletAddress');
+            const walletConnected = sessionStorage.getItem('walletConnected') === 'true';
+            const walletAddress = sessionStorage.getItem('userWalletAddress');
             
             if (walletConnected && walletAddress) {
                 // Proceed with contract creation since wallet is already connected
@@ -625,7 +625,7 @@ Jurisdiction: Delaware, USA</textarea>
                 
                 // Prepare transaction data
                 const transactionData = {
-                    from_address: localStorage.getItem('userWalletAddress'),
+                    from_address: sessionStorage.getItem('userWalletAddress'),
                     to_address: "odiseo1qg5ega6dykkxc307y25pecuv380qje7zp9qpxt", // Contract validator address
                     amount: [{ denom: "uodis", amount: "1000" }],
                     metadata: {
@@ -673,9 +673,9 @@ Jurisdiction: Delaware, USA</textarea>
         
         // Check if the wallet is already connected
         function checkWalletConnection() {
-            // Check localStorage for wallet connection status
-            const walletConnected = localStorage.getItem('walletConnected') === 'true';
-            const walletAddress = localStorage.getItem('userWalletAddress');
+            // Check sessionStorage for wallet connection status
+            const walletConnected = sessionStorage.getItem('walletConnected') === 'true';
+            const walletAddress = sessionStorage.getItem('userWalletAddress');
             
             if (walletConnected && walletAddress) {
                 // Show the wallet address in the input field if it exists
