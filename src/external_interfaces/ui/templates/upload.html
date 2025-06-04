@@ -478,8 +478,8 @@
             console.log('Files selected:', files);
             
             // Check if wallet is connected
-            const walletConnected = localStorage.getItem('walletConnected') === 'true';
-            const userWalletAddress = localStorage.getItem('userWalletAddress');
+            const walletConnected = sessionStorage.getItem('walletConnected') === 'true';
+            const userWalletAddress = sessionStorage.getItem('userWalletAddress');
             
             if (!walletConnected || !userWalletAddress) {
                 // Show wallet connection prompt
@@ -500,7 +500,7 @@
                     await connectKeplrWallet();
                     notification.remove();
                     // If connection was successful, proceed with the upload
-                    if (localStorage.getItem('walletConnected') === 'true') {
+                    if (sessionStorage.getItem('walletConnected') === 'true') {
                         handleFiles(files);
                     }
                 });
