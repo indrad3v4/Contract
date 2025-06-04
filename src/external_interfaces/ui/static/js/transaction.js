@@ -414,10 +414,13 @@ async function broadcastTransaction(signResponse) {
     console.log("Broadcasting transaction:", JSON.stringify(broadcastBody, null, 2));
 
     // Send to your backend API endpoint that will broadcast to the blockchain
-    const response = await fetch("/api/broadcast", {
+    const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') ||
+                      window.csrf_token || '';
+    const response = await fetch("/api/blockchain/broadcast", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "X-CSRF-Token": csrfToken
       },
       body: JSON.stringify(broadcastBody)
     });
@@ -467,4 +470,5 @@ async function broadcastTransaction(signResponse) {
 
 // Export functions
 window.signContract = signContract;
+window.broadcastTransaction = broadcastTransaction;
 export { createAndSignTransaction };
