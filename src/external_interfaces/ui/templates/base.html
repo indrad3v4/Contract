@@ -33,6 +33,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/micro-rewards.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/ai-chat.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header-alignment.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/conflict-resolution.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive-fixes.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/daodiseo-ux.css') }}">
 
     
@@ -96,6 +99,17 @@
     
     {% block extra_css %}
 {% endblock %}
+
+    <!-- Critical Error Fixes -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header-alignment.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/conflict-resolution.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive-fixes.css') }}">
+    
+    <!-- Enhanced JavaScript -->
+    <script src="{{ url_for('static', filename='js/error-handler.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/component-manager.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/api-manager.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/blockchain-data-loader.js') }}"></script>
 
     <!-- Critical Error Fixes -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/header-alignment.css') }}">
@@ -192,6 +206,15 @@
     
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Module System -->
+    <script src="{{ url_for('static', filename='js/module-loader.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/enhanced-components-fixed.js') }}"></script>
+    
+    <!-- Critical Error Fixes -->
+    <script src="{{ url_for('static', filename='js/error-handler.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/api-manager.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/blockchain-data-loader.js') }}"></script>
     
     <!-- Initialize Feather Icons -->
     <script>

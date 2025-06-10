@@ -1,8 +1,7 @@
 
-// Namespace wrapper to prevent variable conflicts
+// Dashboard Enhanced JavaScript - Clean Implementation
 (function() {
     'use strict';
-    
 
 
 
@@ -241,5 +240,4 @@ document.addEventListener('DOMContentLoaded', function() {
     window.dataSourceAgentManager.init();
 });
 
-    
 })();
