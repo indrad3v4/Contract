@@ -13,8 +13,8 @@ logger = logging.getLogger(__name__)
 agents_bp = Blueprint("agents", __name__, url_prefix="/api/agents")
 
 try:
-    from src.services.ai.agents.controller import get_agent_controller
-    agent_controller = get_agent_controller()
+    from src.services.ai.agent_initialization import get_initialized_agent_controller
+    agent_controller = get_initialized_agent_controller()
     logger.info("Agent controller initialized successfully")
 except ImportError as e:
     logger.warning(f"Agent controller not available: {e}")
