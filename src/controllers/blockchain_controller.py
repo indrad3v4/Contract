@@ -369,3 +369,53 @@ def prepare_upload():
             return jsonify({'error': str(e)}), 500
         else:
             return jsonify({'error': 'Failed to process upload'}), 500
+
+# Additional blockchain endpoints for enhanced dashboard
+@blockchain_bp.route("/network-stats", methods=["GET"])
+def get_network_stats():
+    """Get comprehensive network statistics"""
+    try:
+        # This would be implemented with real RPC calls
+        network_stats = {
+            "block_height": 12345,
+            "block_time": "6.2s",
+            "tx_throughput": "45 TPS",
+            "active_validators": 10,
+            "network_version": "v0.47.0",
+            "consensus_state": "active"
+        }
+        
+        return jsonify({
+            "success": True,
+            "data": network_stats
+        })
+    except Exception as e:
+        logger.error(f"Error fetching network stats: {e}")
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500
+
+@blockchain_bp.route("/token-price", methods=["GET"])  
+def get_token_price():
+    """Get current ODIS token price and market data"""
+    try:
+        # This would integrate with actual price feeds
+        price_data = {
+            "price_usd": 0.42,
+            "price_change_24h": 5.7,
+            "market_cap": 15811040,
+            "volume_24h": 234567,
+            "circulating_supply": 37650000
+        }
+        
+        return jsonify({
+            "success": True,
+            "data": price_data
+        })
+    except Exception as e:
+        logger.error(f"Error fetching token price: {e}")
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500

@@ -1,0 +1,39 @@
+return 3 ideas as ai-dev, to use existing data for components in app
+especially in "token value" it should be value of odis token
+
+and clean sympol + text Data Source Agents
+
+Available endpoints:
+
+Endpoints that require arguments:
+//testnet-rpc.daodiseo.chaintools.tech/abci_info?
+//testnet-rpc.daodiseo.chaintools.tech/abci_query?path=&data=&height=&prove=
+//testnet-rpc.daodiseo.chaintools.tech/block?height=_
+//testnet-rpc.daodiseo.chaintools.tech/block_by_hash?hash=_
+//testnet-rpc.daodiseo.chaintools.tech/block_results?height=_
+//testnet-rpc.daodiseo.chaintools.tech/block_search?query=&page=&per_page=&order_by=
+//testnet-rpc.daodiseo.chaintools.tech/blockchain?minHeight=&maxHeight=
+//testnet-rpc.daodiseo.chaintools.tech/broadcast_evidence?evidence=_
+//testnet-rpc.daodiseo.chaintools.tech/broadcast_tx_async?tx=_
+//testnet-rpc.daodiseo.chaintools.tech/broadcast_tx_commit?tx=_
+//testnet-rpc.daodiseo.chaintools.tech/broadcast_tx_sync?tx=_
+//testnet-rpc.daodiseo.chaintools.tech/check_tx?tx=_
+//testnet-rpc.daodiseo.chaintools.tech/commit?height=_
+//testnet-rpc.daodiseo.chaintools.tech/consensus_params?height=_
+//testnet-rpc.daodiseo.chaintools.tech/consensus_state?
+//testnet-rpc.daodiseo.chaintools.tech/dump_consensus_state?
+//testnet-rpc.daodiseo.chaintools.tech/genesis?
+//testnet-rpc.daodiseo.chaintools.tech/genesis_chunked?chunk=_
+//testnet-rpc.daodiseo.chaintools.tech/header?height=_
+//testnet-rpc.daodiseo.chaintools.tech/header_by_hash?hash=_
+//testnet-rpc.daodiseo.chaintools.tech/health?
+//testnet-rpc.daodiseo.chaintools.tech/net_info?
+//testnet-rpc.daodiseo.chaintools.tech/num_unconfirmed_txs?
+//testnet-rpc.daodiseo.chaintools.tech/status?
+//testnet-rpc.daodiseo.chaintools.tech/subscribe?query=_
+//testnet-rpc.daodiseo.chaintools.tech/tx?hash=&prove=
+//testnet-rpc.daodiseo.chaintools.tech/tx_search?query=&prove=&page=&per_page=&order_by=_
+//testnet-rpc.daodiseo.chaintools.tech/unconfirmed_txs?limit=_
+//testnet-rpc.daodiseo.chaintools.tech/unsubscribe?query=_
+//testnet-rpc.daodiseo.chaintools.tech/unsubscribe_all?
+//testnet-rpc.daodiseo.chaintools.tech/validators?height=&page=&per_page=_
