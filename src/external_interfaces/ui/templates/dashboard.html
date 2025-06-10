@@ -6,6 +6,38 @@
 <!-- Enhanced Chat CSS -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/chat-enhanced.css') }}">
 <style>
+/* PIXEL-PERFECT DASHBOARD GRID SYSTEM */
+.dashboard-container {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+    gap: 1rem !important;
+    padding: 1rem !important;
+    margin: 0 !important;
+}
+
+/* Responsive Grid Breakpoints */
+@media (min-width: 769px) and (max-width: 1200px) {
+    .dashboard-container {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (min-width: 1201px) {
+    .dashboard-container {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-container {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .container-fluid {
+        padding: 0.75rem !important;
+    }
+}
+
 /* Dashboard Header */
 .dashboard-header {
     text-align: center;

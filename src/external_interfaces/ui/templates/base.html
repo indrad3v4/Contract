@@ -259,30 +259,27 @@
             </div>
         </div>
         
-        <!-- Main Content -->
-        <div class="main-content">
-            <!-- Top Bar -->
-            <div class="top-bar">
-                <div class="page-title">
-                    <h1>{% block page_title %}Dashboard
-{% endblock %}</h1>
+        <!-- Header aligned with sidebar -->
+        <div class="header">
+            <div class="page-title">
+                <h1>{% block page_title %}Dashboard{% endblock %}</h1>
+            </div>
+            <div class="top-actions">
+                <div class="points-system" id="pointsSystemBtn">
+                    <i data-feather="star"></i>
+                    <span class="points-badge" id="userPoints">0 pts</span>
                 </div>
-                <div class="top-actions">
-                    
-                    <div class="user-menu">
-                        <div class="points-system" id="pointsSystemBtn">
-                        <i data-feather="star"></i>
-                        <span class="points-badge" id="userPoints">0 pts</span>
-                    </div>
-                        <div class="wallet-connection" id="headerWalletBtn">
-                        <button class="btn btn-outline-info btn-sm" id="headerConnectKeplr">
-                            <i data-feather="link" class="icon-inline-sm"></i>
-                            Connect Keplr
-                        </button>
-                    </div>
-                    </div>
+                <div class="wallet-connection" id="headerWalletBtn">
+                    <button class="btn btn-outline-info btn-sm" id="headerConnectKeplr">
+                        <i data-feather="link" class="icon-inline-sm"></i>
+                        Connect Keplr
+                    </button>
                 </div>
             </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
             
             <!-- Content -->
             <div class="content-wrapper">
@@ -1168,16 +1165,27 @@
         setTimeout(updateTokenPrices, 2000);
     </script>
 
-    <!-- Enhanced Dashboard Components -->
-    <script src="{{ url_for('static', filename='js/enhanced-stats-cards.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/enhanced-transaction-list.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/enhanced-asset-distribution.js') }}"></script>
-    
-
-    <!-- Enhanced Dashboard Components -->
-    <script src="{{ url_for('static', filename='js/enhanced-stats-cards.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/enhanced-transaction-list.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/enhanced-asset-distribution.js') }}"></script>
+    <!-- Enhanced Dashboard Components - Removed duplicates -->
+    <script>
+        // Prevent duplicate loading of enhanced components
+        if (typeof window.enhancedComponentsLoaded === 'undefined') {
+            window.enhancedComponentsLoaded = true;
+            
+            // Load enhanced scripts only once
+            const scripts = [
+                '{{ url_for("static", filename="js/enhanced-stats-cards.js") }}',
+                '{{ url_for("static", filename="js/enhanced-transaction-list.js") }}',
+                '{{ url_for("static", filename="js/enhanced-asset-distribution.js") }}'
+            ];
+            
+            scripts.forEach(src => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.async = false;
+                document.head.appendChild(script);
+            });
+        }
+    </script>
     
 </body>
 </html>
