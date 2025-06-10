@@ -1,92 +1,55 @@
 {% extends "base.html" %}
 
-{% block title %}Daodiseo - Real Estate Tokenization Dashboard{% endblock %}
+{% block title %}DAODISEO - AI Brain Orchestrator Dashboard{% endblock %}
 
 {% block extra_css %}
+<!-- Liquid Glass Design System -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/liquid-glass-system.css') }}">
 <!-- Enhanced Chat CSS -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/chat-enhanced.css') }}">
-<!-- Enhanced Dashboard CSS -->
-<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard-enhanced.css') }}">
 {% endblock %}
 
 {% block content %}
-<div class="dashboard">
-    <!-- ODIS Token Overview Section -->
-    <div class="row mb-4">
-        <div class="col-12">
-            <div class="card odis-token-overview">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <div class="d-flex align-items-center">
-                        <div class="token-logo me-3">
-                            <div class="rounded-circle bg-info d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                                <span class="text-white fw-bold">ODIS</span>
+<div class="dashboard route-glass-container">
+    <!-- State Sync Indicator -->
+    <div class="state-sync-indicator synced" id="stateSyncIndicator">
+        All systems synced
+    </div>
+    
+    <!-- AI Brain Central Hub -->
+    <div class="ai-brain-central-hub component-glass-panel mb-4">
+        <div class="brain-visualization">
+            <div class="brain-connections" id="neuralConnections"></div>
+        </div>
+        
+        <div class="mt-3">
+            <h3 class="text-center mb-2">DAODISEO AI Brain</h3>
+            <p class="text-center text-muted">Central Intelligence Orchestrator</p>
+        </div>
+        
+        <!-- AI Insights Panel -->
+        <div class="brain-insights-panel mt-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="subcomponent-glass-element p-3">
+                        <h6>Predictive Insights</h6>
+                        <div id="ai-insights-container">
+                            <div class="status-ribbon processing">
+                                <span>Analyzing portfolio optimization opportunities</span>
                             </div>
-                        </div>
-                        <div>
-                            <h5 class="mb-0">ODIS Token</h5>
-                            <small class="text-muted">Cosmos Network's Real Estate Tokenization</small>
                         </div>
                     </div>
-                    <button class="btn btn-success btn-sm">
-                        <i data-feather="shopping-cart" class="icon-inline-sm"></i>
-                        Buy ODIS
-                    </button>
                 </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="row">
-                                <div class="col-md-3 mb-3">
-                                    <div class="metric-item">
-                                        <div class="metric-value" id="odis-price">$0.1214</div>
-                                        <div class="metric-change text-success">
-                                            <i data-feather="trending-up" class="icon-inline-sm"></i>
-                                            <span id="odis-change">+3.68%</span>
-                                        </div>
-                                        <div class="metric-label">Current Price</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <div class="metric-item">
-                                        <div class="metric-value" id="market-cap">$12.4M</div>
-                                        <div class="metric-label">Market Cap</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <div class="metric-item">
-                                        <div class="metric-value" id="volume-24h">$2.5M</div>
-                                        <div class="metric-label">Volume (24h)</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <div class="metric-item">
-                                        <div class="metric-value" id="staking-apy">9.5%</div>
-                                        <div class="metric-label">Staking APY</div>
-                                    </div>
-                                </div>
+                <div class="col-md-6">
+                    <div class="subcomponent-glass-element p-3">
+                        <h6>Risk Assessment</h6>
+                        <div class="progress-with-action">
+                            <div class="progress-bar-glass">
+                                <div class="progress-fill" style="width: 75%"></div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <div class="metric-item">
-                                        <div class="metric-value" id="high-24h">$0.1289</div>
-                                        <div class="metric-label">24h High</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <div class="metric-item">
-                                        <div class="metric-value" id="low-24h">$0.1156</div>
-                                        <div class="metric-label">24h Low</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="price-chart-container">
-                                <div class="chart-placeholder text-center py-4">
-                                    <i data-feather="trending-up" style="width: 48px; height: 48px;" class="text-muted"></i>
-                                    <div class="mt-2 text-muted">Live Price Chart</div>
-                                    <small class="text-muted">Real-time ODIS price data</small>
-                                </div>
+                            <div class="next-action">
+                                <i data-feather="shield" class="icon-inline-sm"></i>
+                                Portfolio risk: Low
                             </div>
                         </div>
                     </div>
@@ -94,156 +57,293 @@
             </div>
         </div>
     </div>
-
-    <!-- Portfolio Overview Cards -->
-    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4 mb-4">
-        <div class="col">
-            <div class="card stats-card">
-                <div class="card-body">
-                    <div class="card-value" id="total-reserves">$38,126.50</div>
-                    <div class="card-title">Total Reserves <span class="badge bg-secondary ms-1">USD</span></div>
-                    <div class="wave-visual"></div>
-                    <div class="card-icon secondary">
-                        <i data-feather="trending-up"></i>
+    
+    <!-- Satellite Orbital Components -->
+    <div class="satellite-container">
+        <!-- Top-Left: Asset Distribution -->
+        <div class="satellite-component satellite-top-left" data-satellite="assets">
+            <div class="status-ribbon verified mb-3">
+                <i data-feather="pie-chart" class="icon-inline-sm"></i>
+                Asset Distribution
+            </div>
+            
+            <div class="subcomponent-glass-element p-3">
+                <div class="chart-container" style="height: 200px;">
+                    <canvas id="asset-distribution-chart"></canvas>
+                </div>
+                <div class="d-flex justify-content-between mt-3">
+                    <div class="text-center">
+                        <div class="small text-muted">Verified Assets</div>
+                        <div class="fw-bold text-success" id="verified-assets-value">$24,250,000</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="small text-muted">Pipeline</div>
+                        <div class="fw-bold text-warning" id="pending-assets-value">$13,876,500</div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="card stats-card">
-                <div class="card-body">
-                    <div class="card-value" id="verified-assets">$2.1M</div>
-                    <div class="card-title">Verified Assets <span class="badge bg-success ms-1">Real Estate</span></div>
-                    <div class="wave-visual"></div>
-                    <div class="card-icon success">
-                        <i data-feather="check-circle"></i>
+        
+        <!-- Top-Right: ODIS Token Metrics -->
+        <div class="satellite-component satellite-top-right" data-satellite="token">
+            <div class="status-ribbon verified mb-3">
+                <i data-feather="trending-up" class="icon-inline-sm"></i>
+                ODIS Token Metrics
+            </div>
+            
+            <div class="subcomponent-glass-element p-3">
+                <div class="row g-2">
+                    <div class="col-6">
+                        <div class="metric-small">
+                            <div class="metric-value" id="token-price">$0.1214</div>
+                            <div class="metric-label">Price</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="metric-small">
+                            <div class="metric-value text-success" id="price-change">+3.68%</div>
+                            <div class="metric-label">24h Change</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="metric-small">
+                            <div class="metric-value" id="market-cap">$12.4M</div>
+                            <div class="metric-label">Market Cap</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="metric-small">
+                            <div class="metric-value" id="staking-apy">9.5%</div>
+                            <div class="metric-label">Staking APY</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="progress-with-action mt-3">
+                    <div class="next-action">
+                        <i data-feather="arrow-up" class="icon-inline-sm"></i>
+                        Stake for rewards
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="card stats-card">
-                <div class="card-body">
-                    <div class="card-value" id="active-contracts">12</div>
-                    <div class="card-title">Active Contracts <span class="badge bg-warning ms-1">Live</span></div>
-                    <div class="wave-visual"></div>
-                    <div class="card-icon warning">
-                        <i data-feather="file-text"></i>
+        
+        <!-- Bottom-Left: Validators Network -->
+        <div class="satellite-component satellite-bottom-left" data-satellite="validators">
+            <div class="status-ribbon processing mb-3">
+                <i data-feather="server" class="icon-inline-sm"></i>
+                Validators Network
+            </div>
+            
+            <div class="subcomponent-glass-element p-3">
+                <div class="row g-2 mb-3">
+                    <div class="col-4">
+                        <div class="metric-small">
+                            <div class="metric-value text-success" id="active-validators">10</div>
+                            <div class="metric-label">Active</div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="metric-small">
+                            <div class="metric-value" id="total-staked">$2.1M</div>
+                            <div class="metric-label">Staked</div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="metric-small">
+                            <div class="metric-value text-info" id="avg-commission">5.2%</div>
+                            <div class="metric-label">Avg Fee</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="progress-with-action">
+                    <div class="progress-bar-glass">
+                        <div class="progress-fill" style="width: 88%"></div>
+                    </div>
+                    <div class="next-action">
+                        <i data-feather="users" class="icon-inline-sm"></i>
+                        View all validators
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="card stats-card">
-                <div class="card-body">
-                    <div class="card-value" id="daily-rewards">0.318</div>
-                    <div class="card-title">Daily Rewards <span class="badge bg-info ms-1">ODIS</span></div>
-                    <div class="wave-visual"></div>
-                    <div class="card-icon info">
-                        <i data-feather="award"></i>
+        
+        <!-- Bottom-Right: Transaction History -->
+        <div class="satellite-component satellite-bottom-right" data-satellite="transactions">
+            <div class="status-ribbon pending mb-3">
+                <i data-feather="activity" class="icon-inline-sm"></i>
+                Recent Activity
+            </div>
+            
+            <div class="subcomponent-glass-element p-3">
+                <div class="transaction-list" id="recent-transactions">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div class="d-flex align-items-center">
+                            <div class="status-indicator active me-2"></div>
+                            <span class="small">Property Tokenization</span>
+                        </div>
+                        <span class="small text-success">+1250 ODIS</span>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div class="d-flex align-items-center">
+                            <div class="status-indicator jailed me-2"></div>
+                            <span class="small">Contract Signature</span>
+                        </div>
+                        <span class="small text-muted">Pending</span>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <div class="status-indicator active me-2"></div>
+                            <span class="small">Token Transfer</span>
+                        </div>
+                        <span class="small text-warning">-350 ODIS</span>
+                    </div>
+                </div>
+                
+                <div class="progress-with-action mt-3">
+                    <div class="next-action">
+                        <i data-feather="list" class="icon-inline-sm"></i>
+                        View all transactions
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="row g-4">
-        <!-- Asset Distribution Panel -->
-        <div class="col-lg-5">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title">
-                        <i data-feather="pie-chart" class="icon-inline"></i>
-                        Asset Distribution
-                    </h5>
-                    <div class="card-subtitle">Verified vs Unverified Assets</div>
-                </div>
-                <div class="card-body">
-                    <div class="chart-container">
-                        <canvas id="asset-distribution-chart"></canvas>
-                    </div>
-                    <div class="d-flex justify-content-between mt-3">
-                        <div class="text-center">
-                            <div class="small text-muted">Verified Assets</div>
-                            <div class="fw-bold text-success">$24,250,000</div>
-                            <div class="small text-muted">Due diligence complete</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="small text-muted">Unverified Assets</div>
-                            <div class="fw-bold text-warning">$13,876,500</div>
-                            <div class="small text-muted">In pipeline</div>
+    <!-- Portfolio Overview - Redesigned as Unified Glass Panel -->
+    <div class="component-glass-panel mb-4">
+        <div class="d-flex justify-content-between align-items-center p-3 border-bottom border-secondary">
+            <h5 class="mb-0">Portfolio Overview</h5>
+            <div class="status-ribbon verified">
+                <i data-feather="trending-up" class="icon-inline-sm"></i>
+                Live Data
+            </div>
+        </div>
+        
+        <div class="row g-0">
+            <div class="col-md-3">
+                <div class="subcomponent-glass-element p-4 h-100 border-end border-secondary">
+                    <div class="metric-value" id="total-reserves">$38,126.50</div>
+                    <div class="metric-label">Total Reserves</div>
+                    <div class="progress-with-action mt-2">
+                        <div class="next-action">
+                            <span class="status-ribbon verified">USD</span>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- AI Assistant Panel -->
-            <div class="card mt-4">
-                <div class="card-header">
-                    <h5 class="card-title">
-                        <i data-feather="message-circle" class="icon-inline"></i>
-                        BIM AI Assistant
-                    </h5>
-                    <div class="card-subtitle">Stakeholder-aware building insights</div>
+            <div class="col-md-3">
+                <div class="subcomponent-glass-element p-4 h-100 border-end border-secondary">
+                    <div class="metric-value text-success" id="verified-assets">$2.1M</div>
+                    <div class="metric-label">Verified Assets</div>
+                    <div class="progress-with-action mt-2">
+                        <div class="next-action">
+                            <span class="status-ribbon verified">Real Estate</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <div id="ai-chat-container" class="chat-container"></div>
+            </div>
+            <div class="col-md-3">
+                <div class="subcomponent-glass-element p-4 h-100 border-end border-secondary">
+                    <div class="metric-value text-warning" id="active-contracts">12</div>
+                    <div class="metric-label">Active Contracts</div>
+                    <div class="progress-with-action mt-2">
+                        <div class="next-action">
+                            <span class="status-ribbon processing">Live</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="subcomponent-glass-element p-4 h-100">
+                    <div class="metric-value text-info" id="daily-rewards">0.318</div>
+                    <div class="metric-label">Daily Rewards</div>
+                    <div class="progress-with-action mt-2">
+                        <div class="next-action">
+                            <span class="status-ribbon verified">ODIS</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Hot Asset Panel -->
-        <div class="col-lg-7">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <div>
-                        <h5 class="card-title">
-                            <i data-feather="zap" class="icon-inline text-warning"></i>
-                            Hot Asset Seeking Liquidity
-                        </h5>
-                        <div class="card-subtitle">Verified Asset with Due Diligence Complete</div>
-                    </div>
-                    <span class="badge bg-success px-3 py-2">VERIFIED</span>
-                </div>
-                <div class="card-body p-0">
-                    <div id="mini-viewer-container" class="bim-viewer-mini"></div>
-                </div>
-                <div class="card-footer">
-                    <div class="row">
-
-                        <div class="col-md-8">
-                            <div class="model-info">
-                                <div class="model-name">Ithaca Project</div>
-                                <div class="model-meta">
-                                    <span class="model-meta-item">
-                                        <i data-feather="layers" class="icon-inline-sm"></i>
-                                        Due Diligence: 3 years
-                                    </span>
-                                    <span class="model-meta-item">
-                                        <i data-feather="check-circle" class="icon-inline-sm"></i>
-                                        SPV Verified
-                                    </span>
-                                    <span class="model-meta-item">
-                                        <i data-feather="shield" class="icon-inline-sm"></i>
-                                        Hard Asset
-                                    </span>
-                                </div>
+    <!-- Featured Asset Showcase - Liquid Glass Panel -->
+    <div class="component-glass-panel mb-4">
+        <div class="d-flex justify-content-between align-items-center p-3 border-bottom border-secondary">
+            <div>
+                <h5 class="mb-0">
+                    <i data-feather="zap" class="icon-inline text-warning"></i>
+                    Featured Investment Opportunity
+                </h5>
+                <small class="text-muted">AI-recommended asset with completed due diligence</small>
+            </div>
+            <div class="status-ribbon verified">
+                <i data-feather="shield" class="icon-inline-sm"></i>
+                VERIFIED
+            </div>
+        </div>
+        
+        <div class="row g-0">
+            <div class="col-md-4">
+                <div class="subcomponent-glass-element p-4 h-100 border-end border-secondary">
+                    <div class="asset-preview">
+                        <div class="model-name h6 mb-3">Ithaca Project</div>
+                        <div class="model-meta mb-3">
+                            <div class="small text-muted mb-1">
+                                <i data-feather="layers" class="icon-inline-sm"></i>
+                                Due Diligence: 3 years
+                            </div>
+                            <div class="small text-muted mb-1">
+                                <i data-feather="check-circle" class="icon-inline-sm"></i>
+                                SPV Verified
+                            </div>
+                            <div class="small text-muted">
+                                <i data-feather="shield" class="icon-inline-sm"></i>
+                                Hard Asset
                             </div>
                         </div>
-                        <div class="col-md-4 text-end">
-                            <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#investModal">
+                        <button class="btn btn-sm btn-outline-info w-100">
+                            <i data-feather="external-link" class="icon-inline-sm"></i>
+                            View in 3D
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="subcomponent-glass-element p-4 h-100">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="metric-small">
+                                <div class="metric-value text-success">$1,625,000</div>
+                                <div class="metric-label">Funded</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="metric-small">
+                                <div class="metric-value">$2,500,000</div>
+                                <div class="metric-label">Target</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-with-action mt-3">
+                        <div class="progress-bar-glass">
+                            <div class="progress-fill" style="width: 65%"></div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-2">
+                            <div class="next-action">
+                                <i data-feather="trending-up" class="icon-inline-sm"></i>
+                                65% funded - High demand
+                            </div>
+                            <button class="btn btn-success btn-sm">
                                 <i data-feather="dollar-sign" class="icon-inline-sm"></i>
                                 Invest Now
                             </button>
                         </div>
-                    </div>
-
-                    <div class="progress mt-3" style="height: 10px;">
-                        <div class="progress-bar bg-info" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <div class="d-flex justify-content-between mt-1">
-                        <small>Funded: $1,625,000</small>
-                        <small>Target: $2,500,000</small>
                     </div>
                 </div>
             </div>

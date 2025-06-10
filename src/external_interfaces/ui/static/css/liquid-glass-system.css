@@ -1,0 +1,486 @@
+/**
+ * DAODISEO Liquid Glass Design System
+ * AI Brain-Centric Interface with Unified Visual Language
+ * Based on system architecture with central AI orchestrator
+ */
+
+:root {
+  /* AI Brain Theme Colors */
+  --brain-primary: #007bff;
+  --brain-secondary: #6c757d;
+  --brain-accent: #20c997;
+  
+  /* Status Indicators (Redesigned) */
+  --status-verified: #28a745;
+  --status-processing: #ffc107;
+  --status-pending: #17a2b8;
+  --status-error: #dc3545;
+  
+  /* Liquid Glass System */
+  --glass-bg-1: rgba(255, 255, 255, 0.02);
+  --glass-bg-2: rgba(255, 255, 255, 0.05);
+  --glass-bg-3: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-border-bright: rgba(255, 255, 255, 0.20);
+  --glass-highlight: rgba(255, 255, 255, 0.15);
+  
+  /* Neural Network Colors */
+  --neural-pulse: rgba(0, 123, 255, 0.6);
+  --neural-connection: rgba(32, 201, 151, 0.4);
+  --neural-active: rgba(255, 193, 7, 0.8);
+  
+  /* Typography System */
+  --font-primary: 'Inter', 'Helvetica Neue', sans-serif;
+  --font-size-h1: 2.5rem;
+  --font-size-h2: 2rem;
+  --font-size-h3: 1.5rem;
+  --font-size-h4: 1.25rem;
+  --font-size-body: 1rem;
+  --line-height-heading: 1.2;
+  --line-height-body: 1.5;
+  --letter-spacing-heading: -0.02em;
+  --letter-spacing-body: 0;
+  
+  /* Spacing System */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  
+  /* Border Radius System */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  
+  /* Shadow System */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
+  --shadow-neural: 0 0 20px var(--neural-pulse);
+}
+
+/* Typography System Implementation */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-primary);
+  line-height: var(--line-height-heading);
+  letter-spacing: var(--letter-spacing-heading);
+  font-weight: 600;
+}
+
+h1 { font-size: var(--font-size-h1); }
+h2 { font-size: var(--font-size-h2); }
+h3 { font-size: var(--font-size-h3); }
+h4 { font-size: var(--font-size-h4); }
+
+body, p, div, span {
+  font-family: var(--font-primary);
+  line-height: var(--line-height-body);
+  letter-spacing: var(--letter-spacing-body);
+}
+
+/* Level 1: Route Containers (Dashboard, Viewer, Upload, Contracts) */
+.route-glass-container {
+  background: var(--glass-bg-1);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+/* Level 2: Major Components (AI Brain, Token Metrics, Validators) */
+.component-glass-panel {
+  background: var(--glass-bg-2);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--glass-border-bright);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+}
+
+.component-glass-panel:hover {
+  background: var(--glass-bg-3);
+  border-color: var(--glass-highlight);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Level 3: Sub-components (Cards, Metrics, Buttons) */
+.subcomponent-glass-element {
+  background: var(--glass-bg-3);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-highlight);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.subcomponent-glass-element:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--glass-border-bright);
+}
+
+/* AI Brain Central Hub */
+.ai-brain-central-hub {
+  position: relative;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, var(--glass-bg-3) 0%, var(--glass-bg-1) 70%);
+  border: 2px solid var(--neural-pulse);
+  border-radius: var(--radius-xl);
+  overflow: visible;
+}
+
+/* Brain Visualization */
+.brain-visualization {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, var(--brain-primary), var(--brain-accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-neural);
+  animation: brainPulse 3s ease-in-out infinite;
+}
+
+.brain-visualization::before {
+  content: '🧠';
+  font-size: 3rem;
+  filter: brightness(0) invert(1);
+}
+
+@keyframes brainPulse {
+  0%, 100% { 
+    box-shadow: 0 0 20px var(--neural-pulse);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 0 40px var(--neural-pulse), 0 0 60px var(--neural-connection);
+    transform: scale(1.05);
+  }
+}
+
+/* Neural Connections */
+.brain-connections {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.neural-connection {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--neural-connection), transparent);
+  animation: neuralFlow 2s linear infinite;
+}
+
+@keyframes neuralFlow {
+  0% { opacity: 0; transform: scaleX(0); }
+  50% { opacity: 1; transform: scaleX(1); }
+  100% { opacity: 0; transform: scaleX(0); }
+}
+
+/* Satellite Orbital Positions */
+.satellite-container {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+/* Orbital Positioning */
+.satellite-top-left {
+  grid-area: 1 / 1;
+  justify-self: start;
+  align-self: start;
+}
+
+.satellite-top-right {
+  grid-area: 1 / 2;
+  justify-self: end;
+  align-self: start;
+}
+
+.satellite-bottom-left {
+  grid-area: 2 / 1;
+  justify-self: start;
+  align-self: end;
+}
+
+.satellite-bottom-right {
+  grid-area: 2 / 2;
+  justify-self: end;
+  align-self: end;
+}
+
+/* Satellite Components */
+.satellite-component {
+  width: 280px;
+  padding: var(--space-lg);
+  background: var(--glass-bg-2);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(15px);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.satellite-component:hover {
+  background: var(--glass-bg-3);
+  border-color: var(--glass-highlight);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.satellite-component::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 60px;
+  background: var(--neural-connection);
+  transform-origin: bottom;
+  animation: connectionPulse 2s ease-in-out infinite;
+}
+
+@keyframes connectionPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+/* Status Ribbons (Revolutionary Status Indicators) */
+.status-ribbon {
+  display: flex;
+  align-items: center;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-xl);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.status-ribbon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.status-ribbon:hover::before {
+  left: 100%;
+}
+
+.status-ribbon.verified {
+  background: linear-gradient(135deg, var(--status-verified), rgba(40, 167, 69, 0.7));
+  border: 1px solid rgba(40, 167, 69, 0.5);
+}
+
+.status-ribbon.processing {
+  background: linear-gradient(135deg, var(--status-processing), rgba(255, 193, 7, 0.7));
+  border: 1px solid rgba(255, 193, 7, 0.5);
+}
+
+.status-ribbon.pending {
+  background: linear-gradient(135deg, var(--status-pending), rgba(23, 162, 184, 0.7));
+  border: 1px solid rgba(23, 162, 184, 0.5);
+}
+
+.status-ribbon.error {
+  background: linear-gradient(135deg, var(--status-error), rgba(220, 53, 69, 0.7));
+  border: 1px solid rgba(220, 53, 69, 0.5);
+}
+
+/* Progress Indicators with Next Actions */
+.progress-with-action {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.progress-bar-glass {
+  height: 8px;
+  background: var(--glass-bg-2);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--brain-primary), var(--brain-accent));
+  border-radius: var(--radius-sm);
+  transition: width 0.3s ease;
+  position: relative;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: progressShimmer 2s linear infinite;
+}
+
+@keyframes progressShimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.next-action {
+  font-size: 0.875rem;
+  color: var(--brain-accent);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* Interaction Patterns */
+.glass-hover-glow:hover {
+  box-shadow: 0 0 20px var(--neural-pulse);
+  border-color: var(--neural-pulse);
+}
+
+.glass-active-pulse.active {
+  animation: activePulse 1s ease-out;
+}
+
+@keyframes activePulse {
+  0% { box-shadow: 0 0 0 0 var(--neural-active); }
+  70% { box-shadow: 0 0 0 10px rgba(255, 193, 7, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0); }
+}
+
+.glass-focus-highlight:focus {
+  outline: none;
+  border-color: var(--brain-primary);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+/* Cross-Route State Indicators */
+.state-sync-indicator {
+  position: fixed;
+  top: var(--space-lg);
+  right: var(--space-lg);
+  background: var(--glass-bg-3);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  backdrop-filter: blur(10px);
+  font-size: 0.875rem;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.state-sync-indicator.synced {
+  border-color: var(--status-verified);
+  color: var(--status-verified);
+}
+
+.state-sync-indicator.syncing {
+  border-color: var(--status-processing);
+  color: var(--status-processing);
+  animation: syncPulse 1s ease-in-out infinite;
+}
+
+@keyframes syncPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* Data Flow Visualization */
+.data-flow-line {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg, var(--neural-connection), var(--brain-accent));
+  border-radius: 1px;
+  opacity: 0;
+  animation: dataFlow 3s ease-in-out infinite;
+}
+
+@keyframes dataFlow {
+  0% { opacity: 0; transform: scaleX(0); }
+  25% { opacity: 1; transform: scaleX(0.5); }
+  75% { opacity: 1; transform: scaleX(1); }
+  100% { opacity: 0; transform: scaleX(1); }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .satellite-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, auto);
+    gap: var(--space-lg);
+  }
+  
+  .satellite-component {
+    width: 100%;
+    max-width: 400px;
+    justify-self: center;
+  }
+  
+  .ai-brain-central-hub {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .brain-visualization {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .brain-visualization::before {
+    font-size: 2rem;
+  }
+  
+  .satellite-component {
+    padding: var(--space-md);
+  }
+  
+  :root {
+    --font-size-h1: 2rem;
+    --font-size-h2: 1.75rem;
+    --font-size-h3: 1.375rem;
+  }
+}
+
+/* Performance Optimizations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
