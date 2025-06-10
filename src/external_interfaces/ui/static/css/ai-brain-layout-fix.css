@@ -1,0 +1,385 @@
+/**
+ * AI Brain Dashboard Layout Fix
+ * Implements the neuomorphic orbital design with central AI Brain orchestrator
+ */
+
+/* Core AI Brain Container */
+.ai-brain-container {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+  overflow: visible;
+  perspective: 1000px;
+}
+
+/* Central AI Brain Hub */
+.central-brain {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  background: linear-gradient(135deg, 
+    rgba(0, 123, 255, 0.15), 
+    rgba(32, 201, 151, 0.1),
+    rgba(255, 193, 7, 0.05)
+  );
+  backdrop-filter: blur(25px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 0 50px rgba(0, 123, 255, 0.3),
+    inset 0 0 30px rgba(255, 255, 255, 0.1);
+  animation: brainPulse 4s ease-in-out infinite;
+  z-index: 10;
+}
+
+.brain-core {
+  text-align: center;
+  color: #ffffff;
+}
+
+.brain-pulse {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 2px solid rgba(0, 123, 255, 0.4);
+  border-radius: 50%;
+  animation: neuralPulse 2s ease-in-out infinite;
+}
+
+.brain-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 10px rgba(0, 123, 255, 0.8);
+}
+
+.brain-subtitle {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  font-weight: 400;
+}
+
+/* Satellite Components - Orbital Layout */
+.satellite-component {
+  position: absolute;
+  width: 240px;
+  min-height: 180px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.satellite-component:hover {
+  transform: translateY(-5px) scale(1.05);
+  border-color: rgba(0, 123, 255, 0.4);
+  box-shadow: 
+    0 15px 40px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(0, 123, 255, 0.2);
+}
+
+/* Orbital Positioning */
+.satellite-component.token-metrics {
+  top: 10%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+}
+
+.satellite-component.asset-distribution {
+  top: 60%;
+  right: 10%;
+  transform: translate(50%, -50%);
+}
+
+.satellite-component.validators-overview {
+  bottom: 10%;
+  left: 40%;
+  transform: translate(-50%, 50%);
+}
+
+.satellite-component.recent-activity {
+  top: 40%;
+  left: 5%;
+  transform: translate(-50%, -50%);
+}
+
+/* Component Headers */
+.component-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.component-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.75rem;
+  color: #007bff;
+}
+
+.component-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Metrics Display */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.metric-item {
+  text-align: center;
+}
+
+.metric-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+}
+
+.metric-label {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.metric-change {
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: 0.25rem;
+}
+
+/* Chart Container */
+.chart-container {
+  position: relative;
+  height: 120px;
+  margin-bottom: 1rem;
+}
+
+/* Asset Summary */
+.asset-summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.asset-item {
+  text-align: center;
+}
+
+.asset-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.asset-label {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 0.25rem;
+}
+
+/* Validators Stats */
+.validators-stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.validator-stat {
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 0.25rem;
+}
+
+/* Activity Feed */
+.activity-feed {
+  font-size: 0.85rem;
+}
+
+.activity-feed .status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.activity-feed .status-indicator.active {
+  background-color: #28a745;
+  box-shadow: 0 0 6px rgba(40, 167, 69, 0.6);
+}
+
+.activity-feed .status-indicator.jailed {
+  background-color: #ffc107;
+  box-shadow: 0 0 6px rgba(255, 193, 7, 0.6);
+}
+
+/* Neural Connections */
+.neural-connections {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.neural-connection {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    rgba(0, 123, 255, 0.6), 
+    rgba(32, 201, 151, 0.4),
+    transparent
+  );
+  border-radius: 1px;
+  transform-origin: center;
+}
+
+/* Animation Keyframes */
+@keyframes brainPulse {
+  0%, 100% { 
+    transform: scale(1);
+    box-shadow: 
+      0 0 50px rgba(0, 123, 255, 0.3),
+      inset 0 0 30px rgba(255, 255, 255, 0.1);
+  }
+  50% { 
+    transform: scale(1.05);
+    box-shadow: 
+      0 0 80px rgba(0, 123, 255, 0.5),
+      inset 0 0 40px rgba(255, 255, 255, 0.15);
+  }
+}
+
+@keyframes neuralPulse {
+  0%, 100% { 
+    opacity: 0.3; 
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.8; 
+    transform: scale(1.1);
+  }
+}
+
+/* Glass Surface Utility */
+.glass-surface {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+/* Active State for Components */
+.satellite-component.active {
+  border-color: rgba(0, 123, 255, 0.6);
+  background: rgba(0, 123, 255, 0.1);
+  transform: translateY(-5px) scale(1.05);
+}
+
+.glass-active-pulse {
+  animation: activePulse 1s ease-in-out;
+}
+
+@keyframes activePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .ai-brain-container {
+    height: 100vh;
+    min-height: 800px;
+  }
+  
+  .central-brain {
+    width: 240px;
+    height: 240px;
+  }
+  
+  .satellite-component {
+    width: 200px;
+    min-height: 160px;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .ai-brain-container {
+    height: auto;
+    min-height: auto;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem 1rem;
+  }
+  
+  .central-brain {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 2rem;
+  }
+  
+  .satellite-component {
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    transform: none !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+  }
+}
+
+/* Performance Optimizations */
+.satellite-component {
+  will-change: transform;
+}
+
+.central-brain {
+  will-change: transform;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .central-brain,
+  .satellite-component,
+  .neural-connection,
+  .brain-pulse {
+    animation: none !important;
+    transition: none !important;
+  }
+}
