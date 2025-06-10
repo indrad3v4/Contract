@@ -419,3 +419,10 @@ def get_token_price():
             "success": False,
             "error": str(e)
         }), 500
+
+
+        logger.error(f"Error fetching token price: {e}")
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500

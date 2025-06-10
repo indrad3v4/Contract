@@ -11,6 +11,7 @@ import json
 
 from src.services.ai.bim_agent import BIMAgentManager
 from src.services.ai.orchestrator import get_orchestrator
+from src.services.ai.chain_brain_orchestrator import get_chain_brain_orchestrator
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
@@ -46,20 +47,17 @@ def chat():
     logger.debug(f"Received chat message: {message}, enhanced_mode={enhanced_mode}")
     
     if enhanced_mode:
-        # Use orchestrator for Enhanced AI mode
-        logger.debug("Using Enhanced AI mode with orchestrator")
+        # Use chain brain orchestrator for Enhanced AI mode with real blockchain data
+        logger.debug("Using Enhanced AI mode with chain brain orchestrator")
         try:
-            orchestrator = get_orchestrator()
+            import asyncio
+            chain_brain = get_chain_brain_orchestrator()
             
-            # Prepare context for orchestration
-            context = {
-                "stakeholder_type": data.get("stakeholder_type", "general"),
-                "enhanced_mode": True,
-                "source": "bim_ai_assistant"
-            }
-            
-            # Process with orchestrator
-            result = orchestrator.orchestrate_task(message, context)
+            # Get AI analysis with current chain context using async loop
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+            result = loop.run_until_complete(chain_brain.get_ai_chain_analysis(message))
+            loop.close()
             
             if result.get("success", False):
                 return jsonify({
