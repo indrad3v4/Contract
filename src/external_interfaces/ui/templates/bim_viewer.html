@@ -3,8 +3,8 @@
 {% block content %}
 <div class="row">
     <div class="col-md-9">
-        <div class="card cosmic-panel">
-            <div class="card-header d-flex justify-content-between align-items-center">
+        <div class="dds-card">
+            <div class="dds-card">
                 <h4 class="cosmic-text"><i class="bi bi-building"></i> BIM Model Viewer</h4>
                 <div class="btn-group">
                     <button class="btn btn-sm btn-outline-secondary" id="resetView"><i class="bi bi-arrow-clockwise"></i> Reset View</button>
@@ -12,7 +12,7 @@
                     <button class="btn btn-sm btn-outline-success" id="toggleWireframe"><i class="bi bi-grid-3x3"></i> Wireframe</button>
                 </div>
             </div>
-            <div class="card-body p-0">
+            <div class="dds-card">
                 <div id="bimViewerContainer" class="bim-viewer-container">
                     <model-viewer id="modelViewer" 
                         camera-controls 
@@ -28,11 +28,11 @@
     </div>
     
     <div class="col-md-3">
-        <div class="card cosmic-panel mb-4">
-            <div class="card-header">
+        <div class="dds-card">
+            <div class="dds-card">
                 <h5 class="cosmic-text"><i class="bi bi-list-nested"></i> Model Structure</h5>
             </div>
-            <div class="card-body">
+            <div class="dds-card">
                 <div class="input-group mb-3">
                     <span class="input-group-text"><i class="bi bi-search"></i></span>
                     <input type="text" class="form-control" id="structureSearch" placeholder="Search components...">
@@ -48,11 +48,11 @@
             </div>
         </div>
         
-        <div class="card cosmic-panel">
-            <div class="card-header">
+        <div class="dds-card">
+            <div class="dds-card">
                 <h5 class="cosmic-text"><i class="bi bi-info-circle"></i> Element Properties</h5>
             </div>
-            <div class="card-body">
+            <div class="dds-card">
                 <div id="elementProperties">
                     <p class="text-muted">Select an element to view its properties</p>
                 </div>
@@ -63,15 +63,15 @@
 
 <div class="row mt-4">
     <div class="col-md-12">
-        <div class="card cosmic-panel">
-            <div class="card-header d-flex justify-content-between align-items-center">
+        <div class="dds-card">
+            <div class="dds-card">
                 <h4 class="cosmic-text"><i class="bi bi-robot"></i> AI Assistant</h4>
                 <div class="btn-group">
                     <button class="btn btn-sm btn-outline-secondary" id="clearChat"><i class="bi bi-trash"></i> Clear Chat</button>
                     <button class="btn btn-sm btn-outline-info" id="exportChat"><i class="bi bi-download"></i> Export</button>
                 </div>
             </div>
-            <div class="card-body">
+            <div class="dds-card">
                 <div class="ai-chat-container">
                     <div id="chatMessages" class="ai-chat-messages">
                         <div class="message system-message">

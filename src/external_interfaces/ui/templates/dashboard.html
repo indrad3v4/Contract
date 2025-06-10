@@ -14,8 +14,8 @@
     <!-- ODIS Token Overview Section -->
     <div class="row mb-4">
         <div class="col-12">
-            <div class="card odis-token-overview">
-                <div class="card-header d-flex justify-content-between align-items-center">
+            <div class="dds-card">
+                <div class="dds-card">
                     <div class="d-flex align-items-center">
                         <div class="token-logo me-3">
                             <div class="rounded-circle bg-info d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
@@ -32,7 +32,7 @@
                         Buy ODIS
                     </button>
                 </div>
-                <div class="card-body">
+                <div class="dds-card">
                     <div class="row">
                         <div class="col-md-8">
                             <div class="row">
@@ -98,48 +98,48 @@
     <!-- Portfolio Overview Cards -->
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4 mb-4">
         <div class="col">
-            <div class="card stats-card">
-                <div class="card-body">
-                    <div class="card-value" id="total-reserves">$38,126.50</div>
-                    <div class="card-title">Total Reserves <span class="badge bg-secondary ms-1">USD</span></div>
+            <div class="dds-card">
+                <div class="dds-card">
+                    <div class="dds-card" id="total-reserves">$38,126.50</div>
+                    <div class="dds-card">Total Reserves <span class="dds-badge-status"><span class="dds-status-dot"></span>USD</span></div>
                     <div class="wave-visual"></div>
-                    <div class="card-icon secondary">
+                    <div class="dds-card">
                         <i data-feather="trending-up"></i>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col">
-            <div class="card stats-card">
-                <div class="card-body">
-                    <div class="card-value" id="verified-assets">$2.1M</div>
-                    <div class="card-title">Verified Assets <span class="badge bg-success ms-1">Real Estate</span></div>
+            <div class="dds-card">
+                <div class="dds-card">
+                    <div class="dds-card" id="verified-assets">$2.1M</div>
+                    <div class="dds-card">Verified Assets <span class="dds-badge-status"><span class="dds-status-dot"></span>Real Estate</span></div>
                     <div class="wave-visual"></div>
-                    <div class="card-icon success">
+                    <div class="dds-card">
                         <i data-feather="check-circle"></i>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col">
-            <div class="card stats-card">
-                <div class="card-body">
-                    <div class="card-value" id="active-contracts">12</div>
-                    <div class="card-title">Active Contracts <span class="badge bg-warning ms-1">Live</span></div>
+            <div class="dds-card">
+                <div class="dds-card">
+                    <div class="dds-card" id="active-contracts">12</div>
+                    <div class="dds-card">Active Contracts <span class="dds-badge-status"><span class="dds-status-dot"></span>Live</span></div>
                     <div class="wave-visual"></div>
-                    <div class="card-icon warning">
+                    <div class="dds-card">
                         <i data-feather="file-text"></i>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col">
-            <div class="card stats-card">
-                <div class="card-body">
-                    <div class="card-value" id="daily-rewards">0.318</div>
-                    <div class="card-title">Daily Rewards <span class="badge bg-info ms-1">ODIS</span></div>
+            <div class="dds-card">
+                <div class="dds-card">
+                    <div class="dds-card" id="daily-rewards">0.318</div>
+                    <div class="dds-card">Daily Rewards <span class="dds-badge-status"><span class="dds-status-dot"></span>ODIS</span></div>
                     <div class="wave-visual"></div>
-                    <div class="card-icon info">
+                    <div class="dds-card">
                         <i data-feather="award"></i>
                     </div>
                 </div>
@@ -150,15 +150,15 @@
     <div class="row g-4">
         <!-- Asset Distribution Panel -->
         <div class="col-lg-5">
-            <div class="card">
-                <div class="card-header">
+            <div class="dds-card">
+                <div class="dds-card">
                     <h5 class="card-title">
                         <i data-feather="pie-chart" class="icon-inline"></i>
                         Asset Distribution
                     </h5>
-                    <div class="card-subtitle">Verified vs Unverified Assets</div>
+                    <div class="dds-card">Verified vs Unverified Assets</div>
                 </div>
-                <div class="card-body">
+                <div class="dds-card">
                     <div class="chart-container">
                         <canvas id="asset-distribution-chart"></canvas>
                     </div>
@@ -178,15 +178,15 @@
             </div>
 
             <!-- AI Assistant Panel -->
-            <div class="card mt-4">
-                <div class="card-header">
+            <div class="dds-card">
+                <div class="dds-card">
                     <h5 class="card-title">
                         <i data-feather="message-circle" class="icon-inline"></i>
                         BIM AI Assistant
                     </h5>
-                    <div class="card-subtitle">Stakeholder-aware building insights</div>
+                    <div class="dds-card">Stakeholder-aware building insights</div>
                 </div>
-                <div class="card-body">
+                <div class="dds-card">
                     <div id="ai-chat-container" class="chat-container"></div>
                 </div>
             </div>
@@ -194,21 +194,21 @@
 
         <!-- Hot Asset Panel -->
         <div class="col-lg-7">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
+            <div class="dds-card">
+                <div class="dds-card">
                     <div>
                         <h5 class="card-title">
                             <i data-feather="zap" class="icon-inline text-warning"></i>
                             Hot Asset Seeking Liquidity
                         </h5>
-                        <div class="card-subtitle">Verified Asset with Due Diligence Complete</div>
+                        <div class="dds-card">Verified Asset with Due Diligence Complete</div>
                     </div>
-                    <span class="badge bg-success px-3 py-2">VERIFIED</span>
+                    <span class="dds-badge-status"><span class="dds-status-dot"></span>VERIFIED</span>
                 </div>
-                <div class="card-body p-0">
+                <div class="dds-card">
                     <div id="mini-viewer-container" class="bim-viewer-mini"></div>
                 </div>
-                <div class="card-footer">
+                <div class="dds-card">
                     <div class="row">
 
                         <div class="col-md-8">
@@ -253,26 +253,26 @@
     <div class="row g-4 mt-4">
         <!-- Recent Transactions Panel -->
         <div class="col-lg-8">
-            <div class="card">
-                <div class="card-header">
+            <div class="dds-card">
+                <div class="dds-card">
                     <h5 class="card-title">
                         <i data-feather="list" class="icon-inline"></i>
                         Recent Transactions
                     </h5>
-                    <div class="card-actions">
+                    <div class="dds-card">
                         <a href="/contracts" class="btn btn-sm btn-outline-info">
                             View All
                         </a>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="dds-card">
                     <div class="transaction-list">
                         <div class="transaction-item">
                             <div class="transaction-icon success">
                                 <i data-feather="check-circle"></i>
                             </div>
                             <div class="transaction-details">
-                                <div class="transaction-title">Property Tokenization <span class="badge bg-success">VERIFIED</span></div>
+                                <div class="transaction-title">Property Tokenization <span class="dds-badge-status"><span class="dds-status-dot"></span>VERIFIED</span></div>
                                 <div class="transaction-meta">
                                     <span class="transaction-address">0x71C...9E3f</span>
                                     <span class="transaction-time">2 hours ago</span>
@@ -285,7 +285,7 @@
                                 <i data-feather="file-text"></i>
                             </div>
                             <div class="transaction-details">
-                                <div class="transaction-title">Contract Signature <span class="badge bg-warning">PENDING</span></div>
+                                <div class="transaction-title">Contract Signature <span class="dds-badge-status"><span class="dds-status-dot"></span>PENDING</span></div>
                                 <div class="transaction-meta">
                                     <span class="transaction-address">0x31F...7A2c</span>
                                     <span class="transaction-time">5 hours ago</span>
@@ -298,7 +298,7 @@
                                 <i data-feather="refresh-cw"></i>
                             </div>
                             <div class="transaction-details">
-                                <div class="transaction-title">Token Transfer <span class="badge bg-success">VERIFIED</span></div>
+                                <div class="transaction-title">Token Transfer <span class="dds-badge-status"><span class="dds-status-dot"></span>VERIFIED</span></div>
                                 <div class="transaction-meta">
                                     <span class="transaction-address">0x94B...2D5a</span>
                                     <span class="transaction-time">1 day ago</span>
@@ -311,7 +311,7 @@
                                 <i data-feather="upload"></i>
                             </div>
                             <div class="transaction-details">
-                                <div class="transaction-title">Document Upload <span class="badge bg-warning">UNVERIFIED</span></div>
+                                <div class="transaction-title">Document Upload <span class="dds-badge-status"><span class="dds-status-dot"></span>UNVERIFIED</span></div>
                                 <div class="transaction-meta">
                                     <span class="transaction-address">0x67D...3F1b</span>
                                     <span class="transaction-time">2 days ago</span>
@@ -326,14 +326,14 @@
 
         <!-- Stakeholder Distribution Chart -->
         <div class="col-lg-4">
-            <div class="card">
-                <div class="card-header">
+            <div class="dds-card">
+                <div class="dds-card">
                     <h5 class="card-title">
                         <i data-feather="users" class="icon-inline"></i>
                         Stakeholder Distribution
                     </h5>
                 </div>
-                <div class="card-body">
+                <div class="dds-card">
                     <div class="chart-container">
                         <canvas id="stakeholder-chart"></canvas>
                     </div>
@@ -347,8 +347,8 @@
     <!-- Network Validators Section -->
     <div class="row mt-4">
         <div class="col-12">
-            <div class="card validators-overview">
-                <div class="card-header d-flex justify-content-between align-items-center">
+            <div class="dds-card">
+                <div class="dds-card">
                     <div>
                         <h5 class="mb-0">
                             <i data-feather="shield" class="icon-inline me-2"></i>
@@ -365,11 +365,11 @@
                         </span>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="dds-card">
                     <div class="row" id="validators-grid">
                         <!-- Validators will be populated by JavaScript -->
                         <div class="col-md-4 mb-3">
-                            <div class="validator-card">
+                            <div class="dds-card">
                                 <div class="validator-header d-flex align-items-center mb-2">
                                     <div class="validator-avatar me-3">
                                         <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
@@ -401,7 +401,7 @@
                                     </div>
                                 </div>
                                 <div class="validator-actions mt-2">
-                                    <button class="btn btn-sm btn-outline-primary me-2" disabled>
+                                    <button class="dds-btn dds-btn-outline" disabled>
                                         <i data-feather="trending-up" class="icon-inline-sm"></i>
                                         Delegate
                                     </button>

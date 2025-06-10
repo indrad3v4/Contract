@@ -1,0 +1,201 @@
+{
+  "daodiseo_ui_architecture": {
+    "version": "1.0.0",
+    "generated_by": "appPatch.py",
+    "timestamp": "2025-06-10T12:55:25.462888",
+    "brain_architecture": {
+      "input_nodes": {
+        "upload": {
+          "route": "/upload",
+          "template": "brain/inputs/upload.html",
+          "purpose": "BIM file input and validation",
+          "connects_to": [
+            "ai_analysis",
+            "validation"
+          ]
+        },
+        "contracts": {
+          "route": "/contracts",
+          "template": "brain/inputs/contracts.html",
+          "purpose": "Smart contract creation and management",
+          "connects_to": [
+            "ai_analysis",
+            "transaction_processing"
+          ]
+        }
+      },
+      "processing_nodes": {
+        "ai_analysis": {
+          "component": "src/services/ai/",
+          "template": "brain/processing/ai_analysis.html",
+          "purpose": "AI-powered BIM analysis and insights",
+          "processes": [
+            "bim_validation",
+            "risk_assessment",
+            "value_estimation"
+          ]
+        },
+        "validation": {
+          "component": "src/services/validation/",
+          "template": "brain/processing/validation.html",
+          "purpose": "Data validation and verification",
+          "processes": [
+            "file_integrity",
+            "blockchain_verification",
+            "compliance_check"
+          ]
+        }
+      },
+      "output_nodes": {
+        "dashboard": {
+          "route": "/",
+          "template": "brain/outputs/dashboard.html",
+          "purpose": "Main dashboard with aggregated insights",
+          "displays": [
+            "portfolio_overview",
+            "odis_metrics",
+            "validator_status"
+          ]
+        },
+        "viewer": {
+          "route": "/viewer",
+          "template": "brain/outputs/viewer.html",
+          "purpose": "3D BIM model visualization",
+          "displays": [
+            "3d_model",
+            "analysis_overlay",
+            "interaction_tools"
+          ]
+        },
+        "gamification": {
+          "component": "header_modal",
+          "template": "components/gamification_modal.html",
+          "purpose": "User rewards and engagement",
+          "displays": [
+            "odis_balance",
+            "available_actions",
+            "activity_log"
+          ]
+        }
+      }
+    },
+    "cross_route_variables": {
+      "gamification": [
+        "src/external_interfaces/ui/static/js/gamification.js"
+      ]
+    },
+    "optimization_results": {
+      "duplicate_functions": [],
+      "unused_files": [
+        "src/controllers/bim_controller.py",
+        "src/gateways/pingpub_gateway.py",
+        "src/external_interfaces/ui/templates/components/odis_trading.html",
+        "src/controllers/account_controller.py",
+        "src/controllers/upload_controller.py",
+        "src/external_interfaces/ui/static/js/transaction.js",
+        "src/controllers/contract_controller.py",
+        "src/controllers/blockchain_proxy_controller.py",
+        "src/external_interfaces/ui/templates/viewer.html",
+        "src/gateways/storage_gateway.py",
+        "src/external_interfaces/ui/static/css/main.css",
+        "src/external_interfaces/ui/static/js/blockchain-animations.js",
+        "src/external_interfaces/ui/static/css/micro-rewards.css",
+        "src/gateways/blockchain_gateway.py",
+        "src/gateways/multisig_gateway.py",
+        "src/gateways/ifc/ifc_gateway.py",
+        "src/entities/bim_model.py",
+        "src/external_interfaces/config.py",
+        "src/external_interfaces/ui/static/js/lib/feather.min.js",
+        "src/external_interfaces/ui/static/css/daodiseo-ux.css",
+        "src/controllers/transaction_controller.py",
+        "src/services/ai/bim_agent.py",
+        "src/external_interfaces/ui/static/js/micro-rewards-ui.js",
+        "src/external_interfaces/ui/static/js/transaction-status.js",
+        "src/external_interfaces/ui/static/css/dds-unified.css",
+        "src/external_interfaces/ui/templates/contracts.html",
+        "src/external_interfaces/ui/templates/upload.html",
+        "src/external_interfaces/ui/static/css/dashboard-enhanced.css",
+        "src/external_interfaces/ui/static/js/contracts.js",
+        "src/services/ai/ifc_agent.py",
+        "src/external_interfaces/ui/templates/bim_viewer.html",
+        "src/external_interfaces/ui/static/css/bim-viewer.css",
+        "src/services/blockchain_service.py",
+        "src/gateways/cosmos_gateway.py",
+        "src/controllers/bim_agent_controller.py",
+        "src/external_interfaces/ui/static/js/keplr-wallet.js",
+        "src/external_interfaces/ui/templates/error.html",
+        "src/external_interfaces/ui/templates/404.html",
+        "src/external_interfaces/ui/static/js/kepler.js",
+        "src/external_interfaces/ui/static/js/dashboard.js",
+        "src/entities/stakeholder.py",
+        "src/external_interfaces/ui/static/css/bootstrap-theme.css",
+        "src/external_interfaces/ui/static/js/gamification.js",
+        "src/controllers/blockchain_controller.py",
+        "src/use_cases/validate_compliance.py",
+        "src/external_interfaces/ui/static/js/transaction.py",
+        "src/use_cases/tokenize_property.py",
+        "src/gateways/kepler_gateway.py",
+        "src/external_interfaces/ui/templates/dashboard.html",
+        "src/external_interfaces/ui/static/js/global-state.js",
+        "src/external_interfaces/ui/templates/components/transaction_status.html",
+        "src/external_interfaces/ui/static/css/dds-brand-theme.css",
+        "src/security_utils.py",
+        "src/gateways/ifc/ifc_parser.py",
+        "src/external_interfaces/ui/static/css/chat-enhanced.css",
+        "src/entities/role.py",
+        "src/controllers/ifc_controller.py",
+        "src/gateways/bimserver_gateway.py",
+        "src/services/ai/bim_agent_openai.py",
+        "src/external_interfaces/ui/static/js/main.js",
+        "src/gateways/storage_factory.py",
+        "src/services/ai/ai_agent_service.py",
+        "src/external_interfaces/ui/static/css/custom.css",
+        "src/external_interfaces/ui/templates/base.html",
+        "src/entities/property.py",
+        "src/services/transaction_service.py",
+        "src/services/account_service.py",
+        "src/external_interfaces/ui/static/js/ai-chat-enhanced.js",
+        "src/gateways/llm_gateway.py",
+        "src/external_interfaces/ui/templates/transaction_status.html",
+        "src/external_interfaces/ui/templates/500.html"
+      ],
+      "inline_styles": [],
+      "heavy_components": [
+        {
+          "file": "src/external_interfaces/ui/static/js/contracts.js",
+          "size": 50748,
+          "type": "large_js"
+        }
+      ],
+      "missing_lazy_loading": []
+    },
+    "style_consistency": {
+      "unified_stylesheet": "static/css/dds-unified.css",
+      "brand_colors": {
+        "primary_gradient": "linear-gradient(135deg, #e00d79 0%, #b80596 100%)",
+        "accent": "#00d4ff",
+        "background": "#1a1134",
+        "text_light": "#ffffff",
+        "text_muted": "#adb5bd",
+        "card_bg": "rgba(42, 36, 105, 0.8)",
+        "border": "rgba(255, 255, 255, 0.1)"
+      },
+      "typography": {
+        "primary": "\"Helvetica Neue\", -apple-system, BlinkMacSystemFont, sans-serif",
+        "sizes": {
+          "base": "16px",
+          "heading": "20px",
+          "badge": "12px",
+          "small": "14px"
+        }
+      },
+      "spacing_system": {
+        "xs": "0.25rem",
+        "sm": "0.5rem",
+        "md": "1rem",
+        "lg": "1.5rem",
+        "xl": "2rem"
+      }
+    }
+  }
+}

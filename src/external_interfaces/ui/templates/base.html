@@ -137,7 +137,7 @@
             
             <div class="sidebar-footer">
                 <div class="network-status">
-                    <div class="status-indicator active"></div>
+                    <span class="dds-status-dot"></span>
                     <span>Odiseo Testnet</span>
                 </div>
                 
@@ -147,17 +147,30 @@
         <!-- Main Content -->
         <div class="main-content">
             <!-- Top Bar -->
-            <div class="top-bar">
+            <div class="dds-header">
                 <div class="page-title">
                     <h1>{% block page_title %}Dashboard{% endblock %}</h1>
                 </div>
+                <div class="dds-header-actions">
+                    <div class="dds-gamification-header" id="gamificationBtn">
+                        <i data-feather="star"></i>
+                        <span class="dds-odis-balance" id="userOdisBalance">0 ODIS</span>
+                    </div>
+                    <div class="wallet-connection">
+                        <button class="dds-btn dds-btn-outline" id="headerConnectKeplr">
+                            <i data-feather="link"></i>
+                            Connect Keplr
+                        </button>
+                    </div>
+                </div>
+            </div>
                 <div class="top-actions">
                     <div class="network-indicator">
                         <div class="status-dot active"></div>
                         <span class="network-name">Odiseo Testnet</span>
                     </div>
                     <div class="wallet-connection">
-                        <button class="btn btn-outline-primary btn-sm" id="headerConnectKeplr">
+                        <button class="dds-btn dds-btn-outline" id="headerConnectKeplr">
                             <i data-feather="link" class="icon-inline-sm"></i>
                             Connect Keplr
                         </button>
@@ -903,7 +916,7 @@
                         <div class="small text-muted mb-1">Your Balance</div>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="fw-bold">1,245.32 ODIS</div>
-                            <span class="badge bg-success">$3,735.96</span>
+                            <span class="dds-badge-status"><span class="dds-status-dot"></span>$3,735.96</span>
                         </div>
                     </div>
                     <div class="border-top border-secondary my-2"></div>
@@ -1046,5 +1059,47 @@
         // Initial price update
         setTimeout(updateTokenPrices, 2000);
     </script>
+
+<!-- Gamification Modal -->
+<div class="modal fade" id="gamificationModal" tabindex="-1" aria-labelledby="gamificationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content dds-card">
+            <div class="modal-header">
+                <h5 class="modal-title" id="gamificationModalLabel">
+                    <i data-feather="star"></i>
+                    ODIS Rewards Center
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="dds-card text-center">
+                            <h3 class="dds-odis-balance" id="modalOdisBalance">0 ODIS</h3>
+                            <p class="text-muted">Your Balance</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="dds-card text-center">
+                            <h3 class="text-accent" id="totalEarned">0 ODIS</h3>
+                            <p class="text-muted">Total Earned</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h6 class="text-uppercase mb-3">Available Actions</h6>
+                <div class="gamification-actions" id="gamificationActions">
+                    <!-- Actions populated by JavaScript -->
+                </div>
+                
+                <h6 class="text-uppercase mt-4 mb-3">Recent Activity</h6>
+                <div class="activity-log" id="activityLog">
+                    <!-- Activity populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

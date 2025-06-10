@@ -164,6 +164,80 @@ class DAODISEOAppPatcher:
         # Scan for performance issues
         self.scan_performance_issues()
 
+    def check_gamification_status(self):
+        """Check current gamification system status"""
+        logger.info("🎮 Checking gamification system status...")
+        
+        # Check if gamification exists in templates
+        base_template = self.templates_dir / "base.html"
+        gamification_in_header = False
+        gamification_modal_exists = False
+        
+        if base_template.exists():
+            content = base_template.read_text(encoding='utf-8')
+            
+            # Check for gamification in header
+            if 'gamification' in content.lower() and 'header' in content.lower():
+                gamification_in_header = True
+            
+            # Check for gamification modal
+            if 'gamificationModal' in content:
+                gamification_modal_exists = True
+        
+        # Check for gamification JavaScript
+        gamification_js_exists = (self.js_dir / "gamification.js").exists()
+        
+        self.gamification_status = {
+            'in_header': gamification_in_header,
+            'modal_exists': gamification_modal_exists,
+            'js_exists': gamification_js_exists,
+            'needs_restoration': not (gamification_in_header and gamification_modal_exists and gamification_js_exists)
+        }
+        
+        logger.info(f"Gamification status: {self.gamification_status}")
+
+    def scan_performance_issues(self):
+        """Scan for performance issues in the codebase"""
+        logger.info("⚡ Scanning for performance issues...")
+        
+        performance_issues = {
+            'large_files': [],
+            'missing_minification': [],
+            'synchronous_loads': [],
+            'heavy_imports': []
+        }
+        
+        # Check file sizes
+        all_files = list(self.static_dir.rglob("*"))
+        for file_path in all_files:
+            if file_path.is_file():
+                try:
+                    size = file_path.stat().st_size
+                    if size > 100000:  # 100KB threshold
+                        performance_issues['large_files'].append({
+                            'file': str(file_path),
+                            'size': size,
+                            'size_mb': round(size / 1024 / 1024, 2)
+                        })
+                except Exception as e:
+                    logger.warning(f"Error checking file size for {file_path}: {e}")
+        
+        # Check for unminified files in production
+        css_files = list(self.css_dir.glob("*.css"))
+        js_files = list(self.js_dir.glob("*.js"))
+        
+        for css_file in css_files:
+            if not css_file.name.endswith('.min.css'):
+                performance_issues['missing_minification'].append(str(css_file))
+        
+        for js_file in js_files:
+            if not js_file.name.endswith('.min.js') and js_file.name != 'gamification.js':
+                performance_issues['missing_minification'].append(str(js_file))
+        
+        self.performance_issues = performance_issues
+        logger.info(f"Found {len(performance_issues['large_files'])} large files")
+        logger.info(f"Found {len(performance_issues['missing_minification'])} unminified files")
+
     def identify_visual_issues(self, template_files: List[Path]):
         """Identify visual consistency issues across templates"""
         logger.info("🎨 Identifying visual consistency issues...")
@@ -225,6 +299,56 @@ class DAODISEOAppPatcher:
         
         # Standardize component styling
         self.standardize_components()
+
+    def standardize_components(self):
+        """Standardize component styling across the application"""
+        logger.info("🔧 Standardizing component styling...")
+        
+        # Define standard component patterns
+        component_standardizations = {
+            # Replace old badge patterns
+            'badge_patterns': [
+                (r'<span[^>]*class="[^"]*badge[^"]*bg-info[^"]*"[^>]*>([^<]*)</span>', 
+                 r'<span class="dds-badge-status"><span class="dds-status-dot"></span>\1</span>'),
+                (r'<span[^>]*class="[^"]*badge[^"]*bg-success[^"]*"[^>]*>([^<]*)</span>', 
+                 r'<span class="dds-badge-status"><span class="dds-status-dot"></span>\1</span>'),
+                (r'<span[^>]*class="[^"]*badge[^"]*bg-warning[^"]*"[^>]*>([^<]*)</span>', 
+                 r'<span class="dds-badge-status"><span class="dds-status-dot"></span>\1</span>'),
+            ],
+            # Replace button patterns
+            'button_patterns': [
+                (r'<button[^>]*class="[^"]*btn[^"]*btn-primary[^"]*"', 
+                 r'<button class="dds-btn dds-btn-primary"'),
+                (r'<button[^>]*class="[^"]*btn[^"]*btn-outline-primary[^"]*"', 
+                 r'<button class="dds-btn dds-btn-outline"'),
+            ],
+            # Replace card patterns
+            'card_patterns': [
+                (r'<div[^>]*class="[^"]*card[^"]*"(?![^>]*dds-card)', 
+                 r'<div class="dds-card"'),
+            ]
+        }
+        
+        # Apply standardizations to all templates
+        template_files = list(self.templates_dir.rglob("*.html"))
+        
+        for template_path in template_files:
+            try:
+                content = template_path.read_text(encoding='utf-8')
+                original_content = content
+                
+                # Apply all standardization patterns
+                for pattern_type, patterns in component_standardizations.items():
+                    for old_pattern, new_pattern in patterns:
+                        content = re.sub(old_pattern, new_pattern, content, flags=re.IGNORECASE)
+                
+                # Only write if content changed
+                if content != original_content:
+                    template_path.write_text(content, encoding='utf-8')
+                    logger.info(f"✅ Standardized components in: {template_path}")
+                    
+            except Exception as e:
+                logger.error(f"❌ Error standardizing {template_path}: {e}")
 
     def create_unified_stylesheet(self):
         """Create unified DDS brand stylesheet"""

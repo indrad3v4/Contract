@@ -6,17 +6,17 @@
 {% block content %}
 <div class="row">
     <div class="col-12">
-        <div class="card">
-            <div class="card-header">
+        <div class="dds-card">
+            <div class="dds-card">
                 <h5 class="card-title">
                     <i data-feather="upload-cloud" class="icon-inline"></i>
                     Upload BIM Models
                 </h5>
-                <div class="card-subtitle">
+                <div class="dds-card">
                     IFC file validation and asset verification
                 </div>
             </div>
-            <div class="card-body">
+            <div class="dds-card">
                 <div class="alert alert-info mb-4">
                     <i data-feather="info" class="icon-inline-sm"></i>
                     <strong>Due Diligence Process:</strong> Once uploaded, IFC files will be analyzed by our AI system and validators. Only verified assets can mint NFTs.
@@ -53,7 +53,7 @@
                             <div class="file-details">
                                 <div class="file-name d-flex align-items-center">
                                     Cosmic_Tower_Project.ifc
-                                    <span class="badge bg-success ms-2">Verified</span>
+                                    <span class="dds-badge-status"><span class="dds-status-dot"></span>Verified</span>
                                 </div>
                                 <div class="file-meta">
                                     <span>25.4 MB</span>
@@ -86,7 +86,7 @@
                             <div class="file-details">
                                 <div class="file-name d-flex align-items-center">
                                     Horizon_Office_Complex.ifc
-                                    <span class="badge bg-warning ms-2">Pending</span>
+                                    <span class="dds-badge-status"><span class="dds-status-dot"></span>Pending</span>
                                 </div>
                                 <div class="file-meta">
                                     <span>32.7 MB</span>
@@ -122,14 +122,14 @@
 <div class="row mt-4">
     <div class="col-md-7">
         <!-- Due Diligence Workflow -->
-        <div class="card">
-            <div class="card-header">
+        <div class="dds-card">
+            <div class="dds-card">
                 <h5 class="card-title">
                     <i data-feather="shield" class="icon-inline"></i>
                     Due Diligence Workflow
                 </h5>
             </div>
-            <div class="card-body">
+            <div class="dds-card">
                 <div class="due-diligence-workflow position-relative">
                     <!-- Vertical progress line -->
                     <div class="position-absolute" style="top: 0; bottom: 0; left: 24px; width: 2px; background-color: rgba(255,255,255,0.1);"></div>
@@ -218,14 +218,14 @@
     
     <div class="col-md-5">
         <!-- AI Analysis Panel -->
-        <div class="card">
-            <div class="card-header">
+        <div class="dds-card">
+            <div class="dds-card">
                 <h5 class="card-title">
                     <i data-feather="cpu" class="icon-inline"></i>
                     AI Analysis
                 </h5>
             </div>
-            <div class="card-body">
+            <div class="dds-card">
                 <div class="mb-3">
                     <label class="form-label">Selected File</label>
                     <select class="form-select bg-dark text-light border-secondary">
@@ -234,14 +234,14 @@
                     </select>
                 </div>
                 
-                <div class="card bg-dark mb-3">
-                    <div class="card-header border-secondary">
+                <div class="dds-card">
+                    <div class="dds-card">
                         <h6 class="card-title mb-0">
                             <i data-feather="bar-chart-2" class="icon-inline-sm"></i>
                             Building Metrics
                         </h6>
                     </div>
-                    <div class="card-body">
+                    <div class="dds-card">
                         <div class="row">
                             <div class="col-6 mb-3">
                                 <small class="d-block text-muted">Building Type</small>
@@ -263,14 +263,14 @@
                     </div>
                 </div>
                 
-                <div class="card bg-dark mb-3">
-                    <div class="card-header border-secondary">
+                <div class="dds-card">
+                    <div class="dds-card">
                         <h6 class="card-title mb-0">
                             <i data-feather="dollar-sign" class="icon-inline-sm"></i>
                             Tokenization Recommendations
                         </h6>
                     </div>
-                    <div class="card-body">
+                    <div class="dds-card">
                         <div class="row">
                             <div class="col-6 mb-3">
                                 <small class="d-block text-muted">Estimated Value</small>
@@ -296,14 +296,14 @@
                     </div>
                 </div>
                 
-                <div class="card bg-dark">
-                    <div class="card-header border-secondary">
+                <div class="dds-card">
+                    <div class="dds-card">
                         <h6 class="card-title mb-0">
                             <i data-feather="code" class="icon-inline-sm"></i>
                             CosmWasm Contract Code
                         </h6>
                     </div>
-                    <div class="card-body">
+                    <div class="dds-card">
                         <pre class="bg-black text-light p-2 rounded small"><code>pub fn execute_staking(
   deps: DepsMut,
   env: Env,
@@ -525,7 +525,7 @@
                     <div class="file-details">
                         <div class="file-name d-flex align-items-center">
                             ${file.name}
-                            <span class="badge bg-warning ms-2">Validating</span>
+                            <span class="dds-badge-status"><span class="dds-status-dot"></span>Validating</span>
                         </div>
                         <div class="file-meta">
                             <span>${(file.size / (1024 * 1024)).toFixed(2)} MB</span>
