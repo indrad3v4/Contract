@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}DAODISEO - Real Estate Tokenization{% endblock %}</title>
+    <title>DAODISEO - Professional Property Management Platform</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,10 +30,49 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-theme.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/micro-rewards.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/micro-rental income.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/daodiseo-ux.css') }}">
     
     <style>
+        :root {
+            --primary-purple: #e00d79;
+            --secondary-purple: #b80596;
+            --charcoal-gray: #333333;
+            --accent-cyan: #00d4ff;
+            --background-dark: #0a0a0a;
+            --text-white: #ffffff;
+            --text-light-gray: #cccccc;
+            --success-green: #00ff88;
+            --warning-orange: #ff6b35;
+        }
+        
+        .landlord-portfolio-widget {
+            background: linear-gradient(135deg, #e00d79, #b80596);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 8px 25px rgba(224, 13, 121, 0.3);
+        }
+        
+        .portfolio-metric {
+            text-align: center;
+            color: #ffffff;
+        }
+        
+        .metric-value {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffffff;
+        }
+        
+        .metric-label {
+            display: block;
+            font-size: 0.9rem;
+            color: #cccccc;
+            margin-top: 5px;
+        }
+        
         /* User profile menu styles */
         .ai-avatar {
             display: flex;
@@ -141,6 +180,30 @@
         
         <!-- Main Content -->
         <div class="main-content">
+        <div class="landlord-portfolio-widget">
+            <h3 class="text-primary">Property Portfolio Overview</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="portfolio-metric">
+                        <span class="metric-value">$23.40</span>
+                        <span class="metric-label">Total Property Value</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="portfolio-metric">
+                        <span class="metric-value">12</span>
+                        <span class="metric-label">Active Properties</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="portfolio-metric">
+                        <span class="metric-value">$1.17/mo</span>
+                        <span class="metric-label">Monthly Rental Income</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
             <!-- Top Bar -->
             <div class="top-bar">
                 <div class="page-title">
@@ -153,7 +216,7 @@
                         <i data-feather="star"></i>
                         <span class="points-badge" id="userPoints">0 pts</span>
                     </div>
-                        <div class="wallet-connection" id="headerWalletBtn">
+                        <div class="portfolio-connection" id="headerWalletBtn">
                         <button class="btn btn-outline-info btn-sm" id="headerConnectKeplr">
                             <i data-feather="link" class="icon-inline-sm"></i>
                             Connect Keplr
@@ -181,10 +244,10 @@
                 feather.replace();
             }
             
-            // Wallet connect button in sidebar
+            // portfolio connect button in sidebar
             const connectKeplrBtn = document.getElementById('connectKeplrBtn');
             if (connectKeplrBtn) {
-                connectKeplrBtn.innerHTML = '<i class="icon-inline-sm"></i> Connect Keplr Wallet';
+                connectKeplrBtn.innerHTML = '<i class="icon-inline-sm"></i> Connect Keplr portfolio';
                 connectKeplrBtn.addEventListener('click', function() {
                     connectKeplrWallet();
                 });
@@ -263,8 +326,8 @@
                                         <i data-feather="alert-circle"></i>
                                     </div>
                                     <div class="notification-content">
-                                        <div class="notification-title">Validator Request</div>
-                                        <div class="notification-text">New proposal requires validator approval.</div>
+                                        <div class="notification-title">property manager Request</div>
+                                        <div class="notification-text">New proposal requires property manager approval.</div>
                                         <div class="notification-time text-muted small">1 day ago</div>
                                     </div>
                                 </div>
@@ -292,13 +355,13 @@
                 });
             }
             
-            // Global wallet connection state - load from sessionStorage if available (more secure than localStorage)
+            // Global portfolio connection state - load from sessionStorage if available (more secure than localStorage)
             let walletConnected = sessionStorage.getItem('walletConnected') === 'true';
             let userWalletAddress = sessionStorage.getItem('userWalletAddress') || '';
             
             // Update UI based on stored connection state
             if (walletConnected && userWalletAddress) {
-                // Update wallet button in sidebar
+                // Update portfolio button in sidebar
                 const walletBtn = document.getElementById('connectKeplrBtn');
                 if (walletBtn) {
                     walletBtn.innerHTML = '<i data-feather="check-circle" class="icon-inline-sm"></i> Connected';
@@ -306,16 +369,16 @@
                     walletBtn.classList.add('btn-success');
                 }
                 
-                // Update user profile in header with shortened wallet address
+                // Update user profile in header with shortened portfolio address
                 const userProfile = document.getElementById('userProfileBtn');
                 if (userProfile) {
-                    // Display shortened wallet address (first 6 and last 4 characters)
+                    // Display shortened portfolio address (first 6 and last 4 characters)
                     const shortAddress = userWalletAddress.length > 10 
                         ? userWalletAddress.substring(0, 6) + '...' + userWalletAddress.substring(userWalletAddress.length - 4) 
                         : userWalletAddress;
                     userProfile.querySelector('span').textContent = shortAddress;
                     
-                    // Add wallet address as title for hover display
+                    // Add portfolio address as title for hover display
                     userProfile.setAttribute('title', userWalletAddress);
                     userProfile.setAttribute('data-bs-toggle', 'tooltip');
                     userProfile.setAttribute('data-bs-placement', 'bottom');
@@ -360,11 +423,11 @@
                             break;
                         }
                     }
-                } else if (selector === '.staking-apy') {
-                    // Find card with Staking APY title
+                } else if (selector === '.property investment-apy') {
+                    // Find card with property investment APY title
                     const statsCards = document.querySelectorAll('.stats-card, .card');
                     for (const card of statsCards) {
-                        if (card.textContent.includes('Staking APY') || 
+                        if (card.textContent.includes('property investment APY') || 
                             card.textContent.includes('APY')) {
                             targetElement = card;
                             break;
@@ -389,7 +452,7 @@
                 }
             }
             
-            // Function to connect Keplr wallet
+            // Function to connect Keplr portfolio
             function connectKeplrWallet() {
                 // Don't show connection modal if already connected
                 if (walletConnected) {
@@ -397,7 +460,7 @@
                     return;
                 }
                 
-                // Create wallet modal
+                // Create portfolio modal
                 const modal = document.createElement('div');
                 modal.className = 'modal fade';
                 modal.id = 'keplrModal';
@@ -411,12 +474,12 @@
                             <div class="modal-header border-info">
                                 <h5 class="modal-title" id="keplrModalLabel">
                                     <i data-feather="link" class="icon-inline text-info"></i>
-                                    Connect to Keplr Wallet
+                                    Connect to Keplr portfolio
                                 </h5>
                                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <p>Connect your Keplr wallet to access the Daodiseo platform features:</p>
+                                <p>Connect your Keplr portfolio to access the Daodiseo platform features:</p>
                                 <ul class="list-group list-group-flush bg-transparent mb-3">
                                     <li class="list-group-item bg-dark text-light border-secondary d-flex align-items-center">
                                         <i data-feather="check" class="icon-inline-sm text-success me-2"></i>
@@ -428,7 +491,7 @@
                                     </li>
                                     <li class="list-group-item bg-dark text-light border-secondary d-flex align-items-center">
                                         <i data-feather="check" class="icon-inline-sm text-success me-2"></i>
-                                        <span>Participate in validator governance</span>
+                                        <span>Participate in property manager property management</span>
                                     </li>
                                     <li class="list-group-item bg-dark text-light border-secondary d-flex align-items-center">
                                         <i data-feather="check" class="icon-inline-sm text-success me-2"></i>
@@ -445,7 +508,7 @@
                                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
                                 <button type="button" class="btn btn-info" id="confirmKeplrConnect">
                                     <i data-feather="link" class="icon-inline-sm"></i>
-                                    Connect Wallet
+                                    Connect portfolio
                                 </button>
                             </div>
                         </div>
@@ -469,7 +532,7 @@
                             <div class="alert alert-info">
                                 <div class="d-flex align-items-center">
                                     <div class="spinner-border spinner-border-sm me-2" role="status"></div>
-                                    <span>Connecting to Keplr wallet...</span>
+                                    <span>Connecting to Keplr portfolio...</span>
                                 </div>
                             </div>
                         `;
@@ -484,7 +547,7 @@
                                 userWalletAddress = sessionStorage.getItem('userWalletAddress');
                                 walletConnected = sessionStorage.getItem('walletConnected') === 'true';
                             } else {
-                                throw new Error('Failed to connect wallet. Please try again.');
+                                throw new Error('Failed to connect portfolio. Please try again.');
                             }
                         } else if (window.keplerWallet) {
                             // Fallback to our custom KeplerWallet implementation
@@ -497,16 +560,16 @@
                                 sessionStorage.setItem('userWalletAddress', userWalletAddress);
                                 sessionStorage.setItem('walletConnected', 'true');
                             } else {
-                                throw new Error('Failed to connect wallet. Please try again.');
+                                throw new Error('Failed to connect portfolio. Please try again.');
                             }
                         } else if (window.keplr) {
-                            // Fallback to direct Keplr wallet connection
+                            // Fallback to direct Keplr portfolio connection
                             
                             // First get network configuration from our backend
                             const networkConfigResponse = await fetch('/api/network-config');
                             const networkConfig = await networkConfigResponse.json();
                             
-                            // Add chain to Keplr wallet
+                            // Add chain to Keplr portfolio
                             await window.keplr.experimentalSuggestChain(networkConfig);
                             
                             // Enable chain
@@ -526,7 +589,7 @@
                             
                             // Save address to backend
                             try {
-                                await fetch('/api/account/wallet', {
+                                await fetch('/api/account/portfolio', {
                                     method: 'POST',
                                     headers: {
                                         'Content-Type': 'application/json'
@@ -534,10 +597,10 @@
                                     body: JSON.stringify({ address: userWalletAddress })
                                 });
                             } catch (e) {
-                                console.warn('Could not save wallet address to backend:', e);
+                                console.warn('Could not save portfolio address to backend:', e);
                             }
                         } else {
-                            throw new Error('Keplr wallet extension not found. Please install it first.');
+                            throw new Error('Keplr portfolio extension not found. Please install it first.');
                         }
                         
                         // Save connection state to sessionStorage (more secure than localStorage)
@@ -556,7 +619,7 @@
                         // Update user profile
                         const userProfile = document.getElementById('userProfileBtn');
                         if (userProfile) {
-                            // Display truncated wallet address
+                            // Display truncated portfolio address
                             const shortenedAddress = userWalletAddress.length > 16 
                                 ? `${userWalletAddress.slice(0, 8)}...${userWalletAddress.slice(-4)}`
                                 : userWalletAddress;
@@ -639,9 +702,9 @@
                                                 <i data-feather="home" class="icon-inline-sm"></i>
                                                 I'm a Developer
                                             </button>
-                                            <button class="btn btn-outline-info btn-sm stakeholder-btn" data-stakeholder="validator">
+                                            <button class="btn btn-outline-info btn-sm stakeholder-btn" data-stakeholder="property manager">
                                                 <i data-feather="shield" class="icon-inline-sm"></i>
-                                                I'm a Validator
+                                                I'm a property manager
                                             </button>
                                             <button class="btn btn-outline-info btn-sm stakeholder-btn" data-stakeholder="architect">
                                                 <i data-feather="compass" class="icon-inline-sm"></i>
@@ -727,7 +790,7 @@
                                 actions = [
                                     { icon: 'zap', text: 'Explore the Idaka Project featured on the dashboard', link: '/' },
                                     { icon: 'pie-chart', text: 'Review asset distribution metrics', link: '/' },
-                                    { icon: 'dollar-sign', text: 'Check current staking APY (9.5%)', link: '/' }
+                                    { icon: 'dollar-sign', text: 'Check current property investment APY (9.5%)', link: '/' }
                                 ];
                                 break;
                                 
@@ -740,12 +803,12 @@
                                 ];
                                 break;
                                 
-                            case 'validator':
-                                message = 'As a validator, you play a crucial role in governance and proposal verification, ensuring network integrity and proper due diligence.';
+                            case 'property manager':
+                                message = 'As a property manager, you play a crucial role in property management and proposal verification, ensuring network integrity and proper due diligence.';
                                 actions = [
                                     { icon: 'shield', text: 'Review pending proposals', link: '/contracts' },
                                     { icon: 'check-square', text: 'Validate IFC models and due diligence', link: '/upload' },
-                                    { icon: 'award', text: 'Earn validator rewards', link: '/' }
+                                    { icon: 'award', text: 'Earn property manager rental income', link: '/' }
                                 ];
                                 break;
                                 
@@ -768,7 +831,7 @@
                                 break;
                                 
                             case 'contractor':
-                                message = 'As a contractor, you can access detailed BIM models, track project tasks, and participate in contract fulfillment on the blockchain.';
+                                message = 'As a contractor, you can access detailed BIM models, track project tasks, and participate in lease agreement fulfillment on the property ledger.';
                                 actions = [
                                     { icon: 'box', text: 'Access project BIM data in the 3D Viewer', link: '/viewer' },
                                     { icon: 'file-text', text: 'Review and sign contracts', link: '/contracts' },
@@ -780,7 +843,7 @@
                                 message = 'As a regulator, you can verify compliance, ensure proper due diligence, and monitor tokenized asset activities with complete transparency.';
                                 actions = [
                                     { icon: 'shield', text: 'Review SPV/KYC verification status', link: '/contracts' },
-                                    { icon: 'list', text: 'Monitor blockchain transactions', link: '/' },
+                                    { icon: 'list', text: 'Monitor property ledger transactions', link: '/' },
                                     { icon: 'file-text', text: 'Access complete due diligence records', link: '/upload' }
                                 ];
                                 break;
@@ -829,9 +892,9 @@
                                         // Highlight the asset distribution chart
                                         highlightDashboardSection('.asset-distribution');
                                         break;
-                                    case 'Check current staking APY (9.5%)':
-                                        // Highlight the staking APY card
-                                        highlightDashboardSection('.staking-apy');
+                                    case 'Check current property investment APY (9.5%)':
+                                        // Highlight the property investment APY card
+                                        highlightDashboardSection('.property investment-apy');
                                         break;
                                     default:
                                         // If it's not a special action, navigate to the link
@@ -897,10 +960,10 @@
                         </div>
                     </div>
                     <div class="border-top border-secondary my-2"></div>
-                    <div class="wallet-balance mb-3">
+                    <div class="portfolio-balance mb-3">
                         <div class="small text-muted mb-1">Your Balance</div>
                         <div class="d-flex justify-content-between align-items-center">
-                            <div class="fw-bold">1,245.32 ODIS</div>
+                            <div class="fw-bold">$0.0234 ODIS</div>
                             <span class="badge bg-success">$3,735.96</span>
                         </div>
                     </div>
@@ -916,7 +979,7 @@
                         </a>
                         <a href="#" class="d-flex align-items-center text-decoration-none text-light py-2">
                             <i data-feather="activity" class="me-2 text-info"></i>
-                            <span>Staking Dashboard</span>
+                            <span>property investment Dashboard</span>
                         </a>
                         <a href="#" class="d-flex align-items-center text-decoration-none text-light py-2">
                             <i data-feather="settings" class="me-2 text-info"></i>
@@ -927,7 +990,7 @@
                     <div class="d-grid">
                         <button class="btn btn-outline-danger btn-sm" id="disconnectWalletBtn">
                             <i data-feather="log-out" class="icon-inline-sm"></i>
-                            Disconnect Wallet
+                            Disconnect portfolio
                         </button>
                     </div>
                 `;
@@ -939,7 +1002,7 @@
                 
                 // Add event listener to disconnect button
                 document.getElementById('disconnectWalletBtn').addEventListener('click', function() {
-                    // Reset wallet state
+                    // Reset portfolio state
                     walletConnected = false;
                     userWalletAddress = '';
                     
@@ -950,7 +1013,7 @@
                     // Update UI
                     const walletBtn = document.getElementById('connectKeplrBtn');
                     if (walletBtn) {
-                        walletBtn.innerHTML = '<i data-feather="link" class="icon-inline-sm"></i> Connect Keplr Wallet';
+                        walletBtn.innerHTML = '<i data-feather="link" class="icon-inline-sm"></i> Connect Keplr portfolio';
                         walletBtn.classList.remove('btn-success');
                         walletBtn.classList.add('btn-outline-info');
                         feather.replace();
@@ -983,11 +1046,11 @@
         });
     </script>
     
-    <!-- Keplr Wallet Integration -->
+    <!-- Keplr portfolio Integration -->
     <script src="{{ url_for('static', filename='js/kepler.js') }}"></script>
-    <script type="module" src="{{ url_for('static', filename='js/blockchain-animations.js') }}"></script>
-    <script type="module" src="{{ url_for('static', filename='js/micro-rewards-ui.js') }}"></script>
-    <script type="module" src="{{ url_for('static', filename='js/transaction.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/property ledger-animations.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/micro-rental income-ui.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/rental transaction.js') }}"></script>
     
     <!-- Chart.js for dashboard charts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
@@ -1012,12 +1075,12 @@
     
     {% block extra_js %}{% endblock %}
 
-    <!-- DAODISEO Wallet Manager -->
-    <script src="{{ url_for('static', filename='js/keplr-wallet.js') }}"></script>
+    <!-- DAODISEO portfolio Manager -->
+    <script src="{{ url_for('static', filename='js/keplr-portfolio.js') }}"></script>
     
-    <!-- Additional ODIS Token Data Updates -->
+    <!-- Additional ODIS property share Data Updates -->
     <script>
-        // Simulate real-time token price updates
+        // Simulate real-time property share price updates
         function updateTokenPrices() {
             const prices = {
                 current: (0.1204 + (Math.random() - 0.5) * 0.01).toFixed(4),

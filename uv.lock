@@ -1526,6 +1526,7 @@ dependencies = [
     { name = "pytest-asyncio" },
     { name = "pytest-cov" },
     { name = "python-dotenv" },
+    { name = "requests" },
     { name = "twilio" },
 ]
 
@@ -1550,6 +1551,7 @@ requires-dist = [
     { name = "pytest-asyncio", specifier = ">=0.26.0" },
     { name = "pytest-cov", specifier = ">=6.0.0" },
     { name = "python-dotenv", specifier = ">=1.1.0" },
+    { name = "requests", specifier = ">=2.32.3" },
     { name = "twilio", specifier = ">=9.5.1" },
 ]
 
