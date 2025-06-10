@@ -102,6 +102,15 @@ class KeplerWallet {
     }
 
     updateUI() {
+        // Update global state first
+        if (window.DaodiseoState) {
+            window.DaodiseoState.setState('wallet', {
+                connected: this.connected,
+                address: this.address,
+                balance: this.balance
+            });
+        }
+
         // Update connect wallet button in sidebar
         const connectKeplrBtn = document.getElementById('connectKeplrBtn');
         if (connectKeplrBtn) {
@@ -109,7 +118,6 @@ class KeplerWallet {
                 connectKeplrBtn.innerHTML = '<i data-feather="check-circle" class="icon-inline-sm"></i> Connected';
                 connectKeplrBtn.classList.remove('btn-outline-info');
                 connectKeplrBtn.classList.add('btn-success');
-                // Add disconnect option on click
                 connectKeplrBtn.onclick = () => this.disconnect();
             } else {
                 connectKeplrBtn.innerHTML = '<i data-feather="link" class="icon-inline-sm"></i> Connect Keplr Wallet';
@@ -130,20 +138,12 @@ class KeplerWallet {
             }
         }
 
-        // Refresh feather icons
-        feather.replace();
-        
-        // Set global window variables for other scripts
-        window.walletConnected = this.connected;
-        window.userWalletAddress = this.address || '';
-
         // Legacy connect button support
         const connectButton = document.getElementById('connectWallet');
         if (connectButton) {
             if (this.connected && this.address) {
                 connectButton.innerHTML = `Connected: ${this.address.slice(0, 8)}...`;
                 connectButton.classList.replace('btn-primary', 'btn-success');
-                // Add disconnect option
                 connectButton.onclick = () => this.disconnect();
             } else {
                 connectButton.innerHTML = '<i class="bi bi-wallet2"></i> Connect Wallet';
@@ -151,6 +151,9 @@ class KeplerWallet {
                 connectButton.onclick = () => this.init();
             }
         }
+
+        // Refresh feather icons
+        feather.replace();
     }
 
     async signTransaction(transaction) {
