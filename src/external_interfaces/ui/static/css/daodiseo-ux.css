@@ -196,10 +196,88 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-    .top-actions {
-        gap: 8px;
+@media (max-width: 1200px) {
+    .satellite-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
     }
+    
+    .ai-brain-central-hub {
+        min-height: 300px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-content .container-fluid {
+        padding: 1rem;
+    }
+    
+    .row.g-4 {
+        gap: 1rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .price-display {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .current-price {
+        font-size: 1.75rem;
+    }
+    
+    .insight-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .card-header .d-flex {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .token-stats .row {
+        gap: 0.5rem;
+    }
+    
+    .stat-item {
+        padding: 0.75rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .ai-brain-central-hub {
+        min-height: 200px;
+        padding: 1rem;
+    }
+    
+    .brain-visualization {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .brain-visualization i {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .current-price {
+        font-size: 1.5rem;
+    }
+    
+    .price-chart-container {
+        height: 150px;
+    }
+}
     
     .wallet-connection .btn,
     .points-system {
