@@ -472,9 +472,6 @@ export { createAndSignTransaction };
         // DAODISEO Landlord Experience Enhancements
         
         // Real ODIS price data
-        const ODIS_CURRENT_PRICE = 0.0234;
-        const ODIS_MARKET_CAP = 15811.04;
-        const ODIS_VOLUME_24H = 5000.0;
         
         // Update all ODIS price displays
         function updateODISPrices() {
@@ -547,9 +544,6 @@ export { createAndSignTransaction };
         // DAODISEO Landlord Experience Enhancements
         
         // Real ODIS price data
-        const ODIS_CURRENT_PRICE = 0.0234;
-        const ODIS_MARKET_CAP = 15811.04;
-        const ODIS_VOLUME_24H = 5000.0;
         
         // Update all ODIS price displays
         function updateODISPrices() {
