@@ -96,6 +96,17 @@
     
     {% block extra_css %}
 {% endblock %}
+
+    <!-- Critical Error Fixes -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header-alignment.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/conflict-resolution.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive-fixes.css') }}">
+    
+    <!-- Enhanced JavaScript -->
+    <script src="{{ url_for('static', filename='js/error-handler.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/component-manager.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/api-manager.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/blockchain-data-loader.js') }}"></script>
 </head>
 <body class="cosmic-theme">
     <div class="app-container">

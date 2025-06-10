@@ -1,4 +1,9 @@
 
+// Namespace wrapper to prevent variable conflicts
+(function() {
+    'use strict';
+    
+
 
 
 // Data Source Agents JavaScript Enhancement
@@ -235,3 +240,6 @@ document.addEventListener('DOMContentLoaded', function() {
     window.dataSourceAgentManager = new DataSourceAgentManager();
     window.dataSourceAgentManager.init();
 });
+
+    
+})();
