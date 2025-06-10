@@ -1,0 +1,598 @@
+{% extends "base.html" %}
+
+{% block title %}DAODISEO - AI Brain Orchestrator Dashboard{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Dashboard-specific neural connection styles */
+.neural-connection {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(0, 123, 255, 0.8), transparent);
+    animation: neuralPulse 2s ease-in-out infinite;
+    transform-origin: left center;
+}
+
+.data-flow-line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(40, 167, 69, 0.6), transparent);
+    animation: dataFlow 3s linear infinite;
+    transform-origin: left center;
+}
+
+@keyframes neuralPulse {
+    0%, 100% { opacity: 0.3; transform: scaleX(0.5); }
+    50% { opacity: 1; transform: scaleX(1); }
+}
+
+@keyframes dataFlow {
+    0% { opacity: 0; transform: translateX(-20px) scaleX(0); }
+    20% { opacity: 1; transform: translateX(0) scaleX(1); }
+    80% { opacity: 1; transform: translateX(0) scaleX(1); }
+    100% { opacity: 0; transform: translateX(20px) scaleX(0); }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- AI Brain Central Hub -->
+<div class="ai-brain-container">
+    <div class="central-brain glass-surface">
+        <div class="brain-core">
+            <div class="brain-pulse"></div>
+            <div class="brain-title">AI BRAIN</div>
+            <div class="brain-subtitle">Neural Orchestrator</div>
+        </div>
+        
+        <!-- Neural Connection Visualization -->
+        <div id="neuralConnections" class="neural-connections"></div>
+    </div>
+    
+    <!-- Satellite Components in Orbital Layout -->
+    <div class="satellite-component token-metrics" data-satellite="token">
+        <div class="glass-surface">
+            <div class="component-header">
+                <i data-feather="trending-up" class="component-icon"></i>
+                <span class="component-title">Token Metrics</span>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <div class="metric-value" id="token-price">$0.1214</div>
+                    <div class="metric-label">ODIS Price</div>
+                    <div class="metric-change text-success" id="price-change">+3.68%</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value" id="market-cap">$12.4M</div>
+                    <div class="metric-label">Market Cap</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value" id="staking-apy">9.5%</div>
+                    <div class="metric-label">Staking APY</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="satellite-component asset-distribution" data-satellite="assets">
+        <div class="glass-surface">
+            <div class="component-header">
+                <i data-feather="pie-chart" class="component-icon"></i>
+                <span class="component-title">Asset Portfolio</span>
+            </div>
+            <div class="chart-container">
+                <canvas id="asset-distribution-chart" width="200" height="200"></canvas>
+            </div>
+            <div class="asset-summary">
+                <div class="asset-item">
+                    <div class="asset-value" id="verified-assets-value">$24.2M</div>
+                    <div class="asset-label">Verified Assets</div>
+                </div>
+                <div class="asset-item">
+                    <div class="asset-value" id="pending-assets-value">$13.9M</div>
+                    <div class="asset-label">Pipeline Assets</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="satellite-component validators-overview" data-satellite="validators">
+        <div class="glass-surface">
+            <div class="component-header">
+                <i data-feather="shield" class="component-icon"></i>
+                <span class="component-title">Network Validators</span>
+            </div>
+            <div class="validators-stats">
+                <div class="validator-stat">
+                    <div class="stat-value" id="active-validators-count">10</div>
+                    <div class="stat-label">Active Validators</div>
+                </div>
+                <div class="validator-stat">
+                    <div class="stat-value" id="total-staked">45.2M</div>
+                    <div class="stat-label">Total Staked</div>
+                </div>
+                <div class="validator-stat">
+                    <div class="stat-value" id="staking-ratio">68.4%</div>
+                    <div class="stat-label">Staking Ratio</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="satellite-component recent-activity" data-satellite="transactions">
+        <div class="glass-surface">
+            <div class="component-header">
+                <i data-feather="activity" class="component-icon"></i>
+                <span class="component-title">Recent Activity</span>
+            </div>
+            <div id="recent-transactions" class="activity-feed">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div class="d-flex align-items-center">
+                        <div class="status-indicator active me-2"></div>
+                        <span class="small">Asset Verification</span>
+                    </div>
+                    <span class="small text-success">+150 ODIS</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div class="d-flex align-items-center">
+                        <div class="status-indicator active me-2"></div>
+                        <span class="small">Staking Reward</span>
+                    </div>
+                    <span class="small text-success">+45 ODIS</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div class="d-flex align-items-center">
+                        <div class="status-indicator jailed me-2"></div>
+                        <span class="small">Contract Deploy</span>
+                    </div>
+                    <span class="small text-warning">-5 ODIS</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- AI Insights Panel -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="glass-surface">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="mb-0">
+                    <i data-feather="zap" class="me-2"></i>
+                    AI Insights & Recommendations
+                </h5>
+                <button class="btn btn-sm btn-outline-primary">
+                    <i data-feather="refresh-cw" class="icon-inline-sm"></i>
+                    Refresh Insights
+                </button>
+            </div>
+            <div id="ai-insights-feed" class="insights-container">
+                <div class="insight-item mb-3">
+                    <div class="d-flex align-items-start">
+                        <div class="insight-icon text-warning me-3">
+                            <i data-feather="trending-up"></i>
+                        </div>
+                        <div class="insight-content">
+                            <div class="insight-title">Optimal Staking Opportunity Detected</div>
+                            <div class="insight-description">Current network conditions show 9.5% APY with low delegation saturation on top validators.</div>
+                            <div class="insight-actions mt-2">
+                                <button class="btn btn-sm btn-outline-warning" onclick="window.location.href='/contracts'">
+                                    <i data-feather="arrow-right" class="icon-inline-sm"></i>
+                                    View Validators
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="insight-item mb-3">
+                    <div class="d-flex align-items-start">
+                        <div class="insight-icon text-info me-3">
+                            <i data-feather="file-text"></i>
+                        </div>
+                        <div class="insight-content">
+                            <div class="insight-title">Asset Verification Pending</div>
+                            <div class="insight-description">3 properties worth $2.4M are awaiting final verification. Complete documentation for higher yields.</div>
+                            <div class="insight-actions mt-2">
+                                <button class="btn btn-sm btn-outline-info" onclick="window.location.href='/upload'">
+                                    <i data-feather="upload" class="icon-inline-sm"></i>
+                                    Upload Documents
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Portfolio Overview -->
+<div class="row mt-4">
+    <div class="col-xl-8">
+        <div class="glass-surface">
+            <h6 class="mb-3">
+                <i data-feather="briefcase" class="me-2"></i>
+                Portfolio Performance
+            </h6>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="metric-card">
+                        <div class="metric-value" id="total-reserves">$38,126,500</div>
+                        <div class="metric-label">Total Reserves</div>
+                        <div class="metric-change text-success">+12.5%</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="metric-card">
+                        <div class="metric-value" id="verified-assets">24</div>
+                        <div class="metric-label">Verified Assets</div>
+                        <div class="metric-change text-success">+3</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="metric-card">
+                        <div class="metric-value" id="active-contracts">18</div>
+                        <div class="metric-label">Active Contracts</div>
+                        <div class="metric-change text-info">+2</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="metric-card">
+                        <div class="metric-value" id="daily-rewards">+284 ODIS</div>
+                        <div class="metric-label">Daily Rewards</div>
+                        <div class="metric-change text-success">+8.2%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xl-4">
+        <div class="glass-surface">
+            <h6 class="mb-3">
+                <i data-feather="target" class="me-2"></i>
+                Quick Actions
+            </h6>
+            <div class="action-buttons">
+                <button class="btn btn-primary w-100 mb-2" data-bs-toggle="modal" data-bs-target="#investModal">
+                    <i data-feather="plus-circle" class="me-2"></i>
+                    Invest in Property
+                </button>
+                <button class="btn btn-outline-success w-100 mb-2" onclick="window.location.href='/contracts'">
+                    <i data-feather="shield" class="me-2"></i>
+                    Delegate Stake
+                </button>
+                <button class="btn btn-outline-info w-100" onclick="window.location.href='/upload'">
+                    <i data-feather="upload" class="me-2"></i>
+                    Upload BIM Model
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Investment Modal -->
+<div class="modal fade" id="investModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content glass-surface">
+            <div class="modal-header border-bottom-0">
+                <h5 class="modal-title">
+                    <i data-feather="trending-up" class="me-2"></i>
+                    Investment Opportunities
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-info mb-4">
+                    <i data-feather="info" class="me-2"></i>
+                    Connect your Keplr wallet to view personalized investment opportunities
+                </div>
+                
+                <div class="investment-options">
+                    <div class="investment-card glass-surface mb-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6>Miami Luxury Condos</h6>
+                                <p class="text-muted small mb-2">Premium oceanfront properties with 8.2% projected yield</p>
+                                <div class="investment-metrics">
+                                    <span class="badge bg-success me-2">8.2% APY</span>
+                                    <span class="badge bg-info me-2">$2.4M Total</span>
+                                    <span class="badge bg-warning">85% Filled</span>
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <div class="investment-value">$50,000</div>
+                                <div class="small text-muted">Min. Investment</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="investment-card glass-surface mb-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6>Austin Tech Hub</h6>
+                                <p class="text-muted small mb-2">Commercial properties in growing tech district</p>
+                                <div class="investment-metrics">
+                                    <span class="badge bg-success me-2">7.8% APY</span>
+                                    <span class="badge bg-info me-2">$1.8M Total</span>
+                                    <span class="badge bg-success">42% Filled</span>
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <div class="investment-value">$25,000</div>
+                                <div class="small text-muted">Min. Investment</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-top-0">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-warning" id="investModalConnectBtn">
+                    <i data-feather="link" class="me-2"></i>
+                    Connect Keplr Wallet
+                </button>
+                <button type="button" class="btn btn-success d-none" id="investModalProceedBtn">
+                    <i data-feather="arrow-right" class="me-2"></i>
+                    Proceed to Investment
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+/**
+ * Dashboard AI Brain Integration
+ * Connects the liquid glass UI to the AI orchestrator and real data
+ */
+
+class DashboardBrainInterface {
+    constructor() {
+        this.orchestrator = window.DaodiseoOrchestrator;
+        this.neuralConnections = [];
+        this.charts = {};
+        this.init();
+    }
+    
+    init() {
+        // Wait for orchestrator to initialize
+        if (this.orchestrator) {
+            this.orchestrator.on('orchestrator:initialized', () => {
+                this.setupNeuralConnections();
+                this.initializeCharts();
+                this.bindDataUpdates();
+                this.startRealTimeUpdates();
+            });
+            
+            // Setup event listeners for AI insights
+            this.orchestrator.on('ai:insights:updated', (insights) => {
+                this.updateInsightsUI(insights);
+            });
+            
+            // Setup state change listeners
+            this.orchestrator.on('state:blockchain:updated', (data) => {
+                this.updateTokenMetrics(data);
+            });
+            
+            this.orchestrator.on('state:assets:updated', (data) => {
+                this.updateAssetDistribution(data);
+            });
+            
+            this.orchestrator.on('state:transactions:updated', (data) => {
+                this.updateRecentActivity(data);
+            });
+        }
+    }
+    
+    setupNeuralConnections() {
+        const brainContainer = document.getElementById('neuralConnections');
+        const satellites = document.querySelectorAll('.satellite-component');
+        
+        if (brainContainer && satellites.length > 0) {
+            satellites.forEach((satellite, index) => {
+                const connection = document.createElement('div');
+                connection.className = 'neural-connection';
+                connection.style.cssText = `
+                    top: 50%;
+                    left: 50%;
+                    width: ${100 + index * 20}px;
+                    transform: rotate(${index * 90}deg);
+                    animation-delay: ${index * 0.5}s;
+                `;
+                brainContainer.appendChild(connection);
+                this.neuralConnections.push(connection);
+            });
+            
+            // Add data flow animations
+            this.createDataFlowLines();
+        }
+    }
+    
+    createDataFlowLines() {
+        const satellites = document.querySelectorAll('.satellite-component');
+        satellites.forEach((satellite, index) => {
+            const flowLine = document.createElement('div');
+            flowLine.className = 'data-flow-line';
+            flowLine.style.cssText = `
+                top: 50%;
+                left: 50%;
+                width: ${150 + index * 30}px;
+                transform: rotate(${45 + index * 90}deg);
+                animation-delay: ${index * 0.8}s;
+            `;
+            satellite.appendChild(flowLine);
+        });
+    }
+    
+    initializeCharts() {
+        // Asset Distribution Chart
+        const assetCtx = document.getElementById('asset-distribution-chart');
+        if (assetCtx && typeof Chart !== 'undefined') {
+            this.charts.assetDistribution = new Chart(assetCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Verified Assets', 'Pipeline Assets'],
+                    datasets: [{
+                        data: [24250000, 13876500],
+                        backgroundColor: ['#28a745', '#ffc107'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+        }
+    }
+    
+    bindDataUpdates() {
+        // Bind satellite components to real data
+        const tokenSatellite = document.querySelector('[data-satellite="token"]');
+        const assetsSatellite = document.querySelector('[data-satellite="assets"]');
+        const validatorsSatellite = document.querySelector('[data-satellite="validators"]');
+        const transactionsSatellite = document.querySelector('[data-satellite="transactions"]');
+        
+        // Add click handlers for navigation
+        tokenSatellite?.addEventListener('click', () => this.highlightComponent('token'));
+        assetsSatellite?.addEventListener('click', () => this.highlightComponent('assets'));
+        validatorsSatellite?.addEventListener('click', () => this.highlightComponent('validators'));
+        transactionsSatellite?.addEventListener('click', () => this.highlightComponent('transactions'));
+    }
+    
+    highlightComponent(componentType) {
+        // Add pulse animation to highlight interactions
+        const component = document.querySelector(`[data-satellite="${componentType}"]`);
+        if (component) {
+            component.classList.add('glass-active-pulse', 'active');
+            setTimeout(() => {
+                component.classList.remove('glass-active-pulse', 'active');
+            }, 1000);
+        }
+        
+        // Update AI insights based on component interaction
+        if (this.orchestrator) {
+            this.orchestrator.emit('component:interaction', { type: componentType });
+        }
+    }
+    
+    updateTokenMetrics(blockchainData) {
+        // Update ODIS token metrics with real data
+        const elements = {
+            'token-price': blockchainData.tokenPrice ? `$${blockchainData.tokenPrice.toFixed(4)}` : '$0.1214',
+            'price-change': blockchainData.priceChange ? `${blockchainData.priceChange > 0 ? '+' : ''}${blockchainData.priceChange.toFixed(2)}%` : '+3.68%',
+            'market-cap': blockchainData.marketCap ? `$${(blockchainData.marketCap / 1000000).toFixed(1)}M` : '$12.4M',
+            'staking-apy': blockchainData.stakingApy ? `${blockchainData.stakingApy.toFixed(1)}%` : '9.5%'
+        };
+        
+        Object.entries(elements).forEach(([id, value]) => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = value;
+                element.style.opacity = '0.7';
+                setTimeout(() => {
+                    element.style.opacity = '1';
+                }, 200);
+            }
+        });
+    }
+    
+    startRealTimeUpdates() {
+        // Start periodic updates for dashboard metrics
+        if (this.orchestrator) {
+            setInterval(() => {
+                this.orchestrator.refreshCriticalData();
+            }, 10000); // Update every 10 seconds
+        }
+        
+        // Load blockchain data
+        this.loadBlockchainData();
+        setInterval(() => {
+            this.loadBlockchainData();
+        }, 30000); // Update every 30 seconds
+    }
+    
+    async loadBlockchainData() {
+        try {
+            const response = await fetch('/api/blockchain/stats');
+            if (response.ok) {
+                const data = await response.json();
+                this.updateTokenMetrics(data);
+                this.updateValidatorsStats(data);
+            }
+        } catch (error) {
+            console.error('Failed to load blockchain data:', error);
+        }
+    }
+    
+    updateValidatorsStats(data) {
+        if (data.validators) {
+            const activeValidators = data.validators.filter(v => v.status === 'BOND_STATUS_BONDED').length;
+            const activeElement = document.getElementById('active-validators-count');
+            if (activeElement) {
+                activeElement.textContent = activeValidators;
+            }
+        }
+        
+        if (data.network_stats) {
+            const totalStaked = document.getElementById('total-staked');
+            const stakingRatio = document.getElementById('staking-ratio');
+            
+            if (totalStaked && data.network_stats.total_staked) {
+                totalStaked.textContent = (data.network_stats.total_staked / 1000000).toFixed(1) + 'M';
+            }
+            
+            if (stakingRatio && data.network_stats.staking_ratio) {
+                stakingRatio.textContent = (data.network_stats.staking_ratio * 100).toFixed(1) + '%';
+            }
+        }
+    }
+}
+
+// Initialize dashboard when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize feather icons
+    if (typeof feather !== 'undefined') {
+        feather.replace();
+    }
+    
+    // Initialize Chart.js if available
+    if (typeof Chart !== 'undefined') {
+        Chart.defaults.color = '#ffffff';
+        Chart.defaults.borderColor = 'rgba(255, 255, 255, 0.1)';
+    }
+    
+    // Initialize dashboard brain interface
+    if (window.DaodiseoOrchestrator) {
+        window.dashboardBrain = new DashboardBrainInterface();
+    }
+    
+    // Setup investment modal handlers
+    const investModal = document.getElementById('investModal');
+    if (investModal) {
+        const connectBtn = document.getElementById('investModalConnectBtn');
+        const proceedBtn = document.getElementById('investModalProceedBtn');
+        
+        connectBtn?.addEventListener('click', function() {
+            // Use existing wallet connection logic
+            if (typeof connectKeplrWallet === 'function') {
+                connectKeplrWallet().then(() => {
+                    connectBtn.classList.add('d-none');
+                    proceedBtn.classList.remove('d-none');
+                });
+            }
+        });
+    }
+});
+</script>
+
+<!-- Chart.js for visualizations -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
