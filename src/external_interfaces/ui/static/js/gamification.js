@@ -1,20 +1,20 @@
 // DAODISEO Gamification System
 class DaodiseoGamification {
     constructor() {
-        this.points = parseInt(localStorage.getItem('dds_user_points') || '0');
-        this.level = this.calculateLevel(this.points);
+        this.ODIS = parseInt(localStorage.getItem('dds_user_ODIS') || '0');
+        this.level = this.calculateLevel(this.ODIS);
         this.achievements = JSON.parse(localStorage.getItem('dds_achievements') || '[]');
         
         this.rewardActions = {
-            'upload_bim': 30,
-            'sign_contract': 50,
-            'submit_transaction': 100,
-            'login_platform': 10,
-            'view_property': 5,
-            'become_validator': 75,
-            'share_property': 15,
-            'complete_profile': 20,
-            'connect_wallet': 25
+            'upload_bim': 0.3,
+            'sign_contract': 0.5,
+            'submit_transaction': 1.0,
+            'login_platform': 0.1,
+            'view_property': 0.05,
+            'become_validator': 0.75,
+            'share_property': 0.15,
+            'complete_profile': 0.2,
+            'connect_wallet': 0.25
         };
         
         this.init();
@@ -28,30 +28,30 @@ class DaodiseoGamification {
     }
     
     awardPoints(action, amount = null) {
-        const points = amount || this.rewardActions[action] || 0;
-        if (points > 0) {
-            this.points += points;
-            localStorage.setItem('dds_user_points', this.points.toString());
+        const ODIS = amount || this.rewardActions[action] || 0;
+        if (ODIS > 0) {
+            this.ODIS += ODIS;
+            localStorage.setItem('dds_user_ODIS', this.ODIS.toString());
             
-            this.showPointsAnimation(points);
+            this.showPointsAnimation(ODIS);
             this.updatePointsDisplay();
             this.checkLevelUp();
             
-            console.log(`Awarded ${points} points for ${action}`);
+            console.log(`Awarded ${ODIS} ODIS for ${action}`);
         }
     }
     
     updatePointsDisplay() {
-        const pointsElement = document.getElementById('userPoints');
-        if (pointsElement) {
-            pointsElement.textContent = `${this.points} pts`;
+        const ODISElement = document.getElementById('userPoints');
+        if (ODISElement) {
+            ODISElement.textContent = `${this.ODIS} ODIS`;
         }
     }
     
-    showPointsAnimation(points) {
+    showPointsAnimation(ODIS) {
         const animation = document.createElement('div');
-        animation.className = 'points-animation';
-        animation.textContent = `+${points} ODIS`;
+        animation.className = 'ODIS-animation';
+        animation.textContent = `+${ODIS} ODIS`;
         animation.style.cssText = `
             position: fixed;
             top: 100px;
@@ -69,12 +69,12 @@ class DaodiseoGamification {
         setTimeout(() => animation.remove(), 2000);
     }
     
-    calculateLevel(points) {
-        return Math.floor(points / 100) + 1;
+    calculateLevel(ODIS) {
+        return Math.floor(ODIS / 100) + 1;
     }
     
     checkLevelUp() {
-        const newLevel = this.calculateLevel(this.points);
+        const newLevel = this.calculateLevel(this.ODIS);
         if (newLevel > this.level) {
             this.level = newLevel;
             this.showLevelUpNotification();
@@ -133,7 +133,7 @@ class DaodiseoGamification {
                                     </div>
                                     <div class="level-text mt-2">
                                         <div class="level-title">Level ${this.level}</div>
-                                        <div class="level-subtitle">${this.points} points (${100 - (this.points % 100)} to next level)</div>
+                                        <div class="level-subtitle">${this.ODIS} ODIS (${100 - (this.ODIS % 100)} to next level)</div>
                                     </div>
                                 </div>
                             </div>
@@ -159,7 +159,7 @@ class DaodiseoGamification {
                                             <i data-feather="shield" class="achievement-icon"></i>
                                             <div class="achievement-text">
                                                 <div class="achievement-name">Validator Candidate</div>
-                                                <div class="achievement-desc">Reach 200 points</div>
+                                                <div class="achievement-desc">Reach 200 ODIS</div>
                                             </div>
                                         </div>
                                     </div>
@@ -174,34 +174,34 @@ class DaodiseoGamification {
                                     <div class="action-item">
                                         <i data-feather="link" class="action-icon"></i>
                                         <span class="action-name">Connect Keplr wallet</span>
-                                        <span class="action-points">+25</span>
+                                        <span class="action-ODIS">+25</span>
                                     </div>
                                     <div class="action-item">
                                         <i data-feather="upload" class="action-icon"></i>
                                         <span class="action-name">Upload a BIM model</span>
-                                        <span class="action-points">+30</span>
+                                        <span class="action-ODIS">+30</span>
                                     </div>
                                     <div class="action-item">
                                         <i data-feather="file-text" class="action-icon"></i>
                                         <span class="action-name">Sign a smart contract</span>
-                                        <span class="action-points">+50</span>
+                                        <span class="action-ODIS">+50</span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="action-item">
                                         <i data-feather="eye" class="action-icon"></i>
                                         <span class="action-name">View a property contract</span>
-                                        <span class="action-points">+5</span>
+                                        <span class="action-ODIS">+5</span>
                                     </div>
                                     <div class="action-item">
                                         <i data-feather="log-in" class="action-icon"></i>
                                         <span class="action-name">Log into the platform</span>
-                                        <span class="action-points">+10</span>
+                                        <span class="action-ODIS">+10</span>
                                     </div>
                                     <div class="action-item">
                                         <i data-feather="send" class="action-icon"></i>
                                         <span class="action-name">Submit a blockchain transaction</span>
-                                        <span class="action-points">+100</span>
+                                        <span class="action-ODIS">+100</span>
                                     </div>
                                 </div>
                             </div>
@@ -222,7 +222,7 @@ class DaodiseoGamification {
                 modal.show();
             }
             
-            // Award points for specific actions
+            // Award ODIS for specific actions
             if (e.target.closest('#uploadForm button[type="submit"]')) {
                 this.awardPoints('upload_bim');
             }
@@ -234,30 +234,30 @@ class DaodiseoGamification {
             }
         });
         
-        // Award points for page views
+        // Award ODIS for page views
         const path = window.location.pathname;
         if (path.includes('/viewer') && !sessionStorage.getItem('viewed_property_' + path)) {
             this.awardPoints('view_property');
             sessionStorage.setItem('viewed_property_' + path, 'true');
         }
         
-        // Award login points (once per session)
-        if (!sessionStorage.getItem('login_points_awarded')) {
+        // Award login ODIS (once per session)
+        if (!sessionStorage.getItem('login_ODIS_awarded')) {
             this.awardPoints('login_platform');
-            sessionStorage.setItem('login_points_awarded', 'true');
+            sessionStorage.setItem('login_ODIS_awarded', 'true');
         }
     }
     
     checkAchievements() {
         const achievements = [
-            { id: 'first_upload', name: 'First Upload', requirement: 'points >= 30' },
-            { id: 'contract_master', name: 'Contract Master', requirement: 'points >= 100' },
-            { id: 'validator_candidate', name: 'Validator Candidate', requirement: 'points >= 200' }
+            { id: 'first_upload', name: 'First Upload', requirement: 'ODIS >= 30' },
+            { id: 'contract_master', name: 'Contract Master', requirement: 'ODIS >= 100' },
+            { id: 'validator_candidate', name: 'Validator Candidate', requirement: 'ODIS >= 200' }
         ];
         
         achievements.forEach(achievement => {
             if (!this.achievements.includes(achievement.id)) {
-                if (eval(achievement.requirement.replace('points', this.points))) {
+                if (eval(achievement.requirement.replace('ODIS', this.ODIS))) {
                     this.achievements.push(achievement.id);
                     localStorage.setItem('dds_achievements', JSON.stringify(this.achievements));
                     this.showNotification(`Achievement unlocked: ${achievement.name}`, 'success');
@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
             100% { transform: translateX(100%); opacity: 0; }
         }
         
-        .points-animation {
+        .ODIS-animation {
             font-size: 1.2rem;
             text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
         }
@@ -375,7 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
             color: var(--dds-white);
         }
         
-        .action-points {
+        .action-ODIS {
             font-weight: 600;
             color: var(--dds-accent-cyan);
         }

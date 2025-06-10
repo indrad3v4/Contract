@@ -273,7 +273,7 @@
 
 .status-dot.info {
     background: var(--info);
-    box-shadow: 0 0 8px rgba(224, 13, 121, 0.4);
+    box-shadow: 0 0 8px rgba(196, 30, 140, 0.4);
 }
 
 .status-dot.primary {
