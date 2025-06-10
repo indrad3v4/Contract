@@ -30,6 +30,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-theme.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+    <!-- DDS Brand Theme -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dds-brand-theme.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/micro-rewards.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/daodiseo-ux.css') }}">
     
@@ -150,18 +152,15 @@
                     <h1>{% block page_title %}Dashboard{% endblock %}</h1>
                 </div>
                 <div class="top-actions">
-                    
-                    <div class="user-menu">
-                        <div class="points-system" id="pointsSystemBtn">
-                        <i data-feather="star"></i>
-                        <span class="points-badge" id="userPoints">0 pts</span>
+                    <div class="network-indicator">
+                        <div class="status-dot active"></div>
+                        <span class="network-name">Odiseo Testnet</span>
                     </div>
-                        <div class="wallet-connection" id="headerWalletBtn">
-                        <button class="btn btn-outline-info btn-sm" id="headerConnectKeplr">
+                    <div class="wallet-connection">
+                        <button class="btn btn-outline-primary btn-sm" id="headerConnectKeplr">
                             <i data-feather="link" class="icon-inline-sm"></i>
                             Connect Keplr
                         </button>
-                    </div>
                     </div>
                 </div>
             </div>

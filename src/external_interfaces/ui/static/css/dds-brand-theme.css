@@ -1,0 +1,392 @@
+/**
+ * DDS Brand Theme - Based on DAODISEO Architecture
+ * Unified color scheme matching the DDS system diagram
+ */
+
+:root {
+  /* DDS Primary Colors - Deep Purple/Blue Gradient */
+  --dds-primary-dark: #1a1134;      /* Deep purple from diagram background */
+  --dds-primary-medium: #2d1b69;    /* Medium purple from DAODAO box */
+  --dds-primary-light: #4a2c96;     /* Lighter purple variation */
+  
+  /* DDS Accent Colors - Cyan/Blue Brain Theme */
+  --dds-accent-cyan: #00d4ff;       /* Bright cyan from AI brain */
+  --dds-accent-blue: #0099cc;       /* Blue connections */
+  --dds-accent-electric: #00b8ff;   /* Electric blue highlights */
+  
+  /* DDS Secondary Colors */
+  --dds-magenta: #c41e8c;           /* Magenta from DAODISEO.app box */
+  --dds-purple-border: #6b46c1;     /* Purple borders */
+  --dds-risk-red: #dc2626;          /* Risk zone red */
+  
+  /* DDS Neutral Colors */
+  --dds-white: #ffffff;
+  --dds-light-gray: #f8fafc;
+  --dds-medium-gray: #64748b;
+  --dds-dark-gray: #334155;
+  --dds-black: #0f172a;
+  
+  /* DDS Gradients */
+  --dds-gradient-primary: linear-gradient(135deg, var(--dds-primary-dark) 0%, var(--dds-primary-medium) 50%, var(--dds-primary-light) 100%);
+  --dds-gradient-brain: radial-gradient(circle, var(--dds-accent-cyan) 0%, var(--dds-accent-blue) 70%);
+  --dds-gradient-card: linear-gradient(145deg, rgba(42, 36, 105, 0.8) 0%, rgba(29, 17, 52, 0.9) 100%);
+  
+  /* DDS Shadows */
+  --dds-shadow-brain: 0 0 30px rgba(0, 212, 255, 0.3);
+  --dds-shadow-card: 0 8px 32px rgba(26, 17, 52, 0.4);
+  --dds-shadow-elevated: 0 12px 40px rgba(0, 212, 255, 0.2);
+}
+
+/* Global DDS Theme Application */
+body {
+  background: var(--dds-gradient-primary);
+  color: var(--dds-white);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  min-height: 100vh;
+}
+
+/* DDS Card System */
+.card {
+  background: var(--dds-gradient-card);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: var(--dds-shadow-card);
+  backdrop-filter: blur(20px);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--dds-shadow-elevated);
+  border-color: var(--dds-accent-cyan);
+}
+
+.card-header {
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px 16px 0 0;
+  color: var(--dds-white);
+}
+
+.card-body {
+  color: var(--dds-white);
+}
+
+/* DDS Navigation */
+.sidebar {
+  background: var(--dds-gradient-primary);
+  border-right: 1px solid var(--dds-purple-border);
+}
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  margin: 4px 8px;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background: rgba(0, 212, 255, 0.15);
+  color: var(--dds-accent-cyan);
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.2);
+}
+
+/* DDS ODIS Token Section */
+.odis-token-overview {
+  background: var(--dds-gradient-card);
+  border: 2px solid var(--dds-accent-cyan);
+  box-shadow: var(--dds-shadow-brain);
+}
+
+.odis-token-overview .card-header {
+  background: rgba(0, 212, 255, 0.1);
+  border-bottom: 1px solid var(--dds-accent-cyan);
+}
+
+.token-logo .rounded-circle {
+  background: var(--dds-gradient-brain);
+  box-shadow: var(--dds-shadow-brain);
+  border: 2px solid var(--dds-accent-cyan);
+}
+
+/* DDS Metrics */
+.metric-item {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.metric-item:hover {
+  background: rgba(0, 212, 255, 0.1);
+  border-color: var(--dds-accent-cyan);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 212, 255, 0.2);
+}
+
+.metric-value {
+  color: var(--dds-accent-cyan);
+  font-weight: 700;
+}
+
+.metric-label {
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* DDS Validators Section */
+.validators-overview {
+  background: var(--dds-gradient-card);
+  border: 1px solid var(--dds-purple-border);
+}
+
+.validator-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(107, 70, 193, 0.3);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.validator-card:hover {
+  background: rgba(0, 212, 255, 0.08);
+  border-color: var(--dds-accent-cyan);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 212, 255, 0.15);
+}
+
+.validator-avatar .rounded-circle {
+  background: var(--dds-gradient-brain);
+  border: 1px solid var(--dds-accent-cyan);
+}
+
+.validator-name {
+  color: var(--dds-white);
+  font-weight: 600;
+}
+
+.status-indicator.active {
+  background: var(--dds-accent-cyan);
+  box-shadow: 0 0 8px var(--dds-accent-cyan);
+}
+
+.status-indicator.jailed {
+  background: var(--dds-risk-red);
+  box-shadow: 0 0 8px var(--dds-risk-red);
+}
+
+.status-indicator.inactive {
+  background: var(--dds-medium-gray);
+}
+
+/* DDS Buttons */
+.btn-primary {
+  background: var(--dds-gradient-brain);
+  border: 1px solid var(--dds-accent-cyan);
+  color: var(--dds-white);
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+.btn-primary:hover {
+  background: var(--dds-accent-blue);
+  border-color: var(--dds-accent-cyan);
+  box-shadow: 0 4px 16px rgba(0, 212, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, var(--dds-accent-cyan) 0%, var(--dds-accent-blue) 100%);
+  border: none;
+  color: var(--dds-white);
+  font-weight: 600;
+}
+
+.btn-outline-primary {
+  border: 1px solid var(--dds-accent-cyan);
+  color: var(--dds-accent-cyan);
+  background: transparent;
+}
+
+.btn-outline-primary:hover {
+  background: var(--dds-accent-cyan);
+  color: var(--dds-primary-dark);
+}
+
+.btn-outline-secondary {
+  border: 1px solid var(--dds-purple-border);
+  color: rgba(255, 255, 255, 0.8);
+  background: transparent;
+}
+
+.btn-outline-secondary:hover {
+  background: var(--dds-purple-border);
+  color: var(--dds-white);
+}
+
+/* DDS Stats Cards */
+.stats-card {
+  background: var(--dds-gradient-card);
+  border: 1px solid rgba(107, 70, 193, 0.3);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.stats-card:hover {
+  border-color: var(--dds-accent-cyan);
+  box-shadow: var(--dds-shadow-elevated);
+}
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.card-icon.info {
+  background: rgba(0, 212, 255, 0.2);
+  color: var(--dds-accent-cyan);
+}
+
+.card-icon.success {
+  background: rgba(0, 212, 255, 0.2);
+  color: var(--dds-accent-cyan);
+}
+
+.card-icon.warning {
+  background: rgba(196, 30, 140, 0.2);
+  color: var(--dds-magenta);
+}
+
+.card-icon.secondary {
+  background: rgba(107, 70, 193, 0.2);
+  color: var(--dds-purple-border);
+}
+
+/* DDS Badges */
+.badge.bg-info {
+  background: var(--dds-accent-cyan) !important;
+  color: var(--dds-primary-dark);
+}
+
+.badge.bg-success {
+  background: var(--dds-accent-cyan) !important;
+  color: var(--dds-primary-dark);
+}
+
+.badge.bg-warning {
+  background: var(--dds-magenta) !important;
+  color: var(--dds-white);
+}
+
+.badge.bg-secondary {
+  background: var(--dds-purple-border) !important;
+  color: var(--dds-white);
+}
+
+/* DDS Wave Animation */
+.wave-visual {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--dds-accent-cyan), var(--dds-accent-blue));
+  opacity: 0.6;
+  animation: wave 2s ease-in-out infinite;
+}
+
+@keyframes wave {
+  0%, 100% { transform: scaleX(1); opacity: 0.6; }
+  50% { transform: scaleX(1.05); opacity: 0.8; }
+}
+
+/* DDS AI Brain Accent */
+.ai-brain-accent {
+  position: relative;
+}
+
+.ai-brain-accent::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: var(--dds-gradient-brain);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0.3;
+  animation: brainPulse 3s ease-in-out infinite;
+}
+
+@keyframes brainPulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.02); }
+}
+
+/* DDS Mobile Responsive */
+@media (max-width: 768px) {
+  .card {
+    margin-bottom: 1rem;
+    border-radius: 12px;
+  }
+  
+  .metric-item {
+    margin-bottom: 0.75rem;
+  }
+  
+  .validator-card {
+    margin-bottom: 1rem;
+  }
+}
+
+/* DDS Loading States */
+.loading-skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1) 25%,
+    rgba(0, 212, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.1) 75%
+  );
+  background-size: 200% 100%;
+  animation: ddsSkeleton 1.5s infinite;
+}
+
+@keyframes ddsSkeleton {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* DDS Focus States */
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--dds-accent-cyan);
+  box-shadow: 0 0 0 0.2rem rgba(0, 212, 255, 0.25);
+}
+
+/* DDS Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dds-primary-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--dds-purple-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--dds-accent-cyan);
+}
