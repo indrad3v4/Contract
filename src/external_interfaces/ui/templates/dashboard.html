@@ -132,6 +132,42 @@
     color: rgba(255, 255, 255, 0.9);
     margin-bottom: 1.5rem;
 }
+
+/* Liquid Glass Card Enhancement */
+.liquid-card {
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 16px !important;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    transition: all 0.3s ease !important;
+}
+
+.liquid-card:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+/* AI Agent Section Headers */
+.ai-agent-section {
+    border-left: 4px solid rgba(224, 13, 121, 0.8) !important;
+    padding-left: 1rem !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.ai-agent-section .section-title {
+    margin-bottom: 0.5rem !important;
+}
+
+.ai-agent-section .section-subtitle {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-left: 2rem;
+}
 </style>
 {% endblock %}
 
@@ -143,37 +179,35 @@
         <p class="dashboard-subtitle">Manage your blockchain real estate investments with AI-powered insights</p>
     </div>
 
-    <!-- Data Source Agents Section -->
-    <section class="data-source-agents mb-4" data-ai-context="blockchain-data-orchestration">
-        <div class="section-header">
-            <h2 class="section-title">
-                <i data-feather="cpu"></i>
-                Data Source Agents
-            </h2>
-        </div>
+    <!-- AI Agent Section: Token Metrics -->
+    <div class="ai-agent-section">
+        <h5 class="section-title">
+            <i data-feather="database"></i>
+            Token Metrics Agent
+        </h5>
+        <div class="section-subtitle">Real-time market intelligence and pricing data</div>
+    </div>
         
-        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4">
+    <div class="dashboard-container">
             <!-- Token Value Agent -->
-            <div class="col">
-                <div class="card stats-card" data-card-type="token-value">
-                    <div class="card-body">
-                        <div class="card-header-row">
-                            <div class="card-title">Token Value</div>
-                            <span class="status-badge status-verified">
-                                <i data-feather="check-circle"></i>
-                                Verified
-                            </span>
-                        </div>
-                        <div class="card-value">
-                            <span class="primary-value" id="token-value">Loading...</span>
-                            <span class="value-unit">ODIS</span>
-                        </div>
-                        <div class="update-timestamp">
-                            Updated: <span id="token-value-time">--</span>
-                        </div>
-                        <div class="card-icon info">
-                            <i data-feather="dollar-sign"></i>
-                        </div>
+            <div class="liquid-card stats-card" data-card-type="token-value">
+                <div class="card-body">
+                    <div class="card-header-row">
+                        <div class="card-title">Token Value</div>
+                        <span class="status-badge status-verified">
+                            <i data-feather="check-circle"></i>
+                            Verified
+                        </span>
+                    </div>
+                    <div class="card-value">
+                        <span class="primary-value" id="token-value">Loading...</span>
+                        <span class="value-unit">ODIS</span>
+                    </div>
+                    <div class="update-timestamp">
+                        Updated: <span id="token-value-time">--</span>
+                    </div>
+                    <div class="card-icon info">
+                        <i data-feather="dollar-sign"></i>
                     </div>
                 </div>
             </div>
@@ -642,12 +676,22 @@
 <!-- Custom Scripts -->
 <script src="{{ url_for('static', filename='js/ai-chat-enhanced.js') }}"></script>
 <script src="{{ url_for('static', filename='js/bim-viewer.js') }}"></script>
-<!-- Remove duplicate enhanced scripts that are already loaded in base.html -->
+<!-- Prevent JavaScript duplicate variable errors -->
 <script>
-// Override base.html enhanced scripts to prevent duplicates
-window.EnhancedStatsCards = null;
-window.EnhancedTransactionList = null;
-window.EnhancedAssetDistribution = null;
+(function() {
+    'use strict';
+    
+    // Prevent duplicate initialization
+    if (window.dashboardInitialized) {
+        return;
+    }
+    window.dashboardInitialized = true;
+    
+    // Clear any existing enhanced component variables
+    delete window.EnhancedStatsCards;
+    delete window.EnhancedTransactionList;
+    delete window.EnhancedAssetDistribution;
+})();
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
