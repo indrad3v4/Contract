@@ -6,9 +6,10 @@
     <title>{% block title %}DAODISEO - Real Estate Tokenization{% endblock %}</title>
     
     <!-- Fonts -->
+    <!-- Google Fonts - Unified Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     
     <!-- Feather Icons - Locally Bundled (implementation fixed) -->
     <script src="{{ url_for('static', filename='js/lib/feather.min.js') }}"></script>
@@ -98,6 +99,9 @@
     
     <!-- Gamification System -->
     <script src="{{ url_for('static', filename='js/gamification-system.js') }}"></script>
+    
+    <!-- DDS UI Converter -->
+    <script src="{{ url_for('static', filename='js/dds-ui-converter.js') }}"></script>
     
     {% block extra_css %}{% endblock %}
 </head>
