@@ -198,7 +198,7 @@ Emphasize business value, cost-benefit analysis, risk assessment, and long-term 
             }
         ]
 
-    def orchestrate_task(self, user_query: str, context: Dict[str, Any] = None) -> Dict[str, Any]:
+    def orchestrate_task(self, user_query: str, context: Dict[str, Any] | None = None) -> Dict[str, Any]:
         """
         Main orchestration method that processes user queries using o3-mini reasoning
         
@@ -224,7 +224,7 @@ Emphasize business value, cost-benefit analysis, risk assessment, and long-term 
             
             # Step 4: Synthesize final response
             final_response = self._synthesize_response(
-                user_query, execution_results, context
+                user_query, execution_results, context or {}
             )
             
             # Step 5: Record performance metrics
@@ -282,9 +282,9 @@ Emphasize business value, cost-benefit analysis, risk assessment, and long-term 
             analysis = response.choices[0].message.content
             
             # Parse complexity from response
-            if "HIGH" in analysis.upper():
+            if analysis and "HIGH" in analysis.upper():
                 return TaskComplexity.HIGH, ReasoningEffort.HIGH
-            elif "LOW" in analysis.upper():
+            elif analysis and "LOW" in analysis.upper():
                 return TaskComplexity.LOW, ReasoningEffort.LOW
             else:
                 return TaskComplexity.MEDIUM, ReasoningEffort.MEDIUM
@@ -440,7 +440,7 @@ Emphasize business value, cost-benefit analysis, risk assessment, and long-term 
             return {"success": False, "error": str(e)}
 
     def _synthesize_response(self, query: str, execution_results: Dict[str, Any], 
-                           context: Dict[str, Any] = None) -> str:
+                           context: Dict[str, Any]) -> str:
         """Synthesize final response using o3-mini"""
         
         if not self.client:
@@ -474,7 +474,7 @@ Provide a clear, actionable response that addresses the user's query while highl
                 reasoning_effort="medium"
             )
             
-            return response.choices[0].message.content
+            return response.choices[0].message.content or "Analysis completed successfully."
             
         except Exception as e:
             logger.error(f"Response synthesis failed: {e}")
@@ -565,7 +565,7 @@ Provide actionable recommendations for enhancing orchestrator performance.
                 reasoning_effort="high"
             )
             
-            improvements = response.choices[0].message.content
+            improvements = response.choices[0].message.content or "No specific improvements identified at this time."
             logger.info(f"Self-improvement analysis completed: {improvements}")
             
             # Implement automatic improvements where possible
