@@ -1,0 +1,460 @@
+/**
+ * DAODISEO UX Fixes - Addressing Critical UI/UX Issues
+ * Based on comprehensive UX expert analysis
+ */
+
+/* ========================================
+   1. VISUAL HIERARCHY & SPACING FIXES
+======================================== */
+
+/* Consistent spacing throughout application */
+.dashboard .row {
+  margin-bottom: var(--dds-space-6);
+}
+
+.dashboard .col-md-3,
+.dashboard .col-md-4,
+.dashboard .col-md-6 {
+  margin-bottom: var(--dds-space-4);
+}
+
+/* Clear visual hierarchy for content */
+.page-section {
+  margin-bottom: var(--dds-space-12);
+}
+
+.section-title {
+  font-size: var(--dds-font-size-2xl);
+  font-weight: var(--dds-font-weight-semibold);
+  color: var(--dds-white);
+  margin-bottom: var(--dds-space-6);
+  border-bottom: 2px solid var(--dds-accent-cyan);
+  padding-bottom: var(--dds-space-2);
+}
+
+.subsection-title {
+  font-size: var(--dds-font-size-lg);
+  font-weight: var(--dds-font-weight-medium);
+  color: var(--dds-white);
+  margin-bottom: var(--dds-space-4);
+}
+
+/* ========================================
+   2. TYPOGRAPHY & READABILITY IMPROVEMENTS
+======================================== */
+
+/* Improved text contrast and readability */
+.metric-value {
+  font-size: var(--dds-font-size-3xl);
+  font-weight: var(--dds-font-weight-bold);
+  color: var(--dds-white);
+  line-height: var(--dds-line-height-tight);
+  margin-bottom: var(--dds-space-1);
+}
+
+.metric-label {
+  font-size: var(--dds-font-size-sm);
+  font-weight: var(--dds-font-weight-medium);
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: var(--dds-line-height-normal);
+}
+
+.metric-change {
+  font-size: var(--dds-font-size-sm);
+  font-weight: var(--dds-font-weight-medium);
+  display: flex;
+  align-items: center;
+  gap: var(--dds-space-1);
+  margin-bottom: var(--dds-space-2);
+}
+
+/* User-friendly explanations for technical terms */
+.metric-explanation {
+  font-size: var(--dds-font-size-xs);
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: var(--dds-space-1);
+  font-style: italic;
+}
+
+/* ========================================
+   3. DATA VISUALIZATION IMPROVEMENTS
+======================================== */
+
+/* Better metric formatting and context */
+.metric-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--dds-radius-lg);
+  padding: var(--dds-space-4);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.metric-item:hover {
+  background: rgba(0, 212, 255, 0.05);
+  border-color: var(--dds-accent-cyan);
+  transform: translateY(-2px);
+}
+
+/* Improved financial data formatting */
+.currency-value {
+  position: relative;
+}
+
+.currency-value::before {
+  content: '$';
+  font-size: 0.8em;
+  opacity: 0.7;
+  margin-right: 2px;
+}
+
+.percentage-value {
+  position: relative;
+}
+
+.percentage-value::after {
+  content: '%';
+  font-size: 0.8em;
+  opacity: 0.7;
+  margin-left: 1px;
+}
+
+/* Chart improvements with proper labeling */
+.chart-container {
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--dds-radius-lg);
+  padding: var(--dds-space-4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chart-title {
+  font-size: var(--dds-font-size-lg);
+  font-weight: var(--dds-font-weight-medium);
+  color: var(--dds-white);
+  margin-bottom: var(--dds-space-4);
+  text-align: center;
+}
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--dds-space-3);
+  margin-top: var(--dds-space-4);
+  justify-content: center;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--dds-space-2);
+  font-size: var(--dds-font-size-sm);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--dds-radius-sm);
+  flex-shrink: 0;
+}
+
+/* ========================================
+   4. IMPROVED STATUS INDICATORS
+======================================== */
+
+/* Clear, meaningful status system */
+.status-indicator-enhanced {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dds-space-2);
+  padding: var(--dds-space-2) var(--dds-space-3);
+  border-radius: var(--dds-radius-full);
+  font-size: var(--dds-font-size-xs);
+  font-weight: var(--dds-font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: relative;
+}
+
+.status-verified-enhanced {
+  background: rgba(46, 213, 115, 0.15);
+  color: var(--dds-success);
+  border: 1px solid rgba(46, 213, 115, 0.3);
+}
+
+.status-verified-enhanced::before {
+  content: '✓';
+  font-weight: bold;
+  margin-right: var(--dds-space-1);
+}
+
+.status-active-enhanced {
+  background: rgba(0, 212, 255, 0.15);
+  color: var(--dds-accent-cyan);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+}
+
+.status-active-enhanced::before {
+  content: '●';
+  animation: pulse 2s infinite;
+  margin-right: var(--dds-space-1);
+}
+
+.status-pending-enhanced {
+  background: rgba(255, 165, 2, 0.15);
+  color: var(--dds-warning);
+  border: 1px solid rgba(255, 165, 2, 0.3);
+}
+
+.status-pending-enhanced::before {
+  content: '⏳';
+  margin-right: var(--dds-space-1);
+}
+
+/* Status explanations */
+.status-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--dds-primary-dark);
+  color: var(--dds-white);
+  padding: var(--dds-space-2) var(--dds-space-3);
+  border-radius: var(--dds-radius-md);
+  font-size: var(--dds-font-size-xs);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: var(--dds-z-tooltip);
+  border: 1px solid var(--dds-accent-cyan);
+}
+
+.status-indicator-enhanced:hover .status-tooltip {
+  opacity: 1;
+}
+
+/* ========================================
+   5. INTERACTIVE ELEMENTS IMPROVEMENTS
+======================================== */
+
+/* Consistent, clear button system */
+.action-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dds-space-2);
+  padding: var(--dds-space-3) var(--dds-space-6);
+  background: var(--dds-gradient-brain);
+  color: var(--dds-white);
+  border: 1px solid var(--dds-accent-purple);
+  border-radius: var(--dds-radius-lg);
+  font-size: var(--dds-font-size-sm);
+  font-weight: var(--dds-font-weight-medium);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  min-height: 40px;
+}
+
+.action-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--dds-shadow-lg);
+  border-color: var(--dds-accent-cyan);
+}
+
+.action-button:active {
+  transform: translateY(0);
+}
+
+/* Button purpose indicators */
+.action-button-primary {
+  background: linear-gradient(135deg, var(--dds-accent-cyan) 0%, var(--dds-accent-blue) 100%);
+}
+
+.action-button-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.action-button-danger {
+  background: linear-gradient(135deg, var(--dds-error) 0%, #b91c1c 100%);
+}
+
+/* Loading states */
+.loading-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--dds-space-2);
+  padding: var(--dds-space-4);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: var(--dds-font-size-sm);
+}
+
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid var(--dds-accent-cyan);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* ========================================
+   6. INFORMATION ARCHITECTURE FIXES
+======================================== */
+
+/* Better card organization */
+.info-card {
+  background: var(--dds-gradient-card);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--dds-radius-xl);
+  padding: var(--dds-space-6);
+  margin-bottom: var(--dds-space-4);
+  transition: all 0.3s ease;
+}
+
+.info-card:hover {
+  border-color: var(--dds-accent-cyan);
+  transform: translateY(-2px);
+  box-shadow: var(--dds-shadow-xl);
+}
+
+.info-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--dds-space-4);
+  padding-bottom: var(--dds-space-3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-card-title {
+  font-size: var(--dds-font-size-lg);
+  font-weight: var(--dds-font-weight-semibold);
+  color: var(--dds-white);
+  margin: 0;
+}
+
+.info-card-subtitle {
+  font-size: var(--dds-font-size-sm);
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: var(--dds-space-1);
+}
+
+/* Priority-based content organization */
+.priority-high {
+  border-left: 4px solid var(--dds-error);
+  padding-left: var(--dds-space-4);
+}
+
+.priority-medium {
+  border-left: 4px solid var(--dds-warning);
+  padding-left: var(--dds-space-4);
+}
+
+.priority-low {
+  border-left: 4px solid var(--dds-accent-cyan);
+  padding-left: var(--dds-space-4);
+}
+
+/* ========================================
+   7. MOBILE & ACCESSIBILITY IMPROVEMENTS
+======================================== */
+
+/* Better mobile responsiveness */
+@media (max-width: 768px) {
+  .metric-item {
+    margin-bottom: var(--dds-space-3);
+    padding: var(--dds-space-3);
+  }
+  
+  .metric-value {
+    font-size: var(--dds-font-size-2xl);
+  }
+  
+  .action-button {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: var(--dds-space-2);
+  }
+  
+  .chart-legend {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .info-card {
+    padding: var(--dds-space-4);
+  }
+}
+
+/* Enhanced focus states for accessibility */
+.action-button:focus,
+.metric-item:focus {
+  outline: 2px solid var(--dds-accent-cyan);
+  outline-offset: 2px;
+}
+
+/* Screen reader improvements */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ========================================
+   8. ERROR STATES & FEEDBACK
+======================================== */
+
+.error-state {
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: var(--dds-radius-lg);
+  padding: var(--dds-space-4);
+  color: var(--dds-error);
+  text-align: center;
+}
+
+.success-state {
+  background: rgba(46, 213, 115, 0.1);
+  border: 1px solid rgba(46, 213, 115, 0.3);
+  border-radius: var(--dds-radius-lg);
+  padding: var(--dds-space-4);
+  color: var(--dds-success);
+  text-align: center;
+}
+
+/* ========================================
+   9. ANIMATIONS
+======================================== */
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-in-up {
+  animation: slideInUp 0.3s ease-out;
+}

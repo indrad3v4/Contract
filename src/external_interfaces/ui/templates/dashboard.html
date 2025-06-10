@@ -98,48 +98,64 @@
     <!-- Portfolio Overview Cards -->
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4 mb-4">
         <div class="col">
-            <div class="card stats-card">
+            <div class="info-card priority-high">
                 <div class="card-body">
-                    <div class="card-value" id="total-reserves">$38,126.50</div>
-                    <div class="card-title">Total Reserves <span class="badge bg-secondary ms-1">USD</span></div>
-                    <div class="wave-visual"></div>
-                    <div class="card-icon secondary">
+                    <div class="metric-value currency-value" id="total-reserves">38,126.50</div>
+                    <div class="metric-label">Total Portfolio Value</div>
+                    <div class="metric-explanation">Combined value of all your real estate investments</div>
+                    <div class="status-indicator-enhanced status-verified-enhanced">
+                        <span>Verified</span>
+                        <div class="status-tooltip">All assets have completed due diligence</div>
+                    </div>
+                    <div class="card-icon">
                         <i data-feather="trending-up"></i>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col">
-            <div class="card stats-card">
+            <div class="info-card priority-medium">
                 <div class="card-body">
-                    <div class="card-value" id="verified-assets">$2.1M</div>
-                    <div class="card-title">Verified Assets <span class="badge bg-success ms-1">Real Estate</span></div>
-                    <div class="wave-visual"></div>
-                    <div class="card-icon success">
+                    <div class="metric-value currency-value" id="verified-assets">2.1M</div>
+                    <div class="metric-label">Real Estate Assets</div>
+                    <div class="metric-explanation">Property value verified through blockchain due diligence</div>
+                    <div class="status-indicator-enhanced status-verified-enhanced">
+                        <span>Due Diligence Complete</span>
+                        <div class="status-tooltip">Properties have passed comprehensive verification</div>
+                    </div>
+                    <div class="card-icon">
                         <i data-feather="check-circle"></i>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col">
-            <div class="card stats-card">
+            <div class="info-card priority-medium">
                 <div class="card-body">
-                    <div class="card-value" id="active-contracts">12</div>
-                    <div class="card-title">Active Contracts <span class="badge bg-warning ms-1">Live</span></div>
-                    <div class="wave-visual"></div>
-                    <div class="card-icon warning">
+                    <div class="metric-value" id="active-contracts">12</div>
+                    <div class="metric-label">Smart Contracts</div>
+                    <div class="metric-explanation">Active tokenization contracts processing transactions</div>
+                    <div class="status-indicator-enhanced status-active-enhanced">
+                        <span>Processing</span>
+                        <div class="status-tooltip">Contracts are actively handling transactions</div>
+                    </div>
+                    <div class="card-icon">
                         <i data-feather="file-text"></i>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col">
-            <div class="card stats-card">
+            <div class="info-card priority-low">
                 <div class="card-body">
-                    <div class="card-value" id="daily-rewards">0.318</div>
-                    <div class="card-title">Daily Rewards <span class="badge bg-info ms-1">ODIS</span></div>
-                    <div class="wave-visual"></div>
-                    <div class="card-icon info">
+                    <div class="metric-value" id="daily-rewards">0.318</div>
+                    <div class="metric-label">Staking Rewards (24h)</div>
+                    <div class="metric-explanation">ODIS tokens earned from network participation</div>
+                    <div class="status-indicator-enhanced status-verified-enhanced">
+                        <span>Auto-Compounding</span>
+                        <div class="status-tooltip">Rewards automatically reinvested for maximum yield</div>
+                    </div>
+                    <div class="card-icon">
                         <i data-feather="award"></i>
                     </div>
                 </div>
@@ -150,28 +166,55 @@
     <div class="row g-4">
         <!-- Asset Distribution Panel -->
         <div class="col-lg-5">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title">
-                        <i data-feather="pie-chart" class="icon-inline"></i>
-                        Asset Distribution
-                    </h5>
-                    <div class="card-subtitle">Verified vs Unverified Assets</div>
+            <div class="info-card">
+                <div class="info-card-header">
+                    <div>
+                        <h3 class="info-card-title">
+                            <i data-feather="pie-chart" class="dds-icon-md"></i>
+                            Portfolio Distribution
+                        </h3>
+                        <div class="info-card-subtitle">Real estate asset verification status</div>
+                    </div>
+                    <div class="help-icon">
+                        <i data-feather="help-circle"></i>
+                        <div class="help-tooltip">Shows the breakdown of verified vs pending property assets in your portfolio</div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="chart-container">
+                        <h4 class="chart-title">Asset Verification Status</h4>
                         <canvas id="asset-distribution-chart"></canvas>
-                    </div>
-                    <div class="d-flex justify-content-between mt-3">
-                        <div class="text-center">
-                            <div class="small text-muted">Verified Assets</div>
-                            <div class="fw-bold text-success">$24,250,000</div>
-                            <div class="small text-muted">Due diligence complete</div>
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: var(--dds-success);"></div>
+                                <span>Verified Properties</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: var(--dds-warning);"></div>
+                                <span>In Due Diligence</span>
+                            </div>
                         </div>
-                        <div class="text-center">
-                            <div class="small text-muted">Unverified Assets</div>
-                            <div class="fw-bold text-warning">$13,876,500</div>
-                            <div class="small text-muted">In pipeline</div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-6">
+                            <div class="metric-item">
+                                <div class="metric-value currency-value">24.25M</div>
+                                <div class="metric-label">Verified Properties</div>
+                                <div class="metric-explanation">Ready for tokenization and trading</div>
+                                <div class="status-indicator-enhanced status-verified-enhanced">
+                                    <span>Investment Ready</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="metric-item">
+                                <div class="metric-value currency-value">13.88M</div>
+                                <div class="metric-label">Under Review</div>
+                                <div class="metric-explanation">Completing verification process</div>
+                                <div class="status-indicator-enhanced status-pending-enhanced">
+                                    <span>Processing</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
