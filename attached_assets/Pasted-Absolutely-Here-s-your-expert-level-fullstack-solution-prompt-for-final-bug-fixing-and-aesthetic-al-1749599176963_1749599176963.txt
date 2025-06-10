@@ -1,0 +1,108 @@
+Absolutely. Here’s your expert-level fullstack solution prompt for final bug fixing and aesthetic alignment before production redeploy.
+
+⸻
+
+🧠 Final Fullstack Bug-Fix Prompt for Daodiseo Dashboard (Ready for Replit Agent or Dev Handoff)
+
+⸻
+
+🎯 GOAL:
+
+Finalize UI/UX and backend orchestration of the Daodiseo dashboard for production.
+Ensure:
+	•	Layout is visually clean and grid-aligned
+	•	Chain endpoints are correctly used (especially via orchestrator.py)
+	•	Agent logic is built on o3-mini and serves meaningful real data
+	•	Modal actions like “Invest Now” are rendered contextually
+	•	Body scroll is single-layer and aesthetically balanced between static sidebar, header, and footer
+
+⸻
+
+📦 RETURN:
+
+Produce a dashboard layout + agent integration patch that:
+	•	Replaces the layered/boxed body area with a single clean layout grid
+	•	Aligns the right-body container with header/footer (no overflows, no “box in box”)
+	•	Ensures data is loaded from chain via orchestrator endpoints (not mocked)
+	•	Applies system prompts for o3-mini following the OpenAI Cookbook
+	•	Adds and integrates the “Invest Now” modal directly into enhanced BIM cards
+	•	Ensures all agent blocks reflect their loading/error/verified states cleanly
+
+⸻
+
+⚠️ WARNING:
+	•	Do not hardcode fallbacks; all data must be returned by orchestrator logic using real chain endpoints (see https://testnet-rpc.daodiseo.chaintools.tech)
+	•	All agent calls should use o3-mini via structured prompts with fallbacks and structured return (value, status, updated_at, error_msg)
+	•	Avoid nesting layouts — right side must not live “in screen inside screen”
+	•	Any component that has status = ready must return actionable UI (e.g., Stakeholder chart, BIM 3D → show CTA)
+
+⸻
+
+📌 CONTEXT & REQUIRED FIXES (Final UX Pass)
+
+🧱 Layout and Scroll Logic
+
+ID	Issue	Fix
+1	Body content is “screen inside screen”	Refactor layout to single main scroll container. Sidebar/header/footer = position: fixed, body = grid with padding/margin to fit
+2	Right-body margin bleeds outside	Use grid-template-columns: 260px auto; max-width: 100vw
+3	Footer only visible after full scroll	Footer should always stick to bottom of full content or page height if content is short (min-height: 100vh; display: flex; flex-direction: column)
+
+
+⸻
+
+🔄 Chain Endpoint Issues (Backend Orchestrator Logic)
+
+ID	Component	Bug	Fix
+4	Token Value / Daily Rewards	Showing 0.0000 or Connection Error	Orchestrator not fetching live from testnet-rpc.daodiseo.chaintools.tech or data not passed into context
+5	Stakeholder Dist., Validator List, Transactions	Status: ERROR or Failed to load	Add exception handling + fallback in agent call → inject error_msg into template
+6	All “Last Updated” timestamps show --:--	No updated_at injected by orchestrator	Append updated_at = datetime.now().isoformat() when data fetch succeeds
+
+
+⸻
+
+🤖 AI Orchestrator Logic (o3-mini via Cookbook Prompting)
+
+ID	Requirement	Example
+7	Use o3-mini for agent logic	✅ integrated with orchestrator.py
+8	Prompt structure per OpenAI Guide	
+
+SYSTEM = """You are a real estate blockchain analyst agent. Use Daodiseo's chain endpoints to extract: {metric_name}, {wallet_status}, {rewards}, etc. Always return a JSON object: { value, status, updated_at }"""
+
+| 9 | AI fallback logic | If RPC fails → return {status: "error", value: null, message: "..."} → display in template as .badge-error with icon |
+
+⸻
+
+💳 BIM AI + “Invest Now” Modal
+
+ID	Component	Issue	Fix
+10	BIM AI block shows Enhanced AI toggle but no modal	Modal not rendered or launched via JS	Include #invest-modal inside card. On click, launch:
+
+document.querySelector('#invest-btn').addEventListener('click', () => { ... })
+
+| 11 | Modal does not auto-connect Keplr | Connect button present, but not reactive | Trigger wallet connect on load or if window.keplr is detected |
+| 12 | APY field is hardcoded | Pull staking_apy dynamically via orchestrator from chain |
+
+⸻
+
+🧩 Component Uniformity and UX Consistency
+
+ID	Component	Fix
+13	All .agent-card blocks should share font size, border radius, padding	Normalize in /static/css/agent.css
+14	Charts (ODIS Price, Stakeholder) should be min-height: 250px to avoid collapse	Add fallback text: “Data not loaded yet”
+15	Add tooltips to all badges (ERROR, LOADING, ACTIVE)	Use Bootstrap tooltip API or title= attr
+
+
+⸻
+
+✅ Final Expected Result:
+	•	One clean scrollable dashboard body — perfectly balanced within static sidebar, header, and pinned footer
+	•	All cards display real-time, correctly styled agent data (or fallback messages)
+	•	BIM 3D Viewer includes “Launch Assistant” and “Invest Now” modal working as intended
+	•	Footer with links is always visible:
+	•	Whitepaper
+	•	DAODAO Governance
+	•	o3-mini agent orchestration logic fully integrated with smart system prompt
+
+⸻
+
+Would you like a Markdown version of this for GitHub or Notion deployment board?

@@ -113,7 +113,7 @@ def add_security_headers(response):
 @app.route("/")
 def index():
     """Render the main dashboard page"""
-    return render_template("dashboard_final.html")
+    return render_template("dashboard_production.html")
 
 
 @app.route("/viewer")

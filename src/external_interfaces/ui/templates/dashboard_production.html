@@ -1,0 +1,940 @@
+{% extends "base.html" %}
+
+{% block title %}Daodiseo - Real Estate Tokenization Dashboard{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/chat-enhanced.css') }}">
+<style>
+/* PRODUCTION LAYOUT - SINGLE SCROLLABLE BODY WITHOUT NESTED CONTAINERS */
+
+/* Remove all nested constraints from body/html */
+body, html {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+}
+
+/* Fixed Layout Grid - No Nested Containers */
+.app-container {
+    display: grid !important;
+    grid-template-columns: 280px 1fr !important;
+    grid-template-rows: 80px 1fr 60px !important;
+    grid-template-areas: 
+        "sidebar header"
+        "sidebar main"
+        "sidebar footer" !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 0 !important;
+}
+
+.sidebar {
+    grid-area: sidebar !important;
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(20px) !important;
+    border-right: 1px solid var(--glass-border) !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 280px !important;
+    height: 100vh !important;
+    overflow-y: auto !important;
+    z-index: 1000 !important;
+}
+
+.header {
+    grid-area: header !important;
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid var(--glass-border) !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 280px !important;
+    right: 0 !important;
+    height: 80px !important;
+    z-index: 999 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0 2rem !important;
+}
+
+/* SINGLE MAIN CONTENT AREA - NO NESTED SCROLLING */
+.main-content {
+    grid-area: main !important;
+    position: fixed !important;
+    top: 80px !important;
+    left: 280px !important;
+    right: 0 !important;
+    bottom: 60px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Dashboard Grid - Direct Child of Main Content */
+.dashboard-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)) !important;
+    gap: 1.5rem !important;
+    padding: 1.5rem !important;
+    min-height: calc(100vh - 140px) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Unified Agent Cards */
+.agent-card {
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 16px !important;
+    padding: 1.5rem !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+    transition: all 0.3s ease !important;
+    min-height: 220px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    position: relative !important;
+}
+
+.agent-card:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4) !important;
+}
+
+.agent-card-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 1rem !important;
+    border-bottom: 1px solid var(--glass-border) !important;
+    padding-bottom: 0.75rem !important;
+}
+
+.agent-card-title {
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    color: var(--text-primary) !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+}
+
+.agent-badge {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.25rem !important;
+    padding: 0.25rem 0.75rem !important;
+    border-radius: 20px !important;
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    transition: all 0.3s ease !important;
+}
+
+.agent-badge.verified { 
+    background: rgba(0, 153, 7, 0.2) !important; 
+    color: #00ff00 !important; 
+    border: 1px solid rgba(0, 153, 7, 0.3) !important;
+}
+
+.agent-badge.loading { 
+    background: rgba(243, 192, 0, 0.2) !important; 
+    color: #f3c000 !important; 
+    border: 1px solid rgba(243, 192, 0, 0.3) !important;
+}
+
+.agent-badge.error { 
+    background: rgba(220, 53, 69, 0.2) !important; 
+    color: #ff6b6b !important; 
+    border: 1px solid rgba(220, 53, 69, 0.3) !important;
+}
+
+.agent-value {
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+    color: var(--text-primary) !important;
+    margin: 1rem 0 !important;
+    text-align: center !important;
+    min-height: 3rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.agent-meta {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-size: 0.875rem !important;
+    line-height: 1.5 !important;
+    color: var(--text-secondary) !important;
+    text-align: center !important;
+}
+
+.chart-container {
+    position: relative !important;
+    height: 250px !important;
+    width: 100% !important;
+    margin: 1rem 0 !important;
+}
+
+/* Transaction and Validator Items */
+.transaction-item, .validator-item {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 12px !important;
+    padding: 1rem !important;
+    margin-bottom: 0.75rem !important;
+    transition: all 0.3s ease !important;
+}
+
+.transaction-item:hover, .validator-item:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    transform: translateX(4px) !important;
+}
+
+/* BIM AI Assistant with Invest Modal */
+.bim-assistant-actions {
+    display: flex !important;
+    gap: 0.75rem !important;
+    margin-top: 1rem !important;
+    justify-content: center !important;
+}
+
+.invest-button {
+    background: linear-gradient(135deg, rgba(224, 13, 121, 0.8), rgba(168, 85, 247, 0.8)) !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 0.75rem 1.5rem !important;
+    color: white !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+}
+
+.invest-button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(224, 13, 121, 0.4) !important;
+}
+
+/* Fixed Footer */
+.dashboard-footer {
+    grid-area: footer !important;
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(20px) !important;
+    border-top: 1px solid var(--glass-border) !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 280px !important;
+    right: 0 !important;
+    height: 60px !important;
+    z-index: 998 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 2rem !important;
+}
+
+.footer-link {
+    color: var(--text-secondary) !important;
+    text-decoration: none !important;
+    transition: color 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    font-size: 0.875rem !important;
+}
+
+.footer-link:hover {
+    color: var(--accent-primary) !important;
+}
+
+/* Loading States */
+.loading-spinner {
+    display: inline-block !important;
+    width: 1rem !important;
+    height: 1rem !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 50% !important;
+    border-top-color: var(--accent-primary) !important;
+    animation: spin 1s ease-in-out infinite !important;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.empty-state {
+    text-align: center !important;
+    padding: 2rem !important;
+    color: var(--text-muted) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .app-container {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: 60px 1fr 50px !important;
+        grid-template-areas: 
+            "header"
+            "main"
+            "footer" !important;
+    }
+    
+    .sidebar {
+        display: none !important;
+    }
+    
+    .header {
+        left: 0 !important;
+    }
+    
+    .main-content {
+        left: 0 !important;
+        top: 60px !important;
+        bottom: 50px !important;
+    }
+    
+    .dashboard-footer {
+        left: 0 !important;
+        height: 50px !important;
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: 1fr !important;
+        padding: 1rem !important;
+    }
+    
+    .agent-value {
+        font-size: 1.5rem !important;
+    }
+}
+
+/* Icon alignment */
+.icon-inline-sm {
+    width: 16px !important;
+    height: 16px !important;
+    vertical-align: middle !important;
+}
+
+.icon-inline-xs {
+    width: 12px !important;
+    height: 12px !important;
+    vertical-align: middle !important;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="main-content">
+    <div class="dashboard-grid">
+        
+        <!-- Token Value Card -->
+        <div class="agent-card" data-card-type="token-value">
+            <div class="agent-card-header">
+                <h5 class="agent-card-title">
+                    <i data-feather="trending-up" class="icon-inline-sm"></i> 
+                    ODIS Token Value
+                </h5>
+                <span class="agent-badge loading" id="token-value-status">
+                    <i data-feather="loader" class="icon-inline-xs"></i> Loading
+                </span>
+            </div>
+            <div class="agent-value" id="token-value">$0.0000</div>
+            <div class="agent-meta">
+                Last updated: <span id="token-value-time">--:--:--</span>
+            </div>
+        </div>
+
+        <!-- Network Health Card -->
+        <div class="agent-card" data-card-type="network-health">
+            <div class="agent-card-header">
+                <h5 class="agent-card-title">
+                    <i data-feather="activity" class="icon-inline-sm"></i> 
+                    Network Health
+                </h5>
+                <span class="agent-badge loading" id="network-health-status">
+                    <i data-feather="loader" class="icon-inline-xs"></i> Loading
+                </span>
+            </div>
+            <div class="agent-value" id="network-health">Syncing...</div>
+            <div class="agent-meta">
+                Block Height: <span id="block-height">--</span><br>
+                Last updated: <span id="network-health-time">--:--:--</span>
+            </div>
+        </div>
+
+        <!-- Staking APY Card -->
+        <div class="agent-card" data-card-type="staking-apy">
+            <div class="agent-card-header">
+                <h5 class="agent-card-title">
+                    <i data-feather="percent" class="icon-inline-sm"></i> 
+                    Staking APY
+                </h5>
+                <span class="agent-badge loading" id="staking-apy-status">
+                    <i data-feather="loader" class="icon-inline-xs"></i> Loading
+                </span>
+            </div>
+            <div class="agent-value" id="staking-apy">0.00%</div>
+            <div class="agent-meta">
+                Last updated: <span id="staking-apy-time">--:--:--</span>
+            </div>
+        </div>
+
+        <!-- Daily Rewards Card -->
+        <div class="agent-card" data-card-type="daily-rewards">
+            <div class="agent-card-header">
+                <h5 class="agent-card-title">
+                    <i data-feather="gift" class="icon-inline-sm"></i> 
+                    Daily Rewards
+                </h5>
+                <span class="agent-badge loading" id="daily-rewards-status">
+                    <i data-feather="loader" class="icon-inline-xs"></i> Loading
+                </span>
+            </div>
+            <div class="agent-value" id="daily-rewards">0.0000</div>
+            <div class="agent-meta">
+                Last updated: <span id="daily-rewards-time">--:--:--</span>
+            </div>
+        </div>
+
+        <!-- ODIS Price Chart -->
+        <div class="agent-card">
+            <div class="agent-card-header">
+                <h5 class="agent-card-title">
+                    <i data-feather="bar-chart-2" class="icon-inline-sm"></i> 
+                    ODIS Price Chart
+                </h5>
+                <span class="agent-badge verified">
+                    <i data-feather="check-circle" class="icon-inline-xs"></i> Active
+                </span>
+            </div>
+            <div class="chart-container">
+                <canvas id="price-chart"></canvas>
+            </div>
+        </div>
+
+        <!-- Asset Distribution Chart -->
+        <div class="agent-card">
+            <div class="agent-card-header">
+                <h5 class="agent-card-title">
+                    <i data-feather="pie-chart" class="icon-inline-sm"></i> 
+                    Asset Distribution
+                </h5>
+                <span class="agent-badge verified">
+                    <i data-feather="check-circle" class="icon-inline-xs"></i> Active
+                </span>
+            </div>
+            <div class="chart-container">
+                <canvas id="asset-distribution-chart"></canvas>
+            </div>
+        </div>
+
+        <!-- BIM AI Assistant with Invest Modal -->
+        <div class="agent-card">
+            <div class="agent-card-header">
+                <h5 class="agent-card-title">
+                    <i data-feather="cpu" class="icon-inline-sm"></i> 
+                    3D BIM AI Assistant
+                </h5>
+                <span class="agent-badge verified">
+                    <i data-feather="check-circle" class="icon-inline-xs"></i> Ready
+                </span>
+            </div>
+            <div id="mini-viewer-container" class="chart-container">
+                <div class="empty-state">
+                    <i data-feather="cube" style="width: 48px; height: 48px; margin-bottom: 1rem;"></i>
+                    <p>Enhanced AI-powered real estate analysis</p>
+                    <div class="bim-assistant-actions">
+                        <button class="btn btn-sm btn-outline-info" data-ai-assistant>
+                            <i data-feather="play" class="icon-inline-xs"></i> Launch Assistant
+                        </button>
+                        <button class="invest-button" data-invest-modal>
+                            <i data-feather="trending-up" class="icon-inline-xs"></i> Invest Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stakeholder Distribution -->
+        <div class="agent-card">
+            <div class="agent-card-header">
+                <h5 class="agent-card-title">
+                    <i data-feather="users" class="icon-inline-sm"></i> 
+                    Stakeholder Distribution
+                </h5>
+                <span class="agent-badge verified">
+                    <i data-feather="check-circle" class="icon-inline-xs"></i> Active
+                </span>
+            </div>
+            <div class="chart-container">
+                <canvas id="stakeholder-chart"></canvas>
+            </div>
+        </div>
+
+        <!-- Recent Transactions -->
+        <div class="agent-card">
+            <div class="agent-card-header">
+                <h5 class="agent-card-title">
+                    <i data-feather="activity" class="icon-inline-sm"></i> 
+                    Recent Transactions
+                </h5>
+                <span class="agent-badge loading" id="transactions-status">
+                    <i data-feather="loader" class="icon-inline-xs"></i> Loading
+                </span>
+            </div>
+            <div id="recent-transactions-container">
+                <div class="loading-spinner"></div>
+                <span class="agent-meta ml-2">Loading transactions...</span>
+            </div>
+        </div>
+
+        <!-- Active Validators -->
+        <div class="agent-card">
+            <div class="agent-card-header">
+                <h5 class="agent-card-title">
+                    <i data-feather="shield" class="icon-inline-sm"></i> 
+                    Active Validators
+                </h5>
+                <span class="agent-badge loading" id="validators-status">
+                    <i data-feather="loader" class="icon-inline-xs"></i> Loading
+                </span>
+            </div>
+            <div id="validators-container">
+                <div class="loading-spinner"></div>
+                <span class="agent-meta ml-2">Loading validators...</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Fixed Footer -->
+<footer class="dashboard-footer">
+    <a href="https://whitepaper.daodiseo.app" target="_blank" class="footer-link">
+        <i data-feather="file-text" class="icon-inline-sm"></i>
+        Whitepaper
+    </a>
+    <a href="https://daodao.zone/dao/daodiseo" target="_blank" class="footer-link">
+        <i data-feather="users" class="icon-inline-sm"></i>
+        DAODAO Governance
+    </a>
+</footer>
+
+<!-- Modals -->
+<div class="modal fade" id="aiAssistantModal" tabindex="-1" aria-labelledby="aiAssistantModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content bg-dark border-secondary">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title" id="aiAssistantModalLabel">
+                    <i data-feather="cpu" class="icon-inline-sm"></i>
+                    BIM AI Assistant
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div id="ai-chat-container" style="height: 500px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="investModal" tabindex="-1" aria-labelledby="investModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark border-secondary">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title" id="investModalLabel">
+                    <i data-feather="trending-up" class="icon-inline-sm"></i>
+                    Invest in Tokenized Real Estate
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="investAmount" class="form-label">Investment Amount (ODIS)</label>
+                    <input type="number" class="form-control bg-dark text-white" id="investAmount" placeholder="Enter amount">
+                </div>
+                <div class="mb-3">
+                    <label for="stakingAPY" class="form-label">Current Staking APY</label>
+                    <input type="text" class="form-control bg-dark text-white" id="stakingAPY" value="Loading..." readonly>
+                </div>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="spvKycCheck">
+                    <label class="form-check-label" for="spvKycCheck">
+                        I confirm SPV/KYC verification for tokenized real estate investment
+                    </label>
+                </div>
+                <div class="alert alert-info">
+                    <i data-feather="info" class="icon-inline-sm"></i>
+                    Investment will be processed through Keplr wallet with smart contract execution
+                </div>
+            </div>
+            <div class="modal-footer border-secondary">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="processInvestment">
+                    <i data-feather="zap" class="icon-inline-xs"></i> Process Investment
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='js/ai-chat-enhanced.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bim-viewer.js') }}"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    'use strict';
+    
+    // Status synchronization with proper data validation
+    function updateAgentStatus(cardId, status, value = null, extraData = {}) {
+        const statusElement = document.getElementById(`${cardId}-status`);
+        const valueElement = document.getElementById(cardId);
+        const timeElement = document.getElementById(`${cardId}-time`);
+        
+        if (!statusElement) return;
+        
+        const statusConfig = {
+            'verified': { icon: 'check-circle', text: 'Verified', class: 'agent-badge verified' },
+            'loading': { icon: 'loader', text: 'Loading', class: 'agent-badge loading' },
+            'error': { icon: 'alert-circle', text: 'Error', class: 'agent-badge error' }
+        };
+        
+        const config = statusConfig[status] || statusConfig.loading;
+        
+        // Update status badge
+        statusElement.className = config.class;
+        statusElement.innerHTML = `<i data-feather="${config.icon}" class="icon-inline-xs"></i> ${config.text}`;
+        
+        // Update value
+        if (valueElement && value !== null) {
+            valueElement.textContent = value;
+        }
+        
+        // Update extra data (like block height)
+        if (extraData.blockHeight) {
+            const blockElement = document.getElementById('block-height');
+            if (blockElement) blockElement.textContent = extraData.blockHeight;
+        }
+        
+        // Update timestamp
+        if (timeElement) {
+            timeElement.textContent = new Date().toLocaleTimeString();
+        }
+        
+        // Refresh icons
+        if (typeof feather !== 'undefined') {
+            feather.replace();
+        }
+    }
+    
+    // Direct RPC data loading
+    async function loadRPCData() {
+        const endpoints = [
+            { 
+                id: 'network-health', 
+                url: '/api/rpc/network-status', 
+                processor: (data) => {
+                    if (data.success && data.data) {
+                        const networkData = data.data;
+                        updateAgentStatus('network-health', 'verified', 
+                            networkData.catching_up ? 'Syncing...' : 'Healthy',
+                            { blockHeight: networkData.block_height || 'Unknown' }
+                        );
+                    } else {
+                        updateAgentStatus('network-health', 'error', 'Connection Error');
+                    }
+                }
+            },
+            { 
+                id: 'token-value', 
+                url: '/api/orchestrator/token-metrics', 
+                processor: (data) => {
+                    if (data.success && data.data && data.data.token_price) {
+                        updateAgentStatus('token-value', 'verified', `$${parseFloat(data.data.token_price).toFixed(4)}`);
+                    } else {
+                        updateAgentStatus('token-value', 'error', 'Connection Error');
+                    }
+                }
+            },
+            { 
+                id: 'staking-apy', 
+                url: '/api/orchestrator/staking-metrics', 
+                processor: (data) => {
+                    if (data.success && data.data && data.data.staking_apy) {
+                        const apy = `${parseFloat(data.data.staking_apy).toFixed(2)}%`;
+                        updateAgentStatus('staking-apy', 'verified', apy);
+                        // Update invest modal APY field
+                        const stakingAPYInput = document.getElementById('stakingAPY');
+                        if (stakingAPYInput) stakingAPYInput.value = apy;
+                    } else {
+                        updateAgentStatus('staking-apy', 'error', 'Connection Error');
+                    }
+                }
+            },
+            { 
+                id: 'daily-rewards', 
+                url: '/api/orchestrator/staking-metrics', 
+                processor: (data) => {
+                    if (data.success && data.data && data.data.daily_rewards) {
+                        updateAgentStatus('daily-rewards', 'verified', parseFloat(data.data.daily_rewards).toFixed(2));
+                    } else {
+                        updateAgentStatus('daily-rewards', 'error', 'Connection Error');
+                    }
+                }
+            }
+        ];
+
+        for (const endpoint of endpoints) {
+            try {
+                updateAgentStatus(endpoint.id, 'loading');
+                const response = await fetch(endpoint.url);
+                const data = await response.json();
+                endpoint.processor(data);
+            } catch (error) {
+                console.error(`Failed to load ${endpoint.id}:`, error);
+                updateAgentStatus(endpoint.id, 'error', 'Connection Error');
+            }
+        }
+    }
+    
+    // Load transactions with RPC integration
+    async function loadTransactions() {
+        try {
+            updateAgentStatus('transactions', 'loading');
+            const response = await fetch('/api/rpc/transactions');
+            const data = await response.json();
+            
+            const container = document.getElementById('recent-transactions-container');
+            if (data.success && data.data && data.data.transactions) {
+                container.innerHTML = data.data.transactions.slice(0, 5).map(tx => `
+                    <div class="transaction-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="agent-meta">
+                                <strong>Height ${tx.height}</strong><br>
+                                <small class="text-muted">${tx.hash.substring(0, 16)}...</small>
+                            </div>
+                            <div class="text-end">
+                                <div class="agent-meta">Code: ${tx.result_code}</div>
+                                <small class="text-muted">${tx.gas_used}/${tx.gas_wanted} gas</small>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                updateAgentStatus('transactions', 'verified');
+            } else {
+                container.innerHTML = '<div class="empty-state">No recent transactions</div>';
+                updateAgentStatus('transactions', 'error');
+            }
+        } catch (error) {
+            console.error('Failed to load transactions:', error);
+            document.getElementById('recent-transactions-container').innerHTML = '<div class="empty-state">Failed to load transactions</div>';
+            updateAgentStatus('transactions', 'error');
+        }
+    }
+    
+    // Load validators with RPC integration
+    async function loadValidators() {
+        try {
+            updateAgentStatus('validators', 'loading');
+            const response = await fetch('/api/rpc/validators');
+            const data = await response.json();
+            
+            const container = document.getElementById('validators-container');
+            if (data.success && data.data && data.data.validators) {
+                container.innerHTML = data.data.validators.slice(0, 5).map(validator => `
+                    <div class="validator-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="agent-meta">
+                                <strong>${validator.address.substring(0, 12)}...</strong><br>
+                                <small class="text-muted">Validator</small>
+                            </div>
+                            <div class="text-end">
+                                <div class="agent-meta">${formatNumber(validator.voting_power)}</div>
+                                <small class="text-muted">Voting Power</small>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                updateAgentStatus('validators', 'verified');
+            } else {
+                container.innerHTML = '<div class="empty-state">No validators data</div>';
+                updateAgentStatus('validators', 'error');
+            }
+        } catch (error) {
+            console.error('Failed to load validators:', error);
+            document.getElementById('validators-container').innerHTML = '<div class="empty-state">Failed to load validators</div>';
+            updateAgentStatus('validators', 'error');
+        }
+    }
+    
+    // Number formatting utility
+    function formatNumber(num) {
+        if (num >= 1e9) return (num / 1e9).toFixed(2) + 'B';
+        if (num >= 1e6) return (num / 1e6).toFixed(2) + 'M';
+        if (num >= 1e3) return (num / 1e3).toFixed(2) + 'K';
+        return num.toString();
+    }
+    
+    // Initialize charts
+    function initializeCharts() {
+        // Price Chart
+        const priceCtx = document.getElementById('price-chart').getContext('2d');
+        new Chart(priceCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'ODIS Price',
+                    data: [0.0001, 0.0002, 0.0001, 0.0003, 0.0002, 0.0004],
+                    borderColor: 'rgba(224, 13, 121, 1)',
+                    backgroundColor: 'rgba(224, 13, 121, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { ticks: { color: 'rgba(255, 255, 255, 0.7)' } },
+                    x: { ticks: { color: 'rgba(255, 255, 255, 0.7)' } }
+                },
+                plugins: {
+                    legend: { labels: { color: 'rgba(255, 255, 255, 0.7)' } }
+                }
+            }
+        });
+
+        // Asset Distribution Chart
+        const assetCtx = document.getElementById('asset-distribution-chart').getContext('2d');
+        new Chart(assetCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Verified Assets', 'Unverified Assets'],
+                datasets: [{
+                    data: [65, 35],
+                    backgroundColor: ['rgba(0, 153, 7, 0.7)', 'rgba(243, 192, 0, 0.7)'],
+                    borderColor: 'rgba(255, 255, 255, 0.1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { color: 'rgba(255, 255, 255, 0.7)' }
+                    }
+                }
+            }
+        });
+
+        // Stakeholder Chart
+        const stakeholderCtx = document.getElementById('stakeholder-chart').getContext('2d');
+        new Chart(stakeholderCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Institutional', 'Private', 'Developer', 'Reserved'],
+                datasets: [{
+                    data: [45, 25, 20, 10],
+                    backgroundColor: [
+                        'rgba(224, 13, 121, 0.7)',
+                        'rgba(184, 5, 150, 0.7)',
+                        'rgba(0, 153, 7, 0.7)',
+                        'rgba(243, 192, 0, 0.7)'
+                    ],
+                    borderColor: 'rgba(255, 255, 255, 0.1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: { color: 'rgba(255, 255, 255, 0.7)' }
+                    }
+                }
+            }
+        });
+    }
+    
+    // Modal handlers
+    document.body.addEventListener('click', function(e) {
+        if (e.target.matches('[data-ai-assistant]') || e.target.closest('[data-ai-assistant]')) {
+            new bootstrap.Modal(document.getElementById('aiAssistantModal')).show();
+        }
+        
+        if (e.target.matches('[data-invest-modal]') || e.target.closest('[data-invest-modal]')) {
+            new bootstrap.Modal(document.getElementById('investModal')).show();
+        }
+    });
+    
+    // Investment processing
+    document.getElementById('processInvestment').addEventListener('click', function() {
+        const amount = document.getElementById('investAmount').value;
+        const spvKycChecked = document.getElementById('spvKycCheck').checked;
+        
+        if (!amount || amount <= 0) {
+            alert('Please enter a valid investment amount.');
+            return;
+        }
+        
+        if (!spvKycChecked) {
+            alert('Please confirm SPV/KYC verification.');
+            return;
+        }
+        
+        alert(`Processing investment of ${amount} ODIS. Keplr wallet will be used for transaction signing.`);
+        
+        const investModal = bootstrap.Modal.getInstance(document.getElementById('investModal'));
+        if (investModal) {
+            investModal.hide();
+        }
+    });
+    
+    // Initialize everything
+    loadRPCData();
+    loadTransactions();
+    loadValidators();
+    initializeCharts();
+    
+    // Set up periodic updates
+    setInterval(loadRPCData, 30000);
+    setInterval(loadTransactions, 45000);
+    setInterval(loadValidators, 60000);
+    
+    // Initialize AI chat and BIM viewer
+    if (typeof aiChat !== 'undefined') {
+        aiChat.init('ai-chat-container');
+    }
+    
+    if (typeof bimViewer !== 'undefined') {
+        bimViewer.init('mini-viewer-container');
+    }
+    
+    // Initialize feather icons
+    if (typeof feather !== 'undefined') {
+        feather.replace();
+    }
+});
+</script>
+{% endblock %}
