@@ -1,0 +1,83 @@
+Pasted-Here-is-your-fully-merged-comprehensive-prompt-for-a-Replit-Agent-It-explains-why-the-patch-is-nee-1749559464456_1749559464457.txt
+Here is your fully merged, comprehensive prompt for a Replit Agent. It explains why the patch is needed, what to fix, and how to enforce style and architecture rules. This will return a Python script appPatch.py that scans every component and cleans up visuals, logic, and structure across all routes and templates.
+
+⸻
+
+🧠 Final Replit Agent Prompt: appPatch.py (Style + Logic + Architecture)
+
+# Goal:
+Patch daodiseo.app to restore visual consistency, enforce human-centered architecture, and fix gamification logic. The app is built with Flask (HTML/CSS/Bootstrap + JS), organized by clean architecture. You are a fullstack dev-producer using WBS principles to structure tasks + outputs. This app is for humans — visual clarity and trust are critical.
+
+# Context:
+1. Current UI has inconsistent fonts, badge styles, and margin spacing.
+2. Header is misaligned with the left sidebar (see dashboard screenshot).
+3. Gamification button was moved from header to bottom-left — we must bring it back to the header. Clicking it should show a reward table where actions are paid in ODIS, not points.
+4. Style elements are scattered, dots/icons appear inconsistently in components.
+5. Pages don’t reflect AI-brain logic (DAODISEO orchestrator) in UI layout.
+6. Codebase may contain duplicated logic or performance bottlenecks — investigate and report.
+
+# 🔧 Tasks for the Agent:
+
+## ✅ 1. Enforce Visual Consistency
+
+Loop through all UI files (`/templates/`, `/static/css/`, inline styles):
+
+- Normalize:
+  - Font: `Helvetica Neue`, fallback sans-serif
+  - Font sizes: 16px base, 20px headings, 12px badges
+  - Primary CTA color: gradient `#e00d79 → #b80596`
+  - Accent color: `#00d4ff`
+  - Text: light gray/white
+  - Background: dark cosmic theme (`#222` or gradient)
+
+- Replace:
+  - All top-right visual dots in cards/components with clean, badge-based labels using `.badge-status` class
+  - Inline styles with shared classes (define in `style.css`)
+  - Padding/margins to Bootstrap spacing utils (`mb-2`, `pt-3`, etc.)
+
+## ✅ 2. Restore Gamification Logic
+
+- Move gamification trigger button back into the top header (replacing “Odiseo Testnet” if needed)
+- Ensure clicking it triggers modal/sidebar with reward actions
+- Reward structure:
+  - Upload BIM: +30 ODIS
+  - Sign contract: +50 ODIS
+  - Connect Keplr: +25 ODIS
+  - Others: parsed from gamification DB or logic in `/src/gamification/`
+- Cross-check that actions update user balances, and reward logs are consistent across routes
+
+## ✅ 3. Optimize Codebase
+
+- Scan `/src/`, `/static/`, `/templates/` for:
+  - Duplicate functions or template blocks
+  - Unused CSS/JS/py files
+  - Inline JS that should be extracted
+- Flag any heavy-load views/components (e.g., large chart scripts) for lazy loading
+- Write changes to `app_patch_report.log`
+
+## ✅ 4. Enforce Brain-Based Architecture
+
+- Parse `/src/orchestrator.py` and use-case definitions
+- Map each major route/view/component to:
+  - Input node (Upload, Contract)
+  - AI processing (Analysis, Drafting)
+  - Output node (Dashboard, Gamification, Rewards)
+- Propose template reorganization:
+  - `templates/brain/dashboard.html`
+  - `templates/brain/inputs/upload.html`
+  - `templates/brain/outputs/gamification.html`
+  - `templates/brain/rewards.html`
+
+# 📦 Output:
+- Create a runnable Python script: `appPatch.py`
+- Write structured patch logs to `app_patch_report.log`
+- Auto-create/update `static/css/style.css`
+- Return component layout report in `ui_architecture_map.json`
+
+# ⚠️ Warnings:
+- This is a human-facing app. Do not remove any user functionality.
+- Always prioritize clarity, harmony, and trust in design.
+- Font = Helvetica Neue (or safe fallback)
+
+
+⸻

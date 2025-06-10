@@ -65,7 +65,7 @@
         <div class="contract-details">
             <div class="contract-header">
                 <div>
-                    <h5 class="contract-title">Cosmic Tower Project <span class="dds-badge-status"><span class="dds-status-dot"></span>VERIFIED</span></h5>
+                    <h5 class="contract-title">Cosmic Tower Project <span class="dds-badge-status">VERIFIED</span></h5>
                     <div class="contract-id">Contract ID: CO-2025-001 (0x71C...9E3f)</div>
                 </div>
                 <div>
@@ -141,23 +141,23 @@
                                 <ul class="list-group list-group-flush bg-transparent">
                                     <li class="list-group-item bg-dark text-light d-flex justify-content-between align-items-center border-secondary">
                                         <span>IFC File Validation</span>
-                                        <span class="dds-badge-status"><span class="dds-status-dot"></span>Complete</span>
+                                        <span class="dds-badge-status">Complete</span>
                                     </li>
                                     <li class="list-group-item bg-dark text-light d-flex justify-content-between align-items-center border-secondary">
                                         <span>Legal Document Review</span>
-                                        <span class="dds-badge-status"><span class="dds-status-dot"></span>Complete</span>
+                                        <span class="dds-badge-status">Complete</span>
                                     </li>
                                     <li class="list-group-item bg-dark text-light d-flex justify-content-between align-items-center border-secondary">
                                         <span>Validator Approval (3/5)</span>
-                                        <span class="dds-badge-status"><span class="dds-status-dot"></span>Complete</span>
+                                        <span class="dds-badge-status">Complete</span>
                                     </li>
                                     <li class="list-group-item bg-dark text-light d-flex justify-content-between align-items-center border-secondary">
                                         <span>SPV Formation</span>
-                                        <span class="dds-badge-status"><span class="dds-status-dot"></span>Complete</span>
+                                        <span class="dds-badge-status">Complete</span>
                                     </li>
                                     <li class="list-group-item bg-dark text-light d-flex justify-content-between align-items-center border-secondary">
                                         <span>KYC Verification</span>
-                                        <span class="dds-badge-status"><span class="dds-status-dot"></span>Complete</span>
+                                        <span class="dds-badge-status">Complete</span>
                                     </li>
                                 </ul>
                             </div>
@@ -209,27 +209,27 @@
                     <h6 class="mb-3">Multisig Approvals (3/5 Required)</h6>
                     <div class="signature-list">
                         <div class="signature-item">
-                            <div class="signature-name">John Doe <span class="dds-badge-status"><span class="dds-status-dot"></span>Owner</span></div>
+                            <div class="signature-name">John Doe <span class="dds-badge-status">Owner</span></div>
                             <div class="signature-wallet">0x71C...9E3f</div>
                             <div class="signature-timestamp">Signed on Apr 3, 2025 - 14:32:45 UTC</div>
                         </div>
                         <div class="signature-item">
-                            <div class="signature-name">Jane Smith <span class="dds-badge-status"><span class="dds-status-dot"></span>Investor</span></div>
+                            <div class="signature-name">Jane Smith <span class="dds-badge-status">Investor</span></div>
                             <div class="signature-wallet">0x94B...2D5a</div>
                             <div class="signature-timestamp">Signed on Apr 3, 2025 - 15:05:12 UTC</div>
                         </div>
                         <div class="signature-item">
-                            <div class="signature-name">Future City Properties LLC <span class="dds-badge-status"><span class="dds-status-dot"></span>Validator</span></div>
+                            <div class="signature-name">Future City Properties LLC <span class="dds-badge-status">Validator</span></div>
                             <div class="signature-wallet">0x31F...7A2c</div>
                             <div class="signature-timestamp">Signed on Apr 3, 2025 - 16:17:33 UTC</div>
                         </div>
                         <div class="signature-item">
-                            <div class="signature-name">Global Real Estate Ventures <span class="dds-badge-status"><span class="dds-status-dot"></span>Validator</span></div>
+                            <div class="signature-name">Global Real Estate Ventures <span class="dds-badge-status">Validator</span></div>
                             <div class="signature-wallet">0x67D...3F1b</div>
                             <div class="signature-timestamp">Signed on Apr 3, 2025 - 18:45:09 UTC</div>
                         </div>
                         <div class="signature-item opacity-50">
-                            <div class="signature-name">DeFi Capital Group <span class="dds-badge-status"><span class="dds-status-dot"></span>Validator</span></div>
+                            <div class="signature-name">DeFi Capital Group <span class="dds-badge-status">Validator</span></div>
                             <div class="signature-wallet">0x58F...2B4c</div>
                             <div class="signature-timestamp">Awaiting signature...</div>
                         </div>
@@ -324,7 +324,7 @@ Jurisdiction: Delaware, USA</textarea>
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <div class="tab-content p-3" id="contract-steps-content">
+                        <div class="tab-content  dds-mb-2" id="contract-steps-content">
                             <div class="tab-pane fade show active" id="step1" role="tabpanel">
                                 <h6 class="mb-3 text-info">Asset Information</h6>
                                 <p>Enter the core details about your real estate asset. The AI will auto-populate fields from your IFC file once uploaded.</p>
@@ -379,7 +379,7 @@ Jurisdiction: Delaware, USA</textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">CosmWasm Contract Function:</label>
-                                    <pre class="bg-black text-light p-3 rounded"><code>pub fn execute_staking(
+                                    <pre class="bg-black text-light  dds-mb-2 rounded"><code>pub fn execute_staking(
     deps: DepsMut,
     env: Env,
     ifc_hash: String,

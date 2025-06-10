@@ -1,543 +1,580 @@
 #!/usr/bin/env python3
 """
-DAODISEO App Patch Script v1.0
-================================
+DAODISEO App Patcher v2.0 - UI/UX Fix
+====================================
 
-Comprehensive patch script to fix visual consistency, restore gamification,
-optimize performance, and reorganize UI around DAODISEO AI brain architecture.
+This patch addresses the critical UI/UX issues seen in the screenshots:
+1. Remove all visual dots and inconsistent badges
+2. Fix header alignment and gamification placement
+3. Enforce DDS brand colors throughout
+4. Clean up spacing and typography
+5. Make the interface actually look professional
 
-This script addresses:
-1. Visual consistency across all components (fonts, colors, spacing)
-2. Gamification system restoration to header
-3. Performance optimization and code deduplication
-4. UI reorganization around AI brain architecture
-5. Cross-route variable verification
-
-Author: DAODISEO Team
+Author: UI/UX Developer
 Date: June 2025
 """
 
 import os
 import re
 import json
-import shutil
 import logging
 from pathlib import Path
-from typing import Dict, List, Tuple, Set
 from datetime import datetime
-import ast
+from typing import List, Dict, Any
 
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('app_patch_report.log'),
+        logging.FileHandler('uiux_patch_report.log'),
         logging.StreamHandler()
     ]
 )
 logger = logging.getLogger(__name__)
 
-class DAODISEOAppPatcher:
-    """Main patcher class for DAODISEO app improvements"""
+class UIUXPatcher:
+    """Professional UI/UX patcher for DAODISEO"""
     
     def __init__(self):
-        self.root_dir = Path(".")
-        self.src_dir = self.root_dir / "src"
-        self.templates_dir = self.src_dir / "external_interfaces" / "ui" / "templates"
-        self.static_dir = self.src_dir / "external_interfaces" / "ui" / "static"
+        self.base_dir = Path(".")
+        self.templates_dir = self.base_dir / "src" / "external_interfaces" / "ui" / "templates"
+        self.static_dir = self.base_dir / "src" / "external_interfaces" / "ui" / "static"
         self.css_dir = self.static_dir / "css"
         self.js_dir = self.static_dir / "js"
         
-        # DDS Brand Guidelines
-        self.brand_config = {
-            'fonts': {
-                'primary': '"Helvetica Neue", -apple-system, BlinkMacSystemFont, sans-serif',
-                'sizes': {
-                    'base': '16px',
-                    'heading': '20px',
-                    'badge': '12px',
-                    'small': '14px'
-                }
-            },
-            'colors': {
-                'primary_gradient': 'linear-gradient(135deg, #e00d79 0%, #b80596 100%)',
-                'accent': '#00d4ff',
-                'background': '#1a1134',
-                'text_light': '#ffffff',
-                'text_muted': '#adb5bd',
-                'card_bg': 'rgba(42, 36, 105, 0.8)',
-                'border': 'rgba(255, 255, 255, 0.1)'
-            },
-            'spacing': {
-                'xs': '0.25rem',
-                'sm': '0.5rem',
-                'md': '1rem',
-                'lg': '1.5rem',
-                'xl': '2rem'
-            }
-        }
+        # Ensure directories exist
+        self.css_dir.mkdir(parents=True, exist_ok=True)
+        self.js_dir.mkdir(parents=True, exist_ok=True)
         
-        # Gamification actions and ODIS rewards
-        self.gamification_actions = {
-            'upload_bim': {'reward': 30, 'name': 'Upload BIM File'},
-            'sign_contract': {'reward': 50, 'name': 'Sign Smart Contract'},
-            'connect_keplr': {'reward': 25, 'name': 'Connect Keplr Wallet'},
-            'validate_file': {'reward': 20, 'name': 'Validate File Data'},
-            'create_transaction': {'reward': 35, 'name': 'Create Transaction'},
-            'stake_tokens': {'reward': 40, 'name': 'Stake ODIS Tokens'},
-            'delegate_validator': {'reward': 30, 'name': 'Delegate to Validator'},
-            'complete_profile': {'reward': 15, 'name': 'Complete User Profile'}
-        }
+        self.fixes_applied = []
         
-        # Performance optimization patterns
-        self.optimization_patterns = {
-            'duplicate_functions': [],
-            'unused_files': [],
-            'inline_styles': [],
-            'heavy_components': [],
-            'missing_lazy_loading': []
-        }
-        
-        # UI Architecture mapping
-        self.ui_architecture = {
-            'brain_components': {
-                'input_nodes': ['upload', 'contracts'],
-                'processing_nodes': ['ai_analysis', 'validation'],
-                'output_nodes': ['dashboard', 'viewer', 'gamification']
-            },
-            'cross_route_variables': [
-                'wallet_connection',
-                'transaction_state',
-                'file_validation',
-                'user_points',
-                'blockchain_data'
-            ]
-        }
-
     def run_patch(self):
-        """Execute the complete patching process"""
-        logger.info("🧠 Starting DAODISEO App Patch Process")
+        """Execute the complete UI/UX patch"""
+        print("🎨 DAODISEO UI/UX Patcher v2.0")
+        print("=" * 50)
+        logger.info("🎨 Starting UI/UX patch process")
         
         try:
-            # 1. Analyze current state
-            self.analyze_current_state()
+            # 1. Create clean DDS stylesheet
+            self.create_clean_dds_stylesheet()
             
-            # 2. Enforce visual consistency
-            self.enforce_visual_consistency()
+            # 2. Fix header and gamification
+            self.fix_header_gamification()
             
-            # 3. Restore gamification system
-            self.restore_gamification()
+            # 3. Remove visual dots and clean badges
+            self.remove_visual_dots()
             
-            # 4. Optimize codebase
-            self.optimize_codebase()
+            # 4. Fix spacing and typography
+            self.fix_spacing_typography()
             
-            # 5. Reorganize UI architecture
-            self.reorganize_ui_architecture()
+            # 5. Update base template
+            self.update_base_template()
             
-            # 6. Generate reports
-            self.generate_reports()
+            # 6. Generate report
+            self.generate_report()
             
-            logger.info("✅ DAODISEO App Patch Complete!")
+            logger.info("✅ UI/UX patch completed successfully!")
+            print("\n🎉 UI/UX patch completed successfully!")
             
         except Exception as e:
-            logger.error(f"❌ Patch failed: {str(e)}")
+            logger.error(f"❌ Patch failed: {e}")
+            print(f"\n❌ Patch failed: {e}")
             raise
-
-    def analyze_current_state(self):
-        """Analyze current app state and identify issues"""
-        logger.info("🔍 Analyzing current app state...")
-        
-        # Scan templates for inconsistencies
-        template_files = list(self.templates_dir.rglob("*.html"))
-        css_files = list(self.css_dir.glob("*.css"))
-        js_files = list(self.js_dir.glob("*.js"))
-        
-        logger.info(f"Found {len(template_files)} templates, {len(css_files)} CSS files, {len(js_files)} JS files")
-        
-        # Identify visual inconsistencies
-        self.identify_visual_issues(template_files)
-        
-        # Check gamification status
-        self.check_gamification_status()
-        
-        # Scan for performance issues
-        self.scan_performance_issues()
-
-    def check_gamification_status(self):
-        """Check current gamification system status"""
-        logger.info("🎮 Checking gamification system status...")
-        
-        # Check if gamification exists in templates
-        base_template = self.templates_dir / "base.html"
-        gamification_in_header = False
-        gamification_modal_exists = False
-        
-        if base_template.exists():
-            content = base_template.read_text(encoding='utf-8')
             
-            # Check for gamification in header
-            if 'gamification' in content.lower() and 'header' in content.lower():
-                gamification_in_header = True
-            
-            # Check for gamification modal
-            if 'gamificationModal' in content:
-                gamification_modal_exists = True
+    def create_clean_dds_stylesheet(self):
+        """Create a clean, professional DDS stylesheet"""
+        logger.info("📝 Creating clean DDS stylesheet...")
         
-        # Check for gamification JavaScript
-        gamification_js_exists = (self.js_dir / "gamification.js").exists()
-        
-        self.gamification_status = {
-            'in_header': gamification_in_header,
-            'modal_exists': gamification_modal_exists,
-            'js_exists': gamification_js_exists,
-            'needs_restoration': not (gamification_in_header and gamification_modal_exists and gamification_js_exists)
-        }
-        
-        logger.info(f"Gamification status: {self.gamification_status}")
+        css_content = """
+/* DAODISEO Clean UI/UX Stylesheet v2.0 */
+/* Professional, consistent, dot-free design */
 
-    def scan_performance_issues(self):
-        """Scan for performance issues in the codebase"""
-        logger.info("⚡ Scanning for performance issues...")
-        
-        performance_issues = {
-            'large_files': [],
-            'missing_minification': [],
-            'synchronous_loads': [],
-            'heavy_imports': []
-        }
-        
-        # Check file sizes
-        all_files = list(self.static_dir.rglob("*"))
-        for file_path in all_files:
-            if file_path.is_file():
-                try:
-                    size = file_path.stat().st_size
-                    if size > 100000:  # 100KB threshold
-                        performance_issues['large_files'].append({
-                            'file': str(file_path),
-                            'size': size,
-                            'size_mb': round(size / 1024 / 1024, 2)
-                        })
-                except Exception as e:
-                    logger.warning(f"Error checking file size for {file_path}: {e}")
-        
-        # Check for unminified files in production
-        css_files = list(self.css_dir.glob("*.css"))
-        js_files = list(self.js_dir.glob("*.js"))
-        
-        for css_file in css_files:
-            if not css_file.name.endswith('.min.css'):
-                performance_issues['missing_minification'].append(str(css_file))
-        
-        for js_file in js_files:
-            if not js_file.name.endswith('.min.js') and js_file.name != 'gamification.js':
-                performance_issues['missing_minification'].append(str(js_file))
-        
-        self.performance_issues = performance_issues
-        logger.info(f"Found {len(performance_issues['large_files'])} large files")
-        logger.info(f"Found {len(performance_issues['missing_minification'])} unminified files")
+:root {
+    --dds-primary: #e00d79;
+    --dds-primary-dark: #b80596;
+    --dds-accent: #00d4ff;
+    --dds-bg-dark: #1a1a1a;
+    --dds-bg-card: #2a2a2a;
+    --dds-text-primary: #ffffff;
+    --dds-text-secondary: #cccccc;
+    --dds-text-muted: #999999;
+    --dds-border: #333333;
+    --dds-success: #00ff88;
+    --dds-warning: #ffaa00;
+    --dds-error: #ff4444;
+}
 
-    def identify_visual_issues(self, template_files: List[Path]):
-        """Identify visual consistency issues across templates"""
-        logger.info("🎨 Identifying visual consistency issues...")
-        
-        issues = {
-            'inline_styles': [],
-            'inconsistent_fonts': [],
-            'mixed_spacing': [],
-            'color_inconsistencies': [],
-            'badge_elements': []
-        }
-        
-        for template_path in template_files:
-            try:
-                content = template_path.read_text(encoding='utf-8')
-                
-                # Check for inline styles
-                inline_style_matches = re.findall(r'style="([^"]*)"', content)
-                if inline_style_matches:
-                    issues['inline_styles'].append({
-                        'file': str(template_path),
-                        'count': len(inline_style_matches),
-                        'styles': inline_style_matches
-                    })
-                
-                # Check for badge/dot elements in top-right corners
-                badge_patterns = [
-                    r'<span[^>]*class="[^"]*badge[^"]*"[^>]*>',
-                    r'<div[^>]*class="[^"]*dot[^"]*"[^>]*>',
-                    r'top-right',
-                    r'position:\s*absolute[^;]*right:'
-                ]
-                
-                for pattern in badge_patterns:
-                    matches = re.findall(pattern, content, re.IGNORECASE)
-                    if matches:
-                        issues['badge_elements'].append({
-                            'file': str(template_path),
-                            'pattern': pattern,
-                            'matches': matches
-                        })
-                        
-            except Exception as e:
-                logger.warning(f"Error analyzing {template_path}: {e}")
-        
-        self.visual_issues = issues
-        logger.info(f"Found {len(issues['inline_styles'])} files with inline styles")
-        logger.info(f"Found {len(issues['badge_elements'])} files with badge elements")
+/* Reset and base styles */
+* {
+    box-sizing: border-box;
+}
 
-    def enforce_visual_consistency(self):
-        """Enforce visual consistency across all components"""
-        logger.info("🎨 Enforcing visual consistency...")
-        
-        # Create unified style sheet
-        self.create_unified_stylesheet()
-        
-        # Fix template inconsistencies
-        self.fix_template_consistency()
-        
-        # Standardize component styling
-        self.standardize_components()
-
-    def standardize_components(self):
-        """Standardize component styling across the application"""
-        logger.info("🔧 Standardizing component styling...")
-        
-        # Define standard component patterns
-        component_standardizations = {
-            # Replace old badge patterns
-            'badge_patterns': [
-                (r'<span[^>]*class="[^"]*badge[^"]*bg-info[^"]*"[^>]*>([^<]*)</span>', 
-                 r'<span class="dds-badge-status"><span class="dds-status-dot"></span>\1</span>'),
-                (r'<span[^>]*class="[^"]*badge[^"]*bg-success[^"]*"[^>]*>([^<]*)</span>', 
-                 r'<span class="dds-badge-status"><span class="dds-status-dot"></span>\1</span>'),
-                (r'<span[^>]*class="[^"]*badge[^"]*bg-warning[^"]*"[^>]*>([^<]*)</span>', 
-                 r'<span class="dds-badge-status"><span class="dds-status-dot"></span>\1</span>'),
-            ],
-            # Replace button patterns
-            'button_patterns': [
-                (r'<button[^>]*class="[^"]*btn[^"]*btn-primary[^"]*"', 
-                 r'<button class="dds-btn dds-btn-primary"'),
-                (r'<button[^>]*class="[^"]*btn[^"]*btn-outline-primary[^"]*"', 
-                 r'<button class="dds-btn dds-btn-outline"'),
-            ],
-            # Replace card patterns
-            'card_patterns': [
-                (r'<div[^>]*class="[^"]*card[^"]*"(?![^>]*dds-card)', 
-                 r'<div class="dds-card"'),
-            ]
-        }
-        
-        # Apply standardizations to all templates
-        template_files = list(self.templates_dir.rglob("*.html"))
-        
-        for template_path in template_files:
-            try:
-                content = template_path.read_text(encoding='utf-8')
-                original_content = content
-                
-                # Apply all standardization patterns
-                for pattern_type, patterns in component_standardizations.items():
-                    for old_pattern, new_pattern in patterns:
-                        content = re.sub(old_pattern, new_pattern, content, flags=re.IGNORECASE)
-                
-                # Only write if content changed
-                if content != original_content:
-                    template_path.write_text(content, encoding='utf-8')
-                    logger.info(f"✅ Standardized components in: {template_path}")
-                    
-            except Exception as e:
-                logger.error(f"❌ Error standardizing {template_path}: {e}")
-
-    def create_unified_stylesheet(self):
-        """Create unified DDS brand stylesheet"""
-        logger.info("📝 Creating unified DDS brand stylesheet...")
-        
-        unified_css = f"""
-/* DAODISEO Unified Brand Stylesheet */
-/* Generated by appPatch.py on {datetime.now().isoformat()} */
-
-:root {{
-    /* DDS Brand Colors */
-    --dds-primary: {self.brand_config['colors']['primary_gradient']};
-    --dds-accent: {self.brand_config['colors']['accent']};
-    --dds-background: {self.brand_config['colors']['background']};
-    --dds-text-light: {self.brand_config['colors']['text_light']};
-    --dds-text-muted: {self.brand_config['colors']['text_muted']};
-    --dds-card-bg: {self.brand_config['colors']['card_bg']};
-    --dds-border: {self.brand_config['colors']['border']};
-    
-    /* DDS Typography */
-    --dds-font-primary: {self.brand_config['fonts']['primary']};
-    --dds-font-size-base: {self.brand_config['fonts']['sizes']['base']};
-    --dds-font-size-heading: {self.brand_config['fonts']['sizes']['heading']};
-    --dds-font-size-badge: {self.brand_config['fonts']['sizes']['badge']};
-    --dds-font-size-small: {self.brand_config['fonts']['sizes']['small']};
-    
-    /* DDS Spacing */
-    --dds-space-xs: {self.brand_config['spacing']['xs']};
-    --dds-space-sm: {self.brand_config['spacing']['sm']};
-    --dds-space-md: {self.brand_config['spacing']['md']};
-    --dds-space-lg: {self.brand_config['spacing']['lg']};
-    --dds-space-xl: {self.brand_config['spacing']['xl']};
-}}
-
-/* Global DDS Styles */
-body {{
-    font-family: var(--dds-font-primary);
-    font-size: var(--dds-font-size-base);
-    background: var(--dds-background);
-    color: var(--dds-text-light);
+body {
+    font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 16px;
     line-height: 1.5;
-}}
+    color: var(--dds-text-primary);
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d1b69 100%);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
 
-/* DDS Component Base Styles */
-.dds-card {{
-    background: var(--dds-card-bg);
-    border: 1px solid var(--dds-border);
-    border-radius: 12px;
-    padding: var(--dds-space-lg);
-    backdrop-filter: blur(20px);
-    transition: all 0.3s ease;
-}}
-
-.dds-card:hover {{
-    transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(0, 212, 255, 0.2);
-    border-color: var(--dds-accent);
-}}
-
-.dds-badge-status {{
-    display: inline-flex;
-    align-items: center;
-    gap: var(--dds-space-xs);
-    padding: var(--dds-space-xs) var(--dds-space-sm);
-    background: rgba(0, 212, 255, 0.1);
-    border: 1px solid var(--dds-accent);
-    border-radius: 16px;
-    font-size: var(--dds-font-size-badge);
-    font-weight: 500;
-    color: var(--dds-accent);
-}}
-
-.dds-status-dot {{
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--dds-accent);
-    animation: dds-pulse 2s infinite;
-}}
-
-@keyframes dds-pulse {{
-    0%, 100% {{ opacity: 1; transform: scale(1); }}
-    50% {{ opacity: 0.7; transform: scale(1.1); }}
-}}
-
-/* DDS Button System */
-.dds-btn {{
-    font-family: var(--dds-font-primary);
-    font-size: var(--dds-font-size-base);
-    font-weight: 600;
-    padding: var(--dds-space-sm) var(--dds-space-lg);
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}}
-
-.dds-btn-primary {{
-    background: var(--dds-primary);
-    color: var(--dds-text-light);
-}}
-
-.dds-btn-primary:hover {{
-    transform: translateY(-1px);
-    box-shadow: 0 4px 16px rgba(224, 13, 121, 0.3);
-}}
-
-.dds-btn-outline {{
-    background: transparent;
-    border: 1px solid var(--dds-accent);
-    color: var(--dds-accent);
-}}
-
-.dds-btn-outline:hover {{
-    background: var(--dds-accent);
-    color: var(--dds-background);
-}}
-
-/* DDS Gamification Styles */
-.dds-gamification-header {{
-    display: flex;
-    align-items: center;
-    gap: var(--dds-space-sm);
-    padding: var(--dds-space-sm) var(--dds-space-md);
-    background: rgba(224, 13, 121, 0.1);
-    border: 1px solid rgba(224, 13, 121, 0.3);
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}}
-
-.dds-gamification-header:hover {{
-    background: rgba(224, 13, 121, 0.2);
-    transform: translateY(-1px);
-}}
-
-.dds-odis-balance {{
-    font-weight: 700;
-    color: var(--dds-accent);
-}}
-
-/* DDS Layout System */
-.dds-header {{
+/* Header styles */
+.dds-header {
+    background: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--dds-border);
+    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--dds-space-md) var(--dds-space-xl);
-    background: var(--dds-card-bg);
-    border-bottom: 1px solid var(--dds-border);
-    backdrop-filter: blur(20px);
-}}
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
 
-.dds-header-actions {{
+.dds-header-left {
     display: flex;
     align-items: center;
-    gap: var(--dds-space-md);
-}}
+    gap: 2rem;
+}
 
-/* DDS Responsive Design */
-@media (max-width: 768px) {{
-    .dds-header {{
-        flex-direction: column;
-        gap: var(--dds-space-sm);
-        padding: var(--dds-space-md);
-    }}
-    
-    .dds-header-actions {{
-        width: 100%;
-        justify-content: center;
-    }}
-    
-    .dds-card {{
-        padding: var(--dds-space-md);
-    }}
-}}
+.dds-header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
 
-/* Remove old inconsistent styles */
-.badge {{ display: none !important; }}
-.top-right-badge {{ display: none !important; }}
-.visual-dot {{ display: none !important; }}
+.dds-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dds-primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Gamification button in header */
+.dds-gamification-btn {
+    background: linear-gradient(135deg, var(--dds-primary), var(--dds-primary-dark));
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.dds-gamification-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(224, 13, 121, 0.4);
+}
+
+/* Clean cards without dots */
+.dds-card {
+    background: var(--dds-bg-card);
+    border: 1px solid var(--dds-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.dds-card:hover {
+    border-color: var(--dds-accent);
+    transform: translateY(-2px);
+}
+
+.dds-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--dds-border);
+}
+
+.dds-card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--dds-text-primary);
+    margin: 0;
+}
+
+/* Clean status badges without dots */
+.dds-status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.dds-status-active {
+    background: rgba(0, 255, 136, 0.2);
+    color: var(--dds-success);
+    border: 1px solid var(--dds-success);
+}
+
+.dds-status-pending {
+    background: rgba(255, 170, 0, 0.2);
+    color: var(--dds-warning);
+    border: 1px solid var(--dds-warning);
+}
+
+.dds-status-verified {
+    background: rgba(0, 212, 255, 0.2);
+    color: var(--dds-accent);
+    border: 1px solid var(--dds-accent);
+}
+
+/* Buttons */
+.dds-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    font-size: 0.9rem;
+}
+
+.dds-btn-primary {
+    background: linear-gradient(135deg, var(--dds-primary), var(--dds-primary-dark));
+    color: white;
+}
+
+.dds-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(224, 13, 121, 0.4);
+}
+
+.dds-btn-outline {
+    background: transparent;
+    color: var(--dds-accent);
+    border: 2px solid var(--dds-accent);
+}
+
+.dds-btn-outline:hover {
+    background: var(--dds-accent);
+    color: var(--dds-bg-dark);
+}
+
+/* Grid layouts */
+.dds-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.dds-grid-2 {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.dds-grid-3 {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.dds-grid-4 {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* Sidebar */
+.dds-sidebar {
+    background: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(10px);
+    border-right: 1px solid var(--dds-border);
+    padding: 2rem 1rem;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
+    z-index: 90;
+}
+
+.dds-sidebar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0 0;
+}
+
+.dds-sidebar-nav li {
+    margin-bottom: 0.5rem;
+}
+
+.dds-sidebar-nav a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    color: var(--dds-text-secondary);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.dds-sidebar-nav a:hover,
+.dds-sidebar-nav a.active {
+    background: rgba(224, 13, 121, 0.1);
+    color: var(--dds-primary);
+}
+
+/* Main content */
+.dds-main {
+    margin-left: 250px;
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--dds-text-primary);
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1rem; }
+
+p {
+    color: var(--dds-text-secondary);
+    margin-bottom: 1rem;
+}
+
+/* Utilities */
+.dds-mb-1 { margin-bottom: 0.5rem; }
+.dds-mb-2 { margin-bottom: 1rem; }
+.dds-mb-3 { margin-bottom: 1.5rem; }
+.dds-mb-4 { margin-bottom: 2rem; }
+
+.dds-mt-1 { margin-top: 0.5rem; }
+.dds-mt-2 { margin-top: 1rem; }
+.dds-mt-3 { margin-top: 1.5rem; }
+.dds-mt-4 { margin-top: 2rem; }
+
+.dds-text-center { text-align: center; }
+.dds-text-right { text-align: right; }
+
+.dds-flex { display: flex; }
+.dds-flex-between { justify-content: space-between; }
+.dds-flex-center { justify-content: center; }
+.dds-flex-align-center { align-items: center; }
+
+/* Remove all visual dots and circles */
+.badge::before,
+.status-dot,
+.dot,
+.circle-indicator,
+.visual-dot {
+    display: none !important;
+}
+
+/* Override Bootstrap badges */
+.badge {
+    background: none !important;
+    border: none !important;
+    padding: 0.25rem 0.75rem !important;
+    border-radius: 20px !important;
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+}
+
+.badge-info {
+    background: rgba(0, 212, 255, 0.2) !important;
+    color: var(--dds-accent) !important;
+    border: 1px solid var(--dds-accent) !important;
+}
+
+.badge-success {
+    background: rgba(0, 255, 136, 0.2) !important;
+    color: var(--dds-success) !important;
+    border: 1px solid var(--dds-success) !important;
+}
+
+.badge-warning {
+    background: rgba(255, 170, 0, 0.2) !important;
+    color: var(--dds-warning) !important;
+    border: 1px solid var(--dds-warning) !important;
+}
+
+/* Modal styles */
+.dds-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.dds-modal-content {
+    background: var(--dds-bg-card);
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.dds-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--dds-border);
+}
+
+.dds-modal-close {
+    background: none;
+    border: none;
+    color: var(--dds-text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .dds-sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+    
+    .dds-sidebar.open {
+        transform: translateX(0);
+    }
+    
+    .dds-main {
+        margin-left: 0;
+    }
+    
+    .dds-header {
+        padding: 1rem;
+    }
+    
+    .dds-grid-2,
+    .dds-grid-3,
+    .dds-grid-4 {
+        grid-template-columns: 1fr;
+    }
+}
 """
         
-        unified_css_path = self.css_dir / "dds-unified.css"
-        unified_css_path.write_text(unified_css, encoding='utf-8')
-        logger.info(f"✅ Created unified stylesheet: {unified_css_path}")
-
-    def fix_template_consistency(self):
-        """Fix template consistency issues"""
-        logger.info("🔧 Fixing template consistency...")
+        css_file = self.css_dir / "dds-clean.css"
+        css_file.write_text(css_content, encoding='utf-8')
+        logger.info(f"✅ Created clean stylesheet: {css_file}")
+        self.fixes_applied.append("Created clean DDS stylesheet")
+        
+    def fix_header_gamification(self):
+        """Fix header and move gamification back to header"""
+        logger.info("🎮 Fixing header and gamification placement...")
+        
+        # Update base template to fix header
+        base_template = self.templates_dir / "base.html"
+        if base_template.exists():
+            content = base_template.read_text(encoding='utf-8')
+            
+            # Remove old gamification from bottom
+            content = re.sub(r'<div[^>]*class="[^"]*gamification[^"]*"[^>]*>.*?</div>', '', content, flags=re.DOTALL | re.IGNORECASE)
+            
+            # Find and replace header section
+            header_pattern = r'(<header[^>]*>.*?</header>)'
+            new_header = '''<header class="dds-header">
+    <div class="dds-header-left">
+        <a href="/" class="dds-logo">
+            <span>💎</span>
+            DAODISEO.APP
+        </a>
+    </div>
+    <div class="dds-header-right">
+        <button class="dds-gamification-btn" onclick="openGamificationModal()">
+            <span>⭐</span>
+            <span id="odis-balance">0 ODIS</span>
+        </button>
+        <button class="dds-btn dds-btn-outline" onclick="connectKeplr()">
+            Connect Keplr
+        </button>
+    </div>
+</header>'''
+            
+            if re.search(header_pattern, content, flags=re.DOTALL):
+                content = re.sub(header_pattern, new_header, content, flags=re.DOTALL)
+            else:
+                # If no header found, add it after body tag
+                content = re.sub(r'(<body[^>]*>)', r'\1\n' + new_header, content)
+            
+            # Add gamification modal
+            modal_html = '''
+<!-- Gamification Modal -->
+<div id="gamificationModal" class="dds-modal" style="display: none;">
+    <div class="dds-modal-content">
+        <div class="dds-modal-header">
+            <h3>ODIS Rewards</h3>
+            <button class="dds-modal-close" onclick="closeGamificationModal()">&times;</button>
+        </div>
+        <div class="dds-modal-body">
+            <div class="dds-card">
+                <h4>Earn ODIS Tokens</h4>
+                <div class="reward-actions">
+                    <div class="reward-item">
+                        <span>Upload BIM File</span>
+                        <span class="reward-amount">+30 ODIS</span>
+                    </div>
+                    <div class="reward-item">
+                        <span>Sign Contract</span>
+                        <span class="reward-amount">+50 ODIS</span>
+                    </div>
+                    <div class="reward-item">
+                        <span>Connect Keplr</span>
+                        <span class="reward-amount">+25 ODIS</span>
+                    </div>
+                    <div class="reward-item">
+                        <span>Verify Property</span>
+                        <span class="reward-amount">+40 ODIS</span>
+                    </div>
+                    <div class="reward-item">
+                        <span>Complete Transaction</span>
+                        <span class="reward-amount">+60 ODIS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>'''
+            
+            # Add modal before closing body tag
+            content = re.sub(r'(</body>)', modal_html + r'\n\1', content)
+            
+            base_template.write_text(content, encoding='utf-8')
+            logger.info("✅ Fixed header and gamification")
+            self.fixes_applied.append("Fixed header and moved gamification")
+            
+    def remove_visual_dots(self):
+        """Remove all visual dots and clean up badges"""
+        logger.info("🎯 Removing visual dots and cleaning badges...")
         
         template_files = list(self.templates_dir.rglob("*.html"))
         
@@ -546,908 +583,187 @@ body {{
                 content = template_path.read_text(encoding='utf-8')
                 original_content = content
                 
-                # Remove inline styles and replace with classes
-                content = self.replace_inline_styles(content)
+                # Remove visual dots and circles
+                dot_patterns = [
+                    r'<span[^>]*class="[^"]*dot[^"]*"[^>]*>.*?</span>',
+                    r'<div[^>]*class="[^"]*circle[^"]*"[^>]*>.*?</div>',
+                    r'<i[^>]*class="[^"]*dot[^"]*"[^>]*></i>',
+                    r'<span[^>]*class="[^"]*status-dot[^"]*"[^>]*>.*?</span>',
+                    r'●', r'•', r'◦', r'○'
+                ]
                 
-                # Standardize badge elements
-                content = self.standardize_badges(content)
+                for pattern in dot_patterns:
+                    content = re.sub(pattern, '', content, flags=re.DOTALL | re.IGNORECASE)
                 
-                # Fix header alignment issues
-                if 'base.html' in template_path.name:
-                    content = self.fix_header_alignment(content)
+                # Clean up badge styles
+                badge_replacements = [
+                    (r'<span[^>]*class="[^"]*badge[^"]*bg-info[^"]*"[^>]*>([^<]*)</span>', 
+                     r'<span class="dds-status dds-status-verified">\1</span>'),
+                    (r'<span[^>]*class="[^"]*badge[^"]*bg-success[^"]*"[^>]*>([^<]*)</span>', 
+                     r'<span class="dds-status dds-status-active">\1</span>'),
+                    (r'<span[^>]*class="[^"]*badge[^"]*bg-warning[^"]*"[^>]*>([^<]*)</span>', 
+                     r'<span class="dds-status dds-status-pending">\1</span>'),
+                ]
                 
-                # Only write if content changed
+                for old_pattern, new_pattern in badge_replacements:
+                    content = re.sub(old_pattern, new_pattern, content, flags=re.IGNORECASE)
+                
+                # Remove inline styles that add dots
+                content = re.sub(r'style="[^"]*::before[^"]*"', '', content, flags=re.IGNORECASE)
+                content = re.sub(r'style="[^"]*content:\s*["\'][\u2022\u25cf\u25cb]["\'][^"]*"', '', content, flags=re.IGNORECASE)
+                
                 if content != original_content:
                     template_path.write_text(content, encoding='utf-8')
-                    logger.info(f"✅ Updated template: {template_path}")
+                    logger.info(f"✅ Cleaned visual dots in: {template_path}")
                     
             except Exception as e:
-                logger.error(f"❌ Error fixing template {template_path}: {e}")
-
-    def replace_inline_styles(self, content: str) -> str:
-        """Replace inline styles with CSS classes"""
-        
-        # Common inline style replacements
-        replacements = [
-            # Font family replacements
-            (r'style="[^"]*font-family:[^;"]*[^"]*"', 'class="dds-text"'),
-            
-            # Color replacements
-            (r'style="[^"]*color:\s*#00d4ff[^"]*"', 'class="text-accent"'),
-            (r'style="[^"]*color:\s*#ffffff[^"]*"', 'class="text-light"'),
-            
-            # Background replacements
-            (r'style="[^"]*background[^:"]*:[^;"]*gradient[^"]*"', 'class="bg-primary"'),
-            
-            # Spacing replacements
-            (r'style="[^"]*padding:\s*1rem[^"]*"', 'class="p-3"'),
-            (r'style="[^"]*margin:\s*1rem[^"]*"', 'class="m-3"'),
-            
-            # Position replacements for top-right elements
-            (r'style="[^"]*position:\s*absolute[^;]*right:[^"]*"', 'class="dds-badge-status position-absolute top-0 end-0"'),
-        ]
-        
-        for pattern, replacement in replacements:
-            content = re.sub(pattern, replacement, content, flags=re.IGNORECASE)
-        
-        return content
-
-    def standardize_badges(self, content: str) -> str:
-        """Standardize badge elements across templates"""
-        
-        # Replace old badge patterns with new DDS badge system
-        badge_replacements = [
-            # Old style badges
-            (r'<span[^>]*class="[^"]*badge[^"]*bg-[^"]*"[^>]*>([^<]*)</span>', 
-             r'<span class="dds-badge-status"><span class="dds-status-dot"></span>\1</span>'),
-            
-            # Top-right visual elements
-            (r'<div[^>]*class="[^"]*top-right[^"]*"[^>]*>([^<]*)</div>', 
-             r'<div class="dds-badge-status position-absolute top-0 end-0 m-2"><span class="dds-status-dot"></span>\1</div>'),
-            
-            # Status indicators
-            (r'<div[^>]*class="[^"]*status-indicator[^"]*"[^>]*></div>', 
-             r'<span class="dds-status-dot"></span>'),
-        ]
-        
-        for pattern, replacement in badge_replacements:
-            content = re.sub(pattern, replacement, content, flags=re.IGNORECASE | re.DOTALL)
-        
-        return content
-
-    def fix_header_alignment(self, content: str) -> str:
-        """Fix header alignment issues"""
-        
-        # Fix header structure for proper alignment
-        header_fix = '''
-            <div class="dds-header">
-                <div class="page-title">
-                    <h1>{% block page_title %}Dashboard{% endblock %}</h1>
-                </div>
-                <div class="dds-header-actions">
-                    <div class="dds-gamification-header" id="gamificationBtn">
-                        <i data-feather="star"></i>
-                        <span class="dds-odis-balance" id="userOdisBalance">0 ODIS</span>
-                    </div>
-                    <div class="wallet-connection">
-                        <button class="dds-btn dds-btn-outline" id="headerConnectKeplr">
-                            <i data-feather="link"></i>
-                            Connect Keplr
-                        </button>
-                    </div>
-                </div>
-            </div>
-        '''
-        
-        # Replace existing header structure
-        header_pattern = r'<div class="top-bar">.*?</div>'
-        content = re.sub(header_pattern, header_fix.strip(), content, flags=re.DOTALL)
-        
-        return content
-
-    def restore_gamification(self):
-        """Restore gamification system to header"""
-        logger.info("🎮 Restoring gamification system...")
-        
-        # Create gamification modal template
-        self.create_gamification_modal()
-        
-        # Update JavaScript for gamification
-        self.update_gamification_js()
-        
-        # Verify cross-route variables
-        self.verify_cross_route_variables()
-
-    def create_gamification_modal(self):
-        """Create gamification modal template"""
-        modal_template = '''
-<!-- Gamification Modal -->
-<div class="modal fade" id="gamificationModal" tabindex="-1" aria-labelledby="gamificationModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content dds-card">
-            <div class="modal-header">
-                <h5 class="modal-title" id="gamificationModalLabel">
-                    <i data-feather="star"></i>
-                    ODIS Rewards Center
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <div class="dds-card text-center">
-                            <h3 class="dds-odis-balance" id="modalOdisBalance">0 ODIS</h3>
-                            <p class="text-muted">Your Balance</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="dds-card text-center">
-                            <h3 class="text-accent" id="totalEarned">0 ODIS</h3>
-                            <p class="text-muted">Total Earned</p>
-                        </div>
-                    </div>
-                </div>
+                logger.error(f"❌ Error cleaning {template_path}: {e}")
                 
-                <h6 class="text-uppercase mb-3">Available Actions</h6>
-                <div class="gamification-actions" id="gamificationActions">
-                    <!-- Actions populated by JavaScript -->
-                </div>
-                
-                <h6 class="text-uppercase mt-4 mb-3">Recent Activity</h6>
-                <div class="activity-log" id="activityLog">
-                    <!-- Activity populated by JavaScript -->
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-'''
+        self.fixes_applied.append("Removed visual dots and cleaned badges")
         
-        # Add modal to base template
-        base_template_path = self.templates_dir / "base.html"
-        if base_template_path.exists():
-            content = base_template_path.read_text(encoding='utf-8')
-            
-            # Insert modal before closing body tag
-            if modal_template not in content:
-                content = content.replace('</body>', f'{modal_template}\n</body>')
-                base_template_path.write_text(content, encoding='utf-8')
-                logger.info("✅ Added gamification modal to base template")
-
-    def update_gamification_js(self):
-        """Update JavaScript for gamification functionality"""
-        logger.info("📜 Updating gamification JavaScript...")
+    def fix_spacing_typography(self):
+        """Fix spacing and typography issues"""
+        logger.info("📝 Fixing spacing and typography...")
         
-        gamification_js = f'''
-// DAODISEO Gamification System
-// Generated by appPatch.py
-
-class DAODISEOGamification {{
-    constructor() {{
-        this.actions = {json.dumps(self.gamification_actions, indent=8)};
-        this.userBalance = 0;
-        this.totalEarned = 0;
-        this.activityLog = [];
+        template_files = list(self.templates_dir.rglob("*.html"))
         
-        this.init();
-    }}
-    
-    init() {{
-        // Initialize gamification button
-        const gamificationBtn = document.getElementById('gamificationBtn');
-        if (gamificationBtn) {{
-            gamificationBtn.addEventListener('click', () => this.openModal());
-        }}
-        
-        // Load user data
-        this.loadUserData();
-        
-        // Set up action listeners
-        this.setupActionListeners();
-        
-        // Update display
-        this.updateDisplay();
-    }}
-    
-    openModal() {{
-        const modal = new bootstrap.Modal(document.getElementById('gamificationModal'));
-        this.populateModal();
-        modal.show();
-    }}
-    
-    populateModal() {{
-        // Update balance displays
-        document.getElementById('modalOdisBalance').textContent = `${{this.userBalance}} ODIS`;
-        document.getElementById('totalEarned').textContent = `${{this.totalEarned}} ODIS`;
-        
-        // Populate actions
-        const actionsContainer = document.getElementById('gamificationActions');
-        actionsContainer.innerHTML = '';
-        
-        Object.entries(this.actions).forEach(([actionId, actionData]) => {{
-            const actionCard = this.createActionCard(actionId, actionData);
-            actionsContainer.appendChild(actionCard);
-        }});
-        
-        // Populate activity log
-        this.populateActivityLog();
-    }}
-    
-    createActionCard(actionId, actionData) {{
-        const card = document.createElement('div');
-        card.className = 'dds-card mb-3';
-        card.innerHTML = `
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
-                    <h6 class="mb-1">${{actionData.name}}</h6>
-                    <small class="text-muted">Earn ${{actionData.reward}} ODIS</small>
-                </div>
-                <button class="dds-btn dds-btn-primary btn-sm" onclick="gamification.executeAction('${{actionId}}')">
-                    Start Action
-                </button>
-            </div>
-        `;
-        return card;
-    }}
-    
-    executeAction(actionId) {{
-        const action = this.actions[actionId];
-        if (!action) return;
-        
-        // Add to activity log
-        this.activityLog.unshift({{
-            id: actionId,
-            name: action.name,
-            reward: action.reward,
-            timestamp: new Date().toISOString(),
-            status: 'completed'
-        }});
-        
-        // Update balance
-        this.userBalance += action.reward;
-        this.totalEarned += action.reward;
-        
-        // Save to localStorage
-        this.saveUserData();
-        
-        // Update display
-        this.updateDisplay();
-        
-        // Show success notification
-        this.showNotification(`Earned ${{action.reward}} ODIS for ${{action.name}}!`);
-        
-        // Update global state
-        if (typeof globalState !== 'undefined') {{
-            globalState.setState('gamification', {{
-                balance: this.userBalance,
-                totalEarned: this.totalEarned,
-                lastAction: actionId
-            }});
-        }}
-    }}
-    
-    setupActionListeners() {{
-        // Listen for app events that trigger rewards
-        document.addEventListener('keplr-connected', () => this.executeAction('connect_keplr'));
-        document.addEventListener('file-uploaded', () => this.executeAction('upload_bim'));
-        document.addEventListener('contract-signed', () => this.executeAction('sign_contract'));
-        document.addEventListener('file-validated', () => this.executeAction('validate_file'));
-        document.addEventListener('transaction-created', () => this.executeAction('create_transaction'));
-    }}
-    
-    loadUserData() {{
-        const saved = localStorage.getItem('daodiseo_gamification');
-        if (saved) {{
-            const data = JSON.parse(saved);
-            this.userBalance = data.balance || 0;
-            this.totalEarned = data.totalEarned || 0;
-            this.activityLog = data.activityLog || [];
-        }}
-    }}
-    
-    saveUserData() {{
-        const data = {{
-            balance: this.userBalance,
-            totalEarned: this.totalEarned,
-            activityLog: this.activityLog.slice(0, 50) // Keep last 50 activities
-        }};
-        localStorage.setItem('daodiseo_gamification', JSON.stringify(data));
-    }}
-    
-    updateDisplay() {{
-        // Update header balance
-        const headerBalance = document.getElementById('userOdisBalance');
-        if (headerBalance) {{
-            headerBalance.textContent = `${{this.userBalance}} ODIS`;
-        }}
-        
-        // Update modal if open
-        const modalBalance = document.getElementById('modalOdisBalance');
-        if (modalBalance) {{
-            modalBalance.textContent = `${{this.userBalance}} ODIS`;
-        }}
-        
-        const totalEarnedEl = document.getElementById('totalEarned');
-        if (totalEarnedEl) {{
-            totalEarnedEl.textContent = `${{this.totalEarned}} ODIS`;
-        }}
-    }}
-    
-    populateActivityLog() {{
-        const logContainer = document.getElementById('activityLog');
-        if (!logContainer) return;
-        
-        logContainer.innerHTML = '';
-        
-        this.activityLog.slice(0, 10).forEach(activity => {{
-            const logItem = document.createElement('div');
-            logItem.className = 'dds-card mb-2';
-            logItem.innerHTML = `
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <small class="text-muted">${{new Date(activity.timestamp).toLocaleDateString()}}</small>
-                        <div>${{activity.name}}</div>
-                    </div>
-                    <div class="text-accent">+${{activity.reward}} ODIS</div>
-                </div>
-            `;
-            logContainer.appendChild(logItem);
-        }});
-        
-        if (this.activityLog.length === 0) {{
-            logContainer.innerHTML = '<p class="text-muted text-center">No activity yet. Start completing actions to earn ODIS!</p>';
-        }}
-    }}
-    
-    showNotification(message) {{
-        // Create toast notification
-        const toast = document.createElement('div');
-        toast.className = 'toast position-fixed top-0 end-0 m-3';
-        toast.innerHTML = `
-            <div class="toast-header bg-success text-white">
-                <i data-feather="star" class="me-2"></i>
-                <strong class="me-auto">ODIS Earned!</strong>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
-            </div>
-            <div class="toast-body">${{message}}</div>
-        `;
-        
-        document.body.appendChild(toast);
-        const bsToast = new bootstrap.Toast(toast);
-        bsToast.show();
-        
-        // Remove toast after it's hidden
-        toast.addEventListener('hidden.bs.toast', () => toast.remove());
-    }}
-}}
-
-// Initialize gamification system
-let gamification;
-document.addEventListener('DOMContentLoaded', () => {{
-    gamification = new DAODISEOGamification();
-}});
-'''
-        
-        gamification_js_path = self.js_dir / "gamification.js"
-        gamification_js_path.write_text(gamification_js, encoding='utf-8')
-        logger.info(f"✅ Created gamification JavaScript: {gamification_js_path}")
-
-    def verify_cross_route_variables(self):
-        """Verify cross-route variable consistency"""
-        logger.info("🔍 Verifying cross-route variables...")
-        
-        # Scan JavaScript files for global state usage
-        js_files = list(self.js_dir.glob("*.js"))
-        global_state_usage = {}
-        
-        for js_file in js_files:
+        for template_path in template_files:
             try:
-                content = js_file.read_text(encoding='utf-8')
+                content = template_path.read_text(encoding='utf-8')
+                original_content = content
                 
-                # Find globalState usage patterns
-                state_patterns = [
-                    r'globalState\.setState\([\'"]([^\'"]+)[\'"]',
-                    r'globalState\.getState\([\'"]([^\'"]+)[\'"]',
-                    r'globalState\.subscribe\([\'"]([^\'"]+)[\'"]'
+                # Fix font references
+                content = re.sub(r'font-family:\s*[^;]+;', 'font-family: "Helvetica Neue", sans-serif;', content, flags=re.IGNORECASE)
+                
+                # Replace inconsistent spacing classes
+                spacing_fixes = [
+                    (r'class="([^"]*)\s*m-[0-9]+([^"]*)"', r'class="\1 dds-mb-2\2"'),
+                    (r'class="([^"]*)\s*p-[0-9]+([^"]*)"', r'class="\1 dds-mb-2\2"'),
+                    (r'style="margin:[^"]+"', ''),
+                    (r'style="padding:[^"]+"', ''),
                 ]
                 
-                for pattern in state_patterns:
-                    matches = re.findall(pattern, content)
-                    for match in matches:
-                        if match not in global_state_usage:
-                            global_state_usage[match] = []
-                        global_state_usage[match].append(str(js_file))
-                        
-            except Exception as e:
-                logger.warning(f"Error scanning {js_file}: {e}")
-        
-        logger.info(f"Found global state usage: {global_state_usage}")
-        self.cross_route_analysis = global_state_usage
-
-    def optimize_codebase(self):
-        """Optimize codebase for better performance"""
-        logger.info("⚡ Optimizing codebase...")
-        
-        # Find duplicate functions
-        self.find_duplicate_functions()
-        
-        # Identify unused files
-        self.identify_unused_files()
-        
-        # Optimize heavy components
-        self.optimize_heavy_components()
-        
-        # Implement lazy loading
-        self.implement_lazy_loading()
-
-    def find_duplicate_functions(self):
-        """Find and report duplicate functions"""
-        logger.info("🔍 Scanning for duplicate functions...")
-        
-        function_signatures = {}
-        duplicates = []
-        
-        # Scan Python files
-        python_files = list(self.src_dir.rglob("*.py"))
-        
-        for py_file in python_files:
-            try:
-                content = py_file.read_text(encoding='utf-8')
+                for old_pattern, new_pattern in spacing_fixes:
+                    content = re.sub(old_pattern, new_pattern, content, flags=re.IGNORECASE)
                 
-                # Parse AST to find function definitions
-                tree = ast.parse(content)
-                
-                for node in ast.walk(tree):
-                    if isinstance(node, ast.FunctionDef):
-                        # Create a simple signature hash
-                        func_lines = content.split('\n')[node.lineno-1:node.end_lineno]
-                        func_content = '\n'.join(func_lines)
-                        func_hash = hash(func_content.strip())
-                        
-                        if func_hash in function_signatures:
-                            duplicates.append({
-                                'function': node.name,
-                                'file1': str(function_signatures[func_hash]),
-                                'file2': str(py_file),
-                                'hash': func_hash
-                            })
-                        else:
-                            function_signatures[func_hash] = py_file
-                            
-            except Exception as e:
-                logger.warning(f"Error parsing {py_file}: {e}")
-        
-        self.optimization_patterns['duplicate_functions'] = duplicates
-        logger.info(f"Found {len(duplicates)} potential duplicate functions")
-
-    def identify_unused_files(self):
-        """Identify potentially unused files"""
-        logger.info("🗑️ Identifying unused files...")
-        
-        all_files = set()
-        referenced_files = set()
-        
-        # Collect all files
-        for ext in ['*.py', '*.js', '*.css', '*.html']:
-            all_files.update(self.src_dir.rglob(ext))
-        
-        # Find references in templates and code
-        for file_path in all_files:
-            try:
-                content = file_path.read_text(encoding='utf-8')
-                
-                # Look for file references
-                import_patterns = [
-                    r'import\s+(\w+)',
-                    r'from\s+([^\s]+)\s+import',
-                    r'src="[^"]*\/([^"\/]+)"',
-                    r'href="[^"]*\/([^"\/]+)"',
-                    r'url_for\([\'"]static[\'"],\s*filename=[\'"]([^\'"]+)[\'"]'
-                ]
-                
-                for pattern in import_patterns:
-                    matches = re.findall(pattern, content)
-                    referenced_files.update(matches)
+                if content != original_content:
+                    template_path.write_text(content, encoding='utf-8')
+                    logger.info(f"✅ Fixed spacing in: {template_path}")
                     
             except Exception as e:
-                logger.warning(f"Error scanning {file_path}: {e}")
+                logger.error(f"❌ Error fixing spacing in {template_path}: {e}")
+                
+        self.fixes_applied.append("Fixed spacing and typography")
         
-        # Find potentially unused files
-        unused_candidates = []
-        for file_path in all_files:
-            file_name = file_path.name
-            if file_name not in referenced_files and file_name not in ['__init__.py', 'main.py']:
-                unused_candidates.append(str(file_path))
+    def update_base_template(self):
+        """Update base template with clean DDS styling"""
+        logger.info("🔧 Updating base template...")
         
-        self.optimization_patterns['unused_files'] = unused_candidates
-        logger.info(f"Found {len(unused_candidates)} potentially unused files")
-
-    def optimize_heavy_components(self):
-        """Identify and optimize heavy components"""
-        logger.info("🏋️ Optimizing heavy components...")
-        
-        heavy_components = []
-        
-        # Check for large JavaScript files
-        js_files = list(self.js_dir.glob("*.js"))
-        for js_file in js_files:
-            try:
-                size = js_file.stat().st_size
-                if size > 50000:  # 50KB threshold
-                    heavy_components.append({
-                        'file': str(js_file),
-                        'size': size,
-                        'type': 'large_js'
-                    })
-            except Exception as e:
-                logger.warning(f"Error checking {js_file}: {e}")
-        
-        # Check for large CSS files
-        css_files = list(self.css_dir.glob("*.css"))
-        for css_file in css_files:
-            try:
-                size = css_file.stat().st_size
-                if size > 30000:  # 30KB threshold
-                    heavy_components.append({
-                        'file': str(css_file),
-                        'size': size,
-                        'type': 'large_css'
-                    })
-            except Exception as e:
-                logger.warning(f"Error checking {css_file}: {e}")
-        
-        self.optimization_patterns['heavy_components'] = heavy_components
-        logger.info(f"Found {len(heavy_components)} heavy components")
-
-    def implement_lazy_loading(self):
-        """Implement lazy loading for heavy components"""
-        logger.info("⏳ Implementing lazy loading...")
-        
-        lazy_loading_js = '''
-// Lazy Loading Implementation
-// Generated by appPatch.py
-
-class DAODISEOLazyLoader {
-    constructor() {
-        this.loadedModules = new Set();
-        this.init();
-    }
-    
-    init() {
-        // Implement intersection observer for lazy loading
-        this.observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    this.loadComponent(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        // Observe lazy-load elements
-        document.querySelectorAll('[data-lazy-load]').forEach(el => {
-            this.observer.observe(el);
-        });
-    }
-    
-    async loadComponent(element) {
-        const componentName = element.dataset.lazyLoad;
-        
-        if (this.loadedModules.has(componentName)) {
-            return;
-        }
-        
-        try {
-            // Show loading state
-            element.innerHTML = '<div class="text-center p-4"><div class="spinner-border text-primary" role="status"></div></div>';
+        base_template = self.templates_dir / "base.html"
+        if base_template.exists():
+            content = base_template.read_text(encoding='utf-8')
             
-            // Dynamically import component
-            const module = await import(`./components/${componentName}.js`);
+            # Add clean CSS link
+            css_link = '<link rel="stylesheet" href="{{ url_for(\'static\', filename=\'css/dds-clean.css\') }}">'
             
-            // Initialize component
-            if (module.default) {
-                new module.default(element);
-            }
+            if css_link not in content:
+                # Add after other CSS links or in head
+                if '<link rel="stylesheet"' in content:
+                    content = re.sub(r'(<link rel="stylesheet"[^>]*>)', r'\1\n    ' + css_link, content, count=1)
+                elif '<head>' in content:
+                    content = re.sub(r'(<head>)', r'\1\n    ' + css_link, content)
+                else:
+                    content = css_link + '\n' + content
             
-            this.loadedModules.add(componentName);
-            this.observer.unobserve(element);
-            
-        } catch (error) {
-            console.error(`Failed to load component ${componentName}:`, error);
-            element.innerHTML = '<div class="alert alert-warning">Failed to load component</div>';
-        }
-    }
+            # Add gamification JavaScript
+            gamification_js = '''
+<script>
+function openGamificationModal() {
+    document.getElementById('gamificationModal').style.display = 'flex';
 }
 
-// Initialize lazy loader
-document.addEventListener('DOMContentLoaded', () => {
-    new DAODISEOLazyLoader();
-});
-'''
-        
-        lazy_loader_path = self.js_dir / "lazy-loader.js"
-        lazy_loader_path.write_text(lazy_loading_js, encoding='utf-8')
-        logger.info(f"✅ Created lazy loading system: {lazy_loader_path}")
+function closeGamificationModal() {
+    document.getElementById('gamificationModal').style.display = 'none';
+}
 
-    def reorganize_ui_architecture(self):
-        """Reorganize UI around AI brain architecture"""
-        logger.info("🧠 Reorganizing UI architecture around AI brain...")
-        
-        # Create brain-based template structure
-        self.create_brain_template_structure()
-        
-        # Update component organization
-        self.update_component_organization()
-        
-        # Create architecture mapping
-        self.create_architecture_mapping()
+function connectKeplr() {
+    // Keplr wallet connection logic
+    console.log('Connecting Keplr wallet...');
+    // Award 25 ODIS for connecting
+    awardODIS(25, 'Connect Keplr');
+}
 
-    def create_brain_template_structure(self):
-        """Create brain-based template organization"""
-        logger.info("📁 Creating brain-based template structure...")
-        
-        brain_dir = self.templates_dir / "brain"
-        brain_dir.mkdir(exist_ok=True)
-        
-        # Create subdirectories
-        (brain_dir / "inputs").mkdir(exist_ok=True)
-        (brain_dir / "processing").mkdir(exist_ok=True)
-        (brain_dir / "outputs").mkdir(exist_ok=True)
-        
-        # Create brain component templates
-        brain_templates = {
-            "dashboard.html": "outputs",
-            "upload.html": "inputs", 
-            "contracts.html": "inputs",
-            "viewer.html": "outputs",
-            "ai_analysis.html": "processing",
-            "validation.html": "processing"
-        }
-        
-        for template_name, category in brain_templates.items():
-            template_path = brain_dir / category / template_name
-            if not template_path.exists():
-                template_content = f'''
-{{% extends "base.html" %}}
-
-{{% block title %}}DAODISEO - {template_name.replace('.html', '').title()}{{% endblock %}}
-
-{{% block page_title %}}{template_name.replace('.html', '').replace('_', ' ').title()}{{% endblock %}}
-
-{{% block content %}}
-<!-- {category.title()} Node: {template_name.replace('.html', '').title()} -->
-<div class="brain-component" data-category="{category}">
-    <div class="dds-card">
-        <div class="d-flex align-items-center mb-3">
-            <i data-feather="cpu" class="me-2"></i>
-            <h5 class="mb-0">AI Brain - {category.title()} Node</h5>
-            <span class="dds-badge-status ms-auto">
-                <span class="dds-status-dot"></span>
-                Active
-            </span>
-        </div>
-        
-        <!-- Component content goes here -->
-        <div class="component-content" data-lazy-load="{template_name.replace('.html', '')}">
-            <!-- Content loaded dynamically -->
-        </div>
-    </div>
-</div>
-{{% endblock %}}
-'''
-                template_path.write_text(template_content, encoding='utf-8')
-                logger.info(f"✅ Created brain template: {template_path}")
-
-    def update_component_organization(self):
-        """Update component organization for consistency"""
-        logger.info("🔧 Updating component organization...")
-        
-        # Create components directory if it doesn't exist
-        components_dir = self.templates_dir / "components"
-        components_dir.mkdir(exist_ok=True)
-        
-        # Standard component template
-        component_template = '''
-<!-- DDS Component: {component_name} -->
-<div class="dds-card component-{component_name}" data-component="{component_name}">
-    <div class="component-header d-flex justify-content-between align-items-center mb-3">
-        <h6 class="mb-0">
-            <i data-feather="{icon}" class="me-2"></i>
-            {title}
-        </h6>
-        <span class="dds-badge-status">
-            <span class="dds-status-dot"></span>
-            {status}
-        </span>
-    </div>
+function awardODIS(amount, action) {
+    const currentBalance = parseInt(document.getElementById('odis-balance').textContent) || 0;
+    const newBalance = currentBalance + amount;
+    document.getElementById('odis-balance').textContent = newBalance + ' ODIS';
     
-    <div class="component-body">
-        <!-- Component content -->
-        {content}
-    </div>
-</div>
+    // Show notification
+    console.log(`Awarded ${amount} ODIS for ${action}`);
+}
+
+// Close modal when clicking outside
+document.addEventListener('click', function(event) {
+    const modal = document.getElementById('gamificationModal');
+    if (event.target === modal) {
+        closeGamificationModal();
+    }
+});
+</script>
 '''
+            
+            # Add JavaScript before closing body tag
+            if '</body>' in content and 'openGamificationModal' not in content:
+                content = re.sub(r'(</body>)', gamification_js + r'\n\1', content)
+            
+            base_template.write_text(content, encoding='utf-8')
+            logger.info("✅ Updated base template")
+            self.fixes_applied.append("Updated base template with clean styling")
+            
+    def generate_report(self):
+        """Generate patch report"""
+        logger.info("📊 Generating patch report...")
         
-        # Create standardized components
-        standard_components = [
-            {
-                'name': 'odis_token_overview',
-                'title': 'ODIS Token Overview',
-                'icon': 'dollar-sign',
-                'status': 'Live',
-                'content': '<!-- ODIS token metrics -->'
-            },
-            {
-                'name': 'validators_grid',
-                'title': 'Network Validators',
-                'icon': 'shield',
-                'status': 'Active',
-                'content': '<!-- Validators display -->'
-            },
-            {
-                'name': 'transaction_history',
-                'title': 'Transaction History',
-                'icon': 'clock',
-                'status': 'Updated',
-                'content': '<!-- Transaction list -->'
-            }
-        ]
-        
-        for component in standard_components:
-            component_path = components_dir / f"{component['name']}.html"
-            content = component_template.format(**component, component_name=component['name'])
-            component_path.write_text(content, encoding='utf-8')
-            logger.info(f"✅ Created component: {component_path}")
-
-    def create_architecture_mapping(self):
-        """Create UI architecture mapping file"""
-        architecture_map = {
-            "daodiseo_ui_architecture": {
-                "version": "1.0.0",
-                "generated_by": "appPatch.py",
-                "timestamp": datetime.now().isoformat(),
-                "brain_architecture": {
-                    "input_nodes": {
-                        "upload": {
-                            "route": "/upload",
-                            "template": "brain/inputs/upload.html",
-                            "purpose": "BIM file input and validation",
-                            "connects_to": ["ai_analysis", "validation"]
-                        },
-                        "contracts": {
-                            "route": "/contracts", 
-                            "template": "brain/inputs/contracts.html",
-                            "purpose": "Smart contract creation and management",
-                            "connects_to": ["ai_analysis", "transaction_processing"]
-                        }
-                    },
-                    "processing_nodes": {
-                        "ai_analysis": {
-                            "component": "src/services/ai/",
-                            "template": "brain/processing/ai_analysis.html",
-                            "purpose": "AI-powered BIM analysis and insights",
-                            "processes": ["bim_validation", "risk_assessment", "value_estimation"]
-                        },
-                        "validation": {
-                            "component": "src/services/validation/",
-                            "template": "brain/processing/validation.html", 
-                            "purpose": "Data validation and verification",
-                            "processes": ["file_integrity", "blockchain_verification", "compliance_check"]
-                        }
-                    },
-                    "output_nodes": {
-                        "dashboard": {
-                            "route": "/",
-                            "template": "brain/outputs/dashboard.html",
-                            "purpose": "Main dashboard with aggregated insights",
-                            "displays": ["portfolio_overview", "odis_metrics", "validator_status"]
-                        },
-                        "viewer": {
-                            "route": "/viewer",
-                            "template": "brain/outputs/viewer.html", 
-                            "purpose": "3D BIM model visualization",
-                            "displays": ["3d_model", "analysis_overlay", "interaction_tools"]
-                        },
-                        "gamification": {
-                            "component": "header_modal",
-                            "template": "components/gamification_modal.html",
-                            "purpose": "User rewards and engagement",
-                            "displays": ["odis_balance", "available_actions", "activity_log"]
-                        }
-                    }
-                },
-                "cross_route_variables": self.cross_route_analysis,
-                "optimization_results": self.optimization_patterns,
-                "style_consistency": {
-                    "unified_stylesheet": "static/css/dds-unified.css",
-                    "brand_colors": self.brand_config['colors'],
-                    "typography": self.brand_config['fonts'],
-                    "spacing_system": self.brand_config['spacing']
-                }
+        report = {
+            "patch_version": "2.0",
+            "timestamp": datetime.now().isoformat(),
+            "fixes_applied": self.fixes_applied,
+            "summary": {
+                "total_fixes": len(self.fixes_applied),
+                "focus": "UI/UX cleanup and professional styling",
+                "key_improvements": [
+                    "Removed all visual dots and circles",
+                    "Fixed header alignment and gamification",
+                    "Applied clean DDS brand styling",
+                    "Improved typography and spacing",
+                    "Created professional interface"
+                ]
             }
         }
         
-        architecture_path = Path("ui_architecture_map.json")
-        architecture_path.write_text(json.dumps(architecture_map, indent=2), encoding='utf-8')
-        logger.info(f"✅ Created architecture mapping: {architecture_path}")
-
-    def generate_reports(self):
-        """Generate comprehensive patch reports"""
-        logger.info("📊 Generating patch reports...")
+        report_file = self.base_dir / "uiux_patch_report.json"
+        report_file.write_text(json.dumps(report, indent=2), encoding='utf-8')
+        logger.info(f"✅ Generated report: {report_file}")
         
-        # Summary report
-        summary = {
-            "patch_execution": {
-                "timestamp": datetime.now().isoformat(),
-                "status": "completed",
-                "components_processed": {
-                    "templates": len(list(self.templates_dir.rglob("*.html"))),
-                    "css_files": len(list(self.css_dir.glob("*.css"))),
-                    "js_files": len(list(self.js_dir.glob("*.js")))
-                }
-            },
-            "visual_consistency": {
-                "inline_styles_found": len(self.visual_issues.get('inline_styles', [])),
-                "badge_elements_standardized": len(self.visual_issues.get('badge_elements', [])),
-                "unified_stylesheet_created": True
-            },
-            "gamification_restoration": {
-                "header_integration": True,
-                "modal_created": True,
-                "js_system_updated": True,
-                "actions_configured": len(self.gamification_actions)
-            },
-            "performance_optimization": {
-                "duplicate_functions_found": len(self.optimization_patterns['duplicate_functions']),
-                "unused_files_identified": len(self.optimization_patterns['unused_files']),
-                "heavy_components_found": len(self.optimization_patterns['heavy_components']),
-                "lazy_loading_implemented": True
-            },
-            "architecture_reorganization": {
-                "brain_structure_created": True,
-                "components_standardized": True,
-                "architecture_mapped": True
-            }
-        }
-        
-        # Write summary to log
-        logger.info("=" * 60)
-        logger.info("DAODISEO APP PATCH SUMMARY")
-        logger.info("=" * 60)
-        logger.info(f"✅ Patch completed successfully at {summary['patch_execution']['timestamp']}")
-        logger.info(f"📁 Processed {summary['patch_execution']['components_processed']['templates']} templates")
-        logger.info(f"🎨 Fixed {summary['visual_consistency']['inline_styles_found']} inline style issues")
-        logger.info(f"🎮 Configured {summary['gamification_restoration']['actions_configured']} gamification actions")
-        logger.info(f"⚡ Found {summary['performance_optimization']['duplicate_functions_found']} duplicate functions")
-        logger.info(f"🗑️ Identified {summary['performance_optimization']['unused_files_identified']} potentially unused files")
-        logger.info("=" * 60)
-        
-        # Save detailed report
-        report_path = Path("daodiseo_patch_report.json")
-        report_path.write_text(json.dumps(summary, indent=2), encoding='utf-8')
-        logger.info(f"📋 Detailed report saved: {report_path}")
 
 def main():
     """Main execution function"""
-    print("🧠 DAODISEO App Patcher v1.0")
-    print("=" * 50)
-    
     try:
-        patcher = DAODISEOAppPatcher()
+        patcher = UIUXPatcher()
         patcher.run_patch()
         
-        print("\n🎉 Patch completed successfully!")
-        print("\nNext steps:")
-        print("1. Review the patch report: app_patch_report.log")
-        print("2. Check architecture mapping: ui_architecture_map.json") 
-        print("3. Test the gamification system in the header")
-        print("4. Verify visual consistency across all routes")
-        print("5. Monitor performance improvements")
+        print("\n🎯 Next steps:")
+        print("1. Refresh your browser to see the changes")
+        print("2. Check that all visual dots are removed")
+        print("3. Verify gamification button is in header")
+        print("4. Test the ODIS reward system")
+        print("5. Review the clean, professional styling")
         
     except Exception as e:
-        print(f"\n❌ Patch failed: {str(e)}")
-        print("Check app_patch_report.log for details")
+        print(f"\n❌ UI/UX patch failed: {e}")
+        logger.error(f"UI/UX patch failed: {e}")
         return 1
-    
+        
     return 0
 
 if __name__ == "__main__":
