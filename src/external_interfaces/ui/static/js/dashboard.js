@@ -129,13 +129,10 @@ async function loadValidatorsData() {
         }
         
         // Calculate total voting power
-        const totalVotingPower = validators.reduce((sum, v) => {
-            const power = typeof v.voting_power === 'number' ? v.voting_power : parseFloat(v.voting_power) || 0;
-            return sum + power;
-        }, 0);
+        const totalVotingPower = validators.reduce((sum, v) => sum + (parseFloat(v.voting_power) || 0), 0);
         const totalPowerElement = document.getElementById('total-voting-power');
         if (totalPowerElement) {
-            totalPowerElement.textContent = formatNumber(Math.round(totalVotingPower)) + 'M';
+            totalPowerElement.textContent = formatNumber(Math.round(totalVotingPower / 1000000)) + 'M';
         }
         
         // Populate validators grid
@@ -172,12 +169,10 @@ function createValidatorCard(validator, index) {
     const col = document.createElement('div');
     col.className = 'col-md-4 mb-3';
     
-    // Extract validator data with proper handling
-    const moniker = validator.moniker || validator.description?.moniker || `Validator ${index + 1}`;
-    const votingPower = typeof validator.voting_power === 'number' ? validator.voting_power : parseFloat(validator.voting_power) || 0;
-    const commission = typeof validator.commission?.commission_rates?.rate === 'number' 
-        ? validator.commission.commission_rates.rate 
-        : parseFloat(validator.commission?.commission_rates?.rate) || 0;
+    // Extract validator data
+    const moniker = validator.description?.moniker || validator.moniker || `Validator ${index + 1}`;
+    const votingPower = parseFloat(validator.voting_power) || 0;
+    const commission = parseFloat(validator.commission?.commission_rates?.rate) || 0;
     const status = validator.status || 'BOND_STATUS_BONDED';
     const jailed = validator.jailed || false;
     
@@ -212,7 +207,7 @@ function createValidatorCard(validator, index) {
                 <div class="row">
                     <div class="col-6">
                         <div class="metric-small">
-                            <div class="metric-value">${votingPower > 0 ? formatNumber(votingPower.toFixed(1)) + 'M' : '0'}</div>
+                            <div class="metric-value">${formatNumber(Math.round(votingPower / 1000000))}M</div>
                             <div class="metric-label">Voting Power</div>
                         </div>
                     </div>

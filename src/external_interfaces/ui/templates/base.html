@@ -6,10 +6,9 @@
     <title>{% block title %}DAODISEO - Real Estate Tokenization{% endblock %}</title>
     
     <!-- Fonts -->
-    <!-- Google Fonts - Unified Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Feather Icons - Locally Bundled (implementation fixed) -->
     <script src="{{ url_for('static', filename='js/lib/feather.min.js') }}"></script>
@@ -31,15 +30,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-theme.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
-    <!-- DDS Brand Theme -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/dds-brand-theme.css') }}">
-    
-    <!-- DDS Design System -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/dds-design-system.css') }}">
-    
-    <!-- DDS UX Fixes -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/dds-ux-fixes.css') }}">
-    
     <link rel="stylesheet" href="{{ url_for('static', filename='css/micro-rewards.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/daodiseo-ux.css') }}">
     
@@ -101,15 +91,6 @@
     <!-- Global State Management -->
     <script src="{{ url_for('static', filename='js/global-state.js') }}"></script>
     
-    <!-- Gamification System -->
-    <script src="{{ url_for('static', filename='js/gamification-system.js') }}"></script>
-    
-    <!-- DDS UI Converter -->
-    <script src="{{ url_for('static', filename='js/dds-ui-converter.js') }}"></script>
-    
-    <!-- Content Enhancement System -->
-    <script src="{{ url_for('static', filename='js/content-enhancement.js') }}"></script>
-    
     {% block extra_css %}{% endblock %}
 </head>
 <body class="cosmic-theme">
@@ -169,19 +150,18 @@
                     <h1>{% block page_title %}Dashboard{% endblock %}</h1>
                 </div>
                 <div class="top-actions">
-                    <div class="points-system" id="pointsSystemBtn">
-                        <div class="points-display">
-                            <i data-feather="star"></i>
-                            <span class="points-badge" id="userPoints">0 pts</span>
-                            <small class="level-text">Level 1</small>
-                        </div>
+                    
+                    <div class="user-menu">
+                        <div class="points-system" id="pointsSystemBtn">
+                        <i data-feather="star"></i>
+                        <span class="points-badge" id="userPoints">0 pts</span>
                     </div>
-
-                    <div class="wallet-connection">
-                        <button class="btn btn-outline-primary btn-sm" id="headerConnectKeplr">
+                        <div class="wallet-connection" id="headerWalletBtn">
+                        <button class="btn btn-outline-info btn-sm" id="headerConnectKeplr">
                             <i data-feather="link" class="icon-inline-sm"></i>
                             Connect Keplr
                         </button>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -189,191 +169,6 @@
             <!-- Content -->
             <div class="content-wrapper">
                 {% block content %}{% endblock %}
-            </div>
-        </div>
-    </div>
-
-    <!-- Blockchain Rewards Modal -->
-    <div class="modal fade" id="blockchainRewardsModal" tabindex="-1" aria-labelledby="blockchainRewardsModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="blockchainRewardsModalLabel">
-                        <i data-feather="award" class="icon-inline"></i>
-                        Blockchain Rewards
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Level Progress -->
-                    <div class="level-section mb-4">
-                        <div class="level-badge">
-                            <span class="level-number">1</span>
-                        </div>
-                        <div class="level-info">
-                            <h6>Level 1</h6>
-                            <div class="progress-info">
-                                <span id="currentPoints">0 points</span>
-                                <span class="text-muted">(100 to next level)</span>
-                            </div>
-                            <div class="progress mt-2">
-                                <div class="progress-bar" role="progressbar" style="width: 0%" id="levelProgress"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Achievements Section -->
-                    <div class="achievements-section mb-4">
-                        <h6>Achievements</h6>
-                        <div class="achievements-grid">
-                            <div class="achievement-item" data-achievement="wallet">
-                                <i data-feather="link"></i>
-                            </div>
-                            <div class="achievement-item" data-achievement="contract">
-                                <i data-feather="file-text"></i>
-                            </div>
-                            <div class="achievement-item" data-achievement="transaction">
-                                <i data-feather="send"></i>
-                            </div>
-                            <div class="achievement-item" data-achievement="validator">
-                                <i data-feather="shield"></i>
-                            </div>
-                            <div class="achievement-item" data-achievement="search">
-                                <i data-feather="search"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Actions & Points Section -->
-                    <div class="actions-section">
-                        <h6>Actions & Points</h6>
-                        <div class="actions-list">
-                            <div class="action-item" data-action="connect-wallet">
-                                <div class="action-icon">
-                                    <i data-feather="link"></i>
-                                </div>
-                                <div class="action-details">
-                                    <span class="action-name">Connect Keplr wallet</span>
-                                </div>
-                                <div class="action-reward">
-                                    <span class="points">+25</span>
-                                    <small class="cost">0.01 ODIS</small>
-                                </div>
-                            </div>
-                            
-                            <div class="action-item" data-action="sign-contract">
-                                <div class="action-icon">
-                                    <i data-feather="file-text"></i>
-                                </div>
-                                <div class="action-details">
-                                    <span class="action-name">Sign a smart contract</span>
-                                </div>
-                                <div class="action-reward">
-                                    <span class="points">+50</span>
-                                    <small class="cost">0.02 ODIS</small>
-                                </div>
-                            </div>
-                            
-                            <div class="action-item" data-action="submit-transaction">
-                                <div class="action-icon">
-                                    <i data-feather="check-circle"></i>
-                                </div>
-                                <div class="action-details">
-                                    <span class="action-name">Submit a blockchain transaction</span>
-                                </div>
-                                <div class="action-reward">
-                                    <span class="points">+100</span>
-                                    <small class="cost">0.05 ODIS</small>
-                                </div>
-                            </div>
-                            
-                            <div class="action-item" data-action="login">
-                                <div class="action-icon">
-                                    <i data-feather="log-in"></i>
-                                </div>
-                                <div class="action-details">
-                                    <span class="action-name">Log into the platform</span>
-                                </div>
-                                <div class="action-reward">
-                                    <span class="points">+10</span>
-                                    <small class="cost">0.005 ODIS</small>
-                                </div>
-                            </div>
-                            
-                            <div class="action-item" data-action="view-contract">
-                                <div class="action-icon">
-                                    <i data-feather="eye"></i>
-                                </div>
-                                <div class="action-details">
-                                    <span class="action-name">View a property contract</span>
-                                </div>
-                                <div class="action-reward">
-                                    <span class="points">+5</span>
-                                    <small class="cost">0.002 ODIS</small>
-                                </div>
-                            </div>
-                            
-                            <div class="action-item" data-action="upload-bim">
-                                <div class="action-icon">
-                                    <i data-feather="upload"></i>
-                                </div>
-                                <div class="action-details">
-                                    <span class="action-name">Upload a BIM model</span>
-                                </div>
-                                <div class="action-reward">
-                                    <span class="points">+30</span>
-                                    <small class="cost">0.015 ODIS</small>
-                                </div>
-                            </div>
-                            
-                            <div class="action-item" data-action="share-property">
-                                <div class="action-icon">
-                                    <i data-feather="share"></i>
-                                </div>
-                                <div class="action-details">
-                                    <span class="action-name">Share a property</span>
-                                </div>
-                                <div class="action-reward">
-                                    <span class="points">+15</span>
-                                    <small class="cost">0.008 ODIS</small>
-                                </div>
-                            </div>
-                            
-                            <div class="action-item" data-action="become-validator">
-                                <div class="action-icon">
-                                    <i data-feather="shield"></i>
-                                </div>
-                                <div class="action-details">
-                                    <span class="action-name">Become a validator</span>
-                                </div>
-                                <div class="action-reward">
-                                    <span class="points">+75</span>
-                                    <small class="cost">0.04 ODIS</small>
-                                </div>
-                            </div>
-                            
-                            <div class="action-item" data-action="complete-profile">
-                                <div class="action-icon">
-                                    <i data-feather="user"></i>
-                                </div>
-                                <div class="action-details">
-                                    <span class="action-name">Complete your profile</span>
-                                </div>
-                                <div class="action-reward">
-                                    <span class="points">+20</span>
-                                    <small class="cost">0.01 ODIS</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="claimRewardsBtn">
-                        <i data-feather="gift" class="icon-inline-sm"></i>
-                        Claim Rewards
-                    </button>
-                </div>
             </div>
         </div>
     </div>
@@ -403,16 +198,6 @@
             if (userProfileBtn) {
                 userProfileBtn.addEventListener('click', function() {
                     connectKeplrWallet();
-                });
-            }
-            
-            // Points system button in header
-            const pointsSystemBtn = document.getElementById('pointsSystemBtn');
-            if (pointsSystemBtn) {
-                pointsSystemBtn.addEventListener('click', function() {
-                    const modal = new bootstrap.Modal(document.getElementById('blockchainRewardsModal'));
-                    modal.show();
-                    updateGamificationModal();
                 });
             }
             

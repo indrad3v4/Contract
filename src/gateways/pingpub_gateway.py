@@ -262,38 +262,19 @@ class PingPubGateway:
                 formatted_validators = []
                 
                 for validator in validators[:10]:  # Limit to top 10 for display
-                    # Extract real validator information with proper parsing
-                    tokens_str = validator.get("tokens", "0")
-                    try:
-                        tokens = int(tokens_str) if tokens_str else 0
-                        voting_power = tokens / 1000000  # Convert from uodis to ODIS (proper decimal division)
-                    except (ValueError, TypeError):
-                        tokens = 0
-                        voting_power = 0
-                    
-                    # Parse commission rate properly
-                    commission_data = validator.get("commission", {})
-                    commission_rates = commission_data.get("commission_rates", {})
-                    commission_rate = commission_rates.get("rate", "0.05")
-                    
-                    # Ensure commission is a float
-                    try:
-                        commission_float = float(commission_rate)
-                    except (ValueError, TypeError):
-                        commission_float = 0.05
+                    # Extract real validator information
+                    tokens = int(validator.get("tokens", "0"))
+                    voting_power = tokens // 1000000  # Convert from uodis to ODIS
                     
                     formatted_validators.append({
                         "operator_address": validator.get("operator_address", ""),
-                        "moniker": validator.get("description", {}).get("moniker", f"Validator {len(formatted_validators) + 1}"),
-                        "description": validator.get("description", {}),
-                        "status": validator.get("status", "BOND_STATUS_UNBONDED"),
-                        "voting_power": voting_power,  # Keep as number for calculations
-                        "tokens": tokens,
-                        "commission": {
-                            "commission_rates": {
-                                "rate": commission_float
-                            }
+                        "description": {
+                            "moniker": validator.get("description", {}).get("moniker", "Unknown Validator")
                         },
+                        "status": validator.get("status", "BOND_STATUS_UNBONDED"),
+                        "voting_power": str(voting_power),
+                        "tokens": validator.get("tokens", "0"),
+                        "commission": validator.get("commission", {"commission_rates": {"rate": "0.05"}}),
                         "jailed": validator.get("jailed", False)
                     })
                 
