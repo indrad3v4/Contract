@@ -10,6 +10,7 @@ from flask import Blueprint, jsonify, request, current_app
 import json
 
 from src.services.ai.bim_agent import BIMAgentManager
+from src.services.ai.orchestrator import get_orchestrator
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
@@ -31,7 +32,7 @@ def get_bim_agent_instance():
 def chat():
     """
     Process a chat message and return the AI response
-    Expects JSON: {"message": "user message here", "use_agent": true/false}
+    Expects JSON: {"message": "user message here", "enhanced": true/false}
     """
     data = request.get_json()
 
@@ -39,40 +40,46 @@ def chat():
         return jsonify({"success": False, "message": "Message field is required"}), 400
 
     message = data["message"]
-    use_agent = data.get("use_agent", False)
+    enhanced_mode = data.get("enhanced", False)
 
     # Log the incoming message
-    logger.debug(f"Received chat message: {message}, use_agent={use_agent}")
+    logger.debug(f"Received chat message: {message}, enhanced_mode={enhanced_mode}")
     
-    if use_agent:
-        # Process with IFC agent if specified and available
-        logger.debug("Attempting to use IFC Agent for query")
+    if enhanced_mode:
+        # Use orchestrator for Enhanced AI mode
+        logger.debug("Using Enhanced AI mode with orchestrator")
         try:
-            # Load the current IFC file into the IFC agent if not already loaded
-            if bim_agent_manager.use_real_ifc and bim_agent_manager.current_ifc_file:
-                bim_agent_manager.ifc_agent.load_ifc_file(bim_agent_manager.current_ifc_file)
-                
-            # Process the query using the IFC agent
-            result = bim_agent_manager.ifc_agent.process_query(message)
+            orchestrator = get_orchestrator()
             
-            # If the IFC agent is available and successful, return its result
+            # Prepare context for orchestration
+            context = {
+                "stakeholder_type": data.get("stakeholder_type", "general"),
+                "enhanced_mode": True,
+                "source": "bim_ai_assistant"
+            }
+            
+            # Process with orchestrator
+            result = orchestrator.orchestrate_task(message, context)
+            
             if result.get("success", False):
                 return jsonify({
                     "success": True,
-                    "message": "Successfully processed with IFC Agent",
+                    "message": "Enhanced AI analysis completed",
                     "response": result.get("response", "No response generated"),
                     "metadata": {
-                        "agent_type": "ifc_agent",
-                        "tools_used": result.get("metadata", {}).get("tools_used", []),
-                        "ifc_file": result.get("ifc_file")
+                        "agent_type": "orchestrator",
+                        "enhanced_mode": True,
+                        "task_id": result.get("task_id"),
+                        "reasoning_steps": result.get("reasoning_steps", []),
+                        "metrics": result.get("metrics", {})
                     }
                 })
             else:
-                # If IFC agent failed, log the error and fall back to standard processing
-                logger.warning(f"IFC Agent failed: {result.get('message', 'Unknown error')}")
+                # If orchestrator failed, fall back to standard processing
+                logger.warning(f"Orchestrator failed: {result.get('error', 'Unknown error')}")
                 logger.info("Falling back to standard AI processing")
         except Exception as e:
-            logger.error(f"Error using IFC Agent: {str(e)}")
+            logger.error(f"Error using orchestrator: {str(e)}")
             logger.info("Falling back to standard AI processing")
     
     # Process the message with standard AI
