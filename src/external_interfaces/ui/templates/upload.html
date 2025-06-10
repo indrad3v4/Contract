@@ -1,25 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}Upload BIM Models - Daodiseo Platform
-    <!-- Gamification System -->
-    <script src="{{ url_for('static', filename='js/gamification.js') }}"></script>
-{% endblock %}
-{% block page_title %}Upload & Due Diligence Portal
-    <!-- Gamification System -->
-    <script src="{{ url_for('static', filename='js/gamification.js') }}"></script>
-{% endblock %}
+{% block title %}Upload BIM Models - Daodiseo Platform{% endblock %}
+{% block page_title %}Upload & Due Diligence Portal{% endblock %}
 
 {% block content %}
-
-<!-- AI Brain Orchestrator Indicator -->
-<div class="orchestrator-connection route-upload mb-4">
-    <div class="orchestrator-label">DAODISEO AI Brain</div>
-    <div class="orchestrator-title d-flex align-items-center">
-        <i data-feather="cpu" class="brain-pulse me-2 brain-indicator"></i>
-        DAODISEO.app File Processing
-    </div>
-</div>
-
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -442,9 +426,6 @@
         </div>
     </div>
 </div>
-
-    <!-- Gamification System -->
-    <script src="{{ url_for('static', filename='js/gamification.js') }}"></script>
 {% endblock %}
 
 {% block extra_js %}
@@ -887,7 +868,4 @@
         feather.replace();
     });
 </script>
-
-    <!-- Gamification System -->
-    <script src="{{ url_for('static', filename='js/gamification.js') }}"></script>
 {% endblock %}

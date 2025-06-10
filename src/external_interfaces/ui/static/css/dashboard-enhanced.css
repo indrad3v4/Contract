@@ -5,7 +5,7 @@
 
 /* ODIS Token Overview Card */
 .odis-token-overview {
-    background: linear-gradient(135deg, rgba(0, 123, 255, 0.1) 0%, rgba(196, 30, 140, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.1) 0%, rgba(224, 13, 121, 0.1) 100%);
     border: 1px solid rgba(0, 123, 255, 0.3);
     box-shadow: 0 8px 32px rgba(0, 123, 255, 0.1);
 }

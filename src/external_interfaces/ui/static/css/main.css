@@ -4,11 +4,11 @@
     --primary-light: #003800;
     --primary-dark: #001200;
     
-    --secondary: var(--dds-bg-secondary);
+    --secondary: #b80596;
     --secondary-light: #d206b3;
     --secondary-dark: #8a0474;
     
-    --info: var(--dds-magenta);
+    --info: #e00d79;
     --info-light: #ff1a8c;
     --info-dark: #b00a60;
     
@@ -39,12 +39,12 @@
     /* Gradients */
     --gradient-cosmic: linear-gradient(135deg, var(--bg-dark), var(--secondary-dark));
     --gradient-glow: linear-gradient(135deg, var(--info), var(--secondary));
-    --gradient-wave: linear-gradient(135deg, var(--dds-magenta), #8a0474);
+    --gradient-wave: linear-gradient(135deg, #e00d79, #8a0474);
     
     /* Neon effects */
     --neon-primary: 0 0 10px rgba(0, 48, 0, 0.5), 0 0 20px rgba(0, 153, 7, 0.3);
     --neon-secondary: 0 0 10px rgba(176, 5, 150, 0.5), 0 0 20px rgba(176, 5, 150, 0.3);
-    --neon-info: 0 0 10px rgba(196, 30, 140, 0.5), 0 0 20px rgba(196, 30, 140, 0.3);
+    --neon-info: 0 0 10px rgba(224, 13, 121, 0.5), 0 0 20px rgba(224, 13, 121, 0.3);
 }
 
 /* Base styles */
@@ -56,7 +56,7 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    font-size: var(--dds-text-sm);
+    font-size: 14px;
     line-height: 1.5;
     color: var(--text-light);
     background-color: var(--bg-body);
@@ -119,7 +119,7 @@ body {
 }
 
 .app-title {
-    font-size: var(--dds-text-xl);
+    font-size: 20px;
     font-weight: 600;
     background: var(--gradient-glow);
     -webkit-background-clip: text;
@@ -173,7 +173,7 @@ body {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
-    font-size: var(--dds-text-xs);
+    font-size: 12px;
     color: var(--text-dark);
 }
 
@@ -206,7 +206,7 @@ body {
 }
 
 .page-title h1 {
-    font-size: var(--dds-text-2xl);
+    font-size: 24px;
     font-weight: 600;
     margin: 0;
 }
@@ -313,7 +313,7 @@ body {
 }
 
 .card-title {
-    font-size: var(--dds-text-base);
+    font-size: 16px;
     font-weight: 600;
     margin: 0;
     display: flex;
@@ -325,7 +325,7 @@ body {
 }
 
 .card-subtitle {
-    font-size: var(--dds-text-xs);
+    font-size: 12px;
     color: var(--text-dark);
     margin: 5px 0 0;
 }
@@ -352,7 +352,7 @@ body {
 
 .stats-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(196, 30, 140, 0.2);
+    box-shadow: 0 8px 25px rgba(224, 13, 121, 0.2);
 }
 
 .stats-card .card-body {
@@ -371,7 +371,7 @@ body {
 }
 
 .card-title {
-    font-size: var(--dds-text-sm);
+    font-size: 14px;
     color: var(--text-dark);
     font-weight: 400;
 }
@@ -399,7 +399,7 @@ body {
 }
 
 .card-icon.info {
-    background: rgba(196, 30, 140, 0.2);
+    background: rgba(224, 13, 121, 0.2);
     color: var(--info-light);
 }
 
@@ -473,7 +473,7 @@ body {
 }
 
 .error-message {
-    font-size: var(--dds-text-lg);
+    font-size: 18px;
     color: var(--text-medium);
     margin-bottom: 30px;
 }
@@ -555,7 +555,7 @@ body {
 }
 
 .value-change {
-    font-size: var(--dds-text-sm);
+    font-size: 14px;
     margin-left: 5px;
     font-family: 'Inter', sans-serif;
 }

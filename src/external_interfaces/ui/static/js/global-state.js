@@ -30,15 +30,7 @@ class DaodiseoGlobalState {
                 signed: [],
                 currentContract: null
             },
-            
-    // ODIS Payment State
-    odis: {
-        balance: 0,
-        transactions: [],
-        pendingActions: [],
-        lastUpdate: null
-    },
-    ui: {
+            ui: {
                 currentRoute: null,
                 loading: false,
                 notifications: []

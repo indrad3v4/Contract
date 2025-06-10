@@ -15,7 +15,7 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(196, 30, 140, 0.5), transparent);
+  background: linear-gradient(90deg, transparent, rgba(224, 13, 121, 0.5), transparent);
   z-index: 10;
 }
 
@@ -53,7 +53,7 @@
 .ai-chat-input {
   padding: 0.5rem;
   background-color: rgba(36, 0, 70, 0.5);
-  border-top: 1px solid rgba(196, 30, 140, 0.2);
+  border-top: 1px solid rgba(224, 13, 121, 0.2);
   border-radius: 0 0 0.375rem 0.375rem;
 }
 
@@ -109,19 +109,19 @@
   background: rgba(25, 5, 45, 0.6);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(196, 30, 140, 0.2);
+  border: 1px solid rgba(224, 13, 121, 0.2);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   transition: all 0.3s ease;
 }
 
 .cosmic-panel:hover {
-  border-color: rgba(196, 30, 140, 0.4);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.47), 0 0 15px rgba(196, 30, 140, 0.2);
+  border-color: rgba(224, 13, 121, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.47), 0 0 15px rgba(224, 13, 121, 0.2);
 }
 
 .cosmic-panel .card-header {
   background: transparent;
-  border-bottom: 1px solid rgba(196, 30, 140, 0.2);
+  border-bottom: 1px solid rgba(224, 13, 121, 0.2);
   padding: 1rem 1.25rem;
 }
 
@@ -129,7 +129,7 @@
   color: var(--bs-info);
   font-weight: 500;
   margin-bottom: 0;
-  text-shadow: 0 0 10px rgba(196, 30, 140, 0.5);
+  text-shadow: 0 0 10px rgba(224, 13, 121, 0.5);
 }
 
 /* Neon buttons and accents */
