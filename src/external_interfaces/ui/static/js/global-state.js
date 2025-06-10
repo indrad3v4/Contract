@@ -51,7 +51,8 @@ class DaodiseoGlobalState {
         // Detect current route
         this.detectCurrentRoute();
         
-        }
+        console.log('Global state initialized:', this.state);
+    }
 
     loadPersistedState() {
         try {
@@ -321,8 +322,8 @@ class DaodiseoGlobalState {
 
     // Debug method to view current state
     debug() {
-        );
-        ));
+        console.log('DAODISEO Global State:', JSON.stringify(this.state, null, 2));
+        console.log('Active listeners:', Array.from(this.listeners.keys()));
     }
 }
 

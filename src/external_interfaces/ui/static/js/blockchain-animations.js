@@ -48,7 +48,7 @@ const AnimationConfig = {
  * @returns {HTMLCanvasElement} - The created canvas element
  */
 function createAnimationCanvas(containerId, options = {}) {
-  const container = const el = document.getElementById(containerId); if (!el) return; el;
+  const container = document.getElementById(containerId);
   if (!container) {
     console.error(`Container with ID '${containerId}' not found`);
     return null;
@@ -962,7 +962,7 @@ class MicroRewards {
    * @param {Object} options - Animation options
    */
   showPointsGained(containerId, points, options = {}) {
-    const container = const el = document.getElementById(containerId); if (!el) return; el;
+    const container = document.getElementById(containerId);
     if (!container) return;
     
     // Create floating points element
@@ -1006,7 +1006,7 @@ class MicroRewards {
    * @param {string} containerId - Container for animation
    */
   playLevelUpAnimation(containerId) {
-    const container = const el = document.getElementById(containerId); if (!el) return; el;
+    const container = document.getElementById(containerId);
     if (!container) return;
     
     // Create level up element

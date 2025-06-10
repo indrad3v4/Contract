@@ -15,6 +15,8 @@ function initDashboardStateListeners() {
     // Listen for transaction events from other routes
     document.addEventListener('transactionCreated', (event) => {
         const { transactionId, hash, type } = event.detail;
+        console.log('Dashboard received transaction event:', { transactionId, hash, type });
+        
         // Update portfolio metrics to reflect new transaction
         refreshPortfolioData();
         
@@ -25,6 +27,8 @@ function initDashboardStateListeners() {
     // Listen for file upload events to update asset counts
     document.addEventListener('fileUploaded', (event) => {
         const { fileName, fileHash } = event.detail;
+        console.log('Dashboard received file upload event:', { fileName, fileHash });
+        
         // Refresh verified assets count
         refreshAssetMetrics();
     });
@@ -69,13 +73,13 @@ async function initDashboardData() {
 // Update ODIS token metrics with real blockchain data
 function updateOdisTokenMetrics(data) {
     // Update current price
-    const priceElement = const el = document.getElementById('odis-price'); if (!el) return; el;
+    const priceElement = document.getElementById('odis-price');
     if (priceElement && data.token_price) {
         priceElement.textContent = `$${data.token_price.toFixed(4)}`;
     }
     
     // Update price change
-    const changeElement = const el = document.getElementById('odis-change'); if (!el) return; el;
+    const changeElement = document.getElementById('odis-change');
     if (changeElement && data.price_change_24h !== undefined) {
         const change = data.price_change_24h;
         changeElement.textContent = `${change >= 0 ? '+' : ''}${change.toFixed(2)}%`;
@@ -83,20 +87,20 @@ function updateOdisTokenMetrics(data) {
     }
     
     // Update market cap
-    const marketCapElement = const el = document.getElementById('market-cap'); if (!el) return; el;
+    const marketCapElement = document.getElementById('market-cap');
     if (marketCapElement && data.market_cap) {
         marketCapElement.textContent = formatCurrency(data.market_cap / 1000000) + 'M';
     }
     
     // Update 24h volume
-    const volumeElement = const el = document.getElementById('volume-24h'); if (!el) return; el;
+    const volumeElement = document.getElementById('volume-24h');
     if (volumeElement && data.volume_24h) {
         volumeElement.textContent = formatCurrency(data.volume_24h / 1000000) + 'M';
     }
     
     // Update 24h high/low
-    const highElement = const el = document.getElementById('high-24h'); if (!el) return; el;
-    const lowElement = const el = document.getElementById('low-24h'); if (!el) return; el;
+    const highElement = document.getElementById('high-24h');
+    const lowElement = document.getElementById('low-24h');
     if (highElement && data.high_24h) {
         highElement.textContent = `$${data.high_24h.toFixed(4)}`;
     }
@@ -105,7 +109,7 @@ function updateOdisTokenMetrics(data) {
     }
     
     // Update staking APY
-    const stakingApyElement = const el = document.getElementById('staking-apy'); if (!el) return; el;
+    const stakingApyElement = document.getElementById('staking-apy');
     if (stakingApyElement && data.staking_apy) {
         stakingApyElement.textContent = `${data.staking_apy.toFixed(1)}%`;
     }
@@ -119,7 +123,7 @@ async function loadValidatorsData() {
         const validators = statsData.validators || [];
         
         // Update validators count
-        const validatorsCountElement = const el = document.getElementById('active-validators-count'); if (!el) return; el;
+        const validatorsCountElement = document.getElementById('active-validators-count');
         if (validatorsCountElement) {
             validatorsCountElement.textContent = validators.length;
         }
@@ -129,7 +133,7 @@ async function loadValidatorsData() {
             const power = typeof v.voting_power === 'number' ? v.voting_power : parseFloat(v.voting_power) || 0;
             return sum + power;
         }, 0);
-        const totalPowerElement = const el = document.getElementById('total-voting-power'); if (!el) return; el;
+        const totalPowerElement = document.getElementById('total-voting-power');
         if (totalPowerElement) {
             totalPowerElement.textContent = formatNumber(Math.round(totalVotingPower)) + 'M';
         }
@@ -147,7 +151,7 @@ async function loadValidatorsData() {
 
 // Populate validators grid with real data
 function populateValidatorsGrid(validators) {
-    const validatorsGrid = const el = document.getElementById('validators-grid'); if (!el) return; el;
+    const validatorsGrid = document.getElementById('validators-grid');
     if (!validatorsGrid) return;
     
     // Clear existing content
@@ -239,13 +243,13 @@ function createValidatorCard(validator, index) {
 // Update staking overview with real data
 function updateStakingOverview(data) {
     // Update total staked
-    const totalStakedElement = const el = document.getElementById('total-staked'); if (!el) return; el;
+    const totalStakedElement = document.getElementById('total-staked');
     if (totalStakedElement && data.total_staked) {
         totalStakedElement.textContent = formatCurrency(data.total_staked / 1000000) + 'M ODIS';
     }
     
     // Update staking ratio
-    const stakingRatioElement = const el = document.getElementById('staking-ratio'); if (!el) return; el;
+    const stakingRatioElement = document.getElementById('staking-ratio');
     if (stakingRatioElement && data.staking_ratio) {
         stakingRatioElement.textContent = `${(data.staking_ratio * 100).toFixed(1)}%`;
     }
@@ -449,7 +453,7 @@ async function initDashboardCharts() {
 
 // Initialize asset distribution doughnut chart
 function initAssetDistributionChart(data) {
-    const chartElement = const el = document.getElementById('assetDistributionChart'); if (!el) return; el;
+    const chartElement = document.getElementById('assetDistributionChart');
     if (!chartElement) return;
     
     const ctx = chartElement.getContext('2d');
@@ -493,7 +497,7 @@ function initAssetDistributionChart(data) {
 
 // Initialize stakeholder distribution doughnut chart
 function initStakeholderDistributionChart(data) {
-    const chartElement = const el = document.getElementById('stakeholderDistributionChart'); if (!el) return; el;
+    const chartElement = document.getElementById('stakeholderDistributionChart');
     if (!chartElement) return;
     
     const ctx = chartElement.getContext('2d');
@@ -552,7 +556,7 @@ function initStakeholderDistributionChart(data) {
 
 // Initialize transaction history chart
 function initTransactionHistoryChart() {
-    const chartElement = const el = document.getElementById('transactionHistoryChart'); if (!el) return; el;
+    const chartElement = document.getElementById('transactionHistoryChart');
     if (!chartElement) return;
     
     const ctx = chartElement.getContext('2d');

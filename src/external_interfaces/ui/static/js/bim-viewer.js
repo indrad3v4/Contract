@@ -17,7 +17,7 @@ const bimViewer = {
     init: function(containerId, full = false) {
         // Store settings
         this.containerId = containerId;
-        this.container = const el = document.getElementById(containerId); if (!el) return; el;
+        this.container = document.getElementById(containerId);
         this.isFullView = full;
         
         if (!this.container) {
@@ -46,7 +46,8 @@ const bimViewer = {
             this.addViewerControls();
         }
         
-        },
+        console.log(`BIM Viewer initialized in ${full ? 'full' : 'mini'} mode`);
+    },
     
     // Initialize the scene
     initScene: function() {
@@ -256,19 +257,19 @@ const bimViewer = {
         feather.replace();
         
         // Add event listeners for controls
-        const el = document.getElementById('view-front'); if (!el) return; el.addEventListener('click', () => {
+        document.getElementById('view-front').addEventListener('click', () => {
             this.setCameraPosition(0, 15, 50);
         });
         
-        const el = document.getElementById('view-side'); if (!el) return; el.addEventListener('click', () => {
+        document.getElementById('view-side').addEventListener('click', () => {
             this.setCameraPosition(50, 15, 0);
         });
         
-        const el = document.getElementById('view-top'); if (!el) return; el.addEventListener('click', () => {
+        document.getElementById('view-top').addEventListener('click', () => {
             this.setCameraPosition(0, 50, 0);
         });
         
-        const el = document.getElementById('view-3d'); if (!el) return; el.addEventListener('click', () => {
+        document.getElementById('view-3d').addEventListener('click', () => {
             this.setCameraPosition(30, 20, 30);
         });
     },

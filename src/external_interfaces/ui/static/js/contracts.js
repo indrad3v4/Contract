@@ -23,6 +23,8 @@ function initCrossRouteListeners() {
     // Listen for transaction events from upload route
     document.addEventListener('transactionCreated', (event) => {
         const { transactionId, hash, type } = event.detail;
+        console.log('Received transaction event:', { transactionId, hash, type });
+        
         // Update contracts view if currently visible
         if (document.querySelector('.contracts-grid')) {
             refreshContractsData();
@@ -40,6 +42,8 @@ function initCrossRouteListeners() {
     // Listen for file upload events
     document.addEventListener('fileUploaded', (event) => {
         const { fileName, fileHash } = event.detail;
+        console.log('Received file upload event:', { fileName, fileHash });
+        
         // Auto-populate contract creation form if available
         const contractForm = document.querySelector('#newContractForm');
         if (contractForm) {
@@ -132,9 +136,9 @@ async function refreshContractsData() {
 
 // Update contract buttons based on wallet state
 function updateContractButtonsState(walletConnected) {
-    const newContractBtn = const el = document.getElementById('newContractBtn'); if (!el) return; el;
-    const contractWalletConnectBtn = const el = document.getElementById('contractWalletConnectBtn'); if (!el) return; el;
-    const contractSignBtn = const el = document.getElementById('contractSignBtn'); if (!el) return; el;
+    const newContractBtn = document.getElementById('newContractBtn');
+    const contractWalletConnectBtn = document.getElementById('contractWalletConnectBtn');
+    const contractSignBtn = document.getElementById('contractSignBtn');
     
     if (walletConnected) {
         if (newContractBtn) newContractBtn.disabled = false;

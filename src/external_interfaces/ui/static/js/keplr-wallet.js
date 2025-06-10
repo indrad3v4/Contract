@@ -51,7 +51,7 @@ class DAODISEOWalletManager {
     
     initializeEventListeners() {
         // Header wallet connection button
-        const headerWalletBtn = const el = document.getElementById('headerConnectKeplr'); if (!el) return; el;
+        const headerWalletBtn = document.getElementById('headerConnectKeplr');
         if (headerWalletBtn) {
             headerWalletBtn.addEventListener('click', () => {
                 if (this.connected) {
@@ -63,18 +63,18 @@ class DAODISEOWalletManager {
         }
         
         // Points system button
-        const pointsBtn = const el = document.getElementById('pointsSystemBtn'); if (!el) return; el;
+        const pointsBtn = document.getElementById('pointsSystemBtn');
         if (pointsBtn) {
             pointsBtn.addEventListener('click', () => this.showPointsModal());
         }
         
         // ODIS trading buttons
-        const buyOdisBtn = const el = document.getElementById('buyOdisBtn'); if (!el) return; el;
+        const buyOdisBtn = document.getElementById('buyOdisBtn');
         if (buyOdisBtn) {
             buyOdisBtn.addEventListener('click', () => this.openStreamSwap());
         }
         
-        const priceAlertBtn = const el = document.getElementById('setPriceAlertBtn'); if (!el) return; el;
+        const priceAlertBtn = document.getElementById('setPriceAlertBtn');
         if (priceAlertBtn) {
             priceAlertBtn.addEventListener('click', () => this.setPriceAlert());
         }
@@ -139,7 +139,8 @@ class DAODISEOWalletManager {
                     },
                 });
             } catch (error) {
-                }
+                console.log('Chain already exists or user rejected:', error);
+            }
             
             // Enable the chain
             await this.keplr.enable(ODISEO_TESTNET_CONFIG.chain_id);
@@ -162,7 +163,8 @@ class DAODISEOWalletManager {
                 // Award connection points
                 this.awardPoints(10, 'Wallet Connected');
                 
-                }
+                console.log('Wallet connected:', this.address);
+            }
             
         } catch (error) {
             console.error('Failed to connect wallet:', error);
@@ -185,7 +187,7 @@ class DAODISEOWalletManager {
     }
     
     updateUI() {
-        const headerBtn = const el = document.getElementById('headerConnectKeplr'); if (!el) return; el;
+        const headerBtn = document.getElementById('headerConnectKeplr');
         
         if (this.connected && this.address) {
             // Update header wallet button - show address and disconnect option
@@ -218,7 +220,7 @@ class DAODISEOWalletManager {
         localStorage.setItem('userPoints', newPoints.toString());
         
         // Update points display
-        const pointsDisplay = const el = document.getElementById('userPoints'); if (!el) return; el;
+        const pointsDisplay = document.getElementById('userPoints');
         if (pointsDisplay) {
             pointsDisplay.textContent = `${newPoints} pts`;
         }
@@ -303,7 +305,7 @@ class DAODISEOWalletManager {
     }
     
     setPriceAlert() {
-        const alertInput = const el = document.getElementById('priceAlertInput'); if (!el) return; el;
+        const alertInput = document.getElementById('priceAlertInput');
         const alertPrice = parseFloat(alertInput.value);
         
         if (isNaN(alertPrice) || alertPrice <= 0) {
@@ -340,6 +342,8 @@ class DAODISEOWalletManager {
         
         // Update UI to show disconnected state
         this.updateUI();
+        
+        console.log('Wallet disconnected');
         
         // Show disconnection notification
         this.showDisconnectNotification();
@@ -385,7 +389,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Update points display on load
     const currentPoints = localStorage.getItem('userPoints') || '0';
-    const pointsDisplay = const el = document.getElementById('userPoints'); if (!el) return; el;
+    const pointsDisplay = document.getElementById('userPoints');
     if (pointsDisplay) {
         pointsDisplay.textContent = `${currentPoints} pts`;
     }
@@ -403,7 +407,7 @@ async function loadActiveValidators() {
         const response = await fetch('/api/blockchain/stats');
         const data = await response.json();
         
-        const validatorsContainer = const el = document.getElementById('validatorsContainer'); if (!el) return; el;
+        const validatorsContainer = document.getElementById('validatorsContainer');
         if (!validatorsContainer) return;
         
         if (data.validators && data.validators.length > 0) {
@@ -435,7 +439,7 @@ async function loadActiveValidators() {
         }
     } catch (error) {
         console.error('Error loading validators:', error);
-        const validatorsContainer = const el = document.getElementById('validatorsContainer'); if (!el) return; el;
+        const validatorsContainer = document.getElementById('validatorsContainer');
         if (validatorsContainer) {
             validatorsContainer.innerHTML = `
                 <div class="text-center py-3">

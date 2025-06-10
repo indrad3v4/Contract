@@ -59,7 +59,7 @@ function createTooltip(element, text) {
 
 // Utility function to show an alert notification
 function showAlert(message, type = 'info') {
-    const alertContainer = const el = document.getElementById('alertContainer'); if (!el) return; el || createAlertContainer();
+    const alertContainer = document.getElementById('alertContainer') || createAlertContainer();
     
     const alert = document.createElement('div');
     alert.className = `alert alert-${type} alert-dismissible fade show`;

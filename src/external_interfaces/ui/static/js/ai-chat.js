@@ -46,7 +46,7 @@ const aiChat = {
         this.checkAgentStatus();
         
         // Get DOM elements
-        this.elements.chatContainer = const el = document.getElementById(containerId); if (!el) return; el;
+        this.elements.chatContainer = document.getElementById(containerId);
         
         if (!this.elements.chatContainer) {
             console.error('Chat container not found');
@@ -60,7 +60,8 @@ const aiChat = {
         this.setupEventListeners();
         
         this.state.initialized = true;
-        },
+        console.log('AI Chat initialized');
+    },
     
     /**
      * Create the chat UI elements
@@ -372,7 +373,7 @@ const aiChat = {
             this.scrollToBottom();
         } else {
             // Remove loading indicator
-            const loadingElement = const el = document.getElementById('chat-loading-indicator'); if (!el) return; el;
+            const loadingElement = document.getElementById('chat-loading-indicator');
             if (loadingElement) {
                 loadingElement.remove();
             }
