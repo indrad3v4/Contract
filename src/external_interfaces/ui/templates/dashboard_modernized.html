@@ -1,0 +1,979 @@
+{% extends "base.html" %}
+
+{% block title %}DAODISEO - Smart Real Estate Platform{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Modern Dashboard Layout with Progressive Disclosure */
+.dashboard-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* Role-Based Navigation */
+.role-selector {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.role-tab {
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.role-tab.active {
+    background: linear-gradient(135deg, #007bff, #20c997);
+    border-color: #007bff;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+}
+
+.role-tab:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+/* Context-Aware Content Areas */
+.dashboard-view {
+    display: none;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.dashboard-view.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Primary Action Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.1), rgba(32, 201, 151, 0.05));
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.hero-subtitle {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.primary-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.action-button {
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.action-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
+}
+
+.action-button.secondary {
+    background: linear-gradient(135deg, #6c757d, #495057);
+}
+
+.action-button.success {
+    background: linear-gradient(135deg, #28a745, #1e7e34);
+}
+
+/* Conversational AI Interface */
+.ai-chat-container {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 350px;
+    max-height: 500px;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+.ai-chat-container.open {
+    transform: translateY(0);
+}
+
+.ai-chat-header {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: between;
+    align-items: center;
+}
+
+.ai-chat-title {
+    font-weight: 600;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ai-status-indicator {
+    width: 8px;
+    height: 8px;
+    background: #28a745;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.ai-chat-close {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    padding: 0.25rem;
+}
+
+.ai-chat-messages {
+    height: 300px;
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+.ai-message {
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 0.75rem;
+}
+
+.ai-message.user {
+    flex-direction: row-reverse;
+}
+
+.message-content {
+    max-width: 80%;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.ai-message:not(.user) .message-content {
+    background: rgba(0, 123, 255, 0.2);
+    border: 1px solid rgba(0, 123, 255, 0.3);
+    color: white;
+}
+
+.ai-message.user .message-content {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.ai-quick-actions {
+    padding: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.quick-action {
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    color: white;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.quick-action:hover {
+    background: rgba(0, 123, 255, 0.2);
+    border-color: #007bff;
+}
+
+.ai-chat-input {
+    padding: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chat-input-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.chat-input {
+    flex: 1;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: white;
+    font-size: 0.9rem;
+}
+
+.chat-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.chat-send {
+    padding: 0.75rem 1rem;
+    background: #007bff;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+}
+
+/* AI Trigger Button */
+.ai-trigger {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #007bff, #20c997);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.ai-trigger:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 35px rgba(0, 123, 255, 0.6);
+}
+
+.ai-trigger.chat-open {
+    display: none;
+}
+
+/* Smart Metrics Grid */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.metric-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.metric-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(0, 123, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.metric-header {
+    display: flex;
+    justify-content: between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.metric-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #007bff, #20c997);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.metric-trend {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.metric-trend.positive {
+    background: rgba(40, 167, 69, 0.2);
+    color: #28a745;
+}
+
+.metric-trend.negative {
+    background: rgba(220, 53, 69, 0.2);
+    color: #dc3545;
+}
+
+.metric-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.metric-label {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+.metric-subtitle {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 0.5rem;
+    }
+    
+    .role-selector {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .primary-actions {
+        flex-direction: column;
+    }
+    
+    .ai-chat-container {
+        width: calc(100% - 2rem);
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+    }
+    
+    .ai-trigger {
+        bottom: 1rem;
+        right: 1rem;
+    }
+    
+    .metrics-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+/* Loading States */
+.loading-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Context Breadcrumbs */
+.breadcrumb-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.breadcrumb-item {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.breadcrumb-item.active {
+    color: white;
+    font-weight: 600;
+}
+
+.breadcrumb-separator {
+    color: rgba(255, 255, 255, 0.4);
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <!-- Context Breadcrumbs -->
+    <nav class="breadcrumb-nav">
+        <span class="breadcrumb-item">DAODISEO</span>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-item active" id="current-context">Dashboard</span>
+    </nav>
+
+    <!-- Role-Based Navigation -->
+    <div class="role-selector">
+        <button class="role-tab active" data-role="investor">
+            <i data-feather="trending-up"></i>
+            Investor Dashboard
+        </button>
+        <button class="role-tab" data-role="developer">
+            <i data-feather="upload"></i>
+            Developer Tools
+        </button>
+        <button class="role-tab" data-role="validator">
+            <i data-feather="shield"></i>
+            Network Validator
+        </button>
+    </div>
+
+    <!-- Investor View -->
+    <div class="dashboard-view active" id="investor-view">
+        <!-- Hero Section for Investors -->
+        <div class="hero-section">
+            <h1 class="hero-title">Your Real Estate Portfolio</h1>
+            <p class="hero-subtitle">$38,126,500 in verified assets • +12.5% this month • 24 properties</p>
+            <div class="primary-actions">
+                <button class="action-button" onclick="openInvestmentOpportunities()">
+                    <i data-feather="plus-circle"></i>
+                    Invest in Property
+                </button>
+                <button class="action-button secondary" onclick="askAI('portfolio analysis')">
+                    <i data-feather="brain"></i>
+                    AI Portfolio Analysis
+                </button>
+                <button class="action-button success" onclick="viewReturns()">
+                    <i data-feather="dollar-sign"></i>
+                    View Returns
+                </button>
+            </div>
+        </div>
+
+        <!-- Smart Metrics Grid -->
+        <div class="metrics-grid">
+            <div class="metric-card" onclick="drillDown('portfolio')">
+                <div class="metric-header">
+                    <div class="metric-icon">
+                        <i data-feather="briefcase"></i>
+                    </div>
+                    <div class="metric-trend positive">+12.5%</div>
+                </div>
+                <div class="metric-value">$38.1M</div>
+                <div class="metric-label">Total Portfolio Value</div>
+                <div class="metric-subtitle">24 verified properties</div>
+            </div>
+
+            <div class="metric-card" onclick="drillDown('returns')">
+                <div class="metric-header">
+                    <div class="metric-icon">
+                        <i data-feather="trending-up"></i>
+                    </div>
+                    <div class="metric-trend positive">+8.2%</div>
+                </div>
+                <div class="metric-value">+284 ODIS</div>
+                <div class="metric-label">Daily Returns</div>
+                <div class="metric-subtitle">From staking rewards</div>
+            </div>
+
+            <div class="metric-card" onclick="drillDown('opportunities')">
+                <div class="metric-header">
+                    <div class="metric-icon">
+                        <i data-feather="target"></i>
+                    </div>
+                    <div class="metric-trend positive">3 new</div>
+                </div>
+                <div class="metric-value">7</div>
+                <div class="metric-label">Investment Opportunities</div>
+                <div class="metric-subtitle">8.2% avg projected yield</div>
+            </div>
+
+            <div class="metric-card" onclick="drillDown('risk')">
+                <div class="metric-header">
+                    <div class="metric-icon">
+                        <i data-feather="shield"></i>
+                    </div>
+                    <div class="metric-trend positive">Low</div>
+                </div>
+                <div class="metric-value">85%</div>
+                <div class="metric-label">Risk Score</div>
+                <div class="metric-subtitle">Well diversified</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Developer View -->
+    <div class="dashboard-view" id="developer-view">
+        <div class="hero-section">
+            <h1 class="hero-title">Project Development Hub</h1>
+            <p class="hero-subtitle">Upload BIM models • Verify assets • Deploy smart contracts</p>
+            <div class="primary-actions">
+                <button class="action-button" onclick="window.location.href='/upload'">
+                    <i data-feather="upload"></i>
+                    Upload BIM Model
+                </button>
+                <button class="action-button secondary" onclick="askAI('BIM analysis')">
+                    <i data-feather="brain"></i>
+                    AI BIM Analysis
+                </button>
+                <button class="action-button success" onclick="window.location.href='/contracts'">
+                    <i data-feather="file-text"></i>
+                    Deploy Contract
+                </button>
+            </div>
+        </div>
+
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon">
+                        <i data-feather="upload"></i>
+                    </div>
+                    <div class="metric-trend positive">+3</div>
+                </div>
+                <div class="metric-value">12</div>
+                <div class="metric-label">Uploaded Models</div>
+                <div class="metric-subtitle">2 pending verification</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon">
+                        <i data-feather="check-circle"></i>
+                    </div>
+                    <div class="metric-trend positive">95%</div>
+                </div>
+                <div class="metric-value">10</div>
+                <div class="metric-label">Verified Assets</div>
+                <div class="metric-subtitle">Ready for tokenization</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Validator View -->
+    <div class="dashboard-view" id="validator-view">
+        <div class="hero-section">
+            <h1 class="hero-title">Network Validation Center</h1>
+            <p class="hero-subtitle">Stake ODIS • Validate transactions • Earn rewards</p>
+            <div class="primary-actions">
+                <button class="action-button" onclick="window.location.href='/contracts'">
+                    <i data-feather="shield"></i>
+                    Delegate Stake
+                </button>
+                <button class="action-button secondary" onclick="askAI('staking strategy')">
+                    <i data-feather="brain"></i>
+                    AI Staking Strategy
+                </button>
+                <button class="action-button success" onclick="viewValidators()">
+                    <i data-feather="users"></i>
+                    View Validators
+                </button>
+            </div>
+        </div>
+
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon">
+                        <i data-feather="shield"></i>
+                    </div>
+                    <div class="metric-trend positive">+2</div>
+                </div>
+                <div class="metric-value">10</div>
+                <div class="metric-label">Active Validators</div>
+                <div class="metric-subtitle">Network secure</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon">
+                        <i data-feather="percent"></i>
+                    </div>
+                    <div class="metric-trend positive">9.5%</div>
+                </div>
+                <div class="metric-value">68.4%</div>
+                <div class="metric-label">Staking Ratio</div>
+                <div class="metric-subtitle">45.2M ODIS staked</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- AI Chat Interface -->
+<div class="ai-chat-container" id="ai-chat">
+    <div class="ai-chat-header">
+        <div class="ai-chat-title">
+            <div class="ai-status-indicator"></div>
+            AI Assistant
+        </div>
+        <button class="ai-chat-close" onclick="closeAIChat()">
+            <i data-feather="x"></i>
+        </button>
+    </div>
+    
+    <div class="ai-chat-messages" id="chat-messages">
+        <div class="ai-message">
+            <div class="message-content">
+                Hello! I'm your AI assistant for real estate analysis. How can I help you today?
+            </div>
+        </div>
+    </div>
+    
+    <div class="ai-quick-actions">
+        <button class="quick-action" onclick="askAI('portfolio performance')">Portfolio Analysis</button>
+        <button class="quick-action" onclick="askAI('market trends')">Market Trends</button>
+        <button class="quick-action" onclick="askAI('risk assessment')">Risk Assessment</button>
+        <button class="quick-action" onclick="askAI('investment opportunities')">New Opportunities</button>
+    </div>
+    
+    <div class="ai-chat-input">
+        <div class="chat-input-group">
+            <input type="text" class="chat-input" placeholder="Ask about your investments..." id="chat-input">
+            <button class="chat-send" onclick="sendChatMessage()">
+                <i data-feather="send"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- AI Trigger Button -->
+<button class="ai-trigger" id="ai-trigger" onclick="openAIChat()">
+    <i data-feather="message-circle"></i>
+</button>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Modern Dashboard Controller
+class ModernDashboard {
+    constructor() {
+        this.currentRole = 'investor';
+        this.aiChatOpen = false;
+        this.init();
+    }
+    
+    init() {
+        this.setupRoleNavigation();
+        this.setupAIChat();
+        this.loadDashboardData();
+        this.setupKeyboardShortcuts();
+        
+        // Initialize feather icons
+        if (typeof feather !== 'undefined') {
+            feather.replace();
+        }
+    }
+    
+    setupRoleNavigation() {
+        const roleTabs = document.querySelectorAll('.role-tab');
+        roleTabs.forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                this.switchRole(e.target.dataset.role);
+            });
+        });
+    }
+    
+    switchRole(role) {
+        // Update active tab
+        document.querySelectorAll('.role-tab').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        document.querySelector(`[data-role="${role}"]`).classList.add('active');
+        
+        // Update active view
+        document.querySelectorAll('.dashboard-view').forEach(view => {
+            view.classList.remove('active');
+        });
+        document.getElementById(`${role}-view`).classList.add('active');
+        
+        // Update breadcrumb
+        const roleNames = {
+            investor: 'Investor Dashboard',
+            developer: 'Developer Tools',
+            validator: 'Network Validator'
+        };
+        document.getElementById('current-context').textContent = roleNames[role];
+        
+        this.currentRole = role;
+        this.loadRoleData(role);
+    }
+    
+    setupAIChat() {
+        const chatInput = document.getElementById('chat-input');
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                this.sendChatMessage();
+            }
+        });
+    }
+    
+    async loadDashboardData() {
+        try {
+            const response = await fetch('/api/blockchain/stats');
+            if (response.ok) {
+                const data = await response.json();
+                this.updateMetrics(data);
+            }
+        } catch (error) {
+            console.error('Failed to load dashboard data:', error);
+        }
+    }
+    
+    updateMetrics(data) {
+        // Update real-time metrics based on blockchain data
+        if (data.validators) {
+            const validatorCountEl = document.querySelector('#validator-view .metric-value');
+            if (validatorCountEl) {
+                validatorCountEl.textContent = data.validators.filter(v => v.status === 'BOND_STATUS_BONDED').length;
+            }
+        }
+    }
+    
+    loadRoleData(role) {
+        // Load role-specific data
+        switch (role) {
+            case 'investor':
+                this.loadInvestorData();
+                break;
+            case 'developer':
+                this.loadDeveloperData();
+                break;
+            case 'validator':
+                this.loadValidatorData();
+                break;
+        }
+    }
+    
+    async loadInvestorData() {
+        // Load portfolio and investment data
+        try {
+            const [portfolioRes, opportunitiesRes] = await Promise.all([
+                fetch('/api/portfolio/summary'),
+                fetch('/api/investment/opportunities')
+            ]);
+            
+            // Update UI with real data when available
+        } catch (error) {
+            console.log('Using demo data for investor view');
+        }
+    }
+    
+    async loadDeveloperData() {
+        // Load BIM and development data
+        try {
+            const response = await fetch('/api/developer/projects');
+            // Update UI with real data when available
+        } catch (error) {
+            console.log('Using demo data for developer view');
+        }
+    }
+    
+    async loadValidatorData() {
+        // Load validator and staking data
+        try {
+            const response = await fetch('/api/blockchain/stats');
+            if (response.ok) {
+                const data = await response.json();
+                this.updateValidatorMetrics(data);
+            }
+        } catch (error) {
+            console.log('Using demo data for validator view');
+        }
+    }
+    
+    updateValidatorMetrics(data) {
+        if (data.validators) {
+            const activeValidators = data.validators.filter(v => v.status === 'BOND_STATUS_BONDED').length;
+            const metricEl = document.querySelector('#validator-view .metric-value');
+            if (metricEl) {
+                metricEl.textContent = activeValidators;
+            }
+        }
+    }
+    
+    setupKeyboardShortcuts() {
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey || e.metaKey) {
+                switch (e.key) {
+                    case '1':
+                        e.preventDefault();
+                        this.switchRole('investor');
+                        break;
+                    case '2':
+                        e.preventDefault();
+                        this.switchRole('developer');
+                        break;
+                    case '3':
+                        e.preventDefault();
+                        this.switchRole('validator');
+                        break;
+                    case '/':
+                        e.preventDefault();
+                        this.openAIChat();
+                        break;
+                }
+            }
+        });
+    }
+}
+
+// AI Chat Functions
+function openAIChat() {
+    const chatContainer = document.getElementById('ai-chat');
+    const trigger = document.getElementById('ai-trigger');
+    
+    chatContainer.classList.add('open');
+    trigger.classList.add('chat-open');
+    
+    // Focus on input
+    setTimeout(() => {
+        document.getElementById('chat-input').focus();
+    }, 300);
+}
+
+function closeAIChat() {
+    const chatContainer = document.getElementById('ai-chat');
+    const trigger = document.getElementById('ai-trigger');
+    
+    chatContainer.classList.remove('open');
+    trigger.classList.remove('chat-open');
+}
+
+function sendChatMessage() {
+    const input = document.getElementById('chat-input');
+    const message = input.value.trim();
+    
+    if (message) {
+        addChatMessage(message, true);
+        input.value = '';
+        
+        // Simulate AI response
+        setTimeout(() => {
+            handleAIResponse(message);
+        }, 1000);
+    }
+}
+
+function addChatMessage(message, isUser = false) {
+    const messagesContainer = document.getElementById('chat-messages');
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `ai-message ${isUser ? 'user' : ''}`;
+    
+    messageDiv.innerHTML = `
+        <div class="message-content">${message}</div>
+    `;
+    
+    messagesContainer.appendChild(messageDiv);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
+function handleAIResponse(userMessage) {
+    const responses = {
+        'portfolio analysis': 'Your portfolio shows strong performance with 24 verified properties worth $38.1M. The 12.5% monthly growth is above market average. I recommend diversifying into the Austin Tech Hub opportunity for balanced risk.',
+        'market trends': 'Current real estate tokenization market shows 15% growth YoY. Miami luxury condos are trending with 8.2% yields. Tech hubs in Austin and Denver showing promising expansion.',
+        'risk assessment': 'Your current risk score is 85% (Low Risk). Portfolio is well-diversified across geographic regions and property types. Consider limiting exposure to single markets above 30%.',
+        'investment opportunities': 'I found 3 new opportunities: Miami Luxury Condos (8.2% yield), Austin Tech Hub (7.8% yield), and Denver Commercial (7.1% yield). Miami shows highest potential ROI.',
+        'BIM analysis': 'Latest uploaded BIM model shows 95% structural completeness. Recommended optimizations: HVAC efficiency improvements, space utilization analysis, and material cost reduction strategies.',
+        'staking strategy': 'Current network offers 9.5% APY with 68.4% staking ratio. Optimal strategy: Delegate to top 3 validators with <5% commission for maximum returns.'
+    };
+    
+    const response = responses[userMessage.toLowerCase()] || 
+        "I can help you with portfolio analysis, market trends, risk assessment, investment opportunities, BIM analysis, and staking strategies. What would you like to explore?";
+    
+    addChatMessage(response);
+}
+
+function askAI(topic) {
+    openAIChat();
+    setTimeout(() => {
+        document.getElementById('chat-input').value = topic;
+        sendChatMessage();
+    }, 500);
+}
+
+// Navigation Functions
+function drillDown(metric) {
+    switch (metric) {
+        case 'portfolio':
+            window.location.href = '/viewer';
+            break;
+        case 'returns':
+            askAI('portfolio performance');
+            break;
+        case 'opportunities':
+            openInvestmentOpportunities();
+            break;
+        case 'risk':
+            askAI('risk assessment');
+            break;
+    }
+}
+
+function openInvestmentOpportunities() {
+    const modal = document.getElementById('investModal');
+    if (modal) {
+        modal.classList.add('show');
+        modal.style.display = 'block';
+    }
+}
+
+function viewReturns() {
+    askAI('portfolio performance');
+}
+
+function viewValidators() {
+    window.location.href = '/contracts';
+}
+
+// Initialize Dashboard
+document.addEventListener('DOMContentLoaded', function() {
+    window.modernDashboard = new ModernDashboard();
+    
+    // Setup periodic data updates
+    setInterval(() => {
+        window.modernDashboard.loadDashboardData();
+    }, 30000);
+});
+</script>
+{% endblock %}
