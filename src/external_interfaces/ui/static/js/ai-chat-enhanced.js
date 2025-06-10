@@ -24,9 +24,10 @@ const aiChat = {
         this.render();
         this.bindEvents();
         this.checkEnhancedStatus();
+        this.checkChainBrainStatus();
         
         // Add system welcome message
-        this.addSystemMessage("Welcome to the BIM AI Assistant. How can I help you today?");
+        this.addSystemMessage("Welcome to the BIM AI Assistant with Chain Brain integration. How can I help you today?");
     },
     
     // Render the chat interface
@@ -465,5 +466,45 @@ const aiChat = {
     // Scroll to the bottom of the chat
     scrollToBottom: function() {
         this.messagesContainer.scrollTop = this.messagesContainer.scrollHeight;
+    },
+    
+    // Check chain brain status
+    checkChainBrainStatus: function() {
+        fetch('/api/bim-agent/chain-brain-status')
+            .then(response => response.json())
+            .then(data => {
+                this.updateChainBrainIndicator(data);
+            })
+            .catch(error => {
+                console.error('Error checking chain brain status:', error);
+            });
+    },
+    
+    // Update chain brain status indicator
+    updateChainBrainIndicator: function(status) {
+        let indicator = document.getElementById('chain-brain-indicator');
+        if (!indicator) {
+            // Create chain brain status indicator
+            indicator = document.createElement('div');
+            indicator.id = 'chain-brain-indicator';
+            indicator.className = 'chain-brain-status';
+            
+            const header = document.querySelector('.chat-header');
+            if (header) {
+                header.appendChild(indicator);
+            }
+        }
+        
+        const isActive = status.chain_brain_active;
+        indicator.className = `chain-brain-status ${isActive ? 'active' : 'inactive'}`;
+        indicator.innerHTML = `
+            <div class="status-dot ${isActive ? 'active' : 'inactive'}"></div>
+            <span class="status-text">${isActive ? 'Chain Brain Active' : 'Chain Brain Inactive'}</span>
+            <div class="status-tooltip">
+                ${status.message || 'Chain brain feeds real blockchain data to o3-mini AI'}
+                ${status.recent_insights && status.recent_insights.length > 0 ? 
+                    `<br>Recent insights: ${status.recent_insights.length}` : ''}
+            </div>
+        `;
     }
 };

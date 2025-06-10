@@ -12,6 +12,7 @@ import json
 from src.services.ai.bim_agent import BIMAgentManager
 from src.services.ai.orchestrator import get_orchestrator
 from src.services.ai.chain_brain_orchestrator import get_chain_brain_orchestrator
+from src.services.ai.chain_brain_service import get_chain_brain_service
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
@@ -50,31 +51,42 @@ def chat():
         # Use chain brain orchestrator for Enhanced AI mode with real blockchain data
         logger.debug("Using Enhanced AI mode with chain brain orchestrator")
         try:
-            import asyncio
-            chain_brain = get_chain_brain_orchestrator()
+            # Start chain brain service if not running
+            chain_service = get_chain_brain_service()
+            if not chain_service.is_running:
+                chain_service.start()
             
-            # Get AI analysis with current chain context using async loop
-            loop = asyncio.new_event_loop()
-            asyncio.set_event_loop(loop)
-            result = loop.run_until_complete(chain_brain.get_ai_chain_analysis(message))
-            loop.close()
+            # Use synchronous orchestrator with chain context
+            orchestrator = get_orchestrator()
+            
+            # Prepare enhanced context with chain data
+            context = {
+                "stakeholder_type": data.get("stakeholder_type", "general"),
+                "enhanced_mode": True,
+                "source": "bim_ai_assistant_with_chain_brain",
+                "request_chain_analysis": True
+            }
+            
+            # Process with orchestrator enhanced by chain brain
+            result = orchestrator.orchestrate_task(message, context)
             
             if result.get("success", False):
                 return jsonify({
                     "success": True,
-                    "message": "Enhanced AI analysis completed",
+                    "message": "Enhanced AI with Chain Brain analysis completed",
                     "response": result.get("response", "No response generated"),
                     "metadata": {
-                        "agent_type": "orchestrator",
+                        "agent_type": "chain_brain_orchestrator",
                         "enhanced_mode": True,
                         "task_id": result.get("task_id"),
                         "reasoning_steps": result.get("reasoning_steps", []),
-                        "metrics": result.get("metrics", {})
+                        "metrics": result.get("metrics", {}),
+                        "chain_data_integrated": True
                     }
                 })
             else:
                 # If orchestrator failed, fall back to standard processing
-                logger.warning(f"Orchestrator failed: {result.get('error', 'Unknown error')}")
+                logger.warning(f"Chain Brain Orchestrator failed: {result.get('error', 'Unknown error')}")
                 logger.info("Falling back to standard AI processing")
         except Exception as e:
             logger.error(f"Error using orchestrator: {str(e)}")
@@ -414,6 +426,26 @@ def execute_staking():
 
         return jsonify({"success": False, "message": str(e)}), 500
 
+
+@bim_agent_bp.route("/chain-brain-status", methods=["GET"])
+def chain_brain_status():
+    """Get the status of the chain brain feeding system"""
+    try:
+        chain_service = get_chain_brain_service()
+        status = chain_service.get_status()
+        
+        return jsonify({
+            "success": True,
+            "chain_brain_active": status["running"],
+            "recent_insights": status["recent_insights"],
+            "message": "Chain brain is actively feeding blockchain data to o3-mini" if status["running"] else "Chain brain is not active"
+        })
+    except Exception as e:
+        logger.error(f"Error getting chain brain status: {e}")
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500
 
 @bim_agent_bp.route("/auto-suggest-liquidity", methods=["POST"])
 def auto_suggest_liquidity():
