@@ -1,0 +1,253 @@
+/* Data Source Agent Panels - Frosted Glass Effect */
+
+.agent-panel-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.agent-panel {
+    /* Frosted glass base */
+    background: rgba(10, 18, 30, 0.9);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    
+    /* Glass borders and shadows */
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    
+    /* Layout */
+    padding: 1.5rem;
+    min-height: 280px;
+    position: relative;
+    overflow: hidden;
+    
+    /* Transitions */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.agent-panel:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Agent Panel Header */
+.agent-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.agent-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.agent-icon {
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(135deg, #e00d79, #b80596);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.agent-status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.agent-status.idle {
+    background: rgba(108, 117, 125, 0.2);
+    color: #6c757d;
+    border: 1px solid rgba(108, 117, 125, 0.3);
+}
+
+.agent-status.processing {
+    background: rgba(255, 193, 7, 0.2);
+    color: #f3c000;
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    animation: pulse 2s infinite;
+}
+
+.agent-status.success {
+    background: rgba(0, 153, 7, 0.2);
+    color: #009907;
+    border: 1px solid rgba(0, 153, 7, 0.3);
+}
+
+.agent-status.error {
+    background: rgba(237, 0, 72, 0.2);
+    color: #ed0048;
+    border: 1px solid rgba(237, 0, 72, 0.3);
+}
+
+/* Agent Metrics */
+.agent-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin: 1rem 0;
+}
+
+.metric-item {
+    text-align: center;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.metric-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #e00d79;
+    display: block;
+}
+
+.metric-label {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 0.25rem;
+}
+
+/* Agent Insights */
+.agent-insights {
+    margin-top: 1rem;
+}
+
+.insight-item {
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 3px solid #e00d79;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.insight-type {
+    font-weight: 600;
+    color: #e00d79;
+    text-transform: capitalize;
+    margin-bottom: 0.25rem;
+}
+
+.insight-confidence {
+    float: right;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Agent Actions */
+.agent-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.agent-btn {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    background: rgba(224, 13, 121, 0.1);
+    color: #e00d79;
+    border: 1px solid rgba(224, 13, 121, 0.3);
+    border-radius: 8px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.agent-btn:hover {
+    background: rgba(224, 13, 121, 0.2);
+    border-color: rgba(224, 13, 121, 0.5);
+    transform: translateY(-1px);
+}
+
+/* Loading Animation */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+.agent-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.agent-loading::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(224, 13, 121, 0.3);
+    border-top: 2px solid #e00d79;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-left: 0.5rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .agent-panel-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin: 1rem 0;
+    }
+    
+    .agent-panel {
+        padding: 1rem;
+        min-height: 240px;
+    }
+    
+    .agent-metrics {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+}
+
+/* Dark mode enhancements */
+@media (prefers-color-scheme: dark) {
+    .agent-panel {
+        box-shadow: 
+            0 8px 32px rgba(0, 0, 0, 0.5),
+            inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+    
+    .agent-panel:hover {
+        box-shadow: 
+            0 12px 40px rgba(0, 0, 0, 0.6),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+}

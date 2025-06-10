@@ -18,6 +18,7 @@ from src.controllers.upload_controller import upload_bp
 from src.controllers.contract_controller import contract_bp
 from src.controllers.blockchain_controller import blockchain_bp
 from src.controllers.blockchain_proxy_controller import blockchain_proxy_bp
+from src.controllers.agents_controller import agents_bp
 from src.security_utils import validate_environment, generate_csrf_token, apply_security_headers
 
 # Load environment variables from .env file if it exists
@@ -77,6 +78,7 @@ app.register_blueprint(upload_bp)
 app.register_blueprint(contract_bp)
 app.register_blueprint(blockchain_bp)
 app.register_blueprint(blockchain_proxy_bp)
+app.register_blueprint(agents_bp)
 
 # Add CSRF protection
 @app.before_request
