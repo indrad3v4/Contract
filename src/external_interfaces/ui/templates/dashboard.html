@@ -10,16 +10,6 @@
 {% endblock %}
 
 {% block content %}
-
-<!-- AI Brain Orchestrator Indicator -->
-<div class="orchestrator-connection route-dashboard mb-4">
-    <div class="orchestrator-label">DAODISEO AI Brain</div>
-    <div class="orchestrator-title d-flex align-items-center">
-        <i data-feather="cpu" class="brain-pulse me-2 brain-indicator"></i>
-        Processing Module
-    </div>
-</div>
-
 <div class="dashboard">
     <!-- ODIS Token Overview Section -->
     <div class="row mb-4">
@@ -389,7 +379,7 @@
                                     <div class="flex-grow-1">
                                         <div class="validator-name">Loading...</div>
                                         <div class="validator-status">
-                                            
+                                            <span class="status-indicator active"></span>
                                             <span class="status-text">Active</span>
                                         </div>
                                     </div>
@@ -657,7 +647,7 @@
                 datasets: [{
                     data: [45, 25, 20, 10],
                     backgroundColor: [
-                        'rgba(196, 30, 140, 0.7)',  // info
+                        'rgba(224, 13, 121, 0.7)',  // info
                         'rgba(184, 5, 150, 0.7)',   // secondary
                         'rgba(0, 153, 7, 0.7)',     // success
                         'rgba(243, 192, 0, 0.7)'    // warning

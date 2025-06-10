@@ -10,8 +10,8 @@
   --dds-primary-light: #4a2c96;     /* Lighter purple variation */
   
   /* DDS Accent Colors - Cyan/Blue Brain Theme */
-  --dds-accent-cyan: var(--dds-accent-cyan);       /* Bright cyan from AI brain */
-  --dds-accent-blue: var(--dds-accent-blue);       /* Blue connections */
+  --dds-accent-cyan: #00d4ff;       /* Bright cyan from AI brain */
+  --dds-accent-blue: #0099cc;       /* Blue connections */
   --dds-accent-electric: #00b8ff;   /* Electric blue highlights */
   
   /* DDS Secondary Colors */

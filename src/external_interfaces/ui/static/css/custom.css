@@ -46,8 +46,8 @@
 }
 
 .viewer-control-btn:hover {
-    background: rgba(196, 30, 140, 0.3);
-    box-shadow: 0 0 10px rgba(196, 30, 140, 0.5);
+    background: rgba(224, 13, 121, 0.3);
+    box-shadow: 0 0 10px rgba(224, 13, 121, 0.5);
 }
 
 .viewer-control-btn.active {
@@ -67,7 +67,7 @@
 .model-meta {
     display: flex;
     gap: 15px;
-    font-size: var(--dds-text-xs);
+    font-size: 12px;
     color: var(--text-dark);
 }
 
@@ -124,7 +124,7 @@
 }
 
 .transaction-icon.info {
-    background: rgba(196, 30, 140, 0.2);
+    background: rgba(224, 13, 121, 0.2);
     color: var(--info-light);
 }
 
@@ -143,7 +143,7 @@
 }
 
 .transaction-meta {
-    font-size: var(--dds-text-xs);
+    font-size: 12px;
     color: var(--text-dark);
     display: flex;
     gap: 15px;
@@ -173,12 +173,12 @@
     text-align: center;
     margin-bottom: 30px;
     transition: all 0.2s ease;
-    background: rgba(196, 30, 140, 0.05);
+    background: rgba(224, 13, 121, 0.05);
 }
 
 .upload-area:hover {
     border-color: var(--info);
-    background: rgba(196, 30, 140, 0.1);
+    background: rgba(224, 13, 121, 0.1);
 }
 
 .upload-icon {
@@ -188,7 +188,7 @@
 }
 
 .upload-title {
-    font-size: var(--dds-text-lg);
+    font-size: 18px;
     font-weight: 600;
     margin-bottom: 10px;
     background: var(--gradient-glow);
@@ -231,7 +231,7 @@
 }
 
 .file-meta {
-    font-size: var(--dds-text-xs);
+    font-size: 12px;
     color: var(--text-dark);
 }
 
@@ -257,7 +257,7 @@
 }
 
 .contract-title {
-    font-size: var(--dds-text-lg);
+    font-size: 18px;
     font-weight: 600;
     background: var(--gradient-glow);
     -webkit-background-clip: text;
@@ -266,7 +266,7 @@
 
 .contract-id {
     font-family: monospace;
-    font-size: var(--dds-text-xs);
+    font-size: 12px;
     color: var(--text-dark);
 }
 
@@ -282,7 +282,7 @@
 }
 
 .meta-label {
-    font-size: var(--dds-text-xs);
+    font-size: 12px;
     color: var(--text-dark);
     margin-bottom: 5px;
 }
@@ -295,7 +295,7 @@
     display: inline-block;
     padding: 4px 10px;
     border-radius: 20px;
-    font-size: var(--dds-text-xs);
+    font-size: 12px;
     font-weight: 600;
 }
 
@@ -310,7 +310,7 @@
 }
 
 .status-completed {
-    background: rgba(196, 30, 140, 0.2);
+    background: rgba(224, 13, 121, 0.2);
     color: var(--info-light);
 }
 
@@ -339,7 +339,7 @@
 }
 
 .signature-item:hover {
-    background: rgba(196, 30, 140, 0.1);
+    background: rgba(224, 13, 121, 0.1);
     transform: translateY(-3px);
 }
 
@@ -350,12 +350,12 @@
 
 .signature-wallet {
     font-family: monospace;
-    font-size: var(--dds-text-xs);
+    font-size: 12px;
     color: var(--text-dark);
 }
 
 .signature-timestamp {
-    font-size: var(--dds-text-xs);
+    font-size: 12px;
     color: var(--text-dark);
     margin-top: 5px;
 }
@@ -375,7 +375,7 @@
 }
 
 .chat-title {
-    font-size: var(--dds-text-base);
+    font-size: 16px;
     font-weight: 600;
     color: var(--text-light);
 }
@@ -441,7 +441,7 @@ input:checked + .toggle-slider:before {
 }
 
 .toggle-label {
-    font-size: var(--dds-text-xs);
+    font-size: 12px;
     color: var(--text-light);
 }
 
@@ -472,7 +472,7 @@ input:checked + .toggle-slider:before {
 .chat-input:focus {
     outline: none;
     border-color: var(--info);
-    box-shadow: 0 0 10px rgba(196, 30, 140, 0.3);
+    box-shadow: 0 0 10px rgba(224, 13, 121, 0.3);
 }
 
 .chat-send-btn {
@@ -487,7 +487,7 @@ input:checked + .toggle-slider:before {
 
 .chat-send-btn:hover {
     background: var(--info-light);
-    box-shadow: 0 0 10px rgba(196, 30, 140, 0.5);
+    box-shadow: 0 0 10px rgba(224, 13, 121, 0.5);
 }
 
 .message {
@@ -503,7 +503,7 @@ input:checked + .toggle-slider:before {
 
 .message-user {
     margin-left: auto;
-    background: rgba(196, 30, 140, 0.2);
+    background: rgba(224, 13, 121, 0.2);
     border-radius: 15px 15px 0 15px;
     padding: 10px 15px;
 }
@@ -526,7 +526,7 @@ input:checked + .toggle-slider:before {
 }
 
 .message-meta {
-    font-size: var(--dds-text-xs);
+    font-size: 12px;
     margin-top: 4px;
     color: var(--text-dark);
     display: flex;
@@ -538,7 +538,7 @@ input:checked + .toggle-slider:before {
     display: inline-block;
     padding: 3px 8px;
     border-radius: 12px;
-    font-size: var(--dds-text-xs);
+    font-size: 12px;
     margin-left: 8px;
     margin-right: 8px;
 }
@@ -548,9 +548,9 @@ input:checked + .toggle-slider:before {
     align-items: center;
     padding: 3px 8px;
     border-radius: 12px;
-    font-size: var(--dds-text-xs);
+    font-size: 12px;
     margin-left: 8px;
-    background: rgba(196, 30, 140, 0.2);
+    background: rgba(224, 13, 121, 0.2);
     color: var(--info-light);
 }
 
@@ -571,7 +571,7 @@ input:checked + .toggle-slider:before {
 }
 
 .stakeholder-landlord {
-    background: rgba(196, 30, 140, 0.2);
+    background: rgba(224, 13, 121, 0.2);
     color: var(--info-light);
 }
 
@@ -649,7 +649,7 @@ input:checked + .toggle-slider:before {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: var(--dds-text-xs);
+    font-size: 12px;
     font-weight: 600;
     color: white;
     margin-right: 10px;
@@ -660,7 +660,7 @@ input:checked + .toggle-slider:before {
 }
 
 .token-circle.pink {
-    background: linear-gradient(135deg, var(--dds-magenta), #b00a60);
+    background: linear-gradient(135deg, #e00d79, #b00a60);
 }
 
 .token-circle.green {
@@ -668,7 +668,7 @@ input:checked + .toggle-slider:before {
 }
 
 .token-circle.purple {
-    background: linear-gradient(135deg, var(--dds-bg-secondary), #8a0474);
+    background: linear-gradient(135deg, #b80596, #8a0474);
 }
 
 .token-circle.yellow {
@@ -744,10 +744,10 @@ input:checked + .toggle-slider:before {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(196, 30, 140, 0.3);
+    background: rgba(224, 13, 121, 0.3);
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(196, 30, 140, 0.5);
+    background: rgba(224, 13, 121, 0.5);
 }

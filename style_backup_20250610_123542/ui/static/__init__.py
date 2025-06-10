@@ -1,3 +1,0 @@
-"""
-Static resources package.
-"""
