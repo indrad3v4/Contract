@@ -227,9 +227,41 @@ class DaodiseoGlobalState {
         
         if (path.includes('/upload')) route = 'upload';
         else if (path.includes('/contracts')) route = 'contracts';
-        else if (path.includes('/viewer')) route = 'viewer';
+        else if (path.includes('/viewer')) route = '3d-model';
+        else if (path === '/' || path.includes('dashboard')) route = 'dashboard';
         
         this.setState('ui', { currentRoute: route });
+        
+        // Update navigation active states
+        this.updateNavigationStates(route);
+    }
+
+    updateNavigationStates(currentRoute) {
+        // Update sidebar navigation active states
+        const navItems = document.querySelectorAll('.sidebar-menu .nav-item');
+        navItems.forEach(item => {
+            const link = item.querySelector('.nav-link');
+            if (link) {
+                const href = link.getAttribute('href');
+                let isActive = false;
+                
+                if (currentRoute === 'dashboard' && (href === '/' || href.includes('dashboard'))) {
+                    isActive = true;
+                } else if (currentRoute === '3d-model' && href.includes('viewer')) {
+                    isActive = true;
+                } else if (currentRoute === 'upload' && href.includes('upload')) {
+                    isActive = true;
+                } else if (currentRoute === 'contracts' && href.includes('contracts')) {
+                    isActive = true;
+                }
+                
+                if (isActive) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            }
+        });
     }
 
     clearPersistedState() {

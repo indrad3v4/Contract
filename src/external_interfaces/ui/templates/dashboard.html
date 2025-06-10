@@ -5,28 +5,102 @@
 {% block extra_css %}
 <!-- Enhanced Chat CSS -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/chat-enhanced.css') }}">
+<!-- Enhanced Dashboard CSS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard-enhanced.css') }}">
 {% endblock %}
 
 {% block content %}
 <div class="dashboard">
-    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4 mb-4">
-        <!-- Dashboard Cards -->
-        <div class="col">
-            <div class="card stats-card">
+    <!-- ODIS Token Overview Section -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card odis-token-overview">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        <div class="token-logo me-3">
+                            <div class="rounded-circle bg-info d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                <span class="text-white fw-bold">ODIS</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h5 class="mb-0">ODIS Token</h5>
+                            <small class="text-muted">Cosmos Network's Real Estate Tokenization</small>
+                        </div>
+                    </div>
+                    <button class="btn btn-success btn-sm">
+                        <i data-feather="shopping-cart" class="icon-inline-sm"></i>
+                        Buy ODIS
+                    </button>
+                </div>
                 <div class="card-body">
-                    <div class="card-value">15,811.04</div>
-                    <div class="card-title">Token Value <span class="badge bg-info ms-1">ODIS</span></div>
-                    <div class="wave-visual"></div>
-                    <div class="card-icon info">
-                        <i data-feather="dollar-sign"></i>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <div class="metric-item">
+                                        <div class="metric-value" id="odis-price">$0.1214</div>
+                                        <div class="metric-change text-success">
+                                            <i data-feather="trending-up" class="icon-inline-sm"></i>
+                                            <span id="odis-change">+3.68%</span>
+                                        </div>
+                                        <div class="metric-label">Current Price</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="metric-item">
+                                        <div class="metric-value" id="market-cap">$12.4M</div>
+                                        <div class="metric-label">Market Cap</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="metric-item">
+                                        <div class="metric-value" id="volume-24h">$2.5M</div>
+                                        <div class="metric-label">Volume (24h)</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="metric-item">
+                                        <div class="metric-value" id="staking-apy">9.5%</div>
+                                        <div class="metric-label">Staking APY</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="metric-item">
+                                        <div class="metric-value" id="high-24h">$0.1289</div>
+                                        <div class="metric-label">24h High</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="metric-item">
+                                        <div class="metric-value" id="low-24h">$0.1156</div>
+                                        <div class="metric-label">24h Low</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="price-chart-container">
+                                <div class="chart-placeholder text-center py-4">
+                                    <i data-feather="trending-up" style="width: 48px; height: 48px;" class="text-muted"></i>
+                                    <div class="mt-2 text-muted">Live Price Chart</div>
+                                    <small class="text-muted">Real-time ODIS price data</small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Portfolio Overview Cards -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4 mb-4">
         <div class="col">
             <div class="card stats-card">
                 <div class="card-body">
-                    <div class="card-value">$38,126.50</div>
+                    <div class="card-value" id="total-reserves">$38,126.50</div>
                     <div class="card-title">Total Reserves <span class="badge bg-secondary ms-1">USD</span></div>
                     <div class="wave-visual"></div>
                     <div class="card-icon secondary">
@@ -38,11 +112,11 @@
         <div class="col">
             <div class="card stats-card">
                 <div class="card-body">
-                    <div class="card-value">9.5%</div>
-                    <div class="card-title">Staking APY <span class="badge bg-success ms-1">Yearly</span></div>
+                    <div class="card-value" id="verified-assets">$2.1M</div>
+                    <div class="card-title">Verified Assets <span class="badge bg-success ms-1">Real Estate</span></div>
                     <div class="wave-visual"></div>
-                    <div class="card-icon warning">
-                        <i data-feather="activity"></i>
+                    <div class="card-icon success">
+                        <i data-feather="check-circle"></i>
                     </div>
                 </div>
             </div>
@@ -50,10 +124,22 @@
         <div class="col">
             <div class="card stats-card">
                 <div class="card-body">
-                    <div class="card-value">0.318</div>
+                    <div class="card-value" id="active-contracts">12</div>
+                    <div class="card-title">Active Contracts <span class="badge bg-warning ms-1">Live</span></div>
+                    <div class="wave-visual"></div>
+                    <div class="card-icon warning">
+                        <i data-feather="file-text"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card stats-card">
+                <div class="card-body">
+                    <div class="card-value" id="daily-rewards">0.318</div>
                     <div class="card-title">Daily Rewards <span class="badge bg-info ms-1">ODIS</span></div>
                     <div class="wave-visual"></div>
-                    <div class="card-icon success">
+                    <div class="card-icon info">
                         <i data-feather="award"></i>
                     </div>
                 </div>
@@ -258,10 +344,106 @@
         </div>
     </div>
 
-    <!-- ODIS Token Trading Component -->
+    <!-- Network Validators Section -->
     <div class="row mt-4">
         <div class="col-12">
-            {% include 'components/odis_trading.html' %}
+            <div class="card validators-overview">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="mb-0">
+                            <i data-feather="shield" class="icon-inline me-2"></i>
+                            Active Validators
+                        </h5>
+                        <small class="text-muted">Odiseo Network Validation Nodes</small>
+                    </div>
+                    <div class="validators-stats">
+                        <span class="badge bg-success me-2">
+                            <span id="active-validators-count">10</span> Active
+                        </span>
+                        <span class="badge bg-info">
+                            <span id="total-voting-power">100M</span> Total Power
+                        </span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row" id="validators-grid">
+                        <!-- Validators will be populated by JavaScript -->
+                        <div class="col-md-4 mb-3">
+                            <div class="validator-card">
+                                <div class="validator-header d-flex align-items-center mb-2">
+                                    <div class="validator-avatar me-3">
+                                        <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
+                                            <i data-feather="user" style="width: 16px; height: 16px;"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <div class="validator-name">Loading...</div>
+                                        <div class="validator-status">
+                                            <span class="status-indicator active"></span>
+                                            <span class="status-text">Active</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="validator-metrics">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="metric-small">
+                                                <div class="metric-value">--</div>
+                                                <div class="metric-label">Voting Power</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="metric-small">
+                                                <div class="metric-value">--</div>
+                                                <div class="metric-label">Commission</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="validator-actions mt-2">
+                                    <button class="btn btn-sm btn-outline-primary me-2" disabled>
+                                        <i data-feather="trending-up" class="icon-inline-sm"></i>
+                                        Delegate
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-secondary" disabled>
+                                        <i data-feather="info" class="icon-inline-sm"></i>
+                                        Details
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="staking-overview mt-4 pt-3 border-top">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="staking-metric">
+                                    <div class="metric-value" id="total-staked">Loading...</div>
+                                    <div class="metric-label">Total Staked</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="staking-metric">
+                                    <div class="metric-value" id="staking-ratio">Loading...</div>
+                                    <div class="metric-label">Staking Ratio</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="staking-metric">
+                                    <div class="metric-value" id="avg-block-time">6.5s</div>
+                                    <div class="metric-label">Block Time</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="staking-metric">
+                                    <div class="metric-value" id="inflation-rate">7.2%</div>
+                                    <div class="metric-label">Inflation</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

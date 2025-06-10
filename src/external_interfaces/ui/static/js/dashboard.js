@@ -49,19 +49,218 @@ function initDashboardStateListeners() {
 // Initialize dashboard data from API
 async function initDashboardData() {
     try {
-        // Fetch dashboard statistics from API
+        // Fetch blockchain statistics from API
         const statsData = await fetchApi('/api/blockchain/stats');
         
-        // Update dashboard UI with fetched data
+        // Update ODIS token metrics with real data
+        updateOdisTokenMetrics(statsData);
+        
+        // Update portfolio dashboard metrics
         updateDashboardMetrics(statsData);
-        updateHotAsset(statsData.hot_asset);
+        
+        // Load validators data
+        await loadValidatorsData();
+        
+        // Initialize real-time price updates
+        initPriceUpdates();
         
     } catch (error) {
         console.error('Error initializing dashboard data:', error);
-        
-        // Show error message to user
-        showAlert('Failed to load dashboard data. Please try again later.', 'warning');
+        showAlert('Failed to load blockchain data. Please check your connection.', 'warning');
     }
+}
+
+// Update ODIS token metrics with real blockchain data
+function updateOdisTokenMetrics(data) {
+    // Update current price
+    const priceElement = document.getElementById('odis-price');
+    if (priceElement && data.token_price) {
+        priceElement.textContent = `$${data.token_price.toFixed(4)}`;
+    }
+    
+    // Update price change
+    const changeElement = document.getElementById('odis-change');
+    if (changeElement && data.price_change_24h !== undefined) {
+        const change = data.price_change_24h;
+        changeElement.textContent = `${change >= 0 ? '+' : ''}${change.toFixed(2)}%`;
+        changeElement.className = change >= 0 ? 'text-success' : 'text-danger';
+    }
+    
+    // Update market cap
+    const marketCapElement = document.getElementById('market-cap');
+    if (marketCapElement && data.market_cap) {
+        marketCapElement.textContent = formatCurrency(data.market_cap / 1000000) + 'M';
+    }
+    
+    // Update 24h volume
+    const volumeElement = document.getElementById('volume-24h');
+    if (volumeElement && data.volume_24h) {
+        volumeElement.textContent = formatCurrency(data.volume_24h / 1000000) + 'M';
+    }
+    
+    // Update 24h high/low
+    const highElement = document.getElementById('high-24h');
+    const lowElement = document.getElementById('low-24h');
+    if (highElement && data.high_24h) {
+        highElement.textContent = `$${data.high_24h.toFixed(4)}`;
+    }
+    if (lowElement && data.low_24h) {
+        lowElement.textContent = `$${data.low_24h.toFixed(4)}`;
+    }
+    
+    // Update staking APY
+    const stakingApyElement = document.getElementById('staking-apy');
+    if (stakingApyElement && data.staking_apy) {
+        stakingApyElement.textContent = `${data.staking_apy.toFixed(1)}%`;
+    }
+}
+
+// Load validators data from blockchain
+async function loadValidatorsData() {
+    try {
+        // Get validators from stats API which fetches real validator data
+        const statsData = await fetchApi('/api/blockchain/stats');
+        const validators = statsData.validators || [];
+        
+        // Update validators count
+        const validatorsCountElement = document.getElementById('active-validators-count');
+        if (validatorsCountElement) {
+            validatorsCountElement.textContent = validators.length;
+        }
+        
+        // Calculate total voting power
+        const totalVotingPower = validators.reduce((sum, v) => sum + (parseFloat(v.voting_power) || 0), 0);
+        const totalPowerElement = document.getElementById('total-voting-power');
+        if (totalPowerElement) {
+            totalPowerElement.textContent = formatNumber(Math.round(totalVotingPower / 1000000)) + 'M';
+        }
+        
+        // Populate validators grid
+        populateValidatorsGrid(validators);
+        
+        // Update staking overview
+        updateStakingOverview(statsData);
+        
+    } catch (error) {
+        console.error('Error loading validators data:', error);
+    }
+}
+
+// Populate validators grid with real data
+function populateValidatorsGrid(validators) {
+    const validatorsGrid = document.getElementById('validators-grid');
+    if (!validatorsGrid) return;
+    
+    // Clear existing content
+    validatorsGrid.innerHTML = '';
+    
+    // Create validator cards
+    validators.slice(0, 9).forEach((validator, index) => {
+        const validatorCard = createValidatorCard(validator, index);
+        validatorsGrid.appendChild(validatorCard);
+    });
+    
+    // Refresh icons
+    feather.replace();
+}
+
+// Create validator card element
+function createValidatorCard(validator, index) {
+    const col = document.createElement('div');
+    col.className = 'col-md-4 mb-3';
+    
+    // Extract validator data
+    const moniker = validator.description?.moniker || validator.moniker || `Validator ${index + 1}`;
+    const votingPower = parseFloat(validator.voting_power) || 0;
+    const commission = parseFloat(validator.commission?.commission_rates?.rate) || 0;
+    const status = validator.status || 'BOND_STATUS_BONDED';
+    const jailed = validator.jailed || false;
+    
+    // Determine status
+    let statusClass = 'active';
+    let statusText = 'Active';
+    if (jailed) {
+        statusClass = 'jailed';
+        statusText = 'Jailed';
+    } else if (status !== 'BOND_STATUS_BONDED') {
+        statusClass = 'inactive';
+        statusText = 'Inactive';
+    }
+    
+    col.innerHTML = `
+        <div class="validator-card slide-in">
+            <div class="validator-header d-flex align-items-center mb-2">
+                <div class="validator-avatar me-3">
+                    <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
+                        <i data-feather="shield" style="width: 16px; height: 16px;"></i>
+                    </div>
+                </div>
+                <div class="flex-grow-1">
+                    <div class="validator-name">${moniker}</div>
+                    <div class="validator-status">
+                        <span class="status-indicator ${statusClass}"></span>
+                        <span class="status-text">${statusText}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="validator-metrics">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="metric-small">
+                            <div class="metric-value">${formatNumber(Math.round(votingPower / 1000000))}M</div>
+                            <div class="metric-label">Voting Power</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="metric-small">
+                            <div class="metric-value">${(commission * 100).toFixed(1)}%</div>
+                            <div class="metric-label">Commission</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="validator-actions mt-2">
+                <button class="btn btn-sm btn-outline-primary me-2" ${jailed ? 'disabled' : ''}>
+                    <i data-feather="trending-up" class="icon-inline-sm"></i>
+                    Delegate
+                </button>
+                <button class="btn btn-sm btn-outline-secondary">
+                    <i data-feather="info" class="icon-inline-sm"></i>
+                    Details
+                </button>
+            </div>
+        </div>
+    `;
+    
+    return col;
+}
+
+// Update staking overview with real data
+function updateStakingOverview(data) {
+    // Update total staked
+    const totalStakedElement = document.getElementById('total-staked');
+    if (totalStakedElement && data.total_staked) {
+        totalStakedElement.textContent = formatCurrency(data.total_staked / 1000000) + 'M ODIS';
+    }
+    
+    // Update staking ratio
+    const stakingRatioElement = document.getElementById('staking-ratio');
+    if (stakingRatioElement && data.staking_ratio) {
+        stakingRatioElement.textContent = `${(data.staking_ratio * 100).toFixed(1)}%`;
+    }
+}
+
+// Initialize real-time price updates
+function initPriceUpdates() {
+    // Update prices every 30 seconds
+    setInterval(async () => {
+        try {
+            const statsData = await fetchApi('/api/blockchain/stats');
+            updateOdisTokenMetrics(statsData);
+        } catch (error) {
+            console.warn('Failed to update prices:', error);
+        }
+    }, 30000);
 }
 
 // Update dashboard metrics with values from API
