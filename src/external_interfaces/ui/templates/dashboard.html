@@ -5,75 +5,222 @@
 {% block extra_css %}
 <!-- Enhanced Chat CSS -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/chat-enhanced.css') }}">
+<style>
+/* Dashboard Header */
+.dashboard-header {
+    text-align: center;
+    padding: 2rem 0;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
+    border-radius: 16px;
+    margin-bottom: 2rem;
+}
+
+.dashboard-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-subtitle {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+}
+
+/* Status Badges */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-verified {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.status-loading {
+    background: rgba(59, 130, 246, 0.2);
+    color: #3b82f6;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.status-error {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Card Layout */
+.card-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.card-value {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.primary-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.value-unit {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+}
+
+.update-timestamp {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Section Header */
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1.5rem;
+}
+</style>
 {% endblock %}
 
 {% block content %}
-    <!-- Data Source Integration Agents -->
-    <div class="row mb-4">
-        <div class="col-12">
-            <h3 class="cosmic-text mb-3">
-                <i data-feather="cpu"></i>
-                Data Source Agents
-            </h3>
-        
-        </div>
+<div class="container-fluid">
+    <!-- Main Dashboard Header -->
+    <div class="dashboard-header mb-4">
+        <h1 class="dashboard-title">Tokenize your real estate using the functionality below! Enjoy.</h1>
+        <p class="dashboard-subtitle">Manage your blockchain real estate investments with AI-powered insights</p>
     </div>
 
-<div class="dashboard">
-    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4 mb-4">
-        <!-- Dashboard Cards -->
-        <div class="col">
-            <div class="card stats-card" data-card-id="token-value" data-card-id="token-value">
-                <div class="card-body">
-                    \1
-                        <div class="update-timestamp">Updated: --:--</div>
-                    <div class="card-title">Token Value <span class="badge bg-info ms-1">ODIS</span></div>
-                    <div class="wave-visual"></div>
-                    <div class="card-icon info">
-                        <i data-feather="dollar-sign"></i>
+    <!-- Data Source Agents Section -->
+    <section class="data-source-agents mb-4" data-ai-context="blockchain-data-orchestration">
+        <div class="section-header">
+            <h2 class="section-title">
+                <i data-feather="cpu"></i>
+                Data Source Agents
+            </h2>
+        </div>
+        
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4">
+            <!-- Token Value Agent -->
+            <div class="col">
+                <div class="card stats-card" data-card-type="token-value">
+                    <div class="card-body">
+                        <div class="card-header-row">
+                            <div class="card-title">Token Value</div>
+                            <span class="status-badge status-verified">
+                                <i data-feather="check-circle"></i>
+                                Verified
+                            </span>
+                        </div>
+                        <div class="card-value">
+                            <span class="primary-value" id="token-value">Loading...</span>
+                            <span class="value-unit">ODIS</span>
+                        </div>
+                        <div class="update-timestamp">
+                            Updated: <span id="token-value-time">--</span>
+                        </div>
+                        <div class="card-icon info">
+                            <i data-feather="dollar-sign"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Total Reserves Agent -->
+            <div class="col">
+                <div class="card stats-card" data-card-type="total-reserves">
+                    <div class="card-body">
+                        <div class="card-header-row">
+                            <div class="card-title">Total Reserves</div>
+                            <span class="status-badge status-verified">
+                                <i data-feather="check-circle"></i>
+                                Verified
+                            </span>
+                        </div>
+                        <div class="card-value">
+                            <span class="primary-value" id="total-reserves">Loading...</span>
+                            <span class="value-unit">ODIS</span>
+                        </div>
+                        <div class="update-timestamp">
+                            Updated: <span id="total-reserves-time">--</span>
+                        </div>
+                        <div class="card-icon secondary">
+                            <i data-feather="layers"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Staking APY Agent -->
+            <div class="col">
+                <div class="card stats-card" data-card-type="staking-apy">
+                    <div class="card-body">
+                        <div class="card-header-row">
+                            <div class="card-title">Staking APY</div>
+                            <span class="status-badge status-verified">
+                                <i data-feather="check-circle"></i>
+                                Verified
+                            </span>
+                        </div>
+                        <div class="card-value">
+                            <span class="primary-value" id="staking-apy">Loading...</span>
+                            <span class="value-unit">%</span>
+                        </div>
+                        <div class="update-timestamp">
+                            Updated: <span id="staking-apy-time">--</span>
+                        </div>
+                        <div class="card-icon warning">
+                            <i data-feather="percent"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Daily Rewards Agent -->
+            <div class="col">
+                <div class="card stats-card" data-card-type="daily-rewards">
+                    <div class="card-body">
+                        <div class="card-header-row">
+                            <div class="card-title">Daily Rewards</div>
+                            <span class="status-badge status-verified">
+                                <i data-feather="check-circle"></i>
+                                Verified
+                            </span>
+                        </div>
+                        <div class="card-value">
+                            <span class="primary-value" id="daily-rewards">Loading...</span>
+                            <span class="value-unit">ODIS</span>
+                        </div>
+                        <div class="update-timestamp">
+                            Updated: <span id="daily-rewards-time">--</span>
+                        </div>
+                        <div class="card-icon success">
+                            <i data-feather="gift"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="card stats-card" data-card-id="token-value" data-card-id="token-value">
-                <div class="card-body">
-                    \1
-                        <div class="update-timestamp">Updated: --:--</div>
-                    <div class="card-title">Total Reserves" data-card-id="total-reserves" data-card-id="total-reserves <span class="badge bg-secondary ms-1">USD</span></div>
-                    <div class="wave-visual"></div>
-                    <div class="card-icon secondary">
-                        <i data-feather="trending-up"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card stats-card" data-card-id="token-value" data-card-id="token-value">
-                <div class="card-body">
-                    \1
-                        <div class="update-timestamp">Updated: --:--</div>
-                    <div class="card-title">Staking APY" data-card-id="staking-apy" data-card-id="staking-apy <span class="badge bg-success ms-1">Yearly</span></div>
-                    <div class="wave-visual"></div>
-                    <div class="card-icon warning">
-                        <i data-feather="activity"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card stats-card" data-card-id="token-value" data-card-id="token-value">
-                <div class="card-body">
-                    \1
-                        <div class="update-timestamp">Updated: --:--</div>
-                    <div class="card-title">Daily Rewards" data-card-id="daily-rewards" data-card-id="daily-rewards <span class="badge bg-info ms-1">ODIS</span></div>
-                    <div class="wave-visual"></div>
-                    <div class="card-icon success">
-                        <i data-feather="award"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
+    </section>
     </div>
 
     <div class="row g-4">

@@ -84,6 +84,25 @@
             animation: highlightPulse 1.5s ease-out infinite;
             border: 2px solid rgba(224, 13, 121, 0.7) !important;
         }
+        
+        /* Sidebar Active State */
+        .nav-link.active {
+            background: linear-gradient(135deg, rgba(224, 13, 121, 0.2), rgba(168, 85, 247, 0.2)) !important;
+            border-left: 4px solid #e00d79 !important;
+            color: #ffffff !important;
+            font-weight: 600 !important;
+            padding-left: 16px !important;
+        }
+        
+        .nav-link.active i {
+            color: #e00d79 !important;
+        }
+        
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1) !important;
+            color: #ffffff !important;
+            transition: all 0.3s ease !important;
+        }
     </style>
     
     <!-- THREE.js for 3D visualization -->
@@ -110,26 +129,26 @@
             
             <nav class="sidebar-nav">
                 <ul>
-                    <li class="nav-item {{ 'active' if request.path == '/' }}">
-                        <a href="{{ url_for('index') }}" class="nav-link">
+                    <li class="nav-item">
+                        <a href="{{ url_for('index') }}" class="nav-link {% if request.endpoint == 'index' %}active{% endif %}">
                             <i data-feather="grid"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    <li class="nav-item {{ 'active' if request.path == '/viewer' }}">
-                        <a href="{{ url_for('viewer') }}" class="nav-link">
+                    <li class="nav-item">
+                        <a href="{{ url_for('viewer') }}" class="nav-link {% if request.endpoint == 'viewer' %}active{% endif %}">
                             <i data-feather="box"></i>
                             <span>3D Viewer</span>
                         </a>
                     </li>
-                    <li class="nav-item {{ 'active' if request.path == '/upload' }}">
-                        <a href="{{ url_for('upload') }}" class="nav-link">
+                    <li class="nav-item">
+                        <a href="{{ url_for('upload') }}" class="nav-link {% if request.endpoint == 'upload' %}active{% endif %}">
                             <i data-feather="upload"></i>
                             <span>Upload</span>
                         </a>
                     </li>
-                    <li class="nav-item {{ 'active' if request.path == '/contracts' }}">
-                        <a href="{{ url_for('contracts') }}" class="nav-link">
+                    <li class="nav-item">
+                        <a href="{{ url_for('contracts') }}" class="nav-link {% if request.endpoint == 'contracts' %}active{% endif %}">
                             <i data-feather="file-text"></i>
                             <span>Contracts</span>
                         </a>
