@@ -6,6 +6,7 @@ import os
 import logging
 import sys
 from flask import Flask, render_template, url_for, request, jsonify, abort, session
+from flask_cors import CORS
 from dotenv import load_dotenv
 
 from src.controllers.bim_controller import bim_bp
