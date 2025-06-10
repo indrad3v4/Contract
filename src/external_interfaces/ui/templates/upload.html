@@ -570,7 +570,7 @@
                     };
                     formData.append('metadata', JSON.stringify(metadata));
                     
-                    // First phase: Upload to prepare the property ledger rental transaction
+                    // First phase: Upload to prepare the property ledger rental rental transaction
                     const response = await fetch('/api/prepare-upload', {
                         method: 'POST',
                         body: formData
@@ -581,10 +581,10 @@
                     }
                     
                     const data = await response.json();
-                    console.log('rental transaction prepared:', data);
+                    console.log('rental rental transaction prepared:', data);
                     
                     if (!data.success) {
-                        throw new Error(data.error || 'Failed to prepare rental transaction');
+                        throw new Error(data.error || 'Failed to prepare rental rental transaction');
                     }
                     
                     // Update file item with hash
@@ -597,17 +597,17 @@
                         <span>Hash: ${hashDisplay}</span>
                     `;
                     
-                    // Second phase: Sign the rental transaction with Keplr
+                    // Second phase: Sign the rental rental transaction with Keplr
                     try {
-                        // Use the Keplr portfolio to sign the rental transaction
+                        // Use the Keplr portfolio to sign the rental rental transaction
                         const signResponse = await signTransactionWithKeplr(data.sign_doc);
-                        console.log('rental transaction signed:', signResponse);
+                        console.log('rental rental transaction signed:', signResponse);
                         
                         // Update status to "Signed"
                         const statusBadge = fileItem.querySelector('.badge');
                         statusBadge.textContent = 'Signed';
                         
-                        // Third phase: Broadcast the rental transaction
+                        // Third phase: Broadcast the rental rental transaction
                         const broadcastResponse = await fetch('/api/broadcast', {
                             method: 'POST',
                             headers: {
@@ -621,10 +621,10 @@
                         }
                         
                         const broadcastData = await broadcastResponse.json();
-                        console.log('rental transaction broadcast:', broadcastData);
+                        console.log('rental rental transaction broadcast:', broadcastData);
                         
                         if (!broadcastData.success) {
-                            throw new Error(broadcastData.error || 'Failed to broadcast rental transaction');
+                            throw new Error(broadcastData.error || 'Failed to broadcast rental rental transaction');
                         }
                         
                         // Update status to "Verified"
@@ -632,7 +632,7 @@
                         statusBadge.classList.add('bg-success');
                         statusBadge.textContent = 'Verified on Chain';
                         
-                        // Update action area with rental transaction options
+                        // Update action area with rental rental transaction options
                         const actionArea = fileItem.querySelector('.file-actions');
                         actionArea.innerHTML = `
                             <div class="btn-group">
@@ -671,7 +671,7 @@
                         notification.className = 'alert alert-success alert-dismissible fade show';
                         notification.innerHTML = `
                             <i data-feather="award" class="icon-inline-sm"></i>
-                            <strong>rental transaction Verified on property ledger!</strong> You earned ${rewardValue} ODIS tokens as a reward.
+                            <strong>rental rental transaction Verified on property ledger!</strong> You earned ${rewardValue} ODIS tokens as a reward.
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         `;
                         
@@ -683,7 +683,7 @@
                             numBlocks: 5,
                             duration: 3000,
                             onComplete: () => {
-                                // After rental transaction animation, play celebration
+                                // After rental rental transaction animation, play celebration
                                 playCelebrationConfetti('app-container', {
                                     fromBottom: true,
                                     particleCount: 100
@@ -705,7 +705,7 @@
                         }, 8000);
                         
                     } catch (signingError) {
-                        console.error('Error signing rental transaction:', signingError);
+                        console.error('Error signing rental rental transaction:', signingError);
                         
                         // Update status to error
                         const statusBadge = fileItem.querySelector('.badge');
@@ -718,7 +718,7 @@
                         actionArea.innerHTML = `
                             <div class="d-flex align-items-center">
                                 <div class="me-3">
-                                    <small class="text-danger">Failed to sign rental transaction</small>
+                                    <small class="text-danger">Failed to sign rental rental transaction</small>
                                 </div>
                                 <div class="btn-group">
                                     <button class="btn btn-sm btn-outline-warning retry-sign-btn" data-tx-id="${data.transaction_id}">
@@ -736,17 +736,17 @@
                         const retryBtn = actionArea.querySelector('.retry-sign-btn');
                         if (retryBtn) {
                             retryBtn.addEventListener('click', async function() {
-                                // Retry the signing process with the same rental transaction data
+                                // Retry the signing process with the same rental rental transaction data
                                 try {
                                     const newSignResponse = await signTransactionWithKeplr(data.sign_doc);
-                                    console.log('rental transaction signed on retry:', newSignResponse);
+                                    console.log('rental rental transaction signed on retry:', newSignResponse);
                                     
                                     // Continue with broadcasting...
                                     // (Similar code as above, but this would be duplicate code in real implementation)
                                     // Consider refactoring this into a separate function
                                 } catch (retryError) {
                                     console.error('Retry signing failed:', retryError);
-                                    alert('Failed to sign rental transaction: ' + retryError.message);
+                                    alert('Failed to sign rental rental transaction: ' + retryError.message);
                                 }
                             });
                         }
@@ -756,7 +756,7 @@
                         notification.className = 'alert alert-danger alert-dismissible fade show';
                         notification.innerHTML = `
                             <i data-feather="alert-circle" class="icon-inline-sm"></i>
-                            <strong>rental transaction Signing Failed:</strong> ${signingError.message}
+                            <strong>rental rental transaction Signing Failed:</strong> ${signingError.message}
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         `;
                         

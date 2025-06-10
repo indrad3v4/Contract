@@ -30,10 +30,49 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-theme.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/micro-rental income.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/micro-rewards.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/daodiseo-ux.css') }}">
     
     <style>
+        :root {
+            --primary-purple: #e00d79;
+            --secondary-purple: #b80596;
+            --charcoal-gray: #333333;
+            --accent-cyan: #00d4ff;
+            --background-dark: #0a0a0a;
+            --text-white: #ffffff;
+            --text-light-gray: #cccccc;
+            --success-green: #00ff88;
+            --warning-orange: #ff6b35;
+        }
+        
+        .landlord-portfolio-widget {
+            background: linear-gradient(135deg, #e00d79, #b80596);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 8px 25px rgba(224, 13, 121, 0.3);
+        }
+        
+        .portfolio-metric {
+            text-align: center;
+            color: #ffffff;
+        }
+        
+        .metric-value {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffffff;
+        }
+        
+        .metric-label {
+            display: block;
+            font-size: 0.9rem;
+            color: #cccccc;
+            margin-top: 5px;
+        }
+        
         :root {
             --primary-purple: #e00d79;
             --secondary-purple: #b80596;
@@ -180,29 +219,6 @@
         
         <!-- Main Content -->
         <div class="main-content">
-        <div class="landlord-portfolio-widget">
-            <h3 class="text-primary">Property Portfolio Overview</h3>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="portfolio-metric">
-                        <span class="metric-value">$23.40</span>
-                        <span class="metric-label">Total Property Value</span>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="portfolio-metric">
-                        <span class="metric-value">12</span>
-                        <span class="metric-label">Active Properties</span>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="portfolio-metric">
-                        <span class="metric-value">$1.17/mo</span>
-                        <span class="metric-label">Monthly Rental Income</span>
-                    </div>
-                </div>
-            </div>
-        </div>
         
             <!-- Top Bar -->
             <div class="top-bar">
@@ -1050,7 +1066,7 @@
     <script src="{{ url_for('static', filename='js/kepler.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='js/property ledger-animations.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='js/micro-rental income-ui.js') }}"></script>
-    <script type="module" src="{{ url_for('static', filename='js/rental transaction.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/rental rental transaction.js') }}"></script>
     
     <!-- Chart.js for dashboard charts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>

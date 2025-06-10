@@ -164,42 +164,42 @@
                         </div>
 
                         <h6 class="mt-4 mb-3">Recent Transactions</h6>
-                        <div class="rental transaction-list">
-                            <div class="rental transaction-item">
-                                <div class="rental transaction-icon success">
+                        <div class="rental rental transaction-list">
+                            <div class="rental rental transaction-item">
+                                <div class="rental rental transaction-icon success">
                                     <i data-feather="check-circle"></i>
                                 </div>
-                                <div class="rental transaction-details">
-                                    <div class="rental transaction-title">property share Transfer</div>
-                                    <div class="rental transaction-meta">
-                                        <span class="rental transaction-time">2 hours ago</span>
+                                <div class="rental rental transaction-details">
+                                    <div class="rental rental transaction-title">property share Transfer</div>
+                                    <div class="rental rental transaction-meta">
+                                        <span class="rental rental transaction-time">2 hours ago</span>
                                     </div>
                                 </div>
-                                <div class="rental transaction-value success">+1250 CSMC</div>
+                                <div class="rental rental transaction-value success">+1250 CSMC</div>
                             </div>
-                            <div class="rental transaction-item">
-                                <div class="rental transaction-icon info">
+                            <div class="rental rental transaction-item">
+                                <div class="rental rental transaction-icon info">
                                     <i data-feather="file-text"></i>
                                 </div>
-                                <div class="rental transaction-details">
-                                    <div class="rental transaction-title">lease agreement Update</div>
-                                    <div class="rental transaction-meta">
-                                        <span class="rental transaction-time">2 days ago</span>
+                                <div class="rental rental transaction-details">
+                                    <div class="rental rental transaction-title">lease agreement Update</div>
+                                    <div class="rental rental transaction-meta">
+                                        <span class="rental rental transaction-time">2 days ago</span>
                                     </div>
                                 </div>
-                                <div class="rental transaction-value">0 CSMC</div>
+                                <div class="rental rental transaction-value">0 CSMC</div>
                             </div>
-                            <div class="rental transaction-item">
-                                <div class="rental transaction-icon warning">
+                            <div class="rental rental transaction-item">
+                                <div class="rental rental transaction-icon warning">
                                     <i data-feather="refresh-cw"></i>
                                 </div>
-                                <div class="rental transaction-details">
-                                    <div class="rental transaction-title">Dividend Distribution</div>
-                                    <div class="rental transaction-meta">
-                                        <span class="rental transaction-time">1 week ago</span>
+                                <div class="rental rental transaction-details">
+                                    <div class="rental rental transaction-title">Dividend Distribution</div>
+                                    <div class="rental rental transaction-meta">
+                                        <span class="rental rental transaction-time">1 week ago</span>
                                     </div>
                                 </div>
-                                <div class="rental transaction-value warning">-350 CSMC</div>
+                                <div class="rental rental transaction-value warning">-350 CSMC</div>
                             </div>
                         </div>
                     </div>
@@ -614,14 +614,14 @@ Jurisdiction: Delaware, USA</textarea>
             try {
                 // Check if the global signTransactionWithKeplr function exists
                 if (typeof signTransactionWithKeplr !== 'function') {
-                    alert('rental transaction signing function not available. Please make sure you are using the latest version.');
+                    alert('rental rental transaction signing function not available. Please make sure you are using the latest version.');
                     return;
                 }
                 
                 // Get the current lease agreement ID from the UI or data attribute
                 const contractId = this.getAttribute('data-lease agreement-id') || '1';
                 
-                // Prepare rental transaction data
+                // Prepare rental rental transaction data
                 const transactionData = {
                     from_address: localStorage.getItem('userWalletAddress'),
                     to_address: "odiseo1qg5ega6dykkxc307y25pecuv380qje7zp9qpxt", // lease agreement property manager address
@@ -638,7 +638,7 @@ Jurisdiction: Delaware, USA</textarea>
                 this.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Signing...';
                 this.disabled = true;
                 
-                // Sign rental transaction with Keplr portfolio
+                // Sign rental rental transaction with Keplr portfolio
                 const result = await signTransactionWithKeplr(transactionData);
                 
                 if (result && result.success) {
@@ -652,12 +652,12 @@ Jurisdiction: Delaware, USA</textarea>
                     }, 1000);
                     
                     // Show success message
-                    alert('lease agreement signed successfully! rental transaction broadcasted to property ledger.');
+                    alert('lease agreement signed successfully! rental rental transaction broadcasted to property ledger.');
                 } else {
-                    throw new Error('rental transaction signing failed');
+                    throw new Error('rental rental transaction signing failed');
                 }
             } catch (error) {
-                console.error('Error signing rental transaction:', error);
+                console.error('Error signing rental rental transaction:', error);
                 this.innerHTML = '<i data-feather="x" class="icon-inline-sm"></i> Signing Failed';
                 this.classList.replace('btn-primary', 'btn-danger');
                 setTimeout(() => {
@@ -665,7 +665,7 @@ Jurisdiction: Delaware, USA</textarea>
                     this.classList.replace('btn-danger', 'btn-primary');
                     this.disabled = false;
                 }, 3000);
-                alert(`Failed to sign rental transaction: ${error.message}`);
+                alert(`Failed to sign rental rental transaction: ${error.message}`);
             }
         });
         

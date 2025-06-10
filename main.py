@@ -136,7 +136,7 @@ def contracts():
 @app.route("/dashboard")
 def landlord_dashboard():
     """Render the landlord-specific dashboard"""
-    return render_template("landlord_dashboard.html")
+    return render_template("landlord_dashboard_clean.html")
 
 @app.route("/portfolio")
 def portfolio():

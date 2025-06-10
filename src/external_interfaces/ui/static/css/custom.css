@@ -866,3 +866,117 @@ input:checked + .toggle-slider:before {
             }
         }
         
+        
+        /* DAODISEO Landlord Theme */
+        
+        body {
+            background: linear-gradient(135deg, #0a0a0a, #333333);
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .card {
+            background: rgba(51, 51, 51, 0.8);
+            border: 1px solid #e00d79;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(224, 13, 121, 0.2);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #e00d79, #b80596);
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(224, 13, 121, 0.4);
+        }
+        
+        .landlord-nav {
+            background: rgba(51, 51, 51, 0.9);
+            padding: 15px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        
+        .landlord-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .landlord-nav li a {
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .landlord-nav li a:hover {
+            background: #e00d79;
+            color: #ffffff;
+        }
+        
+        .property-card {
+            background: linear-gradient(135deg, #333333, #0a0a0a);
+            border: 2px solid #e00d79;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .property-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #e00d79, #00d4ff);
+        }
+        
+        .odis-price-display {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #00d4ff;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+        
+        .table-dark {
+            background: rgba(51, 51, 51, 0.8);
+            border: 1px solid #e00d79;
+        }
+        
+        .table-dark th {
+            background: #e00d79;
+            color: #ffffff;
+            border: none;
+        }
+        
+        .table-dark td {
+            border-color: rgba(224, 13, 121, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .landlord-nav ul {
+                flex-direction: column;
+            }
+            
+            .portfolio-metric {
+                margin-bottom: 20px;
+            }
+        }
+        
