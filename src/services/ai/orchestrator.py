@@ -217,7 +217,7 @@ Emphasize business value, cost-benefit analysis, risk assessment, and long-term 
             complexity, reasoning_effort = self._analyze_query_complexity(user_query)
             
             # Step 2: Plan workflow using o3-mini
-            workflow_plan = self._plan_workflow(user_query, complexity, context)
+            workflow_plan = self._plan_workflow(user_query, complexity, context or {})
             
             # Step 3: Execute planned workflow
             execution_results = self._execute_workflow(workflow_plan, reasoning_effort)
@@ -294,7 +294,7 @@ Emphasize business value, cost-benefit analysis, risk assessment, and long-term 
             return TaskComplexity.MEDIUM, ReasoningEffort.MEDIUM
 
     def _plan_workflow(self, query: str, complexity: TaskComplexity, 
-                      context: Dict[str, Any] = None) -> OrchestrationTask:
+                      context: Dict[str, Any]) -> OrchestrationTask:
         """Plan workflow using o3-mini reasoning"""
         
         task_id = f"plan_{int(time.time())}"
