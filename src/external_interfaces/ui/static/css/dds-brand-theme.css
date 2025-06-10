@@ -373,6 +373,179 @@ body {
   box-shadow: 0 0 0 0.2rem rgba(0, 212, 255, 0.25);
 }
 
+/* DDS Top Bar */
+.top-bar {
+  background: var(--dds-gradient-card);
+  border-bottom: 1px solid var(--dds-purple-border);
+  backdrop-filter: blur(20px);
+}
+
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.network-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid var(--dds-accent-cyan);
+  border-radius: 20px;
+  font-size: 0.875rem;
+  color: var(--dds-white);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--dds-accent-cyan);
+  box-shadow: 0 0 8px var(--dds-accent-cyan);
+  animation: networkPulse 2s ease-in-out infinite;
+}
+
+@keyframes networkPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.1); }
+}
+
+.network-name {
+  font-weight: 500;
+}
+
+/* DDS Sidebar Enhancements */
+.sidebar-header {
+  background: var(--dds-gradient-card);
+  border-bottom: 1px solid var(--dds-purple-border);
+  padding: 1.5rem;
+}
+
+.app-title {
+  color: var(--dds-accent-cyan);
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+.sidebar-footer {
+  background: var(--dds-gradient-card);
+  border-top: 1px solid var(--dds-purple-border);
+  padding: 1rem;
+}
+
+.sidebar-footer .network-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+}
+
+.sidebar-footer .status-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--dds-accent-cyan);
+  box-shadow: 0 0 6px var(--dds-accent-cyan);
+}
+
+/* DDS Page Title */
+.page-title h1 {
+  color: var(--dds-white);
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.75rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* DDS Content Wrapper */
+.content-wrapper {
+  background: transparent;
+  padding: 2rem;
+}
+
+/* DDS Alert System */
+.alert {
+  background: var(--dds-gradient-card);
+  border: 1px solid var(--dds-purple-border);
+  border-radius: 12px;
+  color: var(--dds-white);
+}
+
+.alert-info {
+  border-color: var(--dds-accent-cyan);
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.alert-warning {
+  border-color: var(--dds-magenta);
+  background: rgba(196, 30, 140, 0.1);
+}
+
+.alert-success {
+  border-color: var(--dds-accent-cyan);
+  background: rgba(0, 212, 255, 0.1);
+}
+
+/* DDS Modal System */
+.modal-content {
+  background: var(--dds-gradient-card);
+  border: 1px solid var(--dds-purple-border);
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--dds-purple-border);
+}
+
+.modal-footer {
+  border-top: 1px solid var(--dds-purple-border);
+}
+
+/* DDS Form Controls */
+.form-control {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--dds-purple-border);
+  border-radius: 8px;
+  color: var(--dds-white);
+}
+
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.form-control:focus {
+  background: rgba(0, 212, 255, 0.05);
+  border-color: var(--dds-accent-cyan);
+  box-shadow: 0 0 0 0.2rem rgba(0, 212, 255, 0.25);
+  color: var(--dds-white);
+}
+
+/* DDS Table System */
+.table {
+  color: var(--dds-white);
+}
+
+.table-dark {
+  background: var(--dds-gradient-card);
+  border: 1px solid var(--dds-purple-border);
+}
+
+.table-dark th {
+  border-color: var(--dds-purple-border);
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.table-dark td {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
 /* DDS Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
