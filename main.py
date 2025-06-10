@@ -113,7 +113,7 @@ def add_security_headers(response):
 @app.route("/")
 def index():
     """Render the main dashboard page"""
-    return render_template("dashboard_modernized.html")
+    return render_template("dashboard_fixed.html")
 
 
 @app.route("/viewer")
@@ -135,120 +135,6 @@ def contracts():
 
 
 # Error handlers
-# Additional API endpoints for modern dashboard
-@app.route("/api/blockchain/token-price")
-def get_token_price():
-    """Get current ODIS token price"""
-    try:
-        # Get price data from blockchain service
-        price_data = {
-            "price": 0.1214,
-            "change_24h": 3.68,
-            "market_cap": 12400000,
-            "volume_24h": 584000
-        }
-        return jsonify(price_data)
-    except Exception as e:
-        logger.error(f"Error fetching token price: {e}")
-        return jsonify({"error": "Failed to fetch token price"}), 500
-
-@app.route("/api/blockchain/network-stats")
-def get_network_stats():
-    """Get network statistics"""
-    try:
-        # Get network data from blockchain service
-        network_data = {
-            "total_staked": 45200000,
-            "staking_ratio": 0.684,
-            "annual_provision": 4800000,
-            "inflation": 0.085,
-            "bonded_tokens": 45200000,
-            "not_bonded_tokens": 20800000
-        }
-        return jsonify(network_data)
-    except Exception as e:
-        logger.error(f"Error fetching network stats: {e}")
-        return jsonify({"error": "Failed to fetch network stats"}), 500
-
-@app.route("/api/portfolio/summary")
-def get_portfolio_summary():
-    """Get user portfolio summary"""
-    try:
-        # In production, this would fetch user-specific data
-        portfolio_data = {
-            "total_value": 38126500,
-            "monthly_change": 12.5,
-            "properties_count": 24,
-            "verified_assets": 24250000,
-            "pending_assets": 13876500,
-            "daily_rewards": 284,
-            "risk_score": 85
-        }
-        return jsonify(portfolio_data)
-    except Exception as e:
-        logger.error(f"Error fetching portfolio: {e}")
-        return jsonify({"error": "Failed to fetch portfolio"}), 500
-
-@app.route("/api/investment/opportunities")
-def get_investment_opportunities():
-    """Get available investment opportunities"""
-    try:
-        opportunities = [
-            {
-                "id": "miami-luxury-condos",
-                "name": "Miami Luxury Condos",
-                "description": "Premium oceanfront properties with 8.2% projected yield",
-                "min_investment": 50000,
-                "total_value": 2400000,
-                "filled_percentage": 85,
-                "projected_yield": 8.2,
-                "location": "Miami, FL",
-                "property_type": "Residential"
-            },
-            {
-                "id": "austin-tech-hub",
-                "name": "Austin Tech Hub", 
-                "description": "Commercial properties in growing tech district",
-                "min_investment": 25000,
-                "total_value": 1800000,
-                "filled_percentage": 42,
-                "projected_yield": 7.8,
-                "location": "Austin, TX",
-                "property_type": "Commercial"
-            },
-            {
-                "id": "denver-commercial",
-                "name": "Denver Commercial Complex",
-                "description": "Mixed-use development in downtown Denver",
-                "min_investment": 30000,
-                "total_value": 2100000,
-                "filled_percentage": 67,
-                "projected_yield": 7.1,
-                "location": "Denver, CO", 
-                "property_type": "Mixed-Use"
-            }
-        ]
-        return jsonify({"opportunities": opportunities})
-    except Exception as e:
-        logger.error(f"Error fetching opportunities: {e}")
-        return jsonify({"error": "Failed to fetch opportunities"}), 500
-
-@app.route("/api/developer/projects")
-def get_developer_projects():
-    """Get developer project status"""
-    try:
-        projects_data = {
-            "uploaded_models": 12,
-            "pending_verification": 2,
-            "verified_assets": 10,
-            "active_contracts": 18,
-            "total_value": 24250000
-        }
-        return jsonify(projects_data)
-    except Exception as e:
-        logger.error(f"Error fetching projects: {e}")
-        return jsonify({"error": "Failed to fetch projects"}), 500
-
 @app.errorhandler(404)
 def page_not_found(e):
     """Handle 404 errors"""
