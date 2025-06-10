@@ -5,76 +5,185 @@
 {% block extra_css %}
 <!-- Enhanced Chat CSS -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/chat-enhanced.css') }}">
+<!-- Glass Patch CSS for Data Source Agents -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/glassPatch.css') }}">
 {% endblock %}
 
 {% block content %}
-    <!-- Data Source Integration Agents -->
-    <div class="row mb-4">
-        <div class="col-12">
-            <h3 class="cosmic-text mb-3">
-                <i data-feather="cpu"></i>
-                Data Source Agents
-            </h3>
-        
-        </div>
-    </div>
 
-<div class="dashboard">
-    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4 mb-4">
-        <!-- Dashboard Cards -->
-        <div class="col">
-            <div class="card stats-card" data-card-id="token-value" data-card-id="token-value">
-                <div class="card-body">
-                    \1
-                        <div class="update-timestamp">Updated: --:--</div>
-                    <div class="card-title">Token Value <span class="badge bg-info ms-1">ODIS</span></div>
-                    <div class="wave-visual"></div>
-                    <div class="card-icon info">
-                        <i data-feather="dollar-sign"></i>
+<!-- Fixed Header with Consistent Alignment -->
+<header class="dashboard-header-fixed">
+    <div class="header-container">
+        <div class="header-left">
+            <h1 class="dashboard-title">Dashboard</h1>
+        </div>
+        <div class="header-right">
+            <div class="header-stats">
+                <span class="points-display">
+                    <i data-feather="star"></i>
+                    <span id="user-points">{{ user_points or 260 }}</span> pts
+                </span>
+                <button class="connect-keplr-btn" onclick="connectKeplr()">
+                    <i data-feather="link"></i>
+                    Connect Keplr
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="header-border"></div>
+</header>
+
+<!-- Data Source Agents Section -->
+<section class="data-source-agents-section" data-ai-context="blockchain-data-orchestration">
+    <div class="section-header">
+        <div class="section-title-container">
+            <i data-feather="database" class="section-icon"></i>
+            <h2 class="section-title">Data Source Agents</h2>
+            <div class="agents-status-indicator">
+                <div class="status-dot active" id="agents-status-dot"></div>
+                <span class="status-text">Active</span>
+            </div>
+        </div>
+        <div class="section-controls">
+            <button class="refresh-agents-btn" onclick="refreshDataSourceAgents()">
+                <i data-feather="refresh-cw"></i>
+                Refresh
+            </button>
+        </div>
+    </div>
+    
+    <div class="agents-grid">
+        <!-- Token Value Agent -->
+        <div class="agent-card" data-agent="token-value" data-ai-context="token-valuation-analysis">
+            <div class="agent-header">
+                <div class="agent-icon token-icon">
+                    <i data-feather="trending-up"></i>
+                </div>
+                <div class="agent-status">
+                    <div class="status-indicator active"></div>
+                    <span class="update-time">Updated: <span id="token-update-time">--</span></span>
+                </div>
+            </div>
+            <div class="agent-content">
+                <h3 class="agent-title">Token Value</h3>
+                <div class="agent-data">
+                    <div class="primary-metric">
+                        <span class="metric-value" id="token-current-price">--</span>
+                        <span class="metric-unit">ODIS</span>
+                    </div>
+                    <div class="secondary-metrics">
+                        <div class="metric">
+                            <span class="label">24h Change:</span>
+                            <span class="value change-positive" id="token-24h-change">--</span>
+                        </div>
+                        <div class="metric">
+                            <span class="label">Volume:</span>
+                            <span class="value" id="token-volume">--</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="card stats-card" data-card-id="token-value" data-card-id="token-value">
-                <div class="card-body">
-                    \1
-                        <div class="update-timestamp">Updated: --:--</div>
-                    <div class="card-title">Total Reserves" data-card-id="total-reserves" data-card-id="total-reserves <span class="badge bg-secondary ms-1">USD</span></div>
-                    <div class="wave-visual"></div>
-                    <div class="card-icon secondary">
-                        <i data-feather="trending-up"></i>
+        
+        <!-- Total Reserves Agent -->
+        <div class="agent-card" data-agent="total-reserves" data-ai-context="liquidity-pool-monitoring">
+            <div class="agent-header">
+                <div class="agent-icon reserves-icon">
+                    <i data-feather="layers"></i>
+                </div>
+                <div class="agent-status">
+                    <div class="status-indicator active"></div>
+                    <span class="update-time">Updated: <span id="reserves-update-time">--</span></span>
+                </div>
+            </div>
+            <div class="agent-content">
+                <h3 class="agent-title">Total Reserves</h3>
+                <div class="agent-data">
+                    <div class="primary-metric">
+                        <span class="metric-value" id="total-reserves-value">--</span>
+                        <span class="metric-unit">ODIS</span>
+                    </div>
+                    <div class="secondary-metrics">
+                        <div class="metric">
+                            <span class="label">Available:</span>
+                            <span class="value" id="available-reserves">--</span>
+                        </div>
+                        <div class="metric">
+                            <span class="label">Staked:</span>
+                            <span class="value" id="staked-reserves">--</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="card stats-card" data-card-id="token-value" data-card-id="token-value">
-                <div class="card-body">
-                    \1
-                        <div class="update-timestamp">Updated: --:--</div>
-                    <div class="card-title">Staking APY" data-card-id="staking-apy" data-card-id="staking-apy <span class="badge bg-success ms-1">Yearly</span></div>
-                    <div class="wave-visual"></div>
-                    <div class="card-icon warning">
-                        <i data-feather="activity"></i>
+        
+        <!-- Staking APY Agent -->
+        <div class="agent-card" data-agent="staking-apy" data-ai-context="yield-optimization-analysis">
+            <div class="agent-header">
+                <div class="agent-icon staking-icon">
+                    <i data-feather="percent"></i>
+                </div>
+                <div class="agent-status">
+                    <div class="status-indicator active"></div>
+                    <span class="update-time">Updated: <span id="staking-update-time">--</span></span>
+                </div>
+            </div>
+            <div class="agent-content">
+                <h3 class="agent-title">Staking APY</h3>
+                <div class="agent-data">
+                    <div class="primary-metric">
+                        <span class="metric-value" id="staking-apy-value">--</span>
+                        <span class="metric-unit">%</span>
+                    </div>
+                    <div class="secondary-metrics">
+                        <div class="metric">
+                            <span class="label">Validators:</span>
+                            <span class="value" id="active-validators">--</span>
+                        </div>
+                        <div class="metric">
+                            <span class="label">Your Stake:</span>
+                            <span class="value" id="user-stake">--</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="card stats-card" data-card-id="token-value" data-card-id="token-value">
-                <div class="card-body">
-                    \1
-                        <div class="update-timestamp">Updated: --:--</div>
-                    <div class="card-title">Daily Rewards" data-card-id="daily-rewards" data-card-id="daily-rewards <span class="badge bg-info ms-1">ODIS</span></div>
-                    <div class="wave-visual"></div>
-                    <div class="card-icon success">
-                        <i data-feather="award"></i>
+        
+        <!-- Daily Rewards Agent -->
+        <div class="agent-card" data-agent="daily-rewards" data-ai-context="reward-distribution-tracking">
+            <div class="agent-header">
+                <div class="agent-icon rewards-icon">
+                    <i data-feather="gift"></i>
+                </div>
+                <div class="agent-status">
+                    <div class="status-indicator active"></div>
+                    <span class="update-time">Updated: <span id="rewards-update-time">--</span></span>
+                </div>
+            </div>
+            <div class="agent-content">
+                <h3 class="agent-title">Daily Rewards</h3>
+                <div class="agent-data">
+                    <div class="primary-metric">
+                        <span class="metric-value" id="daily-rewards-value">--</span>
+                        <span class="metric-unit">ODIS</span>
+                    </div>
+                    <div class="secondary-metrics">
+                        <div class="metric">
+                            <span class="label">Pending:</span>
+                            <span class="value" id="pending-rewards">--</span>
+                        </div>
+                        <div class="metric">
+                            <span class="label">Claimed:</span>
+                            <span class="value" id="claimed-rewards">--</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</section>
+
+<!-- Dashboard Main Content -->
 
     <div class="row g-4">
         <!-- Asset Distribution Panel -->
@@ -605,8 +714,17 @@
             return new bootstrap.Tooltip(tooltipTriggerEl)
         });
 
+        // Initialize Data Source Agents
+        if (typeof DataSourceAgentManager !== 'undefined') {
+            window.dataSourceAgentManager = new DataSourceAgentManager();
+            window.dataSourceAgentManager.init();
+        }
+
         // Update feather icons
         feather.replace();
     });
 </script>
+
+<!-- Data Source Agents JavaScript -->
+<script src="{{ url_for('static', filename='js/dashboard-enhanced.js') }}"></script>
 {% endblock %}
