@@ -128,7 +128,7 @@ const aiChat = {
     
     // Check enhanced mode status
     checkEnhancedStatus: function() {
-        fetch('/api/bim/enhanced-status')
+        fetch('/api/bim-agent/enhanced-status')
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
@@ -143,7 +143,7 @@ const aiChat = {
     
     // Toggle enhanced mode
     toggleEnhancedMode: function(enabled) {
-        fetch('/api/bim/toggle-enhanced', {
+        fetch('/api/bim-agent/toggle-enhanced', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -195,7 +195,7 @@ const aiChat = {
         const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || 
                          window.csrf_token || '';
         
-        // Send message to server with the use_agent parameter
+        // Send message to server with the enhanced parameter
         fetch('/api/bim-agent/chat', {
             method: 'POST',
             headers: {
@@ -204,7 +204,7 @@ const aiChat = {
             },
             body: JSON.stringify({
                 message: message,
-                use_agent: this.isEnhancedMode
+                enhanced: this.isEnhancedMode
             })
         })
         .then(response => response.json())
