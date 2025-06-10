@@ -530,3 +530,316 @@ h6 { font-size: var(--dds-font-size-base); }
 .dds-select-none { user-select: none; }
 
 .dds-transition { transition: all 0.2s ease; }
+
+/* ========================================
+   12. DDS DASHBOARD COMPONENTS
+======================================== */
+
+/* Enhanced Status Badges */
+.dds-status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--dds-space-1) var(--dds-space-2);
+    border-radius: var(--dds-radius-sm);
+    font-size: var(--dds-font-size-xs);
+    font-weight: var(--dds-font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+.dds-status-success {
+    background: linear-gradient(135deg, var(--dds-success), rgba(var(--dds-success-rgb), 0.8));
+    color: var(--dds-white);
+    border: 1px solid var(--dds-success);
+}
+
+.dds-status-warning {
+    background: linear-gradient(135deg, var(--dds-warning), rgba(var(--dds-warning-rgb), 0.8));
+    color: var(--dds-black);
+    border: 1px solid var(--dds-warning);
+}
+
+.dds-status-primary {
+    background: linear-gradient(135deg, var(--dds-primary), rgba(var(--dds-primary-rgb), 0.8));
+    color: var(--dds-white);
+    border: 1px solid var(--dds-primary);
+}
+
+.dds-status-danger {
+    background: linear-gradient(135deg, var(--dds-danger), rgba(var(--dds-danger-rgb), 0.8));
+    color: var(--dds-white);
+    border: 1px solid var(--dds-danger);
+}
+
+/* DDS Cards */
+.dds-card {
+    background: var(--dds-surface);
+    border: 1px solid rgba(var(--dds-primary-rgb), 0.2);
+    border-radius: var(--dds-radius-lg);
+    box-shadow: var(--dds-shadow-md);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative;
+}
+
+.dds-card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--dds-shadow-lg);
+    border-color: var(--dds-primary);
+}
+
+.dds-card-header {
+    padding: var(--dds-space-4);
+    border-bottom: 1px solid rgba(var(--dds-primary-rgb), 0.1);
+    background: linear-gradient(135deg, rgba(var(--dds-primary-rgb), 0.05), rgba(var(--dds-accent-cyan-rgb), 0.02));
+}
+
+.dds-card-body {
+    padding: var(--dds-space-4);
+}
+
+.dds-card-footer {
+    padding: var(--dds-space-4);
+    border-top: 1px solid rgba(var(--dds-primary-rgb), 0.1);
+    background: rgba(var(--dds-surface-rgb), 0.5);
+}
+
+.dds-card-title {
+    font-size: var(--dds-font-size-lg);
+    font-weight: var(--dds-font-weight-semibold);
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.dds-card-icon {
+    position: absolute;
+    top: var(--dds-space-3);
+    right: var(--dds-space-3);
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+}
+
+.dds-card:hover .dds-card-icon {
+    opacity: 0.6;
+}
+
+/* DDS Metrics */
+.dds-metric-item {
+    padding: var(--dds-space-3);
+}
+
+.dds-metric-value {
+    font-size: var(--dds-font-size-2xl);
+    font-weight: var(--dds-font-weight-bold);
+    line-height: 1.2;
+    margin-bottom: var(--dds-space-1);
+}
+
+.dds-metric-label {
+    font-size: var(--dds-font-size-sm);
+    color: var(--dds-text-secondary);
+    font-weight: var(--dds-font-weight-medium);
+    margin-bottom: var(--dds-space-1);
+}
+
+.dds-metric-description {
+    font-size: var(--dds-font-size-xs);
+    color: var(--dds-text-muted);
+    line-height: 1.4;
+}
+
+.dds-metric-change {
+    display: flex;
+    align-items: center;
+    font-size: var(--dds-font-size-sm);
+    font-weight: var(--dds-font-weight-medium);
+    margin-bottom: var(--dds-space-1);
+}
+
+.dds-metric-card {
+    background: rgba(var(--dds-surface-rgb), 0.8);
+    border: 1px solid rgba(var(--dds-primary-rgb), 0.1);
+    border-radius: var(--dds-radius-md);
+    padding: var(--dds-space-3);
+    transition: all 0.3s ease;
+}
+
+.dds-metric-card:hover {
+    background: rgba(var(--dds-surface-rgb), 1);
+    border-color: var(--dds-primary);
+}
+
+/* DDS Charts */
+.dds-chart-container {
+    position: relative;
+    padding: var(--dds-space-3);
+}
+
+.dds-chart-placeholder {
+    background: rgba(var(--dds-surface-rgb), 0.5);
+    border: 2px dashed rgba(var(--dds-primary-rgb), 0.3);
+    border-radius: var(--dds-radius-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+}
+
+.dds-chart-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--dds-space-3);
+    justify-content: center;
+    margin-top: var(--dds-space-3);
+}
+
+.dds-legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--dds-space-2);
+}
+
+.dds-legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid rgba(var(--dds-white-rgb), 0.3);
+}
+
+/* DDS Buttons */
+.dds-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--dds-space-2) var(--dds-space-4);
+    border-radius: var(--dds-radius-md);
+    font-family: var(--dds-font-family);
+    font-size: var(--dds-font-size-sm);
+    font-weight: var(--dds-font-weight-medium);
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.dds-btn-primary {
+    background: linear-gradient(135deg, var(--dds-primary), var(--dds-accent-cyan));
+    color: var(--dds-white);
+    border-color: var(--dds-primary);
+}
+
+.dds-btn-primary:hover {
+    background: linear-gradient(135deg, var(--dds-primary-dark), var(--dds-primary));
+    transform: translateY(-1px);
+    box-shadow: var(--dds-shadow-md);
+}
+
+.dds-btn-success {
+    background: var(--dds-success);
+    color: var(--dds-white);
+    border-color: var(--dds-success);
+}
+
+.dds-btn-warning {
+    background: var(--dds-warning);
+    color: var(--dds-black);
+    border-color: var(--dds-warning);
+}
+
+/* DDS Token Badge */
+.dds-token-badge {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--dds-primary), var(--dds-accent-cyan));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(var(--dds-primary-rgb), 0.3);
+}
+
+/* DDS Progress */
+.dds-progress-container {
+    width: 100%;
+}
+
+.dds-progress {
+    height: 8px;
+    background: rgba(var(--dds-white-rgb), 0.1);
+    border-radius: var(--dds-radius-sm);
+    overflow: hidden;
+}
+
+.dds-progress-bar {
+    height: 100%;
+    border-radius: var(--dds-radius-sm);
+    transition: width 0.6s ease;
+    position: relative;
+}
+
+.dds-progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: progressShimmer 2s infinite;
+}
+
+@keyframes progressShimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* DDS Help Icon */
+.dds-help-icon {
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.dds-help-icon:hover {
+    opacity: 1;
+}
+
+/* DDS Meta Items */
+.dds-meta-item {
+    padding: var(--dds-space-2);
+}
+
+.dds-asset-info {
+    width: 100%;
+}
+
+/* DDS BIM Viewer */
+.dds-bim-viewer-mini {
+    height: 300px;
+    background: linear-gradient(135deg, rgba(var(--dds-primary-rgb), 0.1), rgba(var(--dds-accent-cyan-rgb), 0.05));
+    border-radius: var(--dds-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dds-text-secondary);
+}
+
+/* DDS Chat Container */
+.dds-chat-container {
+    min-height: 200px;
+    background: rgba(var(--dds-surface-rgb), 0.5);
+    border-radius: var(--dds-radius-md);
+    padding: var(--dds-space-3);
+}
+
+/* DDS Background Utilities */
+.dds-bg-primary { background-color: var(--dds-primary); }
+.dds-bg-success { background-color: var(--dds-success); }
+.dds-bg-warning { background-color: var(--dds-warning); }
+.dds-bg-danger { background-color: var(--dds-danger); }
+.dds-bg-surface { background-color: var(--dds-surface); }

@@ -14,78 +14,74 @@
     <!-- ODIS Token Overview Section -->
     <div class="row mb-4">
         <div class="col-12">
-            <div class="card odis-token-overview">
-                <div class="card-header d-flex justify-content-between align-items-center">
+            <div class="dds-card">
+                <div class="dds-card-header d-flex justify-content-between align-items-center">
                     <div class="d-flex align-items-center">
-                        <div class="token-logo me-3">
-                            <div class="rounded-circle bg-info d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                                <span class="text-white fw-bold">ODIS</span>
-                            </div>
+                        <div class="dds-token-badge me-3">
+                            <span class="dds-text-white fw-bold">ODIS</span>
                         </div>
                         <div>
-                            <h5 class="mb-0">ODIS Token</h5>
-                            <small class="text-muted">Cosmos Network's Real Estate Tokenization</small>
+                            <h5 class="mb-0 dds-text-white">ODIS Token</h5>
+                            <small class="dds-text-secondary">Cosmos Network's Real Estate Tokenization</small>
                         </div>
                     </div>
-                    <button class="btn btn-success btn-sm">
-                        <i data-feather="shopping-cart" class="icon-inline-sm"></i>
+                    <button class="dds-btn dds-btn-primary">
+                        <i data-feather="shopping-cart" class="dds-icon-sm me-2"></i>
                         Buy ODIS
                     </button>
                 </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="row">
-                                <div class="col-md-3 mb-3">
-                                    <div class="metric-item">
-                                        <div class="metric-value" id="odis-price">$0.1214</div>
-                                        <div class="metric-change text-success">
-                                            <i data-feather="trending-up" class="icon-inline-sm"></i>
+                <div class="dds-card-body">
+                    <div class="row g-3">
+                        <div class="col-lg-8">
+                            <div class="row g-3">
+                                <div class="col-6 col-md-3">
+                                    <div class="dds-metric-item">
+                                        <div class="dds-metric-value dds-text-primary" id="odis-price">$0.1214</div>
+                                        <div class="dds-metric-change dds-text-success">
+                                            <i data-feather="trending-up" class="dds-icon-sm me-1"></i>
                                             <span id="odis-change">+3.68%</span>
                                         </div>
-                                        <div class="metric-label">Current Price</div>
+                                        <div class="dds-metric-label">Current Price</div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 mb-3">
-                                    <div class="metric-item">
-                                        <div class="metric-value" id="market-cap">$12.4M</div>
-                                        <div class="metric-label">Market Cap</div>
+                                <div class="col-6 col-md-3">
+                                    <div class="dds-metric-item">
+                                        <div class="dds-metric-value dds-text-white" id="market-cap">$12.4M</div>
+                                        <div class="dds-metric-label">Market Cap</div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 mb-3">
-                                    <div class="metric-item">
-                                        <div class="metric-value" id="volume-24h">$2.5M</div>
-                                        <div class="metric-label">Volume (24h)</div>
+                                <div class="col-6 col-md-3">
+                                    <div class="dds-metric-item">
+                                        <div class="dds-metric-value dds-text-white" id="volume-24h">$2.5M</div>
+                                        <div class="dds-metric-label">Volume (24h)</div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 mb-3">
-                                    <div class="metric-item">
-                                        <div class="metric-value" id="staking-apy">9.5%</div>
-                                        <div class="metric-label">Staking APY</div>
+                                <div class="col-6 col-md-3">
+                                    <div class="dds-metric-item">
+                                        <div class="dds-metric-value dds-text-primary" id="staking-apy">9.5%</div>
+                                        <div class="dds-metric-label">Staking APY</div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <div class="metric-item">
-                                        <div class="metric-value" id="high-24h">$0.1289</div>
-                                        <div class="metric-label">24h High</div>
+                                <div class="col-6">
+                                    <div class="dds-metric-item">
+                                        <div class="dds-metric-value dds-text-success" id="high-24h">$0.1289</div>
+                                        <div class="dds-metric-label">24h High</div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <div class="metric-item">
-                                        <div class="metric-value" id="low-24h">$0.1156</div>
-                                        <div class="metric-label">24h Low</div>
+                                <div class="col-6">
+                                    <div class="dds-metric-item">
+                                        <div class="dds-metric-value dds-text-warning" id="low-24h">$0.1156</div>
+                                        <div class="dds-metric-label">24h Low</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="price-chart-container">
-                                <div class="chart-placeholder text-center py-4">
-                                    <i data-feather="trending-up" style="width: 48px; height: 48px;" class="text-muted"></i>
-                                    <div class="mt-2 text-muted">Live Price Chart</div>
-                                    <small class="text-muted">Real-time ODIS price data</small>
+                        <div class="col-lg-4">
+                            <div class="dds-chart-container">
+                                <div class="dds-chart-placeholder text-center py-4">
+                                    <i data-feather="trending-up" class="dds-icon-xl dds-text-secondary mb-2"></i>
+                                    <div class="dds-text-white">Live Price Chart</div>
+                                    <small class="dds-text-secondary">Real-time ODIS price data</small>
                                 </div>
                             </div>
                         </div>
@@ -96,67 +92,67 @@
     </div>
 
     <!-- Portfolio Overview Cards -->
-    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4 mb-4">
-        <div class="col">
-            <div class="info-card priority-high">
-                <div class="card-body">
-                    <div class="metric-value currency-value" id="total-reserves">38,126.50</div>
-                    <div class="metric-label">Total Portfolio Value</div>
-                    <div class="metric-explanation">Combined value of all your real estate investments</div>
-                    <div class="status-indicator-enhanced status-verified-enhanced">
-                        <span>Verified</span>
-                        <div class="status-tooltip">All assets have completed due diligence</div>
+    <div class="row g-4 mb-4">
+        <div class="col-12 col-md-6 col-xl-3">
+            <div class="dds-card dds-card-hover">
+                <div class="dds-card-body text-center">
+                    <div class="dds-metric-value dds-text-primary" id="total-reserves">$38,126.50</div>
+                    <div class="dds-metric-label">Total Portfolio Value</div>
+                    <div class="dds-metric-description">Combined value of all your real estate investments</div>
+                    <div class="dds-status-badge dds-status-success mt-2">
+                        <i data-feather="check-circle" class="dds-icon-sm me-1"></i>
+                        Verified
                     </div>
-                    <div class="card-icon">
-                        <i data-feather="trending-up"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="info-card priority-medium">
-                <div class="card-body">
-                    <div class="metric-value currency-value" id="verified-assets">2.1M</div>
-                    <div class="metric-label">Real Estate Assets</div>
-                    <div class="metric-explanation">Property value verified through blockchain due diligence</div>
-                    <div class="status-indicator-enhanced status-verified-enhanced">
-                        <span>Due Diligence Complete</span>
-                        <div class="status-tooltip">Properties have passed comprehensive verification</div>
-                    </div>
-                    <div class="card-icon">
-                        <i data-feather="check-circle"></i>
+                    <div class="dds-card-icon dds-text-primary">
+                        <i data-feather="trending-up" class="dds-icon-lg"></i>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="info-card priority-medium">
-                <div class="card-body">
-                    <div class="metric-value" id="active-contracts">12</div>
-                    <div class="metric-label">Smart Contracts</div>
-                    <div class="metric-explanation">Active tokenization contracts processing transactions</div>
-                    <div class="status-indicator-enhanced status-active-enhanced">
-                        <span>Processing</span>
-                        <div class="status-tooltip">Contracts are actively handling transactions</div>
+        <div class="col-12 col-md-6 col-xl-3">
+            <div class="dds-card dds-card-hover">
+                <div class="dds-card-body text-center">
+                    <div class="dds-metric-value dds-text-success" id="verified-assets">$2.1M</div>
+                    <div class="dds-metric-label">Real Estate Assets</div>
+                    <div class="dds-metric-description">Property value verified through blockchain due diligence</div>
+                    <div class="dds-status-badge dds-status-success mt-2">
+                        <i data-feather="shield" class="dds-icon-sm me-1"></i>
+                        Due Diligence Complete
                     </div>
-                    <div class="card-icon">
-                        <i data-feather="file-text"></i>
+                    <div class="dds-card-icon dds-text-success">
+                        <i data-feather="check-circle" class="dds-icon-lg"></i>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="info-card priority-low">
-                <div class="card-body">
-                    <div class="metric-value" id="daily-rewards">0.318</div>
-                    <div class="metric-label">Staking Rewards (24h)</div>
-                    <div class="metric-explanation">ODIS tokens earned from network participation</div>
-                    <div class="status-indicator-enhanced status-verified-enhanced">
-                        <span>Auto-Compounding</span>
-                        <div class="status-tooltip">Rewards automatically reinvested for maximum yield</div>
+        <div class="col-12 col-md-6 col-xl-3">
+            <div class="dds-card dds-card-hover">
+                <div class="dds-card-body text-center">
+                    <div class="dds-metric-value dds-text-warning" id="active-contracts">12</div>
+                    <div class="dds-metric-label">Smart Contracts</div>
+                    <div class="dds-metric-description">Active tokenization contracts processing transactions</div>
+                    <div class="dds-status-badge dds-status-warning mt-2">
+                        <i data-feather="clock" class="dds-icon-sm me-1"></i>
+                        Processing
                     </div>
-                    <div class="card-icon">
-                        <i data-feather="award"></i>
+                    <div class="dds-card-icon dds-text-warning">
+                        <i data-feather="file-text" class="dds-icon-lg"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3">
+            <div class="dds-card dds-card-hover">
+                <div class="dds-card-body text-center">
+                    <div class="dds-metric-value dds-text-primary" id="daily-rewards">0.318</div>
+                    <div class="dds-metric-label">Staking Rewards (24h)</div>
+                    <div class="dds-metric-description">ODIS tokens earned from network participation</div>
+                    <div class="dds-status-badge dds-status-primary mt-2">
+                        <i data-feather="repeat" class="dds-icon-sm me-1"></i>
+                        Auto-Compounding
+                    </div>
+                    <div class="dds-card-icon dds-text-primary">
+                        <i data-feather="award" class="dds-icon-lg"></i>
                     </div>
                 </div>
             </div>
@@ -166,53 +162,53 @@
     <div class="row g-4">
         <!-- Asset Distribution Panel -->
         <div class="col-lg-5">
-            <div class="info-card">
-                <div class="info-card-header">
+            <div class="dds-card mb-4">
+                <div class="dds-card-header d-flex justify-content-between align-items-start">
                     <div>
-                        <h3 class="info-card-title">
-                            <i data-feather="pie-chart" class="dds-icon-md"></i>
+                        <h3 class="dds-card-title dds-text-white mb-1">
+                            <i data-feather="pie-chart" class="dds-icon-md me-2"></i>
                             Portfolio Distribution
                         </h3>
-                        <div class="info-card-subtitle">Real estate asset verification status</div>
+                        <div class="dds-text-secondary">Real estate asset verification status</div>
                     </div>
-                    <div class="help-icon">
-                        <i data-feather="help-circle"></i>
-                        <div class="help-tooltip">Shows the breakdown of verified vs pending property assets in your portfolio</div>
+                    <div class="dds-help-icon">
+                        <i data-feather="help-circle" class="dds-icon-sm dds-text-secondary"></i>
                     </div>
                 </div>
-                <div class="card-body">
-                    <div class="chart-container">
-                        <h4 class="chart-title">Asset Verification Status</h4>
-                        <canvas id="asset-distribution-chart"></canvas>
-                        <div class="chart-legend">
-                            <div class="legend-item">
-                                <div class="legend-color" style="background: var(--dds-success);"></div>
-                                <span>Verified Properties</span>
+                <div class="dds-card-body">
+                    <div class="dds-chart-container">
+                        <canvas id="asset-distribution-chart" class="mb-3"></canvas>
+                        <div class="dds-chart-legend">
+                            <div class="dds-legend-item">
+                                <div class="dds-legend-color dds-bg-success"></div>
+                                <span class="dds-text-white">Verified Properties</span>
                             </div>
-                            <div class="legend-item">
-                                <div class="legend-color" style="background: var(--dds-warning);"></div>
-                                <span>In Due Diligence</span>
+                            <div class="dds-legend-item">
+                                <div class="dds-legend-color dds-bg-warning"></div>
+                                <span class="dds-text-white">In Due Diligence</span>
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-4">
+                    <div class="row g-3 mt-3">
                         <div class="col-6">
-                            <div class="metric-item">
-                                <div class="metric-value currency-value">24.25M</div>
-                                <div class="metric-label">Verified Properties</div>
-                                <div class="metric-explanation">Ready for tokenization and trading</div>
-                                <div class="status-indicator-enhanced status-verified-enhanced">
-                                    <span>Investment Ready</span>
+                            <div class="dds-metric-card text-center">
+                                <div class="dds-metric-value dds-text-success">$24.25M</div>
+                                <div class="dds-metric-label">Verified Properties</div>
+                                <div class="dds-metric-description">Ready for tokenization and trading</div>
+                                <div class="dds-status-badge dds-status-success mt-2">
+                                    <i data-feather="check" class="dds-icon-sm me-1"></i>
+                                    Investment Ready
                                 </div>
                             </div>
                         </div>
                         <div class="col-6">
-                            <div class="metric-item">
-                                <div class="metric-value currency-value">13.88M</div>
-                                <div class="metric-label">Under Review</div>
-                                <div class="metric-explanation">Completing verification process</div>
-                                <div class="status-indicator-enhanced status-pending-enhanced">
-                                    <span>Processing</span>
+                            <div class="dds-metric-card text-center">
+                                <div class="dds-metric-value dds-text-warning">$13.88M</div>
+                                <div class="dds-metric-label">Under Review</div>
+                                <div class="dds-metric-description">Completing verification process</div>
+                                <div class="dds-status-badge dds-status-warning mt-2">
+                                    <i data-feather="clock" class="dds-icon-sm me-1"></i>
+                                    Processing
                                 </div>
                             </div>
                         </div>
@@ -221,72 +217,85 @@
             </div>
 
             <!-- AI Assistant Panel -->
-            <div class="card mt-4">
-                <div class="card-header">
-                    <h5 class="card-title">
-                        <i data-feather="message-circle" class="icon-inline"></i>
+            <div class="dds-card">
+                <div class="dds-card-header">
+                    <h5 class="dds-card-title dds-text-white mb-1">
+                        <i data-feather="message-circle" class="dds-icon-md me-2"></i>
                         BIM AI Assistant
                     </h5>
-                    <div class="card-subtitle">Stakeholder-aware building insights</div>
+                    <div class="dds-text-secondary">Stakeholder-aware building insights</div>
                 </div>
-                <div class="card-body">
-                    <div id="ai-chat-container" class="chat-container"></div>
+                <div class="dds-card-body">
+                    <div id="ai-chat-container" class="dds-chat-container"></div>
                 </div>
             </div>
         </div>
 
         <!-- Hot Asset Panel -->
         <div class="col-lg-7">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
+            <div class="dds-card">
+                <div class="dds-card-header d-flex justify-content-between align-items-center">
                     <div>
-                        <h5 class="card-title">
-                            <i data-feather="zap" class="icon-inline text-warning"></i>
+                        <h5 class="dds-card-title dds-text-white mb-1">
+                            <i data-feather="zap" class="dds-icon-md me-2 dds-text-primary"></i>
                             Hot Asset Seeking Liquidity
                         </h5>
-                        <div class="card-subtitle">Verified Asset with Due Diligence Complete</div>
+                        <div class="dds-text-secondary">Verified Asset with Due Diligence Complete</div>
                     </div>
-                    <span class="badge bg-success px-3 py-2">VERIFIED</span>
+                    <div class="dds-status-badge dds-status-success">
+                        <i data-feather="shield" class="dds-icon-sm me-1"></i>
+                        VERIFIED
+                    </div>
                 </div>
-                <div class="card-body p-0">
-                    <div id="mini-viewer-container" class="bim-viewer-mini"></div>
+                <div class="dds-card-body p-0">
+                    <div id="mini-viewer-container" class="dds-bim-viewer-mini"></div>
                 </div>
-                <div class="card-footer">
-                    <div class="row">
-
-                        <div class="col-md-8">
-                            <div class="model-info">
-                                <div class="model-name">Ithaca Project</div>
-                                <div class="model-meta">
-                                    <span class="model-meta-item">
-                                        <i data-feather="layers" class="icon-inline-sm"></i>
-                                        Due Diligence: 3 years
-                                    </span>
-                                    <span class="model-meta-item">
-                                        <i data-feather="check-circle" class="icon-inline-sm"></i>
-                                        SPV Verified
-                                    </span>
-                                    <span class="model-meta-item">
-                                        <i data-feather="shield" class="icon-inline-sm"></i>
-                                        Hard Asset
-                                    </span>
+                <div class="dds-card-footer">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-lg-8">
+                            <div class="dds-asset-info">
+                                <h6 class="dds-text-white mb-2">Ithaca Project</h6>
+                                <div class="row g-2">
+                                    <div class="col-4">
+                                        <div class="dds-meta-item text-center">
+                                            <i data-feather="layers" class="dds-icon-sm dds-text-secondary mb-1"></i>
+                                            <div class="dds-text-secondary small">Due Diligence</div>
+                                            <div class="dds-text-white">3 years</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="dds-meta-item text-center">
+                                            <i data-feather="check-circle" class="dds-icon-sm dds-text-success mb-1"></i>
+                                            <div class="dds-text-secondary small">Status</div>
+                                            <div class="dds-text-success">SPV Verified</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="dds-meta-item text-center">
+                                            <i data-feather="shield" class="dds-icon-sm dds-text-primary mb-1"></i>
+                                            <div class="dds-text-secondary small">Type</div>
+                                            <div class="dds-text-primary">Hard Asset</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 text-end">
-                            <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#investModal">
-                                <i data-feather="dollar-sign" class="icon-inline-sm"></i>
+                        <div class="col-lg-4 text-center">
+                            <button class="dds-btn dds-btn-primary w-100" data-bs-toggle="modal" data-bs-target="#investModal">
+                                <i data-feather="dollar-sign" class="dds-icon-sm me-2"></i>
                                 Invest Now
                             </button>
                         </div>
                     </div>
 
-                    <div class="progress mt-3" style="height: 10px;">
-                        <div class="progress-bar bg-info" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <div class="d-flex justify-content-between mt-1">
-                        <small>Funded: $1,625,000</small>
-                        <small>Target: $2,500,000</small>
+                    <div class="dds-progress-container mt-3">
+                        <div class="dds-progress">
+                            <div class="dds-progress-bar dds-bg-primary" style="width: 65%;" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="d-flex justify-content-between mt-2">
+                            <span class="dds-text-success">Funded: $1,625,000</span>
+                            <span class="dds-text-secondary">Target: $2,500,000</span>
+                        </div>
                     </div>
                 </div>
             </div>
