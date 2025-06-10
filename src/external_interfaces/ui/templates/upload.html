@@ -68,7 +68,7 @@
                                     <button class="btn btn-sm btn-outline-info" title="View file">
                                         <i data-feather="eye" class="icon-inline-sm"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-outline-secondary" title="Create lease agreement">
+                                    <button class="btn btn-sm btn-outline-secondary" title="Create contract">
                                         <i data-feather="file-plus" class="icon-inline-sm"></i>
                                     </button>
                                     <button class="btn btn-sm btn-outline-danger" title="Delete file">
@@ -180,13 +180,13 @@
                         </div>
                     </div>
                     
-                    <!-- Step 4: property manager Approval -->
+                    <!-- Step 4: Validator Approval -->
                     <div class="workflow-step d-flex mb-4">
                         <div class="workflow-step-icon bg-dark d-flex align-items-center justify-content-center rounded-circle" style="width: 48px; height: 48px; position: relative; z-index: 1;">
                             <i data-feather="users" class="text-white"></i>
                         </div>
                         <div class="workflow-step-content ms-3">
-                            <h6 class="mb-1">property manager Approval (3/5 Required)</h6>
+                            <h6 class="mb-1">Validator Approval (3/5 Required)</h6>
                             <p class="text-muted small mb-2">Validators review and approve the asset for tokenization</p>
                             <button class="btn btn-sm btn-outline-secondary" disabled>
                                 <i data-feather="send" class="icon-inline-sm"></i>
@@ -208,7 +208,7 @@
                                 <i data-feather="award" class="icon-inline-sm"></i>
                                 Mint NFTs
                             </button>
-                            <small class="d-block text-muted mt-1">Available after property manager approval</small>
+                            <small class="d-block text-muted mt-1">Available after validator approval</small>
                         </div>
                     </div>
                 </div>
@@ -277,7 +277,7 @@
                                 <span class="text-info">$15,811,040</span>
                             </div>
                             <div class="col-6 mb-3">
-                                <small class="d-block text-muted">Suggested property share Symbol</small>
+                                <small class="d-block text-muted">Suggested Token Symbol</small>
                                 <span class="text-info">CSMC</span>
                             </div>
                             <div class="col-6 mb-3">
@@ -285,13 +285,13 @@
                                 <span class="text-info">1,000,000</span>
                             </div>
                             <div class="col-6 mb-3">
-                                <small class="d-block text-muted">Initial property share Price</small>
+                                <small class="d-block text-muted">Initial Token Price</small>
                                 <span class="text-info">$15.81</span>
                             </div>
                         </div>
                         <div class="alert alert-success p-2 mb-0 small">
                             <i data-feather="check-circle" class="icon-inline-sm"></i>
-                            <strong>ODIS rental income:</strong> Upon validation, you'll receive 5% of asset value in ODIS tokens.
+                            <strong>ODIS Rewards:</strong> Upon validation, you'll receive 5% of asset value in ODIS tokens.
                         </div>
                     </div>
                 </div>
@@ -300,7 +300,7 @@
                     <div class="card-header border-secondary">
                         <h6 class="card-title mb-0">
                             <i data-feather="code" class="icon-inline-sm"></i>
-                            CosmWasm lease agreement Code
+                            CosmWasm Contract Code
                         </h6>
                     </div>
                     <div class="card-body">
@@ -323,7 +323,7 @@
 }</code></pre>
                         <button class="btn btn-sm btn-outline-info w-100 mt-2">
                             <i data-feather="code" class="icon-inline-sm"></i>
-                            Generate Full lease agreement
+                            Generate Full Contract
                         </button>
                     </div>
                 </div>
@@ -477,18 +477,18 @@
         async function handleFiles(files) {
             console.log('Files selected:', files);
             
-            // Check if portfolio is connected
+            // Check if wallet is connected
             const walletConnected = localStorage.getItem('walletConnected') === 'true';
             const userWalletAddress = localStorage.getItem('userWalletAddress');
             
             if (!walletConnected || !userWalletAddress) {
-                // Show portfolio connection prompt
+                // Show wallet connection prompt
                 const notification = document.createElement('div');
                 notification.className = 'alert alert-warning alert-dismissible fade show';
                 notification.innerHTML = `
                     <i data-feather="alert-triangle" class="icon-inline-sm"></i>
-                    <strong>portfolio Required:</strong> Please connect your Keplr portfolio to upload IFC files to the property ledger.
-                    <button type="button" class="btn btn-sm btn-info ms-3" id="portfolio-connect-prompt">Connect portfolio</button>
+                    <strong>Wallet Required:</strong> Please connect your Keplr wallet to upload IFC files to the blockchain.
+                    <button type="button" class="btn btn-sm btn-info ms-3" id="wallet-connect-prompt">Connect Wallet</button>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 `;
                 
@@ -496,7 +496,7 @@
                 feather.replace();
                 
                 // Add event listener
-                document.getElementById('portfolio-connect-prompt').addEventListener('click', async () => {
+                document.getElementById('wallet-connect-prompt').addEventListener('click', async () => {
                     await connectKeplrWallet();
                     notification.remove();
                     // If connection was successful, proceed with the upload
@@ -570,7 +570,7 @@
                     };
                     formData.append('metadata', JSON.stringify(metadata));
                     
-                    // First phase: Upload to prepare the property ledger rental rental transaction
+                    // First phase: Upload to prepare the blockchain transaction
                     const response = await fetch('/api/prepare-upload', {
                         method: 'POST',
                         body: formData
@@ -581,10 +581,10 @@
                     }
                     
                     const data = await response.json();
-                    console.log('rental rental transaction prepared:', data);
+                    console.log('Transaction prepared:', data);
                     
                     if (!data.success) {
-                        throw new Error(data.error || 'Failed to prepare rental rental transaction');
+                        throw new Error(data.error || 'Failed to prepare transaction');
                     }
                     
                     // Update file item with hash
@@ -597,17 +597,17 @@
                         <span>Hash: ${hashDisplay}</span>
                     `;
                     
-                    // Second phase: Sign the rental rental transaction with Keplr
+                    // Second phase: Sign the transaction with Keplr
                     try {
-                        // Use the Keplr portfolio to sign the rental rental transaction
+                        // Use the Keplr wallet to sign the transaction
                         const signResponse = await signTransactionWithKeplr(data.sign_doc);
-                        console.log('rental rental transaction signed:', signResponse);
+                        console.log('Transaction signed:', signResponse);
                         
                         // Update status to "Signed"
                         const statusBadge = fileItem.querySelector('.badge');
                         statusBadge.textContent = 'Signed';
                         
-                        // Third phase: Broadcast the rental rental transaction
+                        // Third phase: Broadcast the transaction
                         const broadcastResponse = await fetch('/api/broadcast', {
                             method: 'POST',
                             headers: {
@@ -621,10 +621,10 @@
                         }
                         
                         const broadcastData = await broadcastResponse.json();
-                        console.log('rental rental transaction broadcast:', broadcastData);
+                        console.log('Transaction broadcast:', broadcastData);
                         
                         if (!broadcastData.success) {
-                            throw new Error(broadcastData.error || 'Failed to broadcast rental rental transaction');
+                            throw new Error(broadcastData.error || 'Failed to broadcast transaction');
                         }
                         
                         // Update status to "Verified"
@@ -632,14 +632,14 @@
                         statusBadge.classList.add('bg-success');
                         statusBadge.textContent = 'Verified on Chain';
                         
-                        // Update action area with rental rental transaction options
+                        // Update action area with transaction options
                         const actionArea = fileItem.querySelector('.file-actions');
                         actionArea.innerHTML = `
                             <div class="btn-group">
                                 <button class="btn btn-sm btn-outline-info" title="View file">
                                     <i data-feather="eye" class="icon-inline-sm"></i>
                                 </button>
-                                <button class="btn btn-sm btn-outline-secondary" title="Create lease agreement">
+                                <button class="btn btn-sm btn-outline-secondary" title="Create contract">
                                     <i data-feather="file-plus" class="icon-inline-sm"></i>
                                 </button>
                                 <a href="${broadcastData.explorer_url}" target="_blank" class="btn btn-sm btn-outline-primary" title="View on Explorer">
@@ -653,8 +653,8 @@
                         
                         feather.replace();
                         
-                        // Create lease agreement button event
-                        const contractBtn = actionArea.querySelector('[title="Create lease agreement"]');
+                        // Create contract button event
+                        const contractBtn = actionArea.querySelector('[title="Create contract"]');
                         if (contractBtn) {
                             contractBtn.addEventListener('click', function() {
                                 const spvKycModal = new bootstrap.Modal(document.getElementById('spvKycModal'));
@@ -671,7 +671,7 @@
                         notification.className = 'alert alert-success alert-dismissible fade show';
                         notification.innerHTML = `
                             <i data-feather="award" class="icon-inline-sm"></i>
-                            <strong>rental rental transaction Verified on property ledger!</strong> You earned ${rewardValue} ODIS tokens as a reward.
+                            <strong>Transaction Verified on Blockchain!</strong> You earned ${rewardValue} ODIS tokens as a reward.
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         `;
                         
@@ -683,13 +683,13 @@
                             numBlocks: 5,
                             duration: 3000,
                             onComplete: () => {
-                                // After rental rental transaction animation, play celebration
+                                // After transaction animation, play celebration
                                 playCelebrationConfetti('app-container', {
                                     fromBottom: true,
                                     particleCount: 100
                                 });
                                 
-                                // Trigger micro-rental income
+                                // Trigger micro-rewards
                                 if (window.rewardsUI) {
                                     window.rewardsUI.triggerAction('transaction_submit', {
                                         animationContainer: null // Skip animation since we already played it
@@ -705,7 +705,7 @@
                         }, 8000);
                         
                     } catch (signingError) {
-                        console.error('Error signing rental rental transaction:', signingError);
+                        console.error('Error signing transaction:', signingError);
                         
                         // Update status to error
                         const statusBadge = fileItem.querySelector('.badge');
@@ -718,7 +718,7 @@
                         actionArea.innerHTML = `
                             <div class="d-flex align-items-center">
                                 <div class="me-3">
-                                    <small class="text-danger">Failed to sign rental rental transaction</small>
+                                    <small class="text-danger">Failed to sign transaction</small>
                                 </div>
                                 <div class="btn-group">
                                     <button class="btn btn-sm btn-outline-warning retry-sign-btn" data-tx-id="${data.transaction_id}">
@@ -736,17 +736,17 @@
                         const retryBtn = actionArea.querySelector('.retry-sign-btn');
                         if (retryBtn) {
                             retryBtn.addEventListener('click', async function() {
-                                // Retry the signing process with the same rental rental transaction data
+                                // Retry the signing process with the same transaction data
                                 try {
                                     const newSignResponse = await signTransactionWithKeplr(data.sign_doc);
-                                    console.log('rental rental transaction signed on retry:', newSignResponse);
+                                    console.log('Transaction signed on retry:', newSignResponse);
                                     
                                     // Continue with broadcasting...
                                     // (Similar code as above, but this would be duplicate code in real implementation)
                                     // Consider refactoring this into a separate function
                                 } catch (retryError) {
                                     console.error('Retry signing failed:', retryError);
-                                    alert('Failed to sign rental rental transaction: ' + retryError.message);
+                                    alert('Failed to sign transaction: ' + retryError.message);
                                 }
                             });
                         }
@@ -756,7 +756,7 @@
                         notification.className = 'alert alert-danger alert-dismissible fade show';
                         notification.innerHTML = `
                             <i data-feather="alert-circle" class="icon-inline-sm"></i>
-                            <strong>rental rental transaction Signing Failed:</strong> ${signingError.message}
+                            <strong>Transaction Signing Failed:</strong> ${signingError.message}
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         `;
                         
@@ -819,7 +819,7 @@
         
         // Initialize SPV/KYC modal events
         document.addEventListener('click', function(e) {
-            if (e.target.closest('[title="Create lease agreement"]')) {
+            if (e.target.closest('[title="Create contract"]')) {
                 const spvKycModal = new bootstrap.Modal(document.getElementById('spvKycModal'));
                 spvKycModal.show();
             }

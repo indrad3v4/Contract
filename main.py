@@ -133,41 +133,6 @@ def contracts():
     """Render the contracts page"""
     return render_template("contracts.html")
 
-@app.route("/dashboard")
-def landlord_dashboard():
-    """Render the landlord-specific dashboard"""
-    return render_template("landlord_dashboard_clean.html")
-
-@app.route("/portfolio")
-def portfolio():
-    """Render the property portfolio page"""
-    return render_template("landlord_dashboard.html")
-
-@app.route("/income")
-def rental_income():
-    """Render the rental income tracking page"""
-    return render_template("landlord_dashboard.html")
-
-@app.route("/tenants")
-def tenant_management():
-    """Render the tenant management page"""
-    return render_template("landlord_dashboard.html")
-
-@app.route("/maintenance")
-def maintenance_requests():
-    """Render the maintenance requests page"""
-    return render_template("landlord_dashboard.html")
-
-@app.route("/compliance")
-def compliance_status():
-    """Render the compliance status page"""
-    return render_template("landlord_dashboard.html")
-
-@app.route("/analytics")
-def performance_analytics():
-    """Render the performance analytics page"""
-    return render_template("landlord_dashboard.html")
-
 
 # Error handlers
 @app.errorhandler(404)

@@ -24,7 +24,6 @@ dependencies = [
     "pytest-asyncio>=0.26.0",
     "google-api-python-client>=2.170.0",
     "flask-cors>=6.0.0",
-    "requests>=2.32.3",
 ]
 
 [[tool.uv.index]]

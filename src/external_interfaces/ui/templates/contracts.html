@@ -13,13 +13,13 @@
                     Real Estate Smart Contracts
                 </h5>
                 <div class="card-actions">
-                    <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#aiAssistantModal" title="Guided lease agreement creation with AI assistance">
+                    <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#aiAssistantModal" title="Guided contract creation with AI assistance">
                         <i data-feather="cpu" class="icon-inline-sm"></i>
-                        AI lease agreement Wizard
+                        AI Contract Wizard
                     </button>
-                    <button class="btn btn-sm btn-info" data-bs-toggle="tooltip" title="Create a lease agreement from scratch" id="newContractBtn">
+                    <button class="btn btn-sm btn-info" data-bs-toggle="tooltip" title="Create a contract from scratch" id="newContractBtn">
                         <i data-feather="plus" class="icon-inline-sm"></i>
-                        New lease agreement
+                        New Contract
                     </button>
                 </div>
             </div>
@@ -36,9 +36,9 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>lease agreement ID</th>
+                                <th>Contract ID</th>
                                 <th>Property</th>
-                                <th>property share Symbol</th>
+                                <th>Token Symbol</th>
                                 <th>Value (USD)</th>
                                 <th>Status</th>
                                 <th>Due Diligence</th>
@@ -47,7 +47,7 @@
                             </tr>
                         </thead>
                         <tbody id="contractsTableBody">
-                            <!-- lease agreement rows will be loaded dynamically -->
+                            <!-- Contract rows will be loaded dynamically -->
                             <tr>
                                 <td colspan="8" class="text-center">Loading contracts...</td>
                             </tr>
@@ -61,52 +61,52 @@
 
 <div class="row mt-4">
     <div class="col-12">
-        <!-- lease agreement Details Panel -->
-        <div class="lease agreement-details">
-            <div class="lease agreement-header">
+        <!-- Contract Details Panel -->
+        <div class="contract-details">
+            <div class="contract-header">
                 <div>
-                    <h5 class="lease agreement-title">Cosmic Tower Project <span class="badge bg-success ms-2">VERIFIED</span></h5>
-                    <div class="lease agreement-id">lease agreement ID: CO-2025-001 (0x71C...9E3f)</div>
+                    <h5 class="contract-title">Cosmic Tower Project <span class="badge bg-success ms-2">VERIFIED</span></h5>
+                    <div class="contract-id">Contract ID: CO-2025-001 (0x71C...9E3f)</div>
                 </div>
                 <div>
-                    <span class="lease agreement-status status-active">Active</span>
+                    <span class="contract-status status-active">Active</span>
                 </div>
             </div>
             
-            <div class="lease agreement-meta">
-                <div class="lease agreement-meta-item">
-                    <div class="meta-label">property share Symbol</div>
+            <div class="contract-meta">
+                <div class="contract-meta-item">
+                    <div class="meta-label">Token Symbol</div>
                     <div class="meta-value">CSMC</div>
                 </div>
-                <div class="lease agreement-meta-item">
+                <div class="contract-meta-item">
                     <div class="meta-label">Total Value</div>
                     <div class="meta-value">$15,811,040</div>
                 </div>
-                <div class="lease agreement-meta-item">
-                    <div class="meta-label">property share Supply</div>
+                <div class="contract-meta-item">
+                    <div class="meta-label">Token Supply</div>
                     <div class="meta-value">1,000,000 CSMC</div>
                 </div>
-                <div class="lease agreement-meta-item">
-                    <div class="meta-label">Current property share Price</div>
+                <div class="contract-meta-item">
+                    <div class="meta-label">Current Token Price</div>
                     <div class="meta-value">$15.81</div>
                 </div>
-                <div class="lease agreement-meta-item">
+                <div class="contract-meta-item">
                     <div class="meta-label">Creation Date</div>
                     <div class="meta-value">April 3, 2025</div>
                 </div>
-                <div class="lease agreement-meta-item">
-                    <div class="meta-label">property ledger</div>
+                <div class="contract-meta-item">
+                    <div class="meta-label">Blockchain</div>
                     <div class="meta-value">Odiseo Testnet</div>
                 </div>
             </div>
             
-            <div class="lease agreement-content">
+            <div class="contract-content">
                 <div class="row">
                     <div class="col-md-7">
-                        <h6 class="mb-3">lease agreement Description</h6>
-                        <p>This smart lease agreement represents the tokenized ownership of the Cosmic Tower Project, a 17-story commercial high-rise located in Future City. The property has been divided into $0.0234 ODISs, each representing a fractional ownership stake. property share holders are entitled to proportional distribution of rental income and appreciation in property value.</p>
+                        <h6 class="mb-3">Contract Description</h6>
+                        <p>This smart contract represents the tokenized ownership of the Cosmic Tower Project, a 17-story commercial high-rise located in Future City. The property has been divided into 1,000,000 tokens, each representing a fractional ownership stake. Token holders are entitled to proportional distribution of rental income and appreciation in property value.</p>
                         
-                        <h6 class="mt-4 mb-3">property share Distribution</h6>
+                        <h6 class="mt-4 mb-3">Token Distribution</h6>
                         <div class="chart-container" style="height: 200px;">
                             <canvas id="distribution-chart"></canvas>
                         </div>
@@ -118,7 +118,7 @@
                             </button>
                             <button class="btn btn-outline-secondary" disabled>
                                 <i data-feather="edit-3" class="icon-inline-sm"></i>
-                                Edit lease agreement
+                                Edit Contract
                             </button>
                             <div class="ms-2 d-flex align-items-center">
                                 <span class="badge bg-success px-3 py-2">
@@ -148,7 +148,7 @@
                                         <span class="badge bg-success rounded-pill">Complete</span>
                                     </li>
                                     <li class="list-group-item bg-dark text-light d-flex justify-content-between align-items-center border-secondary">
-                                        <span>property manager Approval (3/5)</span>
+                                        <span>Validator Approval (3/5)</span>
                                         <span class="badge bg-success rounded-pill">Complete</span>
                                     </li>
                                     <li class="list-group-item bg-dark text-light d-flex justify-content-between align-items-center border-secondary">
@@ -164,42 +164,42 @@
                         </div>
 
                         <h6 class="mt-4 mb-3">Recent Transactions</h6>
-                        <div class="rental rental transaction-list">
-                            <div class="rental rental transaction-item">
-                                <div class="rental rental transaction-icon success">
+                        <div class="transaction-list">
+                            <div class="transaction-item">
+                                <div class="transaction-icon success">
                                     <i data-feather="check-circle"></i>
                                 </div>
-                                <div class="rental rental transaction-details">
-                                    <div class="rental rental transaction-title">property share Transfer</div>
-                                    <div class="rental rental transaction-meta">
-                                        <span class="rental rental transaction-time">2 hours ago</span>
+                                <div class="transaction-details">
+                                    <div class="transaction-title">Token Transfer</div>
+                                    <div class="transaction-meta">
+                                        <span class="transaction-time">2 hours ago</span>
                                     </div>
                                 </div>
-                                <div class="rental rental transaction-value success">+1250 CSMC</div>
+                                <div class="transaction-value success">+1250 CSMC</div>
                             </div>
-                            <div class="rental rental transaction-item">
-                                <div class="rental rental transaction-icon info">
+                            <div class="transaction-item">
+                                <div class="transaction-icon info">
                                     <i data-feather="file-text"></i>
                                 </div>
-                                <div class="rental rental transaction-details">
-                                    <div class="rental rental transaction-title">lease agreement Update</div>
-                                    <div class="rental rental transaction-meta">
-                                        <span class="rental rental transaction-time">2 days ago</span>
+                                <div class="transaction-details">
+                                    <div class="transaction-title">Contract Update</div>
+                                    <div class="transaction-meta">
+                                        <span class="transaction-time">2 days ago</span>
                                     </div>
                                 </div>
-                                <div class="rental rental transaction-value">0 CSMC</div>
+                                <div class="transaction-value">0 CSMC</div>
                             </div>
-                            <div class="rental rental transaction-item">
-                                <div class="rental rental transaction-icon warning">
+                            <div class="transaction-item">
+                                <div class="transaction-icon warning">
                                     <i data-feather="refresh-cw"></i>
                                 </div>
-                                <div class="rental rental transaction-details">
-                                    <div class="rental rental transaction-title">Dividend Distribution</div>
-                                    <div class="rental rental transaction-meta">
-                                        <span class="rental rental transaction-time">1 week ago</span>
+                                <div class="transaction-details">
+                                    <div class="transaction-title">Dividend Distribution</div>
+                                    <div class="transaction-meta">
+                                        <span class="transaction-time">1 week ago</span>
                                     </div>
                                 </div>
-                                <div class="rental rental transaction-value warning">-350 CSMC</div>
+                                <div class="transaction-value warning">-350 CSMC</div>
                             </div>
                         </div>
                     </div>
@@ -210,27 +210,27 @@
                     <div class="signature-list">
                         <div class="signature-item">
                             <div class="signature-name">John Doe <span class="badge bg-secondary ms-1">Owner</span></div>
-                            <div class="signature-portfolio">0x71C...9E3f</div>
+                            <div class="signature-wallet">0x71C...9E3f</div>
                             <div class="signature-timestamp">Signed on Apr 3, 2025 - 14:32:45 UTC</div>
                         </div>
                         <div class="signature-item">
                             <div class="signature-name">Jane Smith <span class="badge bg-secondary ms-1">Investor</span></div>
-                            <div class="signature-portfolio">0x94B...2D5a</div>
+                            <div class="signature-wallet">0x94B...2D5a</div>
                             <div class="signature-timestamp">Signed on Apr 3, 2025 - 15:05:12 UTC</div>
                         </div>
                         <div class="signature-item">
-                            <div class="signature-name">Future City Properties LLC <span class="badge bg-info ms-1">property manager</span></div>
-                            <div class="signature-portfolio">0x31F...7A2c</div>
+                            <div class="signature-name">Future City Properties LLC <span class="badge bg-info ms-1">Validator</span></div>
+                            <div class="signature-wallet">0x31F...7A2c</div>
                             <div class="signature-timestamp">Signed on Apr 3, 2025 - 16:17:33 UTC</div>
                         </div>
                         <div class="signature-item">
-                            <div class="signature-name">Global Real Estate Ventures <span class="badge bg-info ms-1">property manager</span></div>
-                            <div class="signature-portfolio">0x67D...3F1b</div>
+                            <div class="signature-name">Global Real Estate Ventures <span class="badge bg-info ms-1">Validator</span></div>
+                            <div class="signature-wallet">0x67D...3F1b</div>
                             <div class="signature-timestamp">Signed on Apr 3, 2025 - 18:45:09 UTC</div>
                         </div>
                         <div class="signature-item opacity-50">
-                            <div class="signature-name">DeFi Capital Group <span class="badge bg-info ms-1">property manager</span></div>
-                            <div class="signature-portfolio">0x58F...2B4c</div>
+                            <div class="signature-name">DeFi Capital Group <span class="badge bg-info ms-1">Validator</span></div>
+                            <div class="signature-wallet">0x58F...2B4c</div>
                             <div class="signature-timestamp">Awaiting signature...</div>
                         </div>
                     </div>
@@ -264,7 +264,7 @@
                 
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        <label class="form-label">property share Symbol</label>
+                        <label class="form-label">Token Symbol</label>
                         <input type="text" class="form-control bg-dark text-light border-info" value="CSMC" readonly>
                     </div>
                     <div class="col-md-6">
@@ -308,23 +308,23 @@ Jurisdiction: Delaware, USA</textarea>
             <div class="modal-header border-secondary">
                 <h5 class="modal-title" id="aiAssistantModalLabel">
                     <i data-feather="cpu" class="icon-inline text-secondary"></i>
-                    AI lease agreement Wizard
+                    AI Contract Wizard
                 </h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="nav flex-column nav-pills" id="lease agreement-steps-tab" role="tablist">
+                        <div class="nav flex-column nav-pills" id="contract-steps-tab" role="tablist">
                             <button class="nav-link active" id="step1-tab" data-bs-toggle="pill" data-bs-target="#step1" type="button" role="tab">1. Asset Information</button>
                             <button class="nav-link" id="step2-tab" data-bs-toggle="pill" data-bs-target="#step2" type="button" role="tab">2. IFC Validation</button>
                             <button class="nav-link" id="step3-tab" data-bs-toggle="pill" data-bs-target="#step3" type="button" role="tab">3. Stakeholder Details</button>
-                            <button class="nav-link" id="step4-tab" data-bs-toggle="pill" data-bs-target="#step4" type="button" role="tab">4. lease agreement Terms</button>
+                            <button class="nav-link" id="step4-tab" data-bs-toggle="pill" data-bs-target="#step4" type="button" role="tab">4. Contract Terms</button>
                             <button class="nav-link" id="step5-tab" data-bs-toggle="pill" data-bs-target="#step5" type="button" role="tab">5. Multisig Setup</button>
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <div class="tab-content p-3" id="lease agreement-steps-content">
+                        <div class="tab-content p-3" id="contract-steps-content">
                             <div class="tab-pane fade show active" id="step1" role="tabpanel">
                                 <h6 class="mb-3 text-info">Asset Information</h6>
                                 <p>Enter the core details about your real estate asset. The AI will auto-populate fields from your IFC file once uploaded.</p>
@@ -351,9 +351,9 @@ Jurisdiction: Delaware, USA</textarea>
                             </div>
                             <div class="tab-pane fade" id="step3" role="tabpanel">
                                 <h6 class="mb-3 text-info">Stakeholder Details</h6>
-                                <p>Define the stakeholders for this asset. These will be encoded in the smart lease agreement.</p>
+                                <p>Define the stakeholders for this asset. These will be encoded in the smart contract.</p>
                                 <div class="mb-3">
-                                    <label class="form-label">Stakeholder portfolio Addresses</label>
+                                    <label class="form-label">Stakeholder Wallet Addresses</label>
                                     <textarea class="form-control bg-dark text-light border-secondary" rows="3"></textarea>
                                 </div>
                                 <div class="form-check mb-3">
@@ -364,10 +364,10 @@ Jurisdiction: Delaware, USA</textarea>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="step4" role="tabpanel">
-                                <h6 class="mb-3 text-info">lease agreement Terms</h6>
-                                <p>Review and modify the smart lease agreement terms generated by our AI.</p>
+                                <h6 class="mb-3 text-info">Contract Terms</h6>
+                                <p>Review and modify the smart contract terms generated by our AI.</p>
                                 <div class="mb-3">
-                                    <label class="form-label">property share Name & Symbol</label>
+                                    <label class="form-label">Token Name & Symbol</label>
                                     <div class="input-group mb-3">
                                         <input type="text" class="form-control bg-dark text-light border-secondary" placeholder="Name">
                                         <input type="text" class="form-control bg-dark text-light border-secondary" placeholder="Symbol">
@@ -378,7 +378,7 @@ Jurisdiction: Delaware, USA</textarea>
                                     <input type="number" class="form-control bg-dark text-light border-secondary">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">CosmWasm lease agreement Function:</label>
+                                    <label class="form-label">CosmWasm Contract Function:</label>
                                     <pre class="bg-black text-light p-3 rounded"><code>pub fn execute_staking(
     deps: DepsMut,
     env: Env,
@@ -397,9 +397,9 @@ Jurisdiction: Delaware, USA</textarea>
                             </div>
                             <div class="tab-pane fade" id="step5" role="tabpanel">
                                 <h6 class="mb-3 text-info">Multisig Setup</h6>
-                                <p>Configure multisignature requirements for this lease agreement. At least 3 out of 5 property manager signatures are required.</p>
+                                <p>Configure multisignature requirements for this contract. At least 3 out of 5 validator signatures are required.</p>
                                 <div class="mb-3">
-                                    <label class="form-label">Required property manager Signatures</label>
+                                    <label class="form-label">Required Validator Signatures</label>
                                     <div class="input-group">
                                         <input type="number" class="form-control bg-dark text-light border-secondary" value="3" min="1" max="5">
                                         <span class="input-group-text bg-dark text-light border-secondary">out of</span>
@@ -407,12 +407,12 @@ Jurisdiction: Delaware, USA</textarea>
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">property manager portfolio Addresses</label>
+                                    <label class="form-label">Validator Wallet Addresses</label>
                                     <textarea class="form-control bg-dark text-light border-secondary" rows="3" id="validatorWalletAddresses"></textarea>
                                 </div>
                                 <div class="alert alert-info">
                                     <i data-feather="info" class="icon-inline-sm"></i>
-                                    property manager approval is required to ensure legitimacy of the asset and comply with property management rules.
+                                    Validator approval is required to ensure legitimacy of the asset and comply with governance rules.
                                 </div>
                                 <button class="btn btn-info mt-3" id="contractWalletConnectBtn">
                                     <i data-feather="link" class="icon-inline-sm"></i>
@@ -420,7 +420,7 @@ Jurisdiction: Delaware, USA</textarea>
                                 </button>
                                 <button class="btn btn-success mt-3 d-none" id="contractSignBtn">
                                     <i data-feather="check-circle" class="icon-inline-sm"></i>
-                                    Sign lease agreement
+                                    Sign Contract
                                 </button>
                             </div>
                         </div>
@@ -431,7 +431,7 @@ Jurisdiction: Delaware, USA</textarea>
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-info" id="generateContractBtn">
                     <i data-feather="code" class="icon-inline-sm"></i>
-                    Generate lease agreement
+                    Generate Contract
                 </button>
             </div>
         </div>
@@ -443,12 +443,12 @@ Jurisdiction: Delaware, USA</textarea>
 <!-- Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<!-- Global Function for lease agreement View -->
+<!-- Global Function for Contract View -->
 <script>
     function viewContract(contractId) {
-        // In a real implementation, this would navigate to the lease agreement details page
+        // In a real implementation, this would navigate to the contract details page
         // For now, we'll just show an alert
-        alert(`Viewing lease agreement details for lease agreement ID: ${contractId}`);
+        alert(`Viewing contract details for contract ID: ${contractId}`);
     }
 </script>
 
@@ -491,27 +491,27 @@ Jurisdiction: Delaware, USA</textarea>
         
         // Initialize Mint NFTs button click
         document.getElementById('mintNFTsBtn').addEventListener('click', function() {
-            // In a real implementation, this would call the NFT minting function on the property ledger
-            alert('Minting NFTs requires connecting to Keplr portfolio for signing.');
+            // In a real implementation, this would call the NFT minting function on the blockchain
+            alert('Minting NFTs requires connecting to Keplr wallet for signing.');
             
             // Simulating Keplr connection
             setTimeout(() => {
-                alert('NFT minting process initiated. ODIS rental income will be distributed once complete.');
+                alert('NFT minting process initiated. ODIS rewards will be distributed once complete.');
             }, 1000);
         });
         
-        // Generate lease agreement button click
+        // Generate Contract button click
         document.getElementById('generateContractBtn').addEventListener('click', function() {
-            // Check if portfolio is connected
+            // Check if wallet is connected
             const walletConnected = localStorage.getItem('walletConnected') === 'true';
             const walletAddress = localStorage.getItem('userWalletAddress');
             
             if (!walletConnected || !walletAddress) {
-                alert('Please connect your portfolio first.');
+                alert('Please connect your wallet first.');
                 return;
             }
             
-            // Get lease agreement data from the form
+            // Get contract data from the form
             const assetName = document.querySelector('#step1 input[type="text"]:nth-child(1)').value;
             const location = document.querySelector('#step1 input[type="text"]:nth-child(2)').value;
             const tokenName = document.querySelector('#step4 input[placeholder="Name"]').value;
@@ -522,14 +522,16 @@ Jurisdiction: Delaware, USA</textarea>
             
             // Validate required fields
             if (!assetName || !tokenSymbol) {
-                alert('Please fill in the required fields: Asset Name and property share Symbol');
+                alert('Please fill in the required fields: Asset Name and Token Symbol');
                 return;
             }
             
-            // Create lease agreement data object
+            // Create contract data object
             const contractData = {
                 assetName: assetName,
-                location: location || 'Not specified'$0.0234 ODISName: tokenName || assetName + ' property share'$0.0234 ODISSymbol: tokenSymbol,
+                location: location || 'Not specified',
+                tokenName: tokenName || assetName + ' Token',
+                tokenSymbol: tokenSymbol,
                 totalSupply: totalSupply || 1000000,
                 value: Math.floor(Math.random() * 20000000) + 5000000, // Sample value for demo
                 status: 'pending',
@@ -556,48 +558,48 @@ Jurisdiction: Delaware, USA</textarea>
             })
             .then(data => {
                 console.log('Success:', data);
-                alert('lease agreement created successfully! lease agreement ID: ' + data.id);
+                alert('Contract created successfully! Contract ID: ' + data.id);
                 // Close the modal
                 const modal = bootstrap.Modal.getInstance(document.getElementById('aiAssistantModal'));
                 modal.hide();
-                // Reload the page to show the new lease agreement
+                // Reload the page to show the new contract
                 setTimeout(() => { window.location.reload(); }, 1000);
             })
             .catch((error) => {
                 console.error('Error:', error);
-                alert('Error creating lease agreement: ' + error.message);
+                alert('Error creating contract: ' + error.message);
             });
         });
         
-        // Check portfolio connection when AI lease agreement Wizard modal is opened
+        // Check wallet connection when AI Contract Wizard modal is opened
         document.getElementById('aiAssistantModal').addEventListener('show.bs.modal', function() {
             checkWalletConnection();
         });
         
-        // New lease agreement button click
+        // New Contract button click
         document.getElementById('newContractBtn').addEventListener('click', function() {
-            // Check if portfolio is connected already
+            // Check if wallet is connected already
             const walletConnected = localStorage.getItem('walletConnected') === 'true';
             const walletAddress = localStorage.getItem('userWalletAddress');
             
             if (walletConnected && walletAddress) {
-                // Proceed with lease agreement creation since portfolio is already connected
-                alert('Creating a new lease agreement from scratch using portfolio address: ' + walletAddress);
-                // In a real implementation, this would navigate to a lease agreement creation page/form
+                // Proceed with contract creation since wallet is already connected
+                alert('Creating a new contract from scratch using wallet address: ' + walletAddress);
+                // In a real implementation, this would navigate to a contract creation page/form
             } else {
-                // Prompt to connect portfolio first
-                alert('Creating a new lease agreement from scratch. You will need to connect your portfolio to proceed.');
+                // Prompt to connect wallet first
+                alert('Creating a new contract from scratch. You will need to connect your wallet to proceed.');
                 
-                // Try to connect the portfolio
+                // Try to connect the wallet
                 if (typeof connectKeplrWallet === 'function') {
                     connectKeplrWallet();
                 }
             }
         });
         
-        // lease agreement portfolio connect button
+        // Contract wallet connect button
         document.getElementById('contractWalletConnectBtn').addEventListener('click', function() {
-            // Call the global portfolio connection function from base.html
+            // Call the global wallet connection function from base.html
             if (typeof connectKeplrWallet === 'function') {
                 connectKeplrWallet();
                 
@@ -605,26 +607,26 @@ Jurisdiction: Delaware, USA</textarea>
                 setTimeout(checkWalletConnection, 500);
             } else {
                 console.error('connectKeplrWallet function not found');
-                alert('portfolio connection function not available. Please make sure you are using the latest version.');
+                alert('Wallet connection function not available. Please make sure you are using the latest version.');
             }
         });
         
-        // lease agreement sign button
+        // Contract sign button
         document.getElementById('contractSignBtn').addEventListener('click', async function() {
             try {
                 // Check if the global signTransactionWithKeplr function exists
                 if (typeof signTransactionWithKeplr !== 'function') {
-                    alert('rental rental transaction signing function not available. Please make sure you are using the latest version.');
+                    alert('Transaction signing function not available. Please make sure you are using the latest version.');
                     return;
                 }
                 
-                // Get the current lease agreement ID from the UI or data attribute
-                const contractId = this.getAttribute('data-lease agreement-id') || '1';
+                // Get the current contract ID from the UI or data attribute
+                const contractId = this.getAttribute('data-contract-id') || '1';
                 
-                // Prepare rental rental transaction data
+                // Prepare transaction data
                 const transactionData = {
                     from_address: localStorage.getItem('userWalletAddress'),
-                    to_address: "odiseo1qg5ega6dykkxc307y25pecuv380qje7zp9qpxt", // lease agreement property manager address
+                    to_address: "odiseo1qg5ega6dykkxc307y25pecuv380qje7zp9qpxt", // Contract validator address
                     amount: [{ denom: "uodis", amount: "1000" }],
                     metadata: {
                         id: contractId,
@@ -638,7 +640,7 @@ Jurisdiction: Delaware, USA</textarea>
                 this.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Signing...';
                 this.disabled = true;
                 
-                // Sign rental rental transaction with Keplr portfolio
+                // Sign transaction with Keplr wallet
                 const result = await signTransactionWithKeplr(transactionData);
                 
                 if (result && result.success) {
@@ -646,40 +648,40 @@ Jurisdiction: Delaware, USA</textarea>
                     this.innerHTML = '<i data-feather="check" class="icon-inline-sm"></i> Signed';
                     this.classList.replace('btn-primary', 'btn-success');
                     
-                    // Refresh the lease agreement list
+                    // Refresh the contract list
                     setTimeout(() => {
                         loadContracts();
                     }, 1000);
                     
                     // Show success message
-                    alert('lease agreement signed successfully! rental rental transaction broadcasted to property ledger.');
+                    alert('Contract signed successfully! Transaction broadcasted to blockchain.');
                 } else {
-                    throw new Error('rental rental transaction signing failed');
+                    throw new Error('Transaction signing failed');
                 }
             } catch (error) {
-                console.error('Error signing rental rental transaction:', error);
+                console.error('Error signing transaction:', error);
                 this.innerHTML = '<i data-feather="x" class="icon-inline-sm"></i> Signing Failed';
                 this.classList.replace('btn-primary', 'btn-danger');
                 setTimeout(() => {
-                    this.innerHTML = 'Sign lease agreement';
+                    this.innerHTML = 'Sign Contract';
                     this.classList.replace('btn-danger', 'btn-primary');
                     this.disabled = false;
                 }, 3000);
-                alert(`Failed to sign rental rental transaction: ${error.message}`);
+                alert(`Failed to sign transaction: ${error.message}`);
             }
         });
         
-        // Check if the portfolio is already connected
+        // Check if the wallet is already connected
         function checkWalletConnection() {
-            // Check localStorage for portfolio connection status
+            // Check localStorage for wallet connection status
             const walletConnected = localStorage.getItem('walletConnected') === 'true';
             const walletAddress = localStorage.getItem('userWalletAddress');
             
             if (walletConnected && walletAddress) {
-                // Show the portfolio address in the input field if it exists
+                // Show the wallet address in the input field if it exists
                 const walletAddressInput = document.getElementById('validatorWalletAddresses');
                 if (walletAddressInput) {
-                    // Add this portfolio as the first property manager if the field is empty
+                    // Add this wallet as the first validator if the field is empty
                     if (!walletAddressInput.value) {
                         walletAddressInput.value = walletAddress;
                     }
@@ -721,37 +723,37 @@ Jurisdiction: Delaware, USA</textarea>
                     
                     if (contracts.length === 0) {
                         // Show empty state
-                        tableBody.innerHTML = '<tr><td colspan="8" class="text-center">No contracts found. Create your first lease agreement using the "New lease agreement" button.</td></tr>';
+                        tableBody.innerHTML = '<tr><td colspan="8" class="text-center">No contracts found. Create your first contract using the "New Contract" button.</td></tr>';
                         return;
                     }
                     
-                    // Add each lease agreement to the table
-                    contracts.forEach(lease agreement => {
+                    // Add each contract to the table
+                    contracts.forEach(contract => {
                         // Format date
-                        const createdDate = new Date(lease agreement.createdAt);
+                        const createdDate = new Date(contract.createdAt);
                         const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' };
                         const formattedDate = createdDate.toLocaleDateString(undefined, dateOptions);
                         
                         // Format value with commas and dollar sign
-                        const formattedValue = '$' + lease agreement.value.toLocaleString();
+                        const formattedValue = '$' + contract.value.toLocaleString();
                         
-                        // Format portfolio address for display
-                        const walletAddress = lease agreement.walletAddress || '0x000...000';
+                        // Format wallet address for display
+                        const walletAddress = contract.walletAddress || '0x000...000';
                         const shortWalletAddress = walletAddress.length > 10 
                             ? walletAddress.substring(0, 5) + '...' + walletAddress.substring(walletAddress.length - 4)
                             : walletAddress;
                         
                         // Determine status and due diligence classes
                         let statusClass = 'status-pending';
-                        if (lease agreement.status === 'active') statusClass = 'status-active';
-                        if (lease agreement.status === 'completed') statusClass = 'status-completed';
+                        if (contract.status === 'active') statusClass = 'status-active';
+                        if (contract.status === 'completed') statusClass = 'status-completed';
                         
                         let dueDiligenceClass = 'bg-warning';
                         let dueDiligenceText = 'In Progress';
-                        if (lease agreement.dueDiligence === 'verified') {
+                        if (contract.dueDiligence === 'verified') {
                             dueDiligenceClass = 'bg-success';
                             dueDiligenceText = 'Verified';
-                        } else if (lease agreement.dueDiligence === 'unverified') {
+                        } else if (contract.dueDiligence === 'unverified') {
                             dueDiligenceClass = 'bg-warning';
                             dueDiligenceText = 'Unverified';
                         }
@@ -760,18 +762,18 @@ Jurisdiction: Delaware, USA</textarea>
                         const row = document.createElement('tr');
                         row.innerHTML = `
                             <td>
-                                <span class="d-block">CO-${new Date().getFullYear()}-${lease agreement.id.padStart(3, '0')}</span>
+                                <span class="d-block">CO-${new Date().getFullYear()}-${contract.id.padStart(3, '0')}</span>
                                 <small class="text-muted">${shortWalletAddress}</small>
                             </td>
-                            <td>${lease agreement.assetName}</td>
-                            <td>${lease agreement.tokenSymbol}</td>
+                            <td>${contract.assetName}</td>
+                            <td>${contract.tokenSymbol}</td>
                             <td>${formattedValue}</td>
-                            <td><span class="lease agreement-status ${statusClass}">${lease agreement.status.charAt(0).toUpperCase() + lease agreement.status.slice(1)}</span></td>
+                            <td><span class="contract-status ${statusClass}">${contract.status.charAt(0).toUpperCase() + contract.status.slice(1)}</span></td>
                             <td><span class="badge ${dueDiligenceClass}">${dueDiligenceText}</span></td>
                             <td>${formattedDate}</td>
                             <td>
                                 <div class="btn-group">
-                                    <button class="btn btn-sm btn-outline-info" onclick="viewContract('${lease agreement.id}')">
+                                    <button class="btn btn-sm btn-outline-info" onclick="viewContract('${contract.id}')">
                                         <i data-feather="eye" class="icon-inline-sm"></i>
                                     </button>
                                     <button class="btn btn-sm btn-outline-secondary">
@@ -795,7 +797,7 @@ Jurisdiction: Delaware, USA</textarea>
         
         // viewContract function is defined globally
         
-        // Run portfolio check on page load
+        // Run wallet check on page load
         checkWalletConnection();
         
         // Update feather icons
