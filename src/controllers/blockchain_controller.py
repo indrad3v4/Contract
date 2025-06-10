@@ -428,9 +428,13 @@ def get_recent_transactions():
     """Get recent blockchain transactions"""
     try:
         from datetime import datetime
+        from src.gateways.pingpub_gateway import PingPubGateway
+        
+        # Initialize gateway for this request
+        gateway = PingPubGateway()
         
         # Get real validator data to create meaningful transaction data
-        validators_data = pingpub_gateway.get_validators()
+        validators_data = gateway.get_validators()
         
         transactions = []
         if validators_data and 'validators' in validators_data:

@@ -1,0 +1,70 @@
+Based on your 6 dashboard screenshots and the specific issue with the header not aligning pixel-perfect with the sidebar, here is a WBS-style Technical Task Sheet formatted for a dev-producer working on a responsive Flask app (mobile & desktop), with a clear focus on aligning UI to your Daodiseo AI Brain structure.
+
+⸻
+
+🧠 DAODISEO DASHBOARD PATCH: Technical Task Sheet (UI Alignment + Layout Consistency)
+
+⸻
+
+✅ GOAL:
+
+Fix layout, alignment, and grid inconsistencies on the Dashboard UI across desktop and mobile. Ensure all sections follow one unified layout grid and headers/panels align pixel-perfect.
+
+⸻
+
+WBS: Problems, Impact, and Action Items
+
+#	Issue (From Screenshot)	Impact	Required Fix	Expected Result
+1	🔻Header misalignment with sidebar (left vertical border is offset)	Broken visual alignment breaks professionalism and causes pixel dissonance	Use CSS grid or flex to unify sidebar + header under same horizontal baseline. Remove padding-left inconsistencies across .main, .header, .container-fluid.	Left edge of header and sidebar align seamlessly on desktop and mobile
+2	📉 Dashboard stats cards show Error and Updated: -- despite verified badge	Data-agent mismatch confuses user — verified badge implies data is OK, but frontend shows error	Check if orchestrator.py or API is not returning actual values. Return fallback if no data or agent error state. Ensure status badge reflects real data state, not default	Card status and values match: “Verified” means real-time or cached data is shown
+3	📱Layout stack is inconsistent on smaller screens (cards awkwardly break or overflow)	Breaks mobile UX. Reduces accessibility and agent readability	Apply a mobile-friendly grid using Bootstrap row + col-md-6 col-lg-4 structure or a responsive CSS Grid. Avoid hardcoded widths.	3-column layout collapses to 1 or 2 smoothly on mobile
+4	⚙️ Chart area, BIM panel, and Stakeholder cards are often blank or visually unbalanced	Empty cards create awkward spacing and user confusion	Add "No data" state with agent explanation. Add conditional v-if or Jinja fallback block for empty charts	Empty cards display "Awaiting agent insights..." or similar human-readable fallback
+5	🧠 “AI Brain” sections (like BIM AI Assistant) are structurally disconnected — no visual hierarchy linking data sources, transactions, AI actions	Reduces clarity of orchestration logic — AI doesn’t feel like it’s powering dashboard	Introduce section headers like “BIM AI Agent”, “Smart Contracts”, “Token Metrics Agent” with icon + brief line description	Each section feels orchestrated by an AI agent — guiding user with intent
+6	🔁 Misplaced or repeated components (e.g., token info block appears twice, transactions split visually from context)	Fragmented UX, especially for new users	Audit all templates for duplicate blocks, especially if partials are reused incorrectly. Consolidate token info into one dynamic component	Token info loads once with updated state from orchestrator → all metrics consolidated under one card
+7	🧱 Live Price Chart says “Coming Soon” with broken spacing	Incomplete feature breaks hierarchy and adds visual noise	Either disable it (remove from DOM), or wrap in conditional if feature is enabled	“Coming Soon” components don’t affect spacing or break the visual flow
+8	🪟 Cards and sections lack liquid-glass-style hierarchy or edge contrast	Without shadow/depth/contrast, everything blends in flatly	Apply .liquid-card and .liquid-glass CSS styles (defined earlier). Add subtle shadows and borders to increase section hierarchy.	Cards stand out visually and interactively, like agent modules
+9	🧩 Sticky header scrolls away on page down	Header should persist for navigation and context	Set .header { position: sticky; top: 0; z-index: 1000; } with proper grid layout	Header remains visible across scroll — dashboard feels connected
+
+
+⸻
+
+🔧 Development Actions
+
+HTML/CSS/JS:
+	•	Audit templates/dashboard.html, base.html
+	•	Unify layout using Bootstrap grid or CSS grid
+	•	Adjust sticky headers, padding, and column stacking
+	•	Add fallback blocks to all cards/charts:
+
+{% if card.value %} {{ card.value }} {% else %} Awaiting agent response {% endif %}
+
+Python (Flask/Orchestrator):
+	•	In orchestrator.py, ensure agent-returned context includes all:
+	•	token_value, apy, updated_at, status, error_message
+	•	Match agent insights with each card’s expected structure
+	•	Add loading/error fallback if missing or delayed
+
+⸻
+
+📱 Mobile UX Requirements
+
+Element	Minimum	Behavior
+Card Grid	1 col	col-12
+Tablet	2 col	col-md-6
+Desktop	3 col	col-lg-4
+Header	Sticky	Always visible
+Side Padding	16px	Consistent
+
+
+⸻
+
+✅ Done =
+	•	Header and sidebar visually connected
+	•	All cards render without error or show fallback
+	•	Dashboard reads like one unified “AI Orchestrated System”
+	•	Fully responsive from desktop → mobile
+	•	Each visual block has a purpose, a label, and a fallback if missing
+
+⸻
+
+Would you like me to output this in Markdown format for GitHub issues or Notion tasks?

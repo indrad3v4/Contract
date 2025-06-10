@@ -85,6 +85,100 @@
             border: 2px solid rgba(224, 13, 121, 0.7) !important;
         }
         
+        /* App Layout - Unified Grid System for Pixel-Perfect Alignment */
+        .app-container {
+            display: grid !important;
+            grid-template-columns: 280px 1fr !important;
+            grid-template-rows: 80px 1fr !important;
+            grid-template-areas: 
+                "sidebar header"
+                "sidebar main" !important;
+            min-height: 100vh !important;
+            background: var(--bg-primary) !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .sidebar {
+            grid-area: sidebar !important;
+            background: var(--glass-bg) !important;
+            backdrop-filter: blur(20px) !important;
+            border-right: 1px solid var(--glass-border) !important;
+            display: flex !important;
+            flex-direction: column !important;
+            position: relative !important;
+            height: 100vh !important;
+            z-index: 1000 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 280px !important;
+        }
+
+        .main-content {
+            grid-area: main !important;
+            display: flex !important;
+            flex-direction: column !important;
+            min-height: calc(100vh - 80px) !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            overflow-y: auto !important;
+        }
+
+        /* Header aligned perfectly with sidebar - pixel perfect */
+        .header {
+            grid-area: header !important;
+            height: 80px !important;
+            background: var(--glass-bg) !important;
+            backdrop-filter: blur(20px) !important;
+            border-bottom: 1px solid var(--glass-border) !important;
+            border-left: none !important;
+            display: flex !important;
+            align-items: center !important;
+            padding: 0 2rem !important;
+            position: relative !important;
+            top: 0 !important;
+            z-index: 999 !important;
+            margin: 0 !important;
+            box-sizing: border-box !important;
+        }
+
+        /* Responsive Grid - Mobile and Desktop Friendly */
+        @media (max-width: 768px) {
+            .app-container {
+                grid-template-columns: 1fr !important;
+                grid-template-rows: 60px auto 1fr !important;
+                grid-template-areas: 
+                    "header"
+                    "sidebar"
+                    "main" !important;
+            }
+            
+            .sidebar {
+                height: auto !important;
+                border-right: none !important;
+                border-bottom: 1px solid var(--glass-border) !important;
+            }
+            
+            .header {
+                height: 60px !important;
+            }
+        }
+
+        /* Container padding consistency */
+        .container-fluid {
+            padding: 1rem !important;
+            margin: 0 !important;
+        }
+
+        /* Dashboard grid layout */
+        .row {
+            margin: 0 !important;
+        }
+
+        .col, .col-md-6, .col-lg-4, .col-12 {
+            padding: 0.75rem !important;
+        }
+
         /* Sidebar Active State */
         .nav-link.active {
             background: linear-gradient(135deg, rgba(224, 13, 121, 0.2), rgba(168, 85, 247, 0.2)) !important;

@@ -610,6 +610,13 @@
 <!-- Custom Scripts -->
 <script src="{{ url_for('static', filename='js/ai-chat-enhanced.js') }}"></script>
 <script src="{{ url_for('static', filename='js/bim-viewer.js') }}"></script>
+<!-- Remove duplicate enhanced scripts that are already loaded in base.html -->
+<script>
+// Override base.html enhanced scripts to prevent duplicates
+window.EnhancedStatsCards = null;
+window.EnhancedTransactionList = null;
+window.EnhancedAssetDistribution = null;
+</script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Populate Data Source Agent Cards with real blockchain data
