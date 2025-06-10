@@ -413,8 +413,8 @@ async function broadcastTransaction(signResponse) {
 
     console.log("Broadcasting transaction:", JSON.stringify(broadcastBody, null, 2));
 
-    // Send to your backend API endpoint that will broadcast to the blockchain
-    const response = await fetch("/api/broadcast", {
+    // Use blockchain proxy to bypass CORS restrictions
+    const response = await fetch("/api/blockchain-proxy/broadcast", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

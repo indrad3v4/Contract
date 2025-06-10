@@ -17,6 +17,7 @@ from src.controllers.transaction_controller import transaction_bp
 from src.controllers.upload_controller import upload_bp
 from src.controllers.contract_controller import contract_bp
 from src.controllers.blockchain_controller import blockchain_bp
+from src.controllers.blockchain_proxy_controller import blockchain_proxy_bp
 from src.security_utils import validate_environment, generate_csrf_token, apply_security_headers
 
 # Load environment variables from .env file if it exists
@@ -58,6 +59,14 @@ app.config['SESSION_COOKIE_SECURE'] = not app.debug  # Secure cookies in product
 app.config['SESSION_COOKIE_HTTPONLY'] = True  # Prevent JS access to cookies
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'  # Protect against CSRF
 
+# Configure CORS for blockchain RPC endpoints and browser compatibility
+CORS(app, 
+     origins=["*"],  # Allow all origins for blockchain proxy
+     methods=["GET", "POST", "OPTIONS", "PUT", "DELETE"],
+     allow_headers=["Content-Type", "Authorization", "X-CSRF-Token", "Accept", "Origin", "X-Requested-With"],
+     supports_credentials=True,
+     expose_headers=["Content-Type", "Authorization"])
+
 # Register blueprints
 app.register_blueprint(bim_bp)
 app.register_blueprint(bim_agent_bp)
@@ -67,6 +76,7 @@ app.register_blueprint(transaction_bp)
 app.register_blueprint(upload_bp)
 app.register_blueprint(contract_bp)
 app.register_blueprint(blockchain_bp)
+app.register_blueprint(blockchain_proxy_bp)
 
 # Add CSRF protection
 @app.before_request
