@@ -5,17 +5,70 @@
 {% block extra_css %}
 <!-- Enhanced Chat CSS -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/chat-enhanced.css') }}">
+<!-- Blockchain Metrics CSS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/blockchain-metrics.css') }}">
 {% endblock %}
 
 {% block content %}
-    <!-- Data Source Integration Agents -->
+    <!-- Live Blockchain Metrics -->
     <div class="row mb-4">
         <div class="col-12">
             <h3 class="cosmic-text mb-3">
-                <i data-feather="cpu"></i>
-                Data Source Agents
+                <i data-feather="trending-up"></i>
+                Live ODIS Network Data
             </h3>
-        
+            
+            <!-- Token Price Widget -->
+            <div class="row g-3 mb-3">
+                <div class="col-md-4">
+                    <div class="metric-card token-price-card">
+                        <div class="metric-header">
+                            <i data-feather="dollar-sign"></i>
+                            <span>ODIS Token</span>
+                        </div>
+                        <div class="metric-value" id="odis-price">Loading...</div>
+                        <div class="metric-change" id="price-change">...</div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="metric-card network-stats-card">
+                        <div class="metric-header">
+                            <i data-feather="activity"></i>
+                            <span>Network Status</span>
+                        </div>
+                        <div class="metric-grid">
+                            <div class="stat-item">
+                                <span class="stat-label">Block Height</span>
+                                <span class="stat-value" id="block-height">...</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Validators</span>
+                                <span class="stat-value" id="validator-count">...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="metric-card real-estate-card">
+                        <div class="metric-header">
+                            <i data-feather="home"></i>
+                            <span>Properties</span>
+                        </div>
+                        <div class="metric-grid">
+                            <div class="stat-item">
+                                <span class="stat-label">Tokenized</span>
+                                <span class="stat-value" id="total-properties">...</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Total Value</span>
+                                <span class="stat-value" id="total-value">...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
