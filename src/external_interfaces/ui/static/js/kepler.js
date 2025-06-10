@@ -33,7 +33,6 @@ class KeplerWallet {
             const MAX_SESSION_TIME = 4 * 60 * 60 * 1000; // 4 hours in milliseconds
             
             if (elapsed > MAX_SESSION_TIME) {
-                console.log('Wallet session timed out after 4 hours');
                 this.disconnect();
             }
         }
@@ -112,7 +111,7 @@ class KeplerWallet {
         }
 
         // Update connect wallet button in sidebar
-        const connectKeplrBtn = document.getElementById('connectKeplrBtn');
+        const connectKeplrBtn = const el = document.getElementById('connectKeplrBtn'); if (!el) return; el;
         if (connectKeplrBtn) {
             if (this.connected && this.address) {
                 connectKeplrBtn.innerHTML = '<i data-feather="check-circle" class="icon-inline-sm"></i> Connected';
@@ -128,7 +127,7 @@ class KeplerWallet {
         }
 
         // Update user profile in header
-        const userProfileBtn = document.getElementById('userProfileBtn');
+        const userProfileBtn = const el = document.getElementById('userProfileBtn'); if (!el) return; el;
         if (userProfileBtn) {
             if (this.connected && this.address) {
                 const displayAddress = this.address.slice(0, 8) + '...' + this.address.slice(-4);
@@ -139,7 +138,7 @@ class KeplerWallet {
         }
 
         // Legacy connect button support
-        const connectButton = document.getElementById('connectWallet');
+        const connectButton = const el = document.getElementById('connectWallet'); if (!el) return; el;
         if (connectButton) {
             if (this.connected && this.address) {
                 connectButton.innerHTML = `Connected: ${this.address.slice(0, 8)}...`;
@@ -192,7 +191,7 @@ class KeplerWallet {
                 memo: ''
             };
             
-            console.log("Signing with Keplr using Amino format:", JSON.stringify(signDoc, null, 2));
+            );
 
             // Sign directly with Keplr (not offlineSigner)
             const signature = await window.keplr.signAmino(
@@ -229,8 +228,6 @@ async function connectKeplrWallet() {
         const address = await window.keplerWallet.init();
         
         // Wallet connection is handled in the init method now, no need to duplicate storage
-        console.log('Keplr wallet connected:', address);
-        
         // SECURITY: Record last activity time for session tracking
         sessionStorage.setItem('last_wallet_activity', Date.now().toString());
         
@@ -240,14 +237,14 @@ async function connectKeplrWallet() {
         sessionStorage.setItem('userWalletAddress', address);
         
         // Update UI elements
-        const connectButton = document.getElementById('connectKeplrBtn');
+        const connectButton = const el = document.getElementById('connectKeplrBtn'); if (!el) return; el;
         if (connectButton) {
             connectButton.innerHTML = '<i class="icon-inline-sm"></i> Connected';
             connectButton.classList.remove('btn-outline-info');
             connectButton.classList.add('btn-success');
         }
         
-        const userProfileBtn = document.getElementById('userProfileBtn');
+        const userProfileBtn = const el = document.getElementById('userProfileBtn'); if (!el) return; el;
         if (userProfileBtn) {
             // Display shortened wallet address
             const displayAddress = address.slice(0, 8) + '...' + address.slice(-4);
@@ -288,8 +285,7 @@ async function connectKeplrWallet() {
 function disconnectKeplrWallet() {
     // Just delegate to the wallet instance method which handles all cleanup
     window.keplerWallet.disconnect();
-    console.log('Keplr wallet disconnected');
-}
+    }
 
 // Global function for signing transactions with Keplr wallet
 async function signTransactionWithKeplr(transactionData) {
@@ -312,8 +308,6 @@ async function signTransactionWithKeplr(transactionData) {
         // Sign the transaction using wallet instance
         const signature = await window.keplerWallet.signTransaction(transactionData);
         
-        console.log('Transaction signed successfully:', signature);
-        
         // If broadcast URL is provided, send to backend for broadcasting
         if (transactionData.broadcastUrl) {
             const response = await fetch(transactionData.broadcastUrl, {
@@ -328,7 +322,6 @@ async function signTransactionWithKeplr(transactionData) {
             });
             
             const result = await response.json();
-            console.log('Transaction broadcast result:', result);
             return result;
         }
         
@@ -361,7 +354,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     // Add global connect button handler if it exists
-    const globalConnectBtn = document.getElementById('globalConnectWallet');
+    const globalConnectBtn = const el = document.getElementById('globalConnectWallet'); if (!el) return; el;
     if (globalConnectBtn) {
         globalConnectBtn.addEventListener('click', connectKeplrWallet);
     }

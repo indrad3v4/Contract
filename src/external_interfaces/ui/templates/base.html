@@ -91,6 +91,7 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
     
     <!-- Global State Management -->
+    <script src="{{ url_for('static', filename='js/gamification.js') }}"></script>
     <script src="{{ url_for('static', filename='js/global-state.js') }}"></script>
     
     {% block extra_css %}{% endblock %}
@@ -135,13 +136,13 @@
                 </ul>
             </nav>
             
-            <div class="sidebar-footer">
+                        <div class="sidebar-footer">
                 <div class="network-status">
                     <div class="status-indicator active"></div>
                     <span>Odiseo Testnet</span>
                 </div>
-                
             </div>
+        </div>
         </div>
         
         <!-- Main Content -->
@@ -152,9 +153,11 @@
                     <h1>{% block page_title %}Dashboard{% endblock %}</h1>
                 </div>
                 <div class="top-actions">
-                    <div class="network-indicator">
-                        <div class="status-dot active"></div>
-                        <span class="network-name">Odiseo Testnet</span>
+                    <div class="points-system" id="pointsSystemBtn">
+                        <div class="points-container">
+                            <i data-feather="star" class="points-icon"></i>
+                            <span class="points-badge" id="userPoints">0 pts</span>
+                        </div>
                     </div>
                     <div class="wallet-connection">
                         <button class="btn btn-outline-primary btn-sm" id="headerConnectKeplr">
@@ -903,7 +906,7 @@
                         <div class="small text-muted mb-1">Your Balance</div>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="fw-bold">1,245.32 ODIS</div>
-                            <span class="badge bg-success">$3,735.96</span>
+                            <span class="badge dds-badge-success">$3,735.96</span>
                         </div>
                     </div>
                     <div class="border-top border-secondary my-2"></div>
@@ -1046,5 +1049,121 @@
         // Initial price update
         setTimeout(updateTokenPrices, 2000);
     </script>
+
+    <!-- Blockchain Rewards Modal -->
+    <div class="modal fade" id="blockchainRewardsModal" tabindex="-1" aria-labelledby="blockchainRewardsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="blockchainRewardsModalLabel">
+                        <i data-feather="award" class="icon-inline"></i>
+                        Blockchain Rewards
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="reward-level">
+                        <div class="level-badge">
+                            <span class="level-number">1</span>
+                        </div>
+                        <div class="level-info">
+                            <h6>Level 1</h6>
+                            <p class="level-progress">0 points (100 to next level)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="achievements-section">
+                        <h6>Achievements</h6>
+                        <div class="achievements-grid">
+                            <div class="achievement-item locked">
+                                <i data-feather="link"></i>
+                            </div>
+                            <div class="achievement-item locked">
+                                <i data-feather="file-text"></i>
+                            </div>
+                            <div class="achievement-item locked">
+                                <i data-feather="send"></i>
+                            </div>
+                            <div class="achievement-item locked">
+                                <i data-feather="award"></i>
+                            </div>
+                            <div class="achievement-item locked">
+                                <i data-feather="search"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="actions-section">
+                        <h6>Actions & Points</h6>
+                        <div class="action-list">
+                            <div class="action-item">
+                                <div class="action-info">
+                                    <i data-feather="link" class="action-icon"></i>
+                                    <span>Connect Keplr wallet</span>
+                                </div>
+                                <span class="action-reward">+25</span>
+                            </div>
+                            <div class="action-item">
+                                <div class="action-info">
+                                    <i data-feather="file-text" class="action-icon"></i>
+                                    <span>Sign a smart contract</span>
+                                </div>
+                                <span class="action-reward">+50</span>
+                            </div>
+                            <div class="action-item">
+                                <div class="action-info">
+                                    <i data-feather="check-circle" class="action-icon"></i>
+                                    <span>Submit a blockchain transaction</span>
+                                </div>
+                                <span class="action-reward">+100</span>
+                            </div>
+                            <div class="action-item">
+                                <div class="action-info">
+                                    <i data-feather="log-in" class="action-icon"></i>
+                                    <span>Log into the platform</span>
+                                </div>
+                                <span class="action-reward">+10</span>
+                            </div>
+                            <div class="action-item">
+                                <div class="action-info">
+                                    <i data-feather="eye" class="action-icon"></i>
+                                    <span>View a property contract</span>
+                                </div>
+                                <span class="action-reward">+5</span>
+                            </div>
+                            <div class="action-item">
+                                <div class="action-info">
+                                    <i data-feather="upload" class="action-icon"></i>
+                                    <span>Upload a BIM model</span>
+                                </div>
+                                <span class="action-reward">+30</span>
+                            </div>
+                            <div class="action-item">
+                                <div class="action-info">
+                                    <i data-feather="share-2" class="action-icon"></i>
+                                    <span>Share a property</span>
+                                </div>
+                                <span class="action-reward">+15</span>
+                            </div>
+                            <div class="action-item">
+                                <div class="action-info">
+                                    <i data-feather="shield" class="action-icon"></i>
+                                    <span>Become a validator</span>
+                                </div>
+                                <span class="action-reward">+75</span>
+                            </div>
+                            <div class="action-item">
+                                <div class="action-info">
+                                    <i data-feather="user" class="action-icon"></i>
+                                    <span>Complete your profile</span>
+                                </div>
+                                <span class="action-reward">+20</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

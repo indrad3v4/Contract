@@ -110,7 +110,7 @@ class RewardsUIManager {
     if (this.initialized) return;
     
     // Check if rewards badge already exists in header (from wallet manager)
-    const existingHeaderPoints = document.getElementById('pointsSystemBtn');
+    const existingHeaderPoints = const el = document.getElementById('pointsSystemBtn'); if (!el) return; el;
     if (existingHeaderPoints) {
       // Use existing header points system instead of creating duplicate
       this.badgeElement = existingHeaderPoints;
@@ -234,7 +234,7 @@ class RewardsUIManager {
     this.panelElement = panel;
     
     // Add event listener to close button
-    document.getElementById('rewards-panel-close').addEventListener('click', () => {
+    const el = document.getElementById('rewards-panel-close'); if (!el) return; el.addEventListener('click', () => {
       this.toggleRewardsPanel(false);
     });
   }

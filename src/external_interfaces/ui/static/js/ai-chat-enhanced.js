@@ -14,7 +14,7 @@ const aiChat = {
     // Initialize the chat interface
     init: function(containerId) {
         this.containerId = containerId;
-        this.chatContainer = document.getElementById(containerId);
+        this.chatContainer = const el = document.getElementById(containerId); if (!el) return; el;
         
         if (!this.chatContainer) {
             console.error(`Chat container with ID ${containerId} not found`);
@@ -104,9 +104,9 @@ const aiChat = {
     
     // Bind event listeners
     bindEvents: function() {
-        const inputElement = document.getElementById('chat-input');
-        const sendButton = document.getElementById('chat-send');
-        const enhancedToggle = document.getElementById('enhanced-toggle');
+        const inputElement = const el = document.getElementById('chat-input'); if (!el) return; el;
+        const sendButton = const el = document.getElementById('chat-send'); if (!el) return; el;
+        const enhancedToggle = const el = document.getElementById('enhanced-toggle'); if (!el) return; el;
         
         // Send message on button click
         sendButton.addEventListener('click', () => {
@@ -133,7 +133,7 @@ const aiChat = {
             .then(data => {
                 if (data.success) {
                     this.isEnhancedMode = data.enhanced_mode;
-                    document.getElementById('enhanced-toggle').checked = this.isEnhancedMode;
+                    const el = document.getElementById('enhanced-toggle'); if (!el) return; el.checked = this.isEnhancedMode;
                 }
             })
             .catch(error => {
@@ -156,7 +156,7 @@ const aiChat = {
         .then(data => {
             if (data.success) {
                 this.isEnhancedMode = data.enhanced_mode;
-                document.getElementById('enhanced-toggle').checked = this.isEnhancedMode;
+                const el = document.getElementById('enhanced-toggle'); if (!el) return; el.checked = this.isEnhancedMode;
                 
                 // Add system message about mode change
                 const modeMsg = this.isEnhancedMode ? 
@@ -165,7 +165,7 @@ const aiChat = {
                 this.addSystemMessage(modeMsg);
             } else {
                 // If failed, revert the toggle
-                document.getElementById('enhanced-toggle').checked = this.isEnhancedMode;
+                const el = document.getElementById('enhanced-toggle'); if (!el) return; el.checked = this.isEnhancedMode;
                 
                 // Add error message
                 this.addErrorMessage(data.message || "Failed to toggle enhanced mode");
@@ -173,14 +173,14 @@ const aiChat = {
         })
         .catch(error => {
             console.error('Error toggling enhanced mode:', error);
-            document.getElementById('enhanced-toggle').checked = this.isEnhancedMode;
+            const el = document.getElementById('enhanced-toggle'); if (!el) return; el.checked = this.isEnhancedMode;
             this.addErrorMessage("An error occurred while toggling enhanced mode");
         });
     },
     
     // Send a message
     sendMessage: function() {
-        const inputElement = document.getElementById('chat-input');
+        const inputElement = const el = document.getElementById('chat-input'); if (!el) return; el;
         const message = inputElement.value.trim();
         
         if (!message) return;

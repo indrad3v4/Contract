@@ -1,19 +1,12 @@
 // Transaction handling with Keplr
 async function createAndSignTransaction(fileData, userAddress, role) {
   try {
-    console.log("Starting Keplr signing process...");
-    console.log("File data:", fileData);
-    console.log("User address:", userAddress);
-    console.log("Role:", role);
-
     // Create transaction metadata
     const transactionId = fileData.transaction_id || "tx_1";
     const contentHash = fileData.content_hash;
 
     // Get chain information
     const chainId = "odiseotestnet_1234-1";
-    console.log("Using chain ID:", chainId);
-
     // Create sign doc according to official Keplr docs
     // https://docs.keplr.app/api/sign.html#cosmjssignamino
     const signDoc = {
@@ -40,7 +33,7 @@ async function createAndSignTransaction(fileData, userAddress, role) {
     };
 
     // Log the complete sign doc for debugging
-    console.log("Amino sign doc for Keplr:", JSON.stringify(signDoc, null, 2));
+    );
 
     // Sign the transaction with Keplr using the new function
     const signResponse = await signContract(chainId, userAddress, signDoc);
@@ -51,12 +44,10 @@ async function createAndSignTransaction(fileData, userAddress, role) {
     }
 
     // Broadcast the signed transaction
-    console.log("Broadcasting signed transaction...");
     let broadcastResult;
     try {
       broadcastResult = await broadcastTransaction(signResponse);
-      console.log("Broadcast result:", broadcastResult);
-    } catch (broadcastError) {
+      } catch (broadcastError) {
       console.error("Error broadcasting transaction:", broadcastError);
       throw new Error(`Failed to broadcast transaction: ${broadcastError.message}`);
     }
@@ -178,16 +169,10 @@ async function signWithKeplr(chainId, userAddress, signDoc) {
   try {
     // Enable Keplr for the chain
     await window.keplr.enable(chainId);
-    console.log("Keplr enabled for chain");
-
     // Get the offline signer
     const offlineSigner = window.keplr.getOfflineSigner(chainId);
-    console.log("Got offline signer");
-
     // Verify accounts
     const accounts = await offlineSigner.getAccounts();
-    console.log("Accounts verified:", accounts.length);
-
     // Format message in Amino format according to Keplr docs
     // https://docs.keplr.app/api/sign.html#cosmjssignamino
     const aminoDoc = {
@@ -202,8 +187,8 @@ async function signWithKeplr(chainId, userAddress, signDoc) {
       }))
     };
 
-    console.log("Using signAmino with Keplr (properly formatted)");
-    console.log("Clean sign doc for Keplr:", JSON.stringify(aminoDoc, null, 2));
+    ");
+    );
 
     // Sign the transaction
     const signResponse = await window.keplr.signAmino(
@@ -215,7 +200,6 @@ async function signWithKeplr(chainId, userAddress, signDoc) {
       }
     );
 
-    console.log("Got sign response from Keplr:", signResponse);
     return signResponse;
 
   } catch (error) {
@@ -229,7 +213,6 @@ async function signWithKeplr(chainId, userAddress, signDoc) {
 }
 
 async function signContract(chainId, userAddress, signDoc) {
-  console.log("Starting Keplr signing process...");
   const signResponse = await signWithKeplr(chainId, userAddress, signDoc);
   
   // Trigger contract signed event for micro-rewards
@@ -259,15 +242,13 @@ function uint8ArrayToBase64(uint8Array) {
 
 // Helper function to convert message to Proto format
 function convertAminoToProto(msg) {
-  console.log("Converting message to Proto format:", msg);
-
   // We now use Amino format WITH type/value structure for signAmino
   // For broadcast, we need to convert from Amino format to Proto format
 
   // Handle direct object format for backward compatibility
   // Note: This format does NOT work with Keplr's signAmino and will cause errors
   if (msg.from_address && msg.to_address && msg.amount) {
-    console.log("Processing direct format message (converting to Proto):", msg);
+    :", msg);
 
     // Add the typeUrl for Proto format
     return {
@@ -294,8 +275,6 @@ function convertAminoToProto(msg) {
       console.error('Unknown message type:', msg.type);
       throw new Error(`Unknown message type: ${msg.type}`);
     }
-
-    console.log(`Converting Amino type '${msg.type}' to Proto typeUrl '${typeUrl}'`);
 
     // For MsgSend, convert snake_case to camelCase
     if (msg.type === 'cosmos-sdk/MsgSend') {
@@ -351,9 +330,6 @@ function convertAminoToProto(msg) {
 // Helper function to broadcast the signed transaction
 async function broadcastTransaction(signResponse) {
   try {
-    console.log("Preparing to broadcast transaction...");
-    console.log("Sign response:", signResponse);
-
     // Ensure public key is properly formatted for blockchain
     let pubKey = signResponse.signature.pub_key;
 
@@ -363,38 +339,31 @@ async function broadcastTransaction(signResponse) {
       // Keplr sometimes returns pub_key as array or base64 string directly
       if (pubKey.key) {
         // Already has a key field (Keplr format)
-        console.log("Found pub_key with key field:", pubKey);
-      } else if (Array.isArray(pubKey) || pubKey instanceof Uint8Array) {
+        } else if (Array.isArray(pubKey) || pubKey instanceof Uint8Array) {
         // Need to convert Uint8Array to base64
         const keyBase64 = uint8ArrayToBase64(pubKey);
-        console.log("Converted pub_key from array to base64:", keyBase64);
         pubKey = {
           type: "tendermint/PubKeySecp256k1",
           value: keyBase64
         };
       } else if (typeof pubKey === 'string') {
         // Already a string (might be base64)
-        console.log("Using string pub_key:", pubKey);
         pubKey = {
           type: "tendermint/PubKeySecp256k1",
           value: pubKey
         };
       } else {
-        console.log("Using pubkey as-is:", pubKey);
-      }
+        }
     }
 
     // Make sure signature is a string
     let signature = signResponse.signature.signature;
     if (signature instanceof Uint8Array) {
       signature = uint8ArrayToBase64(signature);
-      console.log("Converted signature to base64:", signature);
-    }
+      }
 
     // Convert Amino messages to Proto format
     const protoMsgs = signResponse.signed.msgs.map(msg => convertAminoToProto(msg));
-    console.log("Converted messages to Proto format:", protoMsgs);
-
     // Prepare the transaction for broadcasting with properly formatted pub_key and Proto messages
     const broadcastBody = {
       tx: {
@@ -411,7 +380,7 @@ async function broadcastTransaction(signResponse) {
       mode: "block" // Use "block" to wait for confirmation
     };
 
-    console.log("Broadcasting transaction:", JSON.stringify(broadcastBody, null, 2));
+    );
 
     // Use blockchain proxy to bypass CORS restrictions
     const response = await fetch("/api/blockchain-proxy/broadcast", {
@@ -421,8 +390,6 @@ async function broadcastTransaction(signResponse) {
       },
       body: JSON.stringify(broadcastBody)
     });
-
-    console.log("Broadcast response status:", response.status);
 
     if (!response.ok) {
       const errorText = await response.text();
@@ -439,7 +406,6 @@ async function broadcastTransaction(signResponse) {
     }
 
     const result = await response.json();
-    console.log("Broadcast result:", result);
     return result;
   } catch (error) {
     // Enhanced error logging with as much detail as possible
