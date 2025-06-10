@@ -1,28 +1,26 @@
 {% extends "base.html" %}
 
-{% block title %}Upload & Due Diligence Portal - DAODISEO{% endblock %}
+{% block title %}Upload BIM Models - Daodiseo Platform{% endblock %}
+{% block page_title %}Upload & Due Diligence Portal{% endblock %}
 
 {% block content %}
-<div class="page-container">
-    <!-- Page Header -->
-    <div class="page-header">
-        <h1 class="page-title">Upload & Due Diligence Portal</h1>
-        <p class="page-subtitle">AI-powered BIM model validation and asset verification</p>
-    </div>
-
-    <!-- Main Upload Section -->
-    <div class="glass-surface">
-        <div class="card-header">
-            <h2 class="card-title">
-                <i data-feather="upload-cloud" class="icon-inline-sm"></i>
-                Upload BIM Models
-            </h2>
-        </div>
-        
-        <div class="alert alert-info mb-4" style="background: rgba(23, 162, 184, 0.1); border: 1px solid rgba(23, 162, 184, 0.3); color: var(--text-primary); border-radius: var(--radius-md); padding: var(--space-md);">
-            <i data-feather="info" class="icon-inline-sm"></i>
-            <strong>Due Diligence Process:</strong> Once uploaded, IFC files will be analyzed by our AI system and validators. Only verified assets can mint NFTs.
-        </div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">
+                    <i data-feather="upload-cloud" class="icon-inline"></i>
+                    Upload BIM Models
+                </h5>
+                <div class="card-subtitle">
+                    IFC file validation and asset verification
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info mb-4">
+                    <i data-feather="info" class="icon-inline-sm"></i>
+                    <strong>Due Diligence Process:</strong> Once uploaded, IFC files will be analyzed by our AI system and validators. Only verified assets can mint NFTs.
+                </div>
                 
                 <div class="upload-area" id="drop-area">
                     <div class="upload-icon">
