@@ -477,9 +477,10 @@
         async function handleFiles(files) {
             console.log('Files selected:', files);
             
-            // Check if wallet is connected
-            const walletConnected = localStorage.getItem('walletConnected') === 'true';
-            const userWalletAddress = localStorage.getItem('userWalletAddress');
+            // Check if wallet is connected using global state
+            const walletState = window.DaodiseoState ? window.DaodiseoState.getState('wallet') : null;
+            const walletConnected = walletState?.connected || false;
+            const userWalletAddress = walletState?.address || null;
             
             if (!walletConnected || !userWalletAddress) {
                 // Show wallet connection prompt
@@ -626,6 +627,44 @@
                         if (!broadcastData.success) {
                             throw new Error(broadcastData.error || 'Failed to broadcast transaction');
                         }
+                        
+                        // Update global state with transaction data
+                        if (window.DaodiseoState) {
+                            window.DaodiseoState.setState('transaction', {
+                                currentId: broadcastData.transaction_id || data.transaction_id,
+                                status: 'verified',
+                                hash: broadcastData.tx_hash,
+                                type: 'upload'
+                            });
+                            
+                            window.DaodiseoState.setState('upload', {
+                                currentFile: {
+                                    name: file.name,
+                                    hash: data.content_hash,
+                                    size: file.size,
+                                    type: file.type
+                                },
+                                uploadStatus: 'verified'
+                            });
+                        }
+                        
+                        // Dispatch cross-route events
+                        document.dispatchEvent(new CustomEvent('transactionCreated', {
+                            detail: {
+                                transactionId: broadcastData.transaction_id || data.transaction_id,
+                                hash: broadcastData.tx_hash,
+                                type: 'upload'
+                            }
+                        }));
+                        
+                        document.dispatchEvent(new CustomEvent('fileUploaded', {
+                            detail: {
+                                fileName: file.name,
+                                fileHash: data.content_hash,
+                                fileSize: file.size,
+                                fileType: file.type
+                            }
+                        }));
                         
                         // Update status to "Verified"
                         statusBadge.classList.remove('bg-warning');

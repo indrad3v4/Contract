@@ -13,7 +13,54 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize contract interaction buttons
     initContractButtons();
+    
+    // Listen for cross-route state changes
+    initCrossRouteListeners();
 });
+
+// Initialize cross-route event listeners
+function initCrossRouteListeners() {
+    // Listen for transaction events from upload route
+    document.addEventListener('transactionCreated', (event) => {
+        const { transactionId, hash, type } = event.detail;
+        console.log('Received transaction event:', { transactionId, hash, type });
+        
+        // Update contracts view if currently visible
+        if (document.querySelector('.contracts-grid')) {
+            refreshContractsData();
+        }
+        
+        // Show notification about new transaction
+        if (window.DaodiseoState) {
+            window.DaodiseoState.addNotification(
+                `New ${type} transaction created: ${transactionId}`,
+                'success'
+            );
+        }
+    });
+    
+    // Listen for file upload events
+    document.addEventListener('fileUploaded', (event) => {
+        const { fileName, fileHash } = event.detail;
+        console.log('Received file upload event:', { fileName, fileHash });
+        
+        // Auto-populate contract creation form if available
+        const contractForm = document.querySelector('#newContractForm');
+        if (contractForm) {
+            const assetHashField = contractForm.querySelector('[name="assetHash"]');
+            const assetNameField = contractForm.querySelector('[name="assetName"]');
+            
+            if (assetHashField) assetHashField.value = fileHash;
+            if (assetNameField) assetNameField.value = fileName;
+        }
+    });
+    
+    // Listen for wallet state changes
+    document.addEventListener('stateChange:wallet', (event) => {
+        const walletState = event.detail.data;
+        updateContractButtonsState(walletState.connected);
+    });
+}
 
 // Load contracts data from API
 async function initContractsData() {
@@ -21,8 +68,24 @@ async function initContractsData() {
         // Fetch contracts from API
         const contracts = await fetchApi('/api/contracts');
         
+        // Normalize contract data for cross-route consistency
+        const normalizedContracts = contracts.map(contract => normalizeContractData(contract));
+        
         // Display contracts in UI
-        displayContracts(contracts);
+        displayContracts(normalizedContracts);
+        
+        // Update global state with contracts
+        if (window.DaodiseoState) {
+            const activeContracts = normalizedContracts.filter(c => c.status === 'active');
+            const pendingContracts = normalizedContracts.filter(c => c.status === 'pending');
+            const signedContracts = normalizedContracts.filter(c => c.status === 'signed');
+            
+            window.DaodiseoState.setState('contracts', {
+                active: activeContracts,
+                pending: pendingContracts,
+                signed: signedContracts
+            });
+        }
         
         // Initialize transaction history if available
         const transactionElements = document.querySelectorAll('.transactions-table');
@@ -37,6 +100,54 @@ async function initContractsData() {
     } catch (error) {
         console.error('Error initializing contracts data:', error);
         showAlert('Failed to load contracts data. Please try again later.', 'warning');
+    }
+}
+
+// Normalize contract data to ensure consistent field names across routes
+function normalizeContractData(contract) {
+    return {
+        // Standardize ID field
+        id: contract.id || contract.contractId || contract.contract_id,
+        
+        // Standardize transaction reference
+        transactionId: contract.transaction_id || contract.transactionId || contract.txId,
+        transactionHash: contract.blockchain_tx_hash || contract.tx_hash || contract.hash,
+        
+        // Standardize asset reference
+        assetHash: contract.file_hash || contract.asset_hash || contract.document_hash,
+        assetName: contract.property_name || contract.asset_name || contract.name,
+        
+        // Preserve other fields
+        status: contract.status,
+        verified: contract.verified,
+        tokenized: contract.tokenized,
+        value: contract.value || contract.total_amount,
+        funded_amount: contract.funded_amount,
+        total_amount: contract.total_amount,
+        created_at: contract.created_at,
+        type: contract.type || 'real_estate'
+    };
+}
+
+// Refresh contracts data (used by cross-route events)
+async function refreshContractsData() {
+    await initContractsData();
+}
+
+// Update contract buttons based on wallet state
+function updateContractButtonsState(walletConnected) {
+    const newContractBtn = document.getElementById('newContractBtn');
+    const contractWalletConnectBtn = document.getElementById('contractWalletConnectBtn');
+    const contractSignBtn = document.getElementById('contractSignBtn');
+    
+    if (walletConnected) {
+        if (newContractBtn) newContractBtn.disabled = false;
+        if (contractWalletConnectBtn) contractWalletConnectBtn.classList.add('d-none');
+        if (contractSignBtn) contractSignBtn.classList.remove('d-none');
+    } else {
+        if (newContractBtn) newContractBtn.disabled = true;
+        if (contractWalletConnectBtn) contractWalletConnectBtn.classList.remove('d-none');
+        if (contractSignBtn) contractSignBtn.classList.add('d-none');
     }
 }
 
