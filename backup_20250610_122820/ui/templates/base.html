@@ -44,12 +44,12 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: rgba(196, 30, 140, 0.2);
+            background: rgba(224, 13, 121, 0.2);
         }
         
         /* Stakeholder button styles */
         .stakeholder-btn.active {
-            box-shadow: 0 0 0 3px rgba(196, 30, 140, 0.3);
+            box-shadow: 0 0 0 3px rgba(224, 13, 121, 0.3);
         }
         
         /* Recommended actions list */
@@ -58,7 +58,7 @@
         }
         
         .recommended-actions .list-group-item:hover {
-            background-color: rgba(196, 30, 140, 0.1) !important;
+            background-color: rgba(224, 13, 121, 0.1) !important;
             transform: translateX(5px);
         }
         
@@ -74,36 +74,15 @@
         
         /* Highlight pulse animation for recommended actions */
         @keyframes highlightPulse {
-            0% { box-shadow: 0 0 0 0 rgba(196, 30, 140, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(196, 30, 140, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(196, 30, 140, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(224, 13, 121, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(224, 13, 121, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(224, 13, 121, 0); }
         }
         
         .highlight-pulse {
             animation: highlightPulse 1.5s ease-out infinite;
-            border: 2px solid rgba(196, 30, 140, 0.7) !important;
+            border: 2px solid rgba(224, 13, 121, 0.7) !important;
         }
-    
-    /* DDS Font Standardization */
-    :root {
-        --dds-font-h1: 2rem;
-        --dds-font-h2: 1.75rem;
-        --dds-font-h3: 1.5rem;
-        --dds-font-h4: 1.25rem;
-        --dds-font-h5: 1.125rem;
-        --dds-font-body: 1rem;
-        --dds-font-small: 0.875rem;
-        --dds-font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-    
-    h1 { font-size: var(--dds-font-h1) !important; font-family: var(--dds-font-family); }
-    h2 { font-size: var(--dds-font-h2) !important; font-family: var(--dds-font-family); }
-    h3 { font-size: var(--dds-font-h3) !important; font-family: var(--dds-font-family); }
-    h4 { font-size: var(--dds-font-h4) !important; font-family: var(--dds-font-family); }
-    h5 { font-size: var(--dds-font-h5) !important; font-family: var(--dds-font-family); }
-    body { font-size: var(--dds-font-body) !important; font-family: var(--dds-font-family); }
-    .small, small { font-size: var(--dds-font-small) !important; }
-    
     </style>
     
     <!-- THREE.js for 3D visualization -->
@@ -113,9 +92,6 @@
     
     <!-- Global State Management -->
     <script src="{{ url_for('static', filename='js/global-state.js') }}"></script>
-    
-    <!-- Gamification System -->
-    <script src="{{ url_for('static', filename='js/gamification.js') }}"></script>
     
     {% block extra_css %}{% endblock %}
 </head>
@@ -171,20 +147,14 @@
         <!-- Main Content -->
         <div class="main-content">
             <!-- Top Bar -->
-            <div class="top-bar d-flex justify-content-between align-items-center px-3 py-2">
+            <div class="top-bar">
                 <div class="page-title">
-                    <h1 class="mb-0">{% block page_title %}Dashboard{% endblock %}</h1>
+                    <h1>{% block page_title %}Dashboard{% endblock %}</h1>
                 </div>
-                <div class="top-actions d-flex align-items-center gap-3">
+                <div class="top-actions">
                     <div class="network-indicator">
                         <div class="status-dot active"></div>
                         <span class="network-name">Odiseo Testnet</span>
-                    </div>
-                    <div class="gamification-toggle" id="gamificationToggle">
-                        <button class="btn btn-outline-primary btn-sm">
-                            <i data-feather="star" class="icon-inline-sm"></i>
-                            <span id="userPoints">0 pts</span>
-                        </button>
                     </div>
                     <div class="wallet-connection">
                         <button class="btn btn-outline-primary btn-sm" id="headerConnectKeplr">
@@ -193,7 +163,6 @@
                         </button>
                     </div>
                 </div>
-            </div>
             </div>
             
             <!-- Content -->
@@ -913,7 +882,7 @@
                 dropdown.style.right = '20px';
                 dropdown.style.width = '280px';
                 dropdown.style.backgroundColor = '#1a1a2e';
-                dropdown.style.border = '1px solid rgba(196, 30, 140, 0.5)';
+                dropdown.style.border = '1px solid rgba(224, 13, 121, 0.5)';
                 dropdown.style.borderRadius = '8px';
                 dropdown.style.padding = '1rem';
                 dropdown.style.zIndex = '1000';
