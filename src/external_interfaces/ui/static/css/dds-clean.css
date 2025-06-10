@@ -1,5 +1,5 @@
 
-/* DAODISEO Clean UI/UX Stylesheet v2.0 */
+/* DAODISEO Clean UI/UX Stylesheet v2.0 - PRIORITY OVERRIDES */
 /* Professional, consistent, dot-free design */
 
 :root {
@@ -16,6 +16,8 @@
     --dds-warning: #ffaa00;
     --dds-error: #ff4444;
 }
+
+/* AGGRESSIVE OVERRIDES TO ENSURE CLEAN STYLING */
 
 /* Reset and base styles */
 * {
@@ -290,14 +292,112 @@ p {
 .dds-flex-center { justify-content: center; }
 .dds-flex-align-center { align-items: center; }
 
-/* Remove all visual dots and circles */
+/* FORCE REMOVE ALL VISUAL DOTS AND CIRCLES */
 .badge::before,
+.badge::after,
 .status-dot,
 .dot,
 .circle-indicator,
-.visual-dot {
+.visual-dot,
+*::before,
+*::after {
+    content: none !important;
     display: none !important;
 }
+
+/* FORCE OVERRIDE ALL EXISTING STYLES */
+body,
+html,
+.container,
+.container-fluid,
+main,
+.main-content {
+    font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d1b69 100%) !important;
+    color: #ffffff !important;
+}
+
+/* FORCE CLEAN CARD STYLING */
+.card,
+.validator-card,
+.stats-card,
+.token-card,
+.transaction-card,
+div[class*="card"] {
+    background: #2a2a2a !important;
+    border: 1px solid #333333 !important;
+    border-radius: 12px !important;
+    box-shadow: none !important;
+}
+
+/* FORCE CLEAN BUTTON STYLING */
+.btn,
+button,
+.button,
+a.btn {
+    font-family: 'Helvetica Neue', sans-serif !important;
+    font-weight: 600 !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-primary,
+.btn.btn-primary {
+    background: linear-gradient(135deg, #e00d79, #b80596) !important;
+    border: none !important;
+    color: white !important;
+}
+
+.btn-outline-primary,
+.btn.btn-outline-primary {
+    background: transparent !important;
+    color: #00d4ff !important;
+    border: 2px solid #00d4ff !important;
+}
+
+/* FORCE HEADER STYLING */
+header,
+.header,
+.navbar,
+nav {
+    background: rgba(26, 26, 26, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+    border-bottom: 1px solid #333333 !important;
+}
+
+/* FORCE SIDEBAR STYLING */
+.sidebar,
+.nav-sidebar,
+aside {
+    background: rgba(26, 26, 26, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+    border-right: 1px solid #333333 !important;
+}
+
+/* FORCE TEXT STYLING */
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff !important;
+    font-family: 'Helvetica Neue', sans-serif !important;
+    font-weight: 600 !important;
+    line-height: 1.3 !important;
+}
+
+p, span, div, td, th {
+    color: #cccccc !important;
+    font-family: 'Helvetica Neue', sans-serif !important;
+}
+
+/* FORCE REMOVE BOOTSTRAP CONFLICTING STYLES */
+.text-info { color: #00d4ff !important; }
+.text-success { color: #00ff88 !important; }
+.text-warning { color: #ffaa00 !important; }
+.text-danger { color: #ff4444 !important; }
+
+/* FORCE SPACING CONSISTENCY */
+.m-1, .m-2, .m-3, .m-4, .m-5 { margin: 1rem !important; }
+.p-1, .p-2, .p-3, .p-4, .p-5 { padding: 1rem !important; }
+.mb-1, .mb-2, .mb-3 { margin-bottom: 1rem !important; }
+.mt-1, .mt-2, .mt-3 { margin-top: 1rem !important; }
 
 /* Override Bootstrap badges */
 .badge {

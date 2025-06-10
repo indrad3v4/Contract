@@ -28,13 +28,14 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-theme.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/dds-clean.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
     <!-- DDS Brand Theme -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dds-brand-theme.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/micro-rewards.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/daodiseo-ux.css') }}">
+    <!-- Clean DDS Styles (PRIORITY) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dds-clean.css') }}">
     
     <style>
         /* User profile menu styles */
@@ -1152,6 +1153,43 @@
     </div>
 </div>
 
+
+<!-- Gamification Modal -->
+<div id="gamificationModal" class="dds-modal" style="display: none;">
+    <div class="dds-modal-content">
+        <div class="dds-modal-header">
+            <h3>ODIS Rewards</h3>
+            <button class="dds-modal-close" onclick="closeGamificationModal()">&times;</button>
+        </div>
+        <div class="dds-modal-body">
+            <div class="dds-card">
+                <h4>Earn ODIS Tokens</h4>
+                <div class="reward-actions">
+                    <div class="reward-item">
+                        <span>Upload BIM File</span>
+                        <span class="reward-amount">+30 ODIS</span>
+                    </div>
+                    <div class="reward-item">
+                        <span>Sign Contract</span>
+                        <span class="reward-amount">+50 ODIS</span>
+                    </div>
+                    <div class="reward-item">
+                        <span>Connect Keplr</span>
+                        <span class="reward-amount">+25 ODIS</span>
+                    </div>
+                    <div class="reward-item">
+                        <span>Verify Property</span>
+                        <span class="reward-amount">+40 ODIS</span>
+                    </div>
+                    <div class="reward-item">
+                        <span>Complete Transaction</span>
+                        <span class="reward-amount">+60 ODIS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Gamification Modal -->
 <div id="gamificationModal" class="dds-modal" style="display: none;">
