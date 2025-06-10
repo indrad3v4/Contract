@@ -10,26 +10,341 @@
 {% endblock %}
 
 {% block content %}
-<div class="dashboard">
-    <!-- ODIS Token Overview Section -->
-    <div class="row mb-4">
-        <div class="col-12">
-            <div class="dds-card">
-                <div class="dds-card-header d-flex justify-content-between align-items-center">
-                    <div class="d-flex align-items-center">
-                        <div class="dds-token-badge me-3">
-                            <span class="dds-text-white fw-bold">ODIS</span>
+<div class="daodiseo-brain-dashboard">
+    <!-- DAODISEO AI BRAIN Central Hub -->
+    <div class="row justify-content-center mb-5">
+        <div class="col-12 col-lg-8 text-center">
+            <div class="brain-central-hub">
+                <div class="brain-visualization">
+                    <div class="brain-core">
+                        <div class="brain-icon">
+                            <i data-feather="cpu" class="brain-processor"></i>
                         </div>
-                        <div>
-                            <h5 class="mb-0 dds-text-white">ODIS Token</h5>
-                            <small class="dds-text-secondary">Cosmos Network's Real Estate Tokenization</small>
+                        <div class="brain-pulse"></div>
+                    </div>
+                    <h2 class="brain-title dds-text-primary">DAODISEO AI BRAIN</h2>
+                    <p class="brain-subtitle dds-text-secondary">LLM trained on BIM and RWA data - Provides predictive insights and human-like interactions</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Architecture Quadrants around AI Brain -->
+    <div class="row g-4">
+        <!-- DAODAO Quadrant (Top Left) -->
+        <div class="col-lg-6">
+            <div class="architecture-quadrant daodao-section">
+                <div class="dds-card">
+                    <div class="dds-card-header">
+                        <h3 class="dds-card-title dds-text-primary">
+                            <i data-feather="users" class="dds-icon-md me-2"></i>
+                            DAODAO Governance
+                        </h3>
+                        <p class="dds-text-secondary">DAO organizational structure & voting system</p>
+                    </div>
+                    <div class="dds-card-body">
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <div class="dds-metric-card text-center">
+                                    <div class="dds-metric-value dds-text-primary" id="total-reserves">$38,126.50</div>
+                                    <div class="dds-metric-label">Total Portfolio Value</div>
+                                    <div class="dds-status-badge dds-status-success mt-2">
+                                        <i data-feather="check-circle" class="dds-icon-sm me-1"></i>
+                                        DAO Verified
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="dds-metric-card text-center">
+                                    <div class="dds-metric-value dds-text-warning" id="active-proposals">12</div>
+                                    <div class="dds-metric-label">Active Proposals</div>
+                                    <div class="dds-status-badge dds-status-warning mt-2">
+                                        <i data-feather="vote" class="dds-icon-sm me-1"></i>
+                                        Voting Active
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="governance-chart mt-4">
+                            <canvas id="stakeholder-chart" class="mb-3"></canvas>
+                            <div class="dds-chart-legend">
+                                <div class="dds-legend-item">
+                                    <div class="dds-legend-color dds-bg-primary"></div>
+                                    <span class="dds-text-white">Institutional (45%)</span>
+                                </div>
+                                <div class="dds-legend-item">
+                                    <div class="dds-legend-color dds-bg-success"></div>
+                                    <span class="dds-text-white">Private (25%)</span>
+                                </div>
+                                <div class="dds-legend-item">
+                                    <div class="dds-legend-color dds-bg-warning"></div>
+                                    <span class="dds-text-white">Developer (20%)</span>
+                                </div>
+                                <div class="dds-legend-item">
+                                    <div class="dds-legend-color dds-bg-danger"></div>
+                                    <span class="dds-text-white">Reserved (10%)</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <button class="dds-btn dds-btn-primary">
-                        <i data-feather="shopping-cart" class="dds-icon-sm me-2"></i>
-                        Buy ODIS
-                    </button>
                 </div>
+            </div>
+        </div>
+
+        <!-- DAODISEO.app Quadrant (Top Right) -->
+        <div class="col-lg-6">
+            <div class="architecture-quadrant daodiseo-app-section">
+                <div class="dds-card">
+                    <div class="dds-card-header">
+                        <h3 class="dds-card-title dds-text-primary">
+                            <i data-feather="upload" class="dds-icon-md me-2"></i>
+                            DAODISEO.app Interface
+                        </h3>
+                        <p class="dds-text-secondary">IFC + IPES file upload & smart budget split</p>
+                    </div>
+                    <div class="dds-card-body">
+                        <div class="hot-asset-showcase">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="dds-text-white">Hot Asset Seeking Liquidity</h5>
+                                <div class="dds-status-badge dds-status-success">
+                                    <i data-feather="shield" class="dds-icon-sm me-1"></i>
+                                    VERIFIED
+                                </div>
+                            </div>
+                            <div id="mini-viewer-container" class="dds-bim-viewer-mini mb-3"></div>
+                            <div class="asset-details">
+                                <h6 class="dds-text-white mb-2">Ithaca Project</h6>
+                                <div class="row g-2">
+                                    <div class="col-4 text-center">
+                                        <i data-feather="layers" class="dds-icon-sm dds-text-secondary mb-1"></i>
+                                        <div class="dds-text-secondary small">Due Diligence</div>
+                                        <div class="dds-text-white">3 years</div>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <i data-feather="check-circle" class="dds-icon-sm dds-text-success mb-1"></i>
+                                        <div class="dds-text-secondary small">Status</div>
+                                        <div class="dds-text-success">SPV Verified</div>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <i data-feather="shield" class="dds-icon-sm dds-text-primary mb-1"></i>
+                                        <div class="dds-text-secondary small">Type</div>
+                                        <div class="dds-text-primary">Hard Asset</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="funding-progress mt-3">
+                                <div class="dds-progress">
+                                    <div class="dds-progress-bar dds-bg-primary" style="width: 65%;" role="progressbar"></div>
+                                </div>
+                                <div class="d-flex justify-content-between mt-2">
+                                    <span class="dds-text-success">Funded: $1,625,000</span>
+                                    <span class="dds-text-secondary">Target: $2,500,000</span>
+                                </div>
+                            </div>
+                            <button class="dds-btn dds-btn-primary w-100 mt-3" data-bs-toggle="modal" data-bs-target="#investModal">
+                                <i data-feather="dollar-sign" class="dds-icon-sm me-2"></i>
+                                Invest in Asset
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Row: Ping.pub and Cosmos SDK -->
+    <div class="row g-4 mt-2">
+        <!-- Ping.pub Quadrant (Bottom Left) -->
+        <div class="col-lg-6">
+            <div class="architecture-quadrant pingpub-section">
+                <div class="dds-card">
+                    <div class="dds-card-header">
+                        <h3 class="dds-card-title dds-text-primary">
+                            <i data-feather="shield" class="dds-icon-md me-2"></i>
+                            Ping.pub Validators
+                        </h3>
+                        <p class="dds-text-secondary">Validator explorer & chain status control</p>
+                    </div>
+                    <div class="dds-card-body">
+                        <div class="validator-overview">
+                            <div class="row g-3 mb-4">
+                                <div class="col-6">
+                                    <div class="dds-metric-card text-center">
+                                        <div class="dds-metric-value dds-text-success" id="active-validators-count">10</div>
+                                        <div class="dds-metric-label">Active Validators</div>
+                                        <div class="dds-status-badge dds-status-success mt-1">
+                                            <i data-feather="check" class="dds-icon-sm me-1"></i>
+                                            Online
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="dds-metric-card text-center">
+                                        <div class="dds-metric-value dds-text-primary" id="total-voting-power">100M</div>
+                                        <div class="dds-metric-label">Total Voting Power</div>
+                                        <div class="dds-status-badge dds-status-primary mt-1">
+                                            <i data-feather="zap" class="dds-icon-sm me-1"></i>
+                                            Securing Network
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="staking-metrics">
+                                <div class="row g-2">
+                                    <div class="col-3">
+                                        <div class="dds-metric-item text-center">
+                                            <div class="dds-metric-value dds-text-white" id="staking-apy">9.5%</div>
+                                            <div class="dds-metric-label">Staking APY</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="dds-metric-item text-center">
+                                            <div class="dds-metric-value dds-text-white" id="staking-ratio">Loading...</div>
+                                            <div class="dds-metric-label">Staking Ratio</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="dds-metric-item text-center">
+                                            <div class="dds-metric-value dds-text-white" id="avg-block-time">6.5s</div>
+                                            <div class="dds-metric-label">Block Time</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="dds-metric-item text-center">
+                                            <div class="dds-metric-value dds-text-white" id="inflation-rate">7.2%</div>
+                                            <div class="dds-metric-label">Inflation</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cosmos SDK Modules Quadrant (Bottom Right) -->
+        <div class="col-lg-6">
+            <div class="architecture-quadrant cosmos-sdk-section">
+                <div class="dds-card">
+                    <div class="dds-card-header">
+                        <h3 class="dds-card-title dds-text-primary">
+                            <i data-feather="link" class="dds-icon-md me-2"></i>
+                            Cosmos SDK Modules
+                        </h3>
+                        <p class="dds-text-secondary">BIM sync engine & chain status control</p>
+                    </div>
+                    <div class="dds-card-body">
+                        <div class="transactions-overview">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="dds-text-white">Recent Transactions</h5>
+                                <a href="/contracts" class="dds-btn dds-btn-primary btn-sm">View All</a>
+                            </div>
+                            <div class="transaction-list">
+                                <div class="transaction-item d-flex align-items-center mb-3">
+                                    <div class="transaction-icon me-3">
+                                        <i data-feather="check-circle" class="dds-icon-sm dds-text-success"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <div class="transaction-title dds-text-white">Property Tokenization</div>
+                                        <div class="transaction-meta dds-text-secondary">0x71C...9E3f • 2 hours ago</div>
+                                    </div>
+                                    <div class="transaction-value dds-text-success">+1250 ODIS</div>
+                                </div>
+                                <div class="transaction-item d-flex align-items-center mb-3">
+                                    <div class="transaction-icon me-3">
+                                        <i data-feather="file-text" class="dds-icon-sm dds-text-warning"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <div class="transaction-title dds-text-white">Contract Signature</div>
+                                        <div class="transaction-meta dds-text-secondary">0x31F...7A2c • 5 hours ago</div>
+                                    </div>
+                                    <div class="transaction-value dds-text-warning">Pending</div>
+                                </div>
+                                <div class="transaction-item d-flex align-items-center">
+                                    <div class="transaction-icon me-3">
+                                        <i data-feather="refresh-cw" class="dds-icon-sm dds-text-primary"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <div class="transaction-title dds-text-white">Token Transfer</div>
+                                        <div class="transaction-meta dds-text-secondary">0x94B...2D5a • 1 day ago</div>
+                                    </div>
+                                    <div class="transaction-value dds-text-primary">-350 ODIS</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ODIS Token Status Bar -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="dds-card odis-status-bar">
+                <div class="dds-card-body">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto">
+                            <div class="dds-token-badge">
+                                <span class="dds-text-white fw-bold">ODIS</span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row g-3">
+                                <div class="col-6 col-md-2">
+                                    <div class="dds-metric-item text-center">
+                                        <div class="dds-metric-value dds-text-primary" id="odis-price">$0.1214</div>
+                                        <div class="dds-metric-change dds-text-success">
+                                            <i data-feather="trending-up" class="dds-icon-sm me-1"></i>
+                                            <span id="odis-change">+3.68%</span>
+                                        </div>
+                                        <div class="dds-metric-label">Current Price</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-2">
+                                    <div class="dds-metric-item text-center">
+                                        <div class="dds-metric-value dds-text-white" id="market-cap">$12.4M</div>
+                                        <div class="dds-metric-label">Market Cap</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-2">
+                                    <div class="dds-metric-item text-center">
+                                        <div class="dds-metric-value dds-text-white" id="volume-24h">$2.5M</div>
+                                        <div class="dds-metric-label">Volume (24h)</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-2">
+                                    <div class="dds-metric-item text-center">
+                                        <div class="dds-metric-value dds-text-success" id="high-24h">$0.1289</div>
+                                        <div class="dds-metric-label">24h High</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-2">
+                                    <div class="dds-metric-item text-center">
+                                        <div class="dds-metric-value dds-text-warning" id="low-24h">$0.1156</div>
+                                        <div class="dds-metric-label">24h Low</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-2">
+                                    <div class="dds-metric-item text-center">
+                                        <div class="dds-metric-value dds-text-primary" id="daily-rewards">0.318</div>
+                                        <div class="dds-metric-label">Daily Rewards</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <button class="dds-btn dds-btn-primary">
+                                <i data-feather="shopping-cart" class="dds-icon-sm me-2"></i>
+                                Buy ODIS
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
                 <div class="dds-card-body">
                     <div class="row g-3">
                         <div class="col-lg-8">

@@ -843,3 +843,255 @@ h6 { font-size: var(--dds-font-size-base); }
 .dds-bg-warning { background-color: var(--dds-warning); }
 .dds-bg-danger { background-color: var(--dds-danger); }
 .dds-bg-surface { background-color: var(--dds-surface); }
+
+/* ========================================
+   13. DAODISEO BRAIN ARCHITECTURE
+======================================== */
+
+/* Brain Central Hub */
+.daodiseo-brain-dashboard {
+    min-height: 100vh;
+    background: radial-gradient(circle at center, rgba(var(--dds-primary-rgb), 0.1) 0%, transparent 70%);
+}
+
+.brain-central-hub {
+    position: relative;
+    padding: var(--dds-space-6);
+}
+
+.brain-visualization {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.brain-core {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin-bottom: var(--dds-space-4);
+}
+
+.brain-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--dds-primary), var(--dds-accent-cyan));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 30px rgba(var(--dds-primary-rgb), 0.6);
+    z-index: 2;
+}
+
+.brain-processor {
+    width: 40px !important;
+    height: 40px !important;
+    color: var(--dds-white);
+}
+
+.brain-pulse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--dds-primary);
+    border-radius: 50%;
+    animation: brainPulse 2s infinite;
+    opacity: 0.7;
+}
+
+.brain-pulse::before,
+.brain-pulse::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--dds-accent-cyan);
+    border-radius: 50%;
+    animation: brainPulse 2s infinite;
+}
+
+.brain-pulse::before {
+    animation-delay: 0.5s;
+}
+
+.brain-pulse::after {
+    animation-delay: 1s;
+}
+
+@keyframes brainPulse {
+    0% {
+        transform: scale(0.8);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.3);
+        opacity: 0;
+    }
+}
+
+.brain-title {
+    font-size: var(--dds-font-size-3xl);
+    font-weight: var(--dds-font-weight-bold);
+    margin-bottom: var(--dds-space-2);
+    text-align: center;
+    background: linear-gradient(135deg, var(--dds-primary), var(--dds-accent-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.brain-subtitle {
+    font-size: var(--dds-font-size-lg);
+    text-align: center;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+/* Architecture Quadrants */
+.architecture-quadrant {
+    position: relative;
+    height: 100%;
+}
+
+.architecture-quadrant::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(var(--dds-primary-rgb), 0.05), transparent);
+    border-radius: var(--dds-radius-lg);
+    z-index: -1;
+}
+
+/* DAODAO Section */
+.daodao-section .dds-card {
+    border-left: 4px solid var(--dds-primary);
+    background: linear-gradient(135deg, rgba(var(--dds-primary-rgb), 0.1), rgba(var(--dds-surface-rgb), 0.95));
+}
+
+.daodao-section .dds-card-header {
+    background: linear-gradient(135deg, rgba(var(--dds-primary-rgb), 0.2), rgba(var(--dds-primary-rgb), 0.1));
+}
+
+/* DAODISEO.app Section */
+.daodiseo-app-section .dds-card {
+    border-left: 4px solid var(--dds-accent-cyan);
+    background: linear-gradient(135deg, rgba(var(--dds-accent-cyan-rgb), 0.1), rgba(var(--dds-surface-rgb), 0.95));
+}
+
+.daodiseo-app-section .dds-card-header {
+    background: linear-gradient(135deg, rgba(var(--dds-accent-cyan-rgb), 0.2), rgba(var(--dds-accent-cyan-rgb), 0.1));
+}
+
+/* Ping.pub Section */
+.pingpub-section .dds-card {
+    border-left: 4px solid var(--dds-success);
+    background: linear-gradient(135deg, rgba(var(--dds-success-rgb), 0.1), rgba(var(--dds-surface-rgb), 0.95));
+}
+
+.pingpub-section .dds-card-header {
+    background: linear-gradient(135deg, rgba(var(--dds-success-rgb), 0.2), rgba(var(--dds-success-rgb), 0.1));
+}
+
+/* Cosmos SDK Section */
+.cosmos-sdk-section .dds-card {
+    border-left: 4px solid var(--dds-warning);
+    background: linear-gradient(135deg, rgba(var(--dds-warning-rgb), 0.1), rgba(var(--dds-surface-rgb), 0.95));
+}
+
+.cosmos-sdk-section .dds-card-header {
+    background: linear-gradient(135deg, rgba(var(--dds-warning-rgb), 0.2), rgba(var(--dds-warning-rgb), 0.1));
+}
+
+/* ODIS Status Bar */
+.odis-status-bar {
+    background: linear-gradient(90deg, rgba(var(--dds-primary-rgb), 0.1), rgba(var(--dds-accent-cyan-rgb), 0.1), rgba(var(--dds-primary-rgb), 0.1));
+    border: 1px solid rgba(var(--dds-primary-rgb), 0.3);
+}
+
+/* Transaction Items */
+.transaction-item {
+    padding: var(--dds-space-3);
+    border-radius: var(--dds-radius-md);
+    background: rgba(var(--dds-surface-rgb), 0.5);
+    border: 1px solid rgba(var(--dds-primary-rgb), 0.1);
+    transition: all 0.3s ease;
+}
+
+.transaction-item:hover {
+    background: rgba(var(--dds-surface-rgb), 0.8);
+    border-color: var(--dds-primary);
+    transform: translateX(5px);
+}
+
+.transaction-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(var(--dds-primary-rgb), 0.2);
+}
+
+/* Governance Chart Enhancements */
+.governance-chart {
+    position: relative;
+}
+
+.governance-chart canvas {
+    max-height: 200px;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .brain-core {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .brain-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .brain-processor {
+        width: 30px !important;
+        height: 30px !important;
+    }
+    
+    .brain-title {
+        font-size: var(--dds-font-size-2xl);
+    }
+    
+    .architecture-quadrant {
+        margin-bottom: var(--dds-space-4);
+    }
+}
+
+/* Connection Lines (Future Enhancement) */
+.architecture-quadrant::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 100px;
+    background: linear-gradient(180deg, var(--dds-primary), transparent);
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.3;
+    z-index: -1;
+}
