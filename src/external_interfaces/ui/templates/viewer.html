@@ -4,22 +4,32 @@
 {% block page_title %}3D Building Viewer{% endblock %}
 
 {% block content %}
+
+<!-- AI Brain Orchestrator Indicator -->
+<div class="orchestrator-connection route-viewer mb-4">
+    <div class="orchestrator-label">DAODISEO AI Brain</div>
+    <div class="orchestrator-title d-flex align-items-center">
+        <i data-feather="cpu" class="brain-pulse me-2 brain-indicator"></i>
+        Ping.pub Validator Explorer
+    </div>
+</div>
+
 <div class="row">
     <div class="col-12">
-        <div class="dds-card">
-            <div class="dds-card">
+        <div class="card">
+            <div class="card-header">
                 <h5 class="card-title">
                     <i data-feather="box" class="icon-inline"></i>
                     Cosmic Tower Project
                 </h5>
-                <div class="dds-card">
+                <div class="card-subtitle">
                     Interactive 3D BIM Model
                 </div>
             </div>
-            <div class="dds-card">
+            <div class="card-body p-0">
                 <div id="full-viewer" class="bim-viewer"></div>
             </div>
-            <div class="dds-card">
+            <div class="card-footer">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="model-info">
@@ -63,14 +73,14 @@
 <div class="row mt-4">
     <div class="col-md-8">
         <!-- Building Elements Panel -->
-        <div class="dds-card">
-            <div class="dds-card">
+        <div class="card">
+            <div class="card-header">
                 <h5 class="card-title">
                     <i data-feather="list" class="icon-inline"></i>
                     Building Elements
                 </h5>
             </div>
-            <div class="dds-card">
+            <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
@@ -88,8 +98,8 @@
                                 <td>IfcColumn</td>
                                 <td>Column-Type1</td>
                                 <td>
-                                    <span class="dds-badge-status">Concrete</span>
-                                    <span class="dds-badge-status">Load-bearing</span>
+                                    <span class="badge bg-info">Concrete</span>
+                                    <span class="badge bg-secondary">Load-bearing</span>
                                 </td>
                                 <td>
                                     <button class="btn btn-sm btn-outline-info btn-icon">
@@ -102,8 +112,8 @@
                                 <td>IfcBeam</td>
                                 <td>Beam-Type1</td>
                                 <td>
-                                    <span class="dds-badge-status">Steel</span>
-                                    <span class="dds-badge-status">Span: 8m</span>
+                                    <span class="badge bg-info">Steel</span>
+                                    <span class="badge bg-secondary">Span: 8m</span>
                                 </td>
                                 <td>
                                     <button class="btn btn-sm btn-outline-info btn-icon">
@@ -116,8 +126,8 @@
                                 <td>IfcWall</td>
                                 <td>Wall-Exterior</td>
                                 <td>
-                                    <span class="dds-badge-status">Curtain Wall</span>
-                                    <span class="dds-badge-status">R-25</span>
+                                    <span class="badge bg-info">Curtain Wall</span>
+                                    <span class="badge bg-secondary">R-25</span>
                                 </td>
                                 <td>
                                     <button class="btn btn-sm btn-outline-info btn-icon">
@@ -130,8 +140,8 @@
                                 <td>IfcDoor</td>
                                 <td>Door-Main-Entrance</td>
                                 <td>
-                                    <span class="dds-badge-status">Glass & Aluminum</span>
-                                    <span class="dds-badge-status">ADA Compliant</span>
+                                    <span class="badge bg-info">Glass & Aluminum</span>
+                                    <span class="badge bg-success">ADA Compliant</span>
                                 </td>
                                 <td>
                                     <button class="btn btn-sm btn-outline-info btn-icon">
@@ -144,8 +154,8 @@
                                 <td>IfcChiller</td>
                                 <td>HVAC-Chiller-1</td>
                                 <td>
-                                    <span class="dds-badge-status">500 tons</span>
-                                    <span class="dds-badge-status">High Efficiency</span>
+                                    <span class="badge bg-info">500 tons</span>
+                                    <span class="badge bg-success">High Efficiency</span>
                                 </td>
                                 <td>
                                     <button class="btn btn-sm btn-outline-info btn-icon">
@@ -162,15 +172,15 @@
     
     <div class="col-md-4">
         <!-- AI Chat Panel -->
-        <div class="dds-card">
-            <div class="dds-card">
+        <div class="card">
+            <div class="card-header">
                 <h5 class="card-title">
                     <i data-feather="message-circle" class="icon-inline"></i>
                     Ask About This Building
                 </h5>
-                <div class="dds-card">Enhanced BIM AI Assistant</div>
+                <div class="card-subtitle">Enhanced BIM AI Assistant</div>
             </div>
-            <div class="dds-card">
+            <div class="card-body">
                 <div id="viewer-chat" class="chat-container"></div>
             </div>
         </div>

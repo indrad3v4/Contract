@@ -1,22 +1,38 @@
 {% extends "base.html" %}
 
-{% block title %}Upload BIM Models - Daodiseo Platform{% endblock %}
-{% block page_title %}Upload & Due Diligence Portal{% endblock %}
+{% block title %}Upload BIM Models - Daodiseo Platform
+    <!-- Gamification System -->
+    <script src="{{ url_for('static', filename='js/gamification.js') }}"></script>
+{% endblock %}
+{% block page_title %}Upload & Due Diligence Portal
+    <!-- Gamification System -->
+    <script src="{{ url_for('static', filename='js/gamification.js') }}"></script>
+{% endblock %}
 
 {% block content %}
+
+<!-- AI Brain Orchestrator Indicator -->
+<div class="orchestrator-connection route-upload mb-4">
+    <div class="orchestrator-label">DAODISEO AI Brain</div>
+    <div class="orchestrator-title d-flex align-items-center">
+        <i data-feather="cpu" class="brain-pulse me-2 brain-indicator"></i>
+        DAODISEO.app File Processing
+    </div>
+</div>
+
 <div class="row">
     <div class="col-12">
-        <div class="dds-card">
-            <div class="dds-card">
+        <div class="card">
+            <div class="card-header">
                 <h5 class="card-title">
                     <i data-feather="upload-cloud" class="icon-inline"></i>
                     Upload BIM Models
                 </h5>
-                <div class="dds-card">
+                <div class="card-subtitle">
                     IFC file validation and asset verification
                 </div>
             </div>
-            <div class="dds-card">
+            <div class="card-body">
                 <div class="alert alert-info mb-4">
                     <i data-feather="info" class="icon-inline-sm"></i>
                     <strong>Due Diligence Process:</strong> Once uploaded, IFC files will be analyzed by our AI system and validators. Only verified assets can mint NFTs.
@@ -53,13 +69,13 @@
                             <div class="file-details">
                                 <div class="file-name d-flex align-items-center">
                                     Cosmic_Tower_Project.ifc
-                                    <span class="dds-badge-status">Verified</span>
+                                    <span class="badge bg-success ms-2">Verified</span>
                                 </div>
                                 <div class="file-meta">
                                     <span>25.4 MB</span>
-                                    <span></span>
+                                    <span>•</span>
                                     <span>April 5, 2025</span>
-                                    <span></span>
+                                    <span>•</span>
                                     <span>Hash: 0x71C...9E3f</span>
                                 </div>
                             </div>
@@ -86,13 +102,13 @@
                             <div class="file-details">
                                 <div class="file-name d-flex align-items-center">
                                     Horizon_Office_Complex.ifc
-                                    <span class="dds-badge-status">Pending</span>
+                                    <span class="badge bg-warning ms-2">Pending</span>
                                 </div>
                                 <div class="file-meta">
                                     <span>32.7 MB</span>
-                                    <span></span>
+                                    <span>•</span>
                                     <span>April 1, 2025</span>
-                                    <span></span>
+                                    <span>•</span>
                                     <span>Hash: 0x94B...2D5a</span>
                                 </div>
                             </div>
@@ -122,21 +138,23 @@
 <div class="row mt-4">
     <div class="col-md-7">
         <!-- Due Diligence Workflow -->
-        <div class="dds-card">
-            <div class="dds-card">
+        <div class="card">
+            <div class="card-header">
                 <h5 class="card-title">
                     <i data-feather="shield" class="icon-inline"></i>
                     Due Diligence Workflow
                 </h5>
             </div>
-            <div class="dds-card">
+            <div class="card-body">
                 <div class="due-diligence-workflow position-relative">
                     <!-- Vertical progress line -->
                     <div class="position-absolute" style="top: 0; bottom: 0; left: 24px; width: 2px; background-color: rgba(255,255,255,0.1);"></div>
                     
                     <!-- Step 1: IFC Validation -->
                     <div class="workflow-step d-flex mb-4">
-                        
+                        <div class="workflow-step-icon bg-success d-flex align-items-center justify-content-center rounded-circle" style="width: 48px; height: 48px; position: relative; z-index: 1;">
+                            <i data-feather="check" class="text-white"></i>
+                        </div>
                         <div class="workflow-step-content ms-3">
                             <h6 class="mb-1">IFC File Validation</h6>
                             <p class="text-muted small mb-2">AI analyzes the IFC file for structural completeness and building metrics</p>
@@ -149,7 +167,9 @@
                     
                     <!-- Step 2: Legal Document Submission -->
                     <div class="workflow-step d-flex mb-4">
-                        
+                        <div class="workflow-step-icon bg-warning d-flex align-items-center justify-content-center rounded-circle" style="width: 48px; height: 48px; position: relative; z-index: 1;">
+                            <i data-feather="file-text" class="text-white"></i>
+                        </div>
                         <div class="workflow-step-content ms-3">
                             <h6 class="mb-1">Legal Document Submission</h6>
                             <p class="text-muted small mb-2">Upload property legal documents for verification</p>
@@ -162,7 +182,9 @@
                     
                     <!-- Step 3: SPV Formation -->
                     <div class="workflow-step d-flex mb-4">
-                        
+                        <div class="workflow-step-icon bg-dark d-flex align-items-center justify-content-center rounded-circle" style="width: 48px; height: 48px; position: relative; z-index: 1;">
+                            <i data-feather="briefcase" class="text-white"></i>
+                        </div>
                         <div class="workflow-step-content ms-3">
                             <h6 class="mb-1">SPV Formation</h6>
                             <p class="text-muted small mb-2">Create a special purpose vehicle for the tokenized asset</p>
@@ -176,7 +198,9 @@
                     
                     <!-- Step 4: Validator Approval -->
                     <div class="workflow-step d-flex mb-4">
-                        
+                        <div class="workflow-step-icon bg-dark d-flex align-items-center justify-content-center rounded-circle" style="width: 48px; height: 48px; position: relative; z-index: 1;">
+                            <i data-feather="users" class="text-white"></i>
+                        </div>
                         <div class="workflow-step-content ms-3">
                             <h6 class="mb-1">Validator Approval (3/5 Required)</h6>
                             <p class="text-muted small mb-2">Validators review and approve the asset for tokenization</p>
@@ -190,7 +214,9 @@
                     
                     <!-- Step 5: NFT Minting -->
                     <div class="workflow-step d-flex">
-                        
+                        <div class="workflow-step-icon bg-dark d-flex align-items-center justify-content-center rounded-circle" style="width: 48px; height: 48px; position: relative; z-index: 1;">
+                            <i data-feather="award" class="text-white"></i>
+                        </div>
                         <div class="workflow-step-content ms-3">
                             <h6 class="mb-1">NFT Minting Eligibility</h6>
                             <p class="text-muted small mb-2">Asset becomes eligible for NFT minting after all steps complete</p>
@@ -208,14 +234,14 @@
     
     <div class="col-md-5">
         <!-- AI Analysis Panel -->
-        <div class="dds-card">
-            <div class="dds-card">
+        <div class="card">
+            <div class="card-header">
                 <h5 class="card-title">
                     <i data-feather="cpu" class="icon-inline"></i>
                     AI Analysis
                 </h5>
             </div>
-            <div class="dds-card">
+            <div class="card-body">
                 <div class="mb-3">
                     <label class="form-label">Selected File</label>
                     <select class="form-select bg-dark text-light border-secondary">
@@ -224,14 +250,14 @@
                     </select>
                 </div>
                 
-                <div class="dds-card">
-                    <div class="dds-card">
+                <div class="card bg-dark mb-3">
+                    <div class="card-header border-secondary">
                         <h6 class="card-title mb-0">
                             <i data-feather="bar-chart-2" class="icon-inline-sm"></i>
                             Building Metrics
                         </h6>
                     </div>
-                    <div class="dds-card">
+                    <div class="card-body">
                         <div class="row">
                             <div class="col-6 mb-3">
                                 <small class="d-block text-muted">Building Type</small>
@@ -253,14 +279,14 @@
                     </div>
                 </div>
                 
-                <div class="dds-card">
-                    <div class="dds-card">
+                <div class="card bg-dark mb-3">
+                    <div class="card-header border-secondary">
                         <h6 class="card-title mb-0">
                             <i data-feather="dollar-sign" class="icon-inline-sm"></i>
                             Tokenization Recommendations
                         </h6>
                     </div>
-                    <div class="dds-card">
+                    <div class="card-body">
                         <div class="row">
                             <div class="col-6 mb-3">
                                 <small class="d-block text-muted">Estimated Value</small>
@@ -279,22 +305,22 @@
                                 <span class="text-info">$15.81</span>
                             </div>
                         </div>
-                        <div class="alert alert-success  dds-mb-2 mb-0 small">
+                        <div class="alert alert-success p-2 mb-0 small">
                             <i data-feather="check-circle" class="icon-inline-sm"></i>
                             <strong>ODIS Rewards:</strong> Upon validation, you'll receive 5% of asset value in ODIS tokens.
                         </div>
                     </div>
                 </div>
                 
-                <div class="dds-card">
-                    <div class="dds-card">
+                <div class="card bg-dark">
+                    <div class="card-header border-secondary">
                         <h6 class="card-title mb-0">
                             <i data-feather="code" class="icon-inline-sm"></i>
                             CosmWasm Contract Code
                         </h6>
                     </div>
-                    <div class="dds-card">
-                        <pre class="bg-black text-light  dds-mb-2 rounded small"><code>pub fn execute_staking(
+                    <div class="card-body">
+                        <pre class="bg-black text-light p-2 rounded small"><code>pub fn execute_staking(
   deps: DepsMut,
   env: Env,
   ifc_hash: String,
@@ -416,6 +442,9 @@
         </div>
     </div>
 </div>
+
+    <!-- Gamification System -->
+    <script src="{{ url_for('static', filename='js/gamification.js') }}"></script>
 {% endblock %}
 
 {% block extra_js %}
@@ -515,13 +544,13 @@
                     <div class="file-details">
                         <div class="file-name d-flex align-items-center">
                             ${file.name}
-                            <span class="dds-badge-status">Validating</span>
+                            <span class="badge bg-warning ms-2">Validating</span>
                         </div>
                         <div class="file-meta">
                             <span>${(file.size / (1024 * 1024)).toFixed(2)} MB</span>
-                            <span></span>
+                            <span>•</span>
                             <span>Just now</span>
-                            <span></span>
+                            <span>•</span>
                             <span>Calculating hash...</span>
                         </div>
                     </div>
@@ -582,9 +611,9 @@
                     const hashDisplay = data.content_hash.substring(0, 8) + '...' + data.content_hash.substring(data.content_hash.length - 8);
                     fileItem.querySelector('.file-meta').innerHTML = `
                         <span>${(file.size / (1024 * 1024)).toFixed(2)} MB</span>
-                        <span></span>
+                        <span>•</span>
                         <span>Just now</span>
-                        <span></span>
+                        <span>•</span>
                         <span>Hash: ${hashDisplay}</span>
                     `;
                     
@@ -858,4 +887,7 @@
         feather.replace();
     });
 </script>
+
+    <!-- Gamification System -->
+    <script src="{{ url_for('static', filename='js/gamification.js') }}"></script>
 {% endblock %}

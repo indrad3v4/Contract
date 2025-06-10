@@ -1,0 +1,45 @@
+
+/* DAODISEO Color System */
+:root {
+    /* Background Colors */
+    --dds-bg-primary: #1a1134;
+    --dds-bg-secondary: #2d1b69;
+    
+    /* Accent Colors */
+    --dds-accent-cyan: #00d4ff;
+    --dds-accent-blue: #0099cc;
+    --dds-magenta: #c41e8c;
+    --dds-purple-border: #6b46c1;
+    
+    /* Text Colors */
+    --dds-text-primary: #ffffff;
+    --dds-text-secondary: rgba(255, 255, 255, 0.8);
+    --dds-text-muted: rgba(255, 255, 255, 0.6);
+    
+    /* State Colors */
+    --dds-success: #28a745;
+    --dds-warning: #ffc107;
+    --dds-error: #dc3545;
+    
+    /* Gradients */
+    --dds-gradient-primary: linear-gradient(135deg, var(--dds-bg-primary) 0%, var(--dds-bg-secondary) 100%);
+    --dds-gradient-brain: radial-gradient(circle, var(--dds-accent-cyan) 0%, var(--dds-accent-blue) 70%);
+    --dds-gradient-card: linear-gradient(145deg, rgba(42, 36, 105, 0.8) 0%, rgba(29, 17, 52, 0.9) 100%);
+}
+
+/* Color Utility Classes */
+.bg-primary { background: var(--dds-bg-primary) !important; }
+.bg-secondary { background: var(--dds-bg-secondary) !important; }
+.bg-gradient-primary { background: var(--dds-gradient-primary) !important; }
+.bg-gradient-brain { background: var(--dds-gradient-brain) !important; }
+.bg-gradient-card { background: var(--dds-gradient-card) !important; }
+
+.text-primary { color: var(--dds-text-primary) !important; }
+.text-secondary { color: var(--dds-text-secondary) !important; }
+.text-muted { color: var(--dds-text-muted) !important; }
+.text-cyan { color: var(--dds-accent-cyan) !important; }
+.text-magenta { color: var(--dds-magenta) !important; }
+
+.border-cyan { border-color: var(--dds-accent-cyan) !important; }
+.border-purple { border-color: var(--dds-purple-border) !important; }
+.border-magenta { border-color: var(--dds-magenta) !important; }

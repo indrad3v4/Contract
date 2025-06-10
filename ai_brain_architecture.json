@@ -1,0 +1,48 @@
+{
+  "brain_architecture": {
+    "central_orchestrator": "DAODISEO AI BRAIN",
+    "data_sources": "BIM and RWA data",
+    "decision_nodes": {
+      "dashboard": {
+        "route": "/",
+        "brain_function": "Analytics & Overview",
+        "color": "#00d4ff",
+        "components": [
+          "token_metrics",
+          "validators",
+          "portfolio"
+        ]
+      },
+      "upload": {
+        "route": "/upload",
+        "brain_function": "File Processing & Validation",
+        "color": "#c41e8c",
+        "components": [
+          "file_upload",
+          "validation",
+          "processing"
+        ]
+      },
+      "contracts": {
+        "route": "/contracts",
+        "brain_function": "Smart Contract Management",
+        "color": "#6b46c1",
+        "components": [
+          "contract_list",
+          "signing",
+          "execution"
+        ]
+      },
+      "viewer": {
+        "route": "/viewer",
+        "brain_function": "3D Visualization & Validation",
+        "color": "#0099cc",
+        "components": [
+          "3d_renderer",
+          "model_viewer",
+          "analysis"
+        ]
+      }
+    }
+  }
+}

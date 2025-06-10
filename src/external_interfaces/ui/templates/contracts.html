@@ -4,15 +4,25 @@
 {% block page_title %}Smart Contracts & Due Diligence{% endblock %}
 
 {% block content %}
+
+<!-- AI Brain Orchestrator Indicator -->
+<div class="orchestrator-connection route-contracts mb-4">
+    <div class="orchestrator-label">DAODISEO AI Brain</div>
+    <div class="orchestrator-title d-flex align-items-center">
+        <i data-feather="cpu" class="brain-pulse me-2 brain-indicator"></i>
+        DAODAO Smart Contracts
+    </div>
+</div>
+
 <div class="row">
     <div class="col-12">
-        <div class="dds-card">
-            <div class="dds-card">
+        <div class="card">
+            <div class="card-header">
                 <h5 class="card-title">
                     <i data-feather="file-text" class="icon-inline"></i>
                     Real Estate Smart Contracts
                 </h5>
-                <div class="dds-card">
+                <div class="card-actions">
                     <button class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#aiAssistantModal" title="Guided contract creation with AI assistance">
                         <i data-feather="cpu" class="icon-inline-sm"></i>
                         AI Contract Wizard
@@ -23,7 +33,7 @@
                     </button>
                 </div>
             </div>
-            <div class="dds-card">
+            <div class="card-body">
                 <div class="d-flex mb-3">
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-sm btn-outline-info active">All Contracts</button>
@@ -65,7 +75,7 @@
         <div class="contract-details">
             <div class="contract-header">
                 <div>
-                    <h5 class="contract-title">Cosmic Tower Project <span class="dds-badge-status">VERIFIED</span></h5>
+                    <h5 class="contract-title">Cosmic Tower Project <span class="badge bg-success ms-2">VERIFIED</span></h5>
                     <div class="contract-id">Contract ID: CO-2025-001 (0x71C...9E3f)</div>
                 </div>
                 <div>
@@ -130,34 +140,34 @@
                     </div>
                     
                     <div class="col-md-5">
-                        <div class="dds-card">
-                            <div class="dds-card">
+                        <div class="card bg-dark">
+                            <div class="card-header">
                                 <h6 class="card-title mb-0">
                                     <i data-feather="shield" class="icon-inline-sm"></i>
                                     Due Diligence Status
                                 </h6>
                             </div>
-                            <div class="dds-card">
+                            <div class="card-body">
                                 <ul class="list-group list-group-flush bg-transparent">
                                     <li class="list-group-item bg-dark text-light d-flex justify-content-between align-items-center border-secondary">
                                         <span>IFC File Validation</span>
-                                        <span class="dds-badge-status">Complete</span>
+                                        <span class="badge bg-success rounded-pill">Complete</span>
                                     </li>
                                     <li class="list-group-item bg-dark text-light d-flex justify-content-between align-items-center border-secondary">
                                         <span>Legal Document Review</span>
-                                        <span class="dds-badge-status">Complete</span>
+                                        <span class="badge bg-success rounded-pill">Complete</span>
                                     </li>
                                     <li class="list-group-item bg-dark text-light d-flex justify-content-between align-items-center border-secondary">
                                         <span>Validator Approval (3/5)</span>
-                                        <span class="dds-badge-status">Complete</span>
+                                        <span class="badge bg-success rounded-pill">Complete</span>
                                     </li>
                                     <li class="list-group-item bg-dark text-light d-flex justify-content-between align-items-center border-secondary">
                                         <span>SPV Formation</span>
-                                        <span class="dds-badge-status">Complete</span>
+                                        <span class="badge bg-success rounded-pill">Complete</span>
                                     </li>
                                     <li class="list-group-item bg-dark text-light d-flex justify-content-between align-items-center border-secondary">
                                         <span>KYC Verification</span>
-                                        <span class="dds-badge-status">Complete</span>
+                                        <span class="badge bg-success rounded-pill">Complete</span>
                                     </li>
                                 </ul>
                             </div>
@@ -209,27 +219,27 @@
                     <h6 class="mb-3">Multisig Approvals (3/5 Required)</h6>
                     <div class="signature-list">
                         <div class="signature-item">
-                            <div class="signature-name">John Doe <span class="dds-badge-status">Owner</span></div>
+                            <div class="signature-name">John Doe <span class="badge bg-secondary ms-1">Owner</span></div>
                             <div class="signature-wallet">0x71C...9E3f</div>
                             <div class="signature-timestamp">Signed on Apr 3, 2025 - 14:32:45 UTC</div>
                         </div>
                         <div class="signature-item">
-                            <div class="signature-name">Jane Smith <span class="dds-badge-status">Investor</span></div>
+                            <div class="signature-name">Jane Smith <span class="badge bg-secondary ms-1">Investor</span></div>
                             <div class="signature-wallet">0x94B...2D5a</div>
                             <div class="signature-timestamp">Signed on Apr 3, 2025 - 15:05:12 UTC</div>
                         </div>
                         <div class="signature-item">
-                            <div class="signature-name">Future City Properties LLC <span class="dds-badge-status">Validator</span></div>
+                            <div class="signature-name">Future City Properties LLC <span class="badge bg-info ms-1">Validator</span></div>
                             <div class="signature-wallet">0x31F...7A2c</div>
                             <div class="signature-timestamp">Signed on Apr 3, 2025 - 16:17:33 UTC</div>
                         </div>
                         <div class="signature-item">
-                            <div class="signature-name">Global Real Estate Ventures <span class="dds-badge-status">Validator</span></div>
+                            <div class="signature-name">Global Real Estate Ventures <span class="badge bg-info ms-1">Validator</span></div>
                             <div class="signature-wallet">0x67D...3F1b</div>
                             <div class="signature-timestamp">Signed on Apr 3, 2025 - 18:45:09 UTC</div>
                         </div>
                         <div class="signature-item opacity-50">
-                            <div class="signature-name">DeFi Capital Group <span class="dds-badge-status">Validator</span></div>
+                            <div class="signature-name">DeFi Capital Group <span class="badge bg-info ms-1">Validator</span></div>
                             <div class="signature-wallet">0x58F...2B4c</div>
                             <div class="signature-timestamp">Awaiting signature...</div>
                         </div>
@@ -324,7 +334,7 @@ Jurisdiction: Delaware, USA</textarea>
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <div class="tab-content  dds-mb-2" id="contract-steps-content">
+                        <div class="tab-content p-3" id="contract-steps-content">
                             <div class="tab-pane fade show active" id="step1" role="tabpanel">
                                 <h6 class="mb-3 text-info">Asset Information</h6>
                                 <p>Enter the core details about your real estate asset. The AI will auto-populate fields from your IFC file once uploaded.</p>
@@ -379,7 +389,7 @@ Jurisdiction: Delaware, USA</textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">CosmWasm Contract Function:</label>
-                                    <pre class="bg-black text-light  dds-mb-2 rounded"><code>pub fn execute_staking(
+                                    <pre class="bg-black text-light p-3 rounded"><code>pub fn execute_staking(
     deps: DepsMut,
     env: Env,
     ifc_hash: String,
@@ -466,7 +476,7 @@ Jurisdiction: Delaware, USA</textarea>
                 datasets: [{
                     data: [45, 25, 20, 10],
                     backgroundColor: [
-                        'rgba(224, 13, 121, 0.7)',  // info
+                        'rgba(196, 30, 140, 0.7)',  // info
                         'rgba(184, 5, 150, 0.7)',   // secondary
                         'rgba(0, 153, 7, 0.7)',     // success
                         'rgba(243, 192, 0, 0.7)'    // warning

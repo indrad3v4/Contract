@@ -14,7 +14,7 @@
 }
 
 .chat-title {
-    font-size: 16px;
+    font-size: var(--dds-text-base);
     font-weight: 600;
     color: var(--text-light);
 }
@@ -80,7 +80,7 @@ input:checked + .toggle-slider:before {
 }
 
 .toggle-label {
-    font-size: 12px;
+    font-size: var(--dds-text-xs);
     color: var(--text-light);
 }
 
@@ -111,7 +111,7 @@ input:checked + .toggle-slider:before {
 .chat-input:focus {
     outline: none;
     border-color: var(--info);
-    box-shadow: 0 0 10px rgba(224, 13, 121, 0.3);
+    box-shadow: 0 0 10px rgba(196, 30, 140, 0.3);
 }
 
 .chat-send-btn {
@@ -126,7 +126,7 @@ input:checked + .toggle-slider:before {
 
 .chat-send-btn:hover {
     background: var(--info-light);
-    box-shadow: 0 0 10px rgba(224, 13, 121, 0.5);
+    box-shadow: 0 0 10px rgba(196, 30, 140, 0.5);
 }
 
 .message {
@@ -142,7 +142,7 @@ input:checked + .toggle-slider:before {
 
 .message-user {
     margin-left: auto;
-    background: rgba(224, 13, 121, 0.2);
+    background: rgba(196, 30, 140, 0.2);
     border-radius: 15px 15px 0 15px;
     padding: 10px 15px;
 }
@@ -165,7 +165,7 @@ input:checked + .toggle-slider:before {
 }
 
 .message-meta {
-    font-size: 12px;
+    font-size: var(--dds-text-xs);
     margin-top: 4px;
     color: var(--text-dark);
     display: flex;
@@ -177,7 +177,7 @@ input:checked + .toggle-slider:before {
     display: inline-block;
     padding: 3px 8px;
     border-radius: 12px;
-    font-size: 12px;
+    font-size: var(--dds-text-xs);
     margin-left: 8px;
     margin-right: 8px;
 }
@@ -187,9 +187,9 @@ input:checked + .toggle-slider:before {
     align-items: center;
     padding: 3px 8px;
     border-radius: 12px;
-    font-size: 12px;
+    font-size: var(--dds-text-xs);
     margin-left: 8px;
-    background: rgba(224, 13, 121, 0.2);
+    background: rgba(196, 30, 140, 0.2);
     color: var(--info-light);
 }
 
@@ -210,7 +210,7 @@ input:checked + .toggle-slider:before {
 }
 
 .stakeholder-landlord {
-    background: rgba(224, 13, 121, 0.2);
+    background: rgba(196, 30, 140, 0.2);
     color: var(--info-light);
 }
 
@@ -253,7 +253,7 @@ input:checked + .toggle-slider:before {
     display: inline-block;
     padding: 3px 8px;
     border-radius: 12px;
-    font-size: 12px;
+    font-size: var(--dds-text-xs);
     margin-left: 8px;
     background: rgba(237, 0, 72, 0.15);
     color: rgba(237, 0, 72, 0.8);
@@ -263,7 +263,7 @@ input:checked + .toggle-slider:before {
     display: inline-block;
     padding: 3px 8px;
     border-radius: 12px;
-    font-size: 12px;
+    font-size: var(--dds-text-xs);
     margin-left: 8px;
     background: rgba(0, 153, 255, 0.2);
     color: rgba(0, 153, 255, 0.9);
@@ -279,7 +279,7 @@ input:checked + .toggle-slider:before {
     padding: 8px 12px;
     background: rgba(0, 153, 255, 0.05);
     border-radius: 8px;
-    font-size: 12px;
+    font-size: var(--dds-text-xs);
     border-left: 2px solid rgba(0, 153, 255, 0.3);
 }
 
