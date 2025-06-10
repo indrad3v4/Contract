@@ -1,0 +1,532 @@
+/**
+ * DAODISEO Design System - Comprehensive UI/UX Consistency
+ * Unified variables, typography, spacing, components, and interactions
+ */
+
+/* ========================================
+   1. DESIGN TOKENS & VARIABLES
+======================================== */
+:root {
+  /* Typography Scale */
+  --dds-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --dds-font-family-mono: 'Fira Code', 'Monaco', 'Consolas', monospace;
+  
+  --dds-font-size-xs: 0.75rem;      /* 12px */
+  --dds-font-size-sm: 0.875rem;     /* 14px */
+  --dds-font-size-base: 1rem;       /* 16px */
+  --dds-font-size-lg: 1.125rem;     /* 18px */
+  --dds-font-size-xl: 1.25rem;      /* 20px */
+  --dds-font-size-2xl: 1.5rem;      /* 24px */
+  --dds-font-size-3xl: 1.875rem;    /* 30px */
+  --dds-font-size-4xl: 2.25rem;     /* 36px */
+  
+  --dds-font-weight-light: 300;
+  --dds-font-weight-normal: 400;
+  --dds-font-weight-medium: 500;
+  --dds-font-weight-semibold: 600;
+  --dds-font-weight-bold: 700;
+  
+  --dds-line-height-tight: 1.25;
+  --dds-line-height-normal: 1.5;
+  --dds-line-height-relaxed: 1.75;
+  
+  /* Spacing Scale */
+  --dds-space-1: 0.25rem;   /* 4px */
+  --dds-space-2: 0.5rem;    /* 8px */
+  --dds-space-3: 0.75rem;   /* 12px */
+  --dds-space-4: 1rem;      /* 16px */
+  --dds-space-5: 1.25rem;   /* 20px */
+  --dds-space-6: 1.5rem;    /* 24px */
+  --dds-space-8: 2rem;      /* 32px */
+  --dds-space-10: 2.5rem;   /* 40px */
+  --dds-space-12: 3rem;     /* 48px */
+  --dds-space-16: 4rem;     /* 64px */
+  
+  /* Border Radius Scale */
+  --dds-radius-sm: 0.375rem;   /* 6px */
+  --dds-radius-md: 0.5rem;     /* 8px */
+  --dds-radius-lg: 0.75rem;    /* 12px */
+  --dds-radius-xl: 1rem;       /* 16px */
+  --dds-radius-2xl: 1.5rem;    /* 24px */
+  --dds-radius-full: 9999px;
+  
+  /* Colors - Unified Brand Palette */
+  --dds-primary-dark: #0a0a0a;
+  --dds-primary-medium: #1a1a2e;
+  --dds-primary-light: #16213e;
+  
+  --dds-accent-cyan: #00d4ff;
+  --dds-accent-blue: #4834d4;
+  --dds-accent-purple: #7209b7;
+  --dds-magenta: #c41e3a;
+  
+  --dds-success: #2ed573;
+  --dds-warning: #ffa502;
+  --dds-error: #dc2626;
+  
+  --dds-white: #ffffff;
+  --dds-gray-50: #f9fafb;
+  --dds-gray-100: #f3f4f6;
+  --dds-gray-200: #e5e7eb;
+  --dds-gray-300: #d1d5db;
+  --dds-gray-400: #9ca3af;
+  --dds-gray-500: #6b7280;
+  --dds-gray-600: #4b5563;
+  --dds-gray-700: #374151;
+  --dds-gray-800: #1f2937;
+  --dds-gray-900: #111827;
+  
+  /* Gradients */
+  --dds-gradient-brain: linear-gradient(135deg, #7209b7 0%, #4834d4 50%, #00d4ff 100%);
+  --dds-gradient-card: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.95) 100%);
+  --dds-gradient-subtle: linear-gradient(135deg, rgba(114, 9, 183, 0.1) 0%, rgba(0, 212, 255, 0.1) 100%);
+  
+  /* Shadows */
+  --dds-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --dds-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --dds-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --dds-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --dds-shadow-brain: 0 8px 32px rgba(114, 9, 183, 0.3);
+  --dds-shadow-elevated: 0 4px 20px rgba(0, 0, 0, 0.3);
+  
+  /* Z-Index Scale */
+  --dds-z-dropdown: 1000;
+  --dds-z-sticky: 1020;
+  --dds-z-fixed: 1030;
+  --dds-z-modal-backdrop: 1040;
+  --dds-z-modal: 1050;
+  --dds-z-popover: 1060;
+  --dds-z-tooltip: 1070;
+}
+
+/* ========================================
+   2. GLOBAL BASE STYLES
+======================================== */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--dds-font-family);
+  font-size: var(--dds-font-size-base);
+  line-height: var(--dds-line-height-normal);
+  color: var(--dds-white);
+  background: var(--dds-primary-dark);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========================================
+   3. TYPOGRAPHY SYSTEM
+======================================== */
+.dds-text-xs { font-size: var(--dds-font-size-xs); }
+.dds-text-sm { font-size: var(--dds-font-size-sm); }
+.dds-text-base { font-size: var(--dds-font-size-base); }
+.dds-text-lg { font-size: var(--dds-font-size-lg); }
+.dds-text-xl { font-size: var(--dds-font-size-xl); }
+.dds-text-2xl { font-size: var(--dds-font-size-2xl); }
+.dds-text-3xl { font-size: var(--dds-font-size-3xl); }
+.dds-text-4xl { font-size: var(--dds-font-size-4xl); }
+
+.dds-font-light { font-weight: var(--dds-font-weight-light); }
+.dds-font-normal { font-weight: var(--dds-font-weight-normal); }
+.dds-font-medium { font-weight: var(--dds-font-weight-medium); }
+.dds-font-semibold { font-weight: var(--dds-font-weight-semibold); }
+.dds-font-bold { font-weight: var(--dds-font-weight-bold); }
+
+.dds-leading-tight { line-height: var(--dds-line-height-tight); }
+.dds-leading-normal { line-height: var(--dds-line-height-normal); }
+.dds-leading-relaxed { line-height: var(--dds-line-height-relaxed); }
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--dds-font-weight-semibold);
+  line-height: var(--dds-line-height-tight);
+  margin: 0 0 var(--dds-space-4) 0;
+  color: var(--dds-white);
+}
+
+h1 { font-size: var(--dds-font-size-4xl); }
+h2 { font-size: var(--dds-font-size-3xl); }
+h3 { font-size: var(--dds-font-size-2xl); }
+h4 { font-size: var(--dds-font-size-xl); }
+h5 { font-size: var(--dds-font-size-lg); }
+h6 { font-size: var(--dds-font-size-base); }
+
+/* ========================================
+   4. SPACING UTILITIES
+======================================== */
+.dds-m-1 { margin: var(--dds-space-1); }
+.dds-m-2 { margin: var(--dds-space-2); }
+.dds-m-3 { margin: var(--dds-space-3); }
+.dds-m-4 { margin: var(--dds-space-4); }
+.dds-m-6 { margin: var(--dds-space-6); }
+.dds-m-8 { margin: var(--dds-space-8); }
+
+.dds-p-1 { padding: var(--dds-space-1); }
+.dds-p-2 { padding: var(--dds-space-2); }
+.dds-p-3 { padding: var(--dds-space-3); }
+.dds-p-4 { padding: var(--dds-space-4); }
+.dds-p-6 { padding: var(--dds-space-6); }
+.dds-p-8 { padding: var(--dds-space-8); }
+
+.dds-mb-2 { margin-bottom: var(--dds-space-2); }
+.dds-mb-4 { margin-bottom: var(--dds-space-4); }
+.dds-mb-6 { margin-bottom: var(--dds-space-6); }
+.dds-mb-8 { margin-bottom: var(--dds-space-8); }
+
+/* ========================================
+   5. BUTTON SYSTEM - UNIFIED
+======================================== */
+.dds-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--dds-space-2);
+  padding: var(--dds-space-3) var(--dds-space-6);
+  border: 1px solid transparent;
+  border-radius: var(--dds-radius-lg);
+  font-family: var(--dds-font-family);
+  font-size: var(--dds-font-size-sm);
+  font-weight: var(--dds-font-weight-medium);
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+}
+
+.dds-btn:focus {
+  outline: 2px solid var(--dds-accent-cyan);
+  outline-offset: 2px;
+}
+
+/* Primary Button */
+.dds-btn-primary {
+  background: var(--dds-gradient-brain);
+  color: var(--dds-white);
+  border-color: var(--dds-accent-purple);
+  box-shadow: var(--dds-shadow-md);
+}
+
+.dds-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--dds-shadow-lg);
+}
+
+.dds-btn-primary:active {
+  transform: translateY(0);
+  box-shadow: var(--dds-shadow-md);
+}
+
+/* Secondary Button */
+.dds-btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--dds-white);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.dds-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--dds-accent-cyan);
+}
+
+/* Outline Button */
+.dds-btn-outline {
+  background: transparent;
+  color: var(--dds-accent-cyan);
+  border-color: var(--dds-accent-cyan);
+}
+
+.dds-btn-outline:hover {
+  background: var(--dds-accent-cyan);
+  color: var(--dds-primary-dark);
+}
+
+/* Button Sizes */
+.dds-btn-sm {
+  padding: var(--dds-space-2) var(--dds-space-4);
+  font-size: var(--dds-font-size-xs);
+}
+
+.dds-btn-lg {
+  padding: var(--dds-space-4) var(--dds-space-8);
+  font-size: var(--dds-font-size-lg);
+}
+
+/* Icon Button */
+.dds-btn-icon {
+  padding: var(--dds-space-3);
+  border-radius: var(--dds-radius-md);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--dds-white);
+  position: relative;
+}
+
+.dds-btn-icon:hover {
+  background: rgba(0, 212, 255, 0.1);
+  border-color: var(--dds-accent-cyan);
+}
+
+/* ========================================
+   6. CARD SYSTEM - UNIFIED LAYOUT
+======================================== */
+.dds-card {
+  background: var(--dds-gradient-card);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--dds-radius-xl);
+  padding: var(--dds-space-6);
+  box-shadow: var(--dds-shadow-lg);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.dds-card:hover {
+  border-color: var(--dds-accent-cyan);
+  box-shadow: var(--dds-shadow-xl);
+  transform: translateY(-2px);
+}
+
+.dds-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--dds-space-4);
+  padding-bottom: var(--dds-space-3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dds-card-title {
+  font-size: var(--dds-font-size-lg);
+  font-weight: var(--dds-font-weight-semibold);
+  color: var(--dds-white);
+  margin: 0;
+}
+
+.dds-card-body {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.dds-card-footer {
+  margin-top: var(--dds-space-6);
+  padding-top: var(--dds-space-4);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ========================================
+   7. STATUS INDICATORS - REINVENTED
+======================================== */
+.dds-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dds-space-2);
+  padding: var(--dds-space-2) var(--dds-space-3);
+  border-radius: var(--dds-radius-full);
+  font-size: var(--dds-font-size-xs);
+  font-weight: var(--dds-font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.dds-status-verified {
+  background: rgba(46, 213, 115, 0.2);
+  color: var(--dds-success);
+  border: 1px solid rgba(46, 213, 115, 0.3);
+}
+
+.dds-status-tokenized {
+  background: rgba(0, 212, 255, 0.2);
+  color: var(--dds-accent-cyan);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+}
+
+.dds-status-pending {
+  background: rgba(255, 165, 2, 0.2);
+  color: var(--dds-warning);
+  border: 1px solid rgba(255, 165, 2, 0.3);
+}
+
+.dds-status-active {
+  background: rgba(0, 212, 255, 0.2);
+  color: var(--dds-accent-cyan);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+}
+
+.dds-status-inactive {
+  background: rgba(107, 114, 128, 0.2);
+  color: var(--dds-gray-400);
+  border: 1px solid rgba(107, 114, 128, 0.3);
+}
+
+/* Status Indicator Dot */
+.dds-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--dds-radius-full);
+  flex-shrink: 0;
+}
+
+.dds-status-verified .dds-status-dot {
+  background: var(--dds-success);
+  box-shadow: 0 0 8px rgba(46, 213, 115, 0.4);
+}
+
+.dds-status-tokenized .dds-status-dot {
+  background: var(--dds-accent-cyan);
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.4);
+}
+
+.dds-status-pending .dds-status-dot {
+  background: var(--dds-warning);
+  animation: pulse 2s infinite;
+}
+
+.dds-status-active .dds-status-dot {
+  background: var(--dds-accent-cyan);
+  animation: pulse 2s infinite;
+}
+
+.dds-status-inactive .dds-status-dot {
+  background: var(--dds-gray-400);
+}
+
+/* ========================================
+   8. FORM ELEMENTS - UNIFIED
+======================================== */
+.dds-input {
+  width: 100%;
+  padding: var(--dds-space-3) var(--dds-space-4);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--dds-radius-md);
+  color: var(--dds-white);
+  font-family: var(--dds-font-family);
+  font-size: var(--dds-font-size-sm);
+  transition: all 0.2s ease;
+}
+
+.dds-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.dds-input:focus {
+  outline: none;
+  border-color: var(--dds-accent-cyan);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ========================================
+   9. ICON SYSTEM - UNIFIED
+======================================== */
+.dds-icon {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.dds-icon-sm {
+  width: 1rem;
+  height: 1rem;
+}
+
+.dds-icon-md {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.dds-icon-lg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* ========================================
+   10. ANIMATIONS - CONSISTENT
+======================================== */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.dds-animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+.dds-animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.dds-animate-slide-in-right {
+  animation: slideInRight 0.3s ease-out;
+}
+
+/* ========================================
+   11. UTILITY CLASSES
+======================================== */
+.dds-flex { display: flex; }
+.dds-inline-flex { display: inline-flex; }
+.dds-grid { display: grid; }
+
+.dds-items-center { align-items: center; }
+.dds-items-start { align-items: flex-start; }
+.dds-items-end { align-items: flex-end; }
+
+.dds-justify-center { justify-content: center; }
+.dds-justify-between { justify-content: space-between; }
+.dds-justify-start { justify-content: flex-start; }
+.dds-justify-end { justify-content: flex-end; }
+
+.dds-gap-2 { gap: var(--dds-space-2); }
+.dds-gap-4 { gap: var(--dds-space-4); }
+.dds-gap-6 { gap: var(--dds-space-6); }
+
+.dds-w-full { width: 100%; }
+.dds-h-full { height: 100%; }
+
+.dds-text-center { text-align: center; }
+.dds-text-left { text-align: left; }
+.dds-text-right { text-align: right; }
+
+.dds-cursor-pointer { cursor: pointer; }
+
+.dds-select-none { user-select: none; }
+
+.dds-transition { transition: all 0.2s ease; }
