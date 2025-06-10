@@ -85,7 +85,20 @@
             border: 2px solid rgba(224, 13, 121, 0.7) !important;
         }
         
-        /* App Layout - Unified Grid System for Pixel-Perfect Alignment */
+        /* FULLSCREEN LAYOUT - EDGE-TO-EDGE DASHBOARD */
+        * {
+            box-sizing: border-box !important;
+        }
+        
+        body, html {
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100vw !important;
+            min-height: 100vh !important;
+            overflow-x: hidden !important;
+            overflow-y: auto !important;
+        }
+        
         .app-container {
             display: grid !important;
             grid-template-columns: 280px 1fr !important;
@@ -93,6 +106,7 @@
             grid-template-areas: 
                 "sidebar header"
                 "sidebar main" !important;
+            width: 100vw !important;
             min-height: 100vh !important;
             background: var(--bg-primary) !important;
             margin: 0 !important;
@@ -124,22 +138,42 @@
             overflow-y: auto !important;
         }
 
-        /* Header aligned perfectly with sidebar - pixel perfect */
+        /* STICKY HEADER - FULL WIDTH WITH RIGHT-ALIGNED BUTTONS */
         .header {
             grid-area: header !important;
             height: 80px !important;
+            width: 100% !important;
             background: var(--glass-bg) !important;
             backdrop-filter: blur(20px) !important;
             border-bottom: 1px solid var(--glass-border) !important;
             border-left: none !important;
             display: flex !important;
             align-items: center !important;
+            justify-content: space-between !important;
             padding: 0 2rem !important;
-            position: relative !important;
+            position: sticky !important;
             top: 0 !important;
             z-index: 999 !important;
             margin: 0 !important;
             box-sizing: border-box !important;
+        }
+        
+        .page-title {
+            flex: 1 !important;
+            margin: 0 !important;
+        }
+        
+        .top-actions {
+            display: flex !important;
+            align-items: center !important;
+            gap: 1rem !important;
+            margin-left: auto !important;
+        }
+        
+        .points-system, .wallet-connection {
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.5rem !important;
         }
 
         /* Responsive Grid - Mobile and Desktop Friendly */
@@ -164,19 +198,35 @@
             }
         }
 
-        /* Container padding consistency */
+        /* FULLSCREEN CONTAINER - NO NESTED SCROLL */
         .container-fluid {
+            width: 100% !important;
+            max-width: none !important;
             padding: 1rem !important;
             margin: 0 !important;
+            overflow: visible !important;
+        }
+
+        /* Remove Bootstrap container constraints */
+        .container, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
+            max-width: none !important;
+            width: 100% !important;
         }
 
         /* Dashboard grid layout */
         .row {
             margin: 0 !important;
+            width: 100% !important;
         }
 
         .col, .col-md-6, .col-lg-4, .col-12 {
             padding: 0.75rem !important;
+        }
+
+        /* Remove any overflow hidden that creates nested scrolling */
+        .main-content, .content-wrapper {
+            overflow: visible !important;
+            height: auto !important;
         }
 
         /* Sidebar Active State */

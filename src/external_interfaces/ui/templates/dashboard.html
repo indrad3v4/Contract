@@ -813,12 +813,13 @@
                 const valueElement = document.getElementById(card.id);
                 const timeElement = document.getElementById(`${card.id}-time`);
                 
-                if (valueElement && data[card.valueKey] !== undefined) {
-                    valueElement.textContent = card.format(data[card.valueKey]);
-                    updateCardStatus(card.id, 'verified');
+                if (valueElement && data[card.valueKey] !== undefined && data[card.valueKey] !== null) {
+                    const formattedValue = card.format(data[card.valueKey]);
+                    valueElement.textContent = formattedValue;
+                    updateCardStatus(card.id, 'verified', formattedValue);
                 } else {
-                    valueElement.textContent = 'N/A';
-                    updateCardStatus(card.id, 'error');
+                    valueElement.textContent = 'Awaiting data...';
+                    updateCardStatus(card.id, 'error', null);
                 }
                 
                 if (timeElement) {
@@ -826,34 +827,43 @@
                 }
             } catch (error) {
                 console.error(`Failed to load data for ${card.id}:`, error);
-                updateCardStatus(card.id, 'error');
+                updateCardStatus(card.id, 'error', null);
                 
                 const valueElement = document.getElementById(card.id);
                 if (valueElement) {
-                    valueElement.textContent = 'Error';
+                    valueElement.textContent = 'Awaiting data...';
                 }
             }
         }
     }
 
-    // Function to update card status badges
-    function updateCardStatus(cardId, status) {
+    // Function to update card status badges with data synchronization
+    function updateCardStatus(cardId, status, value = null) {
         const card = document.querySelector(`[data-card-type="${cardId}"]`);
         if (!card) return;
         
         const badge = card.querySelector('.status-badge');
+        const valueElement = card.querySelector('.primary-value');
+        const timeElement = card.querySelector(`#${cardId}-time`);
+        
         if (!badge) return;
         
         // Remove existing status classes
         badge.classList.remove('status-verified', 'status-loading', 'status-error');
         
+        // Synchronize status with actual data presence
+        let finalStatus = status;
+        if (status === 'verified' && (value === null || value === undefined || value === 'Loading...')) {
+            finalStatus = 'loading';
+        }
+        
         // Add new status class
-        badge.classList.add(`status-${status}`);
+        badge.classList.add(`status-${finalStatus}`);
         
         // Update badge content
         const icons = {
             'verified': 'check-circle',
-            'loading': 'loader',
+            'loading': 'loader', 
             'error': 'alert-circle'
         };
         
@@ -863,7 +873,23 @@
             'error': 'Error'
         };
         
-        badge.innerHTML = `<i data-feather="${icons[status]}"></i> ${texts[status]}`;
+        badge.innerHTML = `<i data-feather="${icons[finalStatus]}"></i> ${texts[finalStatus]}`;
+        
+        // Update value element with proper data or fallback
+        if (valueElement) {
+            if (finalStatus === 'verified' && value !== null && value !== undefined) {
+                valueElement.textContent = value;
+            } else if (finalStatus === 'loading') {
+                valueElement.textContent = 'Loading...';
+            } else {
+                valueElement.textContent = 'Awaiting data...';
+            }
+        }
+        
+        // Update timestamp
+        if (timeElement) {
+            timeElement.textContent = new Date().toLocaleTimeString();
+        }
         
         // Re-initialize feather icons
         if (typeof feather !== 'undefined') {

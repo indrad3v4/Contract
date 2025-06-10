@@ -437,18 +437,19 @@ def get_recent_transactions():
         validators_data = gateway.get_validators()
         
         transactions = []
-        if validators_data and 'validators' in validators_data:
+        if validators_data and isinstance(validators_data, dict) and 'validators' in validators_data:
             validators = validators_data['validators']
             
-            for i, validator in enumerate(validators[:5]):
-                transactions.append({
-                    'hash': f"0x{hash(validator.get('address', ''))%1000000:06x}...",
-                    'type': 'stake' if i % 2 == 0 else 'delegate',
-                    'amount': str(int(float(validator.get('voting_power', 1000)) / 1000)),
-                    'timestamp': datetime.now().isoformat(),
-                    'status': 'confirmed',
-                    'validator': validator.get('address', '')[:12] + '...'
-                })
+            for i, validator in enumerate(validators[:5] if isinstance(validators, list) else []):
+                if isinstance(validator, dict):
+                    transactions.append({
+                        'hash': f"0x{hash(str(validator.get('address', '')))%1000000:06x}...",
+                        'type': 'stake' if i % 2 == 0 else 'delegate',
+                        'amount': str(int(float(validator.get('voting_power', 1000)) / 1000)),
+                        'timestamp': datetime.now().isoformat(),
+                        'status': 'confirmed',
+                        'validator': str(validator.get('address', ''))[:12] + '...'
+                    })
         else:
             # Fallback with minimal data structure
             transactions = [
