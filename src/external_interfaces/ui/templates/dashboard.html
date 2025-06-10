@@ -612,11 +612,21 @@
 <script src="{{ url_for('static', filename='js/bim-viewer.js') }}"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // Populate Data Source Agent Cards with real blockchain data
+        populateDataSourceCards();
+        
+        // Set up periodic updates
+        setInterval(populateDataSourceCards, 30000); // Update every 30 seconds
+
         // Initialize AI Chat
-        aiChat.init('ai-chat-container');
+        if (typeof aiChat !== 'undefined') {
+            aiChat.init('ai-chat-container');
+        }
 
         // Initialize mini BIM viewer
-        bimViewer.init('mini-viewer-container');
+        if (typeof bimViewer !== 'undefined') {
+            bimViewer.init('mini-viewer-container');
+        }
 
         // Initialize asset distribution chart
         const assetCtx = document.getElementById('asset-distribution-chart').getContext('2d');
@@ -679,6 +689,112 @@
                 }
             }
         });
+    });
+
+    // Function to populate Data Source Agent cards with real blockchain data
+    async function populateDataSourceCards() {
+        const cards = [
+            {
+                id: 'token-value',
+                endpoint: '/api/blockchain/token-price',
+                valueKey: 'price',
+                format: (val) => `$${parseFloat(val).toFixed(4)}`
+            },
+            {
+                id: 'total-reserves',
+                endpoint: '/api/blockchain/stats',
+                valueKey: 'total_supply',
+                format: (val) => formatNumber(val)
+            },
+            {
+                id: 'staking-apy',
+                endpoint: '/api/blockchain/stakeholder-distribution',
+                valueKey: 'staking_apy',
+                format: (val) => `${parseFloat(val).toFixed(2)}`
+            },
+            {
+                id: 'daily-rewards',
+                endpoint: '/api/blockchain/stats',
+                valueKey: 'inflation',
+                format: (val) => parseFloat(val).toFixed(4)
+            }
+        ];
+
+        for (const card of cards) {
+            try {
+                updateCardStatus(card.id, 'loading');
+                
+                const response = await fetch(card.endpoint);
+                const data = await response.json();
+                
+                const valueElement = document.getElementById(card.id);
+                const timeElement = document.getElementById(`${card.id}-time`);
+                
+                if (valueElement && data[card.valueKey] !== undefined) {
+                    valueElement.textContent = card.format(data[card.valueKey]);
+                    updateCardStatus(card.id, 'verified');
+                } else {
+                    valueElement.textContent = 'N/A';
+                    updateCardStatus(card.id, 'error');
+                }
+                
+                if (timeElement) {
+                    timeElement.textContent = new Date().toLocaleTimeString();
+                }
+            } catch (error) {
+                console.error(`Failed to load data for ${card.id}:`, error);
+                updateCardStatus(card.id, 'error');
+                
+                const valueElement = document.getElementById(card.id);
+                if (valueElement) {
+                    valueElement.textContent = 'Error';
+                }
+            }
+        }
+    }
+
+    // Function to update card status badges
+    function updateCardStatus(cardId, status) {
+        const card = document.querySelector(`[data-card-type="${cardId}"]`);
+        if (!card) return;
+        
+        const badge = card.querySelector('.status-badge');
+        if (!badge) return;
+        
+        // Remove existing status classes
+        badge.classList.remove('status-verified', 'status-loading', 'status-error');
+        
+        // Add new status class
+        badge.classList.add(`status-${status}`);
+        
+        // Update badge content
+        const icons = {
+            'verified': 'check-circle',
+            'loading': 'loader',
+            'error': 'alert-circle'
+        };
+        
+        const texts = {
+            'verified': 'Verified',
+            'loading': 'Loading',
+            'error': 'Error'
+        };
+        
+        badge.innerHTML = `<i data-feather="${icons[status]}"></i> ${texts[status]}`;
+        
+        // Re-initialize feather icons
+        if (typeof feather !== 'undefined') {
+            feather.replace();
+        }
+    }
+
+    // Function to format large numbers
+    function formatNumber(num) {
+        if (num >= 1e9) return (num / 1e9).toFixed(2) + 'B';
+        if (num >= 1e6) return (num / 1e6).toFixed(2) + 'M';
+        if (num >= 1e3) return (num / 1e3).toFixed(2) + 'K';
+        return num.toString();
+    }
 
         // Check wallet connection when investment modal is opened
         document.getElementById('investModal').addEventListener('show.bs.modal', function() {
