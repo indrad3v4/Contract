@@ -563,6 +563,12 @@ body, html {
                             <option value="">Select Property Asset</option>
                         </select>
                     </div>
+                    
+                    <!-- Inline AI Response Container -->
+                    <div class="bim-response-container" id="bim-ai-response" style="display: none;">
+                        <div class="loading-spinner" style="display: none;"></div>
+                        <div class="ai-response-content"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -622,6 +628,9 @@ body, html {
         </div>
 
     </div>
+    
+    <!-- Small spacing before footer -->
+    <div style="height: 20px; margin-bottom: 1.5rem;"></div>
     
     <!-- Footer within main content for proper scrolling -->
     <footer class="dashboard-footer">
