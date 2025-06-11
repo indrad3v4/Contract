@@ -1,0 +1,252 @@
+First that I see after previous prompt that components go taller, that good. But lowest components didn’t fit body, and they little bit under footer. But other things in back to front to back issues. In top right I see message that failed to load data. I see that o3mini analysis work but I see response after real long time . Asset distribution without $ in millions. In ai bim assistant i still can’t choose assets. Buttons in ai bim assistant still move to half-dead unresponsive pop ups that designed bad and seen under glass in left panel. But should be only in right body, and why экран становітся темней і компонент становітся unresponsive? I can’t close it and need refresh app. Recent actions and validators failed to load data . Errors from dev tools console : str = "
+
+2bb4c5d2-50f7-4df2-a13f-b629cb5e86c4-00-z8kp6lkoia9j.riker.replit.dev/:11 Refused to load the stylesheet 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap' because it violates the following Content Security Policy directive: "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net". Note that 'style-src-elem' was not explicitly set, so 'style-src' is used as a fallback.
+
+feather.min.js:12 Uncaught TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at feather.min.js:12:4997
+    at feather.min.js:12:5158
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (feather.min.js:12:4727)
+    at HTMLDocument.<anonymous> ((индекс):1004:25)
+feather.min.js:12 Uncaught TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at feather.min.js:12:4997
+    at feather.min.js:12:5158
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (feather.min.js:12:4727)
+    at KeplerWallet.updateUI (kepler.js:156:17)
+    at HTMLDocument.<anonymous> (kepler.js:346:25)
+feather.min.js:12 Uncaught TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at feather.min.js:12:4997
+    at feather.min.js:12:5158
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (feather.min.js:12:4727)
+    at HTMLDocument.<anonymous> (main.js:136:17)
+feather.min.js:12 Uncaught TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at feather.min.js:12:4997
+    at feather.min.js:12:5158
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (feather.min.js:12:4727)
+    at HTMLDocument.<anonymous> ((индекс):1829:25)
+(индекс):1951 Failed to load network-health: TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at feather.min.js:12:4997
+    at feather.min.js:12:5158
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (feather.min.js:12:4727)
+    at updateAgentStatus ((индекс):1883:21)
+    at loadRPCData ((индекс):1946:17)
+    at HTMLDocument.<anonymous> ((индекс):2156:5)
+loadRPCData @ (индекс):1951
+(индекс):1986 Failed to load transactions: TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at feather.min.js:12:4997
+    at feather.min.js:12:5158
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (feather.min.js:12:4727)
+    at updateAgentStatus ((индекс):1883:21)
+    at loadTransactions ((индекс):1960:13)
+    at HTMLDocument.<anonymous> ((индекс):2157:5)
+loadTransactions @ (индекс):1986
+(индекс):2021 Failed to load validators: TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at feather.min.js:12:4997
+    at feather.min.js:12:5158
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (feather.min.js:12:4727)
+    at updateAgentStatus ((индекс):1883:21)
+    at loadValidators ((индекс):1995:13)
+    at HTMLDocument.<anonymous> ((индекс):2158:5)
+loadValidators @ (индекс):2021
+feather.min.js:12 Uncaught TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at feather.min.js:12:4997
+    at feather.min.js:12:5158
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (feather.min.js:12:4727)
+    at HTMLDocument.<anonymous> ((индекс):2177:17)
+feather.min.js:12 Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at feather.min.js:12:4997
+    at feather.min.js:12:5158
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (feather.min.js:12:4727)
+    at updateAgentStatus ((индекс):1883:21)
+    at loadRPCData ((индекс):1952:17)
+    at HTMLDocument.<anonymous> ((индекс):2156:5)
+feather.min.js:12 Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at feather.min.js:12:4997
+    at feather.min.js:12:5158
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (feather.min.js:12:4727)
+    at updateAgentStatus ((индекс):1883:21)
+    at loadTransactions ((индекс):1988:13)
+    at HTMLDocument.<anonymous> ((индекс):2157:5)
+feather.min.js:12 Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at feather.min.js:12:4997
+    at feather.min.js:12:5158
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (feather.min.js:12:4727)
+    at updateAgentStatus ((индекс):1883:21)
+    at loadValidators ((индекс):2023:13)
+    at HTMLDocument.<anonymous> ((индекс):2158:5)
+/api/blockchain/stats:1     Failed to load resource: the server responded with a status of 429 (Too Many Requests)
+
+feather.min.js:12 Uncaught TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at feather.min.js:12:4997
+    at feather.min.js:12:5158
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (feather.min.js:12:4727)
+    at HTMLDocument.<anonymous> ((индекс):1004:25)
+feather.min.js:12 Uncaught TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at feather.min.js:12:4997
+    at feather.min.js:12:5158
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (feather.min.js:12:4727)
+    at KeplerWallet.updateUI (kepler.js:156:17)
+    at HTMLDocument.<anonymous> (kepler.js:346:25)
+feather.min.js:12 Uncaught TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at feather.min.js:12:4997
+    at feather.min.js:12:5158
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (feather.min.js:12:4727)
+    at HTMLDocument.<anonymous> (main.js:136:17)
+feather.min.js:12 Uncaught TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at feather.min.js:12:4997
+    at feather.min.js:12:5158
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (feather.min.js:12:4727)
+    at HTMLDocument.<anonymous> ((индекс):1829:25)
+(индекс):1951 Failed to load network-health: TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at feather.min.js:12:4997
+    at feather.min.js:12:5158
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (feather.min.js:12:4727)
+    at updateAgentStatus ((индекс):1883:21)
+    at loadRPCData ((индекс):1946:17)
+    at HTMLDocument.<anonymous> ((индекс):2156:5)
+loadRPCData @ (индекс):1951
+(индекс):1986 Failed to load transactions: TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at feather.min.js:12:4997
+    at feather.min.js:12:5158
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (feather.min.js:12:4727)
+    at updateAgentStatus ((индекс):1883:21)
+    at loadTransactions ((индекс):1960:13)
+    at HTMLDocument.<anonymous> ((индекс):2157:5)
+loadTransactions @ (индекс):1986
+(индекс):2021 Failed to load validators: TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at feather.min.js:12:4997
+    at feather.min.js:12:5158
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (feather.min.js:12:4727)
+    at updateAgentStatus ((индекс):1883:21)
+    at loadValidators ((индекс):1995:13)
+    at HTMLDocument.<anonymous> ((индекс):2158:5)
+loadValidators @ (индекс):2021
+feather.min.js:12 Uncaught TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at feather.min.js:12:4997
+    at feather.min.js:12:5158
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (feather.min.js:12:4727)
+    at HTMLDocument.<anonymous> ((индекс):2177:17)
+feather.min.js:12 Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at feather.min.js:12:4997
+    at feather.min.js:12:5158
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (feather.min.js:12:4727)
+    at updateAgentStatus ((индекс):1883:21)
+    at loadRPCData ((индекс):1952:17)
+    at HTMLDocument.<anonymous> ((индекс):2156:5)
+feather.min.js:12 Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at feather.min.js:12:4997
+    at feather.min.js:12:5158
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (feather.min.js:12:4727)
+    at updateAgentStatus ((индекс):1883:21)
+    at loadTransactions ((индекс):1988:13)
+    at HTMLDocument.<anonymous> ((индекс):2157:5)
+feather.min.js:12 Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at feather.min.js:12:4997
+    at feather.min.js:12:5158
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (feather.min.js:12:4727)
+    at updateAgentStatus ((индекс):1883:21)
+    at loadValidators ((индекс):2023:13)
+    at HTMLDocument.<anonymous> ((индекс):2158:5)
+/api/blockchain/stats:1     Failed to load resource: the server responded with a status of 429 (Too Many Requests)
+
+(индекс):1986 Failed to load transactions: TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at feather.min.js:12:4997
+    at feather.min.js:12:5158
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (feather.min.js:12:4727)
+    at updateAgentStatus ((индекс):1883:21)
+    at loadTransactions ((индекс):1960:13)
+loadTransactions @ (индекс):1986
+feather.min.js:12 Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at feather.min.js:12:4997
+    at feather.min.js:12:5158
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (feather.min.js:12:4727)
+    at updateAgentStatus ((индекс):1883:21)
+    at loadTransactions ((индекс):1988:13)
+(анонимная) @ feather.min.js:12
+(анонимная) @ feather.min.js:12
+n.default @ feather.min.js:12
+updateAgentStatus @ (индекс):1883
+loadTransactions @ (индекс):1988
+(индекс):1951 Failed to load network-health: TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at feather.min.js:12:4997
+    at feather.min.js:12:5158
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (feather.min.js:12:4727)
+    at updateAgentStatus ((индекс):1883:21)
+    at loadRPCData ((индекс):1946:17)
+loadRPCData @ (индекс):1951
+(индекс):2021 Failed to load validators: TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at feather.min.js:12:4997
+    at feather.min.js:12:5158
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (feather.min.js:12:4727)
+    at updateAgentStatus ((индекс):1883:21)
+    at loadValidators ((индекс):1995:13)
+loadValidators @ (индекс):2021
+feather.min.js:12 Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at feather.min.js:12:4997
+    at feather.min.js:12:5158
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (feather.min.js:12:4727)
+    at updateAgentStatus ((индекс):1883:21)
+    at loadRPCData ((индекс):1952:17)
+(анонимная) @ feather.min.js:12
+(анонимная) @ feather.min.js:12
+n.default @ feather.min.js:12
+updateAgentStatus @ (индекс):1883
+loadRPCData @ (индекс):1952
+feather.min.js:12 Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at feather.min.js:12:4997
+    at feather.min.js:12:5158
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (feather.min.js:12:4727)
+    at updateAgentStatus ((индекс):1883:21)
+    at loadValidators ((индекс):2023:13)
+(анонимная) @ feather.min.js:12
+(анонимная) @ feather.min.js:12
+n.default @ feather.min.js:12
+updateAgentStatus @ (индекс):1883
+loadValidators @ (индекс):2023
+dashboard-layout-fix.js:125     GET https://2bb4c5d2-50f7-4df2-a13f-b629cb5e86c4-00-z8kp6lkoia9j.riker.replit.dev/api/orchestrator/token-metrics 429 (Too Many Requests)
+loadOrchestratorData @ dashboard-layout-fix.js:125
+(анонимная) @ dashboard-layout-fix.js:237
+dashboard-layout-fix.js:125     GET https://2bb4c5d2-50f7-4df2-a13f-b629cb5e86c4-00-z8kp6lkoia9j.riker.replit.dev/api/orchestrator/token-metrics 429 (Too Many Requests)
+loadOrchestratorData @ dashboard-layout-fix.js:125
+(анонимная) @ dashboard-layout-fix.js:237
+dashboard-layout-fix.js:125     GET https://2bb4c5d2-50f7-4df2-a13f-b629cb5e86c4-00-z8kp6lkoia9j.riker.replit.dev/api/orchestrator/staking-metrics 429 (Too Many Requests)
+loadOrchestratorData @ dashboard-layout-fix.js:125
+Объект await in loadOrchestratorData (асинхронный)
+(анонимная) @ dashboard-layout-fix.js:237
+dashboard-layout-fix.js:125     GET https://2bb4c5d2-50f7-4df2-a13f-b629cb5e86c4-00-z8kp6lkoia9j.riker.replit.dev/api/orchestrator/staking-metrics 429 (Too Many Requests)
+loadOrchestratorData @ dashboard-layout-fix.js:125
+Объект await in loadOrchestratorData (асинхронный)
+(анонимная) @ dashboard-layout-fix.js:237
+dashboard-layout-fix.js:125     GET https://2bb4c5d2-50f7-4df2-a13f-b629cb5e86c4-00-z8kp6lkoia9j.riker.replit.dev/api/orchestrator/network-health 429 (Too Many Requests)
+loadOrchestratorData @ dashboard-layout-fix.js:125
+Объект await in loadOrchestratorData (асинхронный)
+(анонимная) @ dashboard-layout-fix.js:237
+
+"
