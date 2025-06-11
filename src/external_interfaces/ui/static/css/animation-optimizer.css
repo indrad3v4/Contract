@@ -1,0 +1,116 @@
+/* Animation Optimizer - GPU-Accelerated Animations */
+
+/* Force GPU acceleration for better performance */
+.gpu-accelerated,
+button,
+.btn,
+.modal,
+.card,
+.ai-btn {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Optimize transitions - only animate transform and opacity */
+button, .btn {
+    transition: transform 0.1s ease, opacity 0.1s ease !important;
+}
+
+/* Remove expensive animations */
+.card {
+    transition: transform 0.2s ease !important;
+}
+
+.card:hover {
+    transform: translateY(-2px) translateZ(0);
+}
+
+/* Optimize loading animations */
+@keyframes optimizedSpin {
+    from { transform: rotate(0deg) translateZ(0); }
+    to { transform: rotate(360deg) translateZ(0); }
+}
+
+.loading::after {
+    animation: optimizedSpin 0.8s linear infinite;
+}
+
+/* Optimize modal animations */
+.modal {
+    transition: opacity 0.2s ease, transform 0.2s ease !important;
+}
+
+.modal.show {
+    transform: translateY(0) translateZ(0);
+    opacity: 1;
+}
+
+.modal:not(.show) {
+    transform: translateY(-20px) translateZ(0);
+    opacity: 0;
+}
+
+/* Optimize fade animations */
+.fade-in {
+    animation: optimizedFadeIn 0.3s ease forwards;
+}
+
+@keyframes optimizedFadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(10px) translateZ(0);
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0) translateZ(0);
+    }
+}
+
+/* Reduce animation complexity for mobile */
+@media (max-width: 768px) {
+    * {
+        animation-duration: 0.2s !important;
+        transition-duration: 0.2s !important;
+    }
+    
+    .card:hover {
+        transform: none;
+    }
+}
+
+/* Disable animations for reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Optimize scroll animations */
+.smooth-scroll {
+    scroll-behavior: smooth;
+}
+
+/* Contain layout and paint for better performance */
+.card,
+.modal,
+.dashboard-container {
+    contain: layout style paint;
+}
+
+/* Optimize backdrop filters */
+.modal-backdrop,
+.glass-effect {
+    backdrop-filter: blur(10px);
+    will-change: backdrop-filter;
+}
+
+/* Optimize gradients */
+.gradient-bg {
+    background-attachment: fixed;
+    will-change: background-position;
+}
