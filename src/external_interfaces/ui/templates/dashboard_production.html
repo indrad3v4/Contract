@@ -118,7 +118,7 @@ body, html {
     }
 }
 
-/* SINGLE MAIN CONTENT AREA - NO NESTED SCROLLING */
+/* MAIN CONTENT AREA WITH PROPER SCROLLING */
 .main-content {
     grid-area: main !important;
     position: fixed !important;
@@ -129,18 +129,19 @@ body, html {
     overflow-y: auto !important;
     overflow-x: hidden !important;
     background: transparent !important;
-    padding: 0 !important;
+    padding: 1.5rem !important;
     margin: 0 !important;
+    box-sizing: border-box !important;
 }
 
-/* Dashboard Grid - Direct Child of Main Content */
+/* Dashboard Grid - Fixed Layout with Proper Spacing */
 .dashboard-grid {
     display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)) !important;
-    gap: 1.5rem !important;
-    padding: 1.5rem !important;
-    min-height: calc(100vh - 140px) !important;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)) !important;
+    gap: 2rem !important;
     width: 100% !important;
+    min-height: 100% !important;
+    padding-bottom: 2rem !important;
     box-sizing: border-box !important;
 }
 
@@ -282,16 +283,17 @@ body, html {
     box-shadow: 0 8px 25px rgba(224, 13, 121, 0.4) !important;
 }
 
-/* Fixed Footer */
+/* Footer positioned after content */
 .dashboard-footer {
     grid-area: footer !important;
     background: var(--glass-bg) !important;
     backdrop-filter: blur(20px) !important;
     border-top: 1px solid var(--glass-border) !important;
-    position: fixed !important;
-    bottom: 0 !important;
-    left: 280px !important;
-    right: 0 !important;
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    margin-top: 2rem !important;
     height: 60px !important;
     z-index: 998 !important;
     display: flex !important;
@@ -581,19 +583,28 @@ body, html {
         </div>
 
     </div>
+    
+    <!-- Footer within main content for proper scrolling -->
+    <footer class="dashboard-footer">
+        <span>&copy; 2025 DAODISEO - Blockchain Real Estate Platform</span>
+        <a href="https://explorer.daodiseo.app" target="_blank" class="footer-link">
+            <i data-feather="external-link" class="icon-inline-sm"></i>
+            Explorer
+        </a>
+        <a href="https://testnet.daodiseo.app" target="_blank" class="footer-link">
+            <i data-feather="globe" class="icon-inline-sm"></i>
+            Testnet
+        </a>
+        <a href="https://whitepaper.daodiseo.app" target="_blank" class="footer-link">
+            <i data-feather="file-text" class="icon-inline-sm"></i>
+            Whitepaper
+        </a>
+        <a href="https://daodao.zone/dao/daodiseo" target="_blank" class="footer-link">
+            <i data-feather="users" class="icon-inline-sm"></i>
+            DAODAO Governance
+        </a>
+    </footer>
 </div>
-
-<!-- Fixed Footer -->
-<footer class="dashboard-footer">
-    <a href="https://whitepaper.daodiseo.app" target="_blank" class="footer-link">
-        <i data-feather="file-text" class="icon-inline-sm"></i>
-        Whitepaper
-    </a>
-    <a href="https://daodao.zone/dao/daodiseo" target="_blank" class="footer-link">
-        <i data-feather="users" class="icon-inline-sm"></i>
-        DAODAO Governance
-    </a>
-</footer>
 
 <!-- Modals -->
 <div class="modal fade" id="aiAssistantModal" tabindex="-1" aria-labelledby="aiAssistantModalLabel" aria-hidden="true">

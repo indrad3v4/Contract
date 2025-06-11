@@ -209,7 +209,7 @@ class DashboardFinalFix {
         insight.innerHTML = `
             <div class="insight-header">
                 <i data-feather="brain" class="icon-inline-xs"></i>
-                o3-mini ${title}
+                o3-mini Analysis
                 <span class="confidence" id="${cardId}-confidence">Confidence: --</span>
             </div>
             <div class="insight-content" id="${cardId}-analysis">Loading analysis...</div>
