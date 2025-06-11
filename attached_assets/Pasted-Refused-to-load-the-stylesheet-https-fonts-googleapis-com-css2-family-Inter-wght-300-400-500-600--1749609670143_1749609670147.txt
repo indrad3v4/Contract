@@ -1,0 +1,173 @@
+Refused to load the stylesheet 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap' because it violates the following Content Security Policy directive: "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net". Note that 'style-src-elem' was not explicitly set, so 'style-src' is used as a fallback.
+
+(index):20 Feather icons initialized on load
+global-state.js:54 Global state initialized: Object
+(index):2183 Dashboard layout fix will be loaded from base template
+replace.js:34 Uncaught TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at replace.js:34:33
+    at replace.js:19:5
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (replace.js:18:33)
+    at HTMLDocument.<anonymous> ((index):1005:25)
+replace.js:34 Uncaught TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at replace.js:34:33
+    at replace.js:19:5
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (replace.js:18:33)
+    at KeplerWallet.updateUI (kepler.js:156:17)
+    at HTMLDocument.<anonymous> (kepler.js:346:25)
+replace.js:34 Uncaught TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at replace.js:34:33
+    at replace.js:19:5
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (replace.js:18:33)
+    at HTMLDocument.<anonymous> (main.js:136:17)
+dashboard-optimized.js:260 Dashboard optimized layout loading...
+dashboard-optimized.js:103 Throttled orchestrator ready - click buttons to load o3-mini analysis
+dashboard-optimized.js:262 Dashboard optimized - o3-mini available on-demand
+replace.js:34 Uncaught TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at replace.js:34:33
+    at replace.js:19:5
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (replace.js:18:33)
+    at HTMLDocument.<anonymous> ((index):1830:25)
+(index):1952 Failed to load network-health: TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at replace.js:34:33
+    at replace.js:19:5
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (replace.js:18:33)
+    at updateAgentStatus ((index):1884:21)
+    at loadRPCData ((index):1947:17)
+    at HTMLDocument.<anonymous> ((index):2157:5)
+loadRPCData @ (index):1952
+(index):1987 Failed to load transactions: TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at replace.js:34:33
+    at replace.js:19:5
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (replace.js:18:33)
+    at updateAgentStatus ((index):1884:21)
+    at loadTransactions ((index):1961:13)
+    at HTMLDocument.<anonymous> ((index):2158:5)
+loadTransactions @ (index):1987
+(index):2022 Failed to load validators: TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at replace.js:34:33
+    at replace.js:19:5
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (replace.js:18:33)
+    at updateAgentStatus ((index):1884:21)
+    at loadValidators ((index):1996:13)
+    at HTMLDocument.<anonymous> ((index):2159:5)
+loadValidators @ (index):2022
+bim-viewer.js:49 BIM Viewer initialized in mini mode
+replace.js:34 Uncaught TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at replace.js:34:33
+    at replace.js:19:5
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (replace.js:18:33)
+    at HTMLDocument.<anonymous> ((index):2178:17)
+replace.js:34 Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at replace.js:34:33
+    at replace.js:19:5
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (replace.js:18:33)
+    at updateAgentStatus ((index):1884:21)
+    at loadRPCData ((index):1953:17)
+    at HTMLDocument.<anonymous> ((index):2157:5)
+replace.js:34 Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at replace.js:34:33
+    at replace.js:19:5
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (replace.js:18:33)
+    at updateAgentStatus ((index):1884:21)
+    at loadTransactions ((index):1989:13)
+    at HTMLDocument.<anonymous> ((index):2158:5)
+replace.js:34 Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at replace.js:34:33
+    at replace.js:19:5
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (replace.js:18:33)
+    at updateAgentStatus ((index):1884:21)
+    at loadValidators ((index):2024:13)
+    at HTMLDocument.<anonymous> ((index):2159:5)
+(index):1952 Failed to load network-health: TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at replace.js:34:33
+    at replace.js:19:5
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (replace.js:18:33)
+    at updateAgentStatus ((index):1884:21)
+    at loadRPCData ((index):1947:17)
+loadRPCData @ (index):1952
+replace.js:34 Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at replace.js:34:33
+    at replace.js:19:5
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (replace.js:18:33)
+    at updateAgentStatus ((index):1884:21)
+    at loadRPCData ((index):1953:17)
+(index):1987 Failed to load transactions: TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at replace.js:34:33
+    at replace.js:19:5
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (replace.js:18:33)
+    at updateAgentStatus ((index):1884:21)
+    at loadTransactions ((index):1961:13)
+loadTransactions @ (index):1987
+replace.js:34 Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at replace.js:34:33
+    at replace.js:19:5
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (replace.js:18:33)
+    at updateAgentStatus ((index):1884:21)
+    at loadTransactions ((index):1989:13)
+2bb4c5d2-50f7-4df2-a13f-b629cb5e86c4-00-z8kp6lkoia9j.riker.replit.dev/:1 Refused to load the stylesheet 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap' because it violates the following Content Security Policy directive: "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net". Note that 'style-src-elem' was not explicitly set, so 'style-src' is used as a fallback.
+
+DevTools failed to load source map: Could not load content for https://browserstack-frontend-extensions-assets-stag-euc1.s3.amazonaws.com/accessibility-toolkit/production/6.5.0.0/configureEngine.js-e0ead245.js.map: HTTP error: status code 403, net::ERR_HTTP_RESPONSE_CODE_FAILURE
+DevTools failed to load source map: Could not load content for https://browserstack-frontend-extensions-assets-stag-euc1.s3.amazonaws.com/accessibility-toolkit/production/6.5.0.0/_commonjsHelpers-995a3f01.js.map: HTTP error: status code 403, net::ERR_HTTP_RESPONSE_CODE_FAILURE
+DevTools failed to load source map: Could not load content for https://browserstack-frontend-extensions-assets-stag-euc1.s3.amazonaws.com/accessibility-toolkit/production/6.5.0.0/SelectorHelper.js-f10c95d0.js.map: HTTP error: status code 403, net::ERR_HTTP_RESPONSE_CODE_FAILURE
+DevTools failed to load source map: Could not load content for https://browserstack-frontend-extensions-assets-stag-euc1.s3.amazonaws.com/accessibility-toolkit/production/6.5.0.0/a11y-engine-core.min.js-8a5bd4bc.js.map: HTTP error: status code 403, net::ERR_HTTP_RESPONSE_CODE_FAILURE
+DevTools failed to load source map: Could not load content for https://browserstack-frontend-extensions-assets-stag-euc1.s3.amazonaws.com/accessibility-toolkit/production/6.5.0.0/axe.min.js-acaab7ca.js.map: HTTP error: status code 403, net::ERR_HTTP_RESPONSE_CODE_FAILURE
+DevTools failed to load source map: Could not load content for https://browserstack-frontend-extensions-assets-stag-euc1.s3.amazonaws.com/accessibility-toolkit/production/6.5.0.0/content.js-5825398b.js.map: HTTP error: status code 403, net::ERR_HTTP_RESPONSE_CODE_FAILURE
+DevTools failed to load source map: Could not load content for https://browserstack-frontend-extensions-assets-stag-euc1.s3.amazonaws.com/accessibility-toolkit/production/6.5.0.0/hub.28752164-af7bc5bc.js.map: HTTP error: status code 403, net::ERR_HTTP_RESPONSE_CODE_FAILURE
+DevTools failed to load source map: Could not load content for https://browserstack-frontend-extensions-assets-stag-euc1.s3.amazonaws.com/accessibility-toolkit/production/6.5.0.0/issueTemplate-ae74b64d.js.map: HTTP error: status code 403, net::ERR_HTTP_RESPONSE_CODE_FAILURE
+DevTools failed to load source map: Could not load content for https://browserstack-frontend-extensions-assets-stag-euc1.s3.amazonaws.com/accessibility-toolkit/production/6.5.0.0/wcagVesionHelper-abc71421.js.map: HTTP error: status code 403, net::ERR_HTTP_RESPONSE_CODE_FAILURE
+DevTools failed to load source map: Could not load content for https://browserstack-frontend-extensions-assets-stag-euc1.s3.amazonaws.com/accessibility-toolkit/production/6.5.0.0/error-c50806dc.js.map: HTTP error: status code 403, net::ERR_HTTP_RESPONSE_CODE_FAILURE
+DevTools failed to load source map: Could not load content for https://browserstack-frontend-extensions-assets-stag-euc1.s3.amazonaws.com/accessibility-toolkit/production/6.5.0.0/sendMessage.constants.23747c93-0ee8faf0.js.map: HTTP error: status code 403, net::ERR_HTTP_RESPONSE_CODE_FAILURE
+DevTools failed to load source map: Could not load content for https://browserstack-frontend-extensions-assets-stag-euc1.s3.amazonaws.com/accessibility-toolkit/production/6.5.0.0/timeMetrics-7f270a47.js.map: HTTP error: status code 403, net::ERR_HTTP_RESPONSE_CODE_FAILURE
+DevTools failed to load source map: Could not load content for https://browserstack-frontend-extensions-assets-stag-euc1.s3.amazonaws.com/accessibility-toolkit/production/6.5.0.0/v4-04fa6d02.js.map: HTTP error: status code 403, net::ERR_HTTP_RESPONSE_CODE_FAILURE
+DevTools failed to load source map: Could not load content for https://browserstack-frontend-extensions-assets-stag-euc1.s3.amazonaws.com/accessibility-toolkit/production/6.5.0.0/environmentConstants-0f780222.js.map: HTTP error: status code 403, net::ERR_HTTP_RESPONSE_CODE_FAILURE
+DevTools failed to load source map: Could not load content for https://cdn.jsdelivr.net/npm/chart.umd.js.map: HTTP error: status code 404, net::ERR_HTTP_RESPONSE_CODE_FAILURE
+(index):1952 Failed to load network-health: TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at replace.js:34:33
+    at replace.js:19:5
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (replace.js:18:33)
+    at updateAgentStatus ((index):1884:21)
+    at loadRPCData ((index):1947:17)
+loadRPCData @ (index):1952
+(index):2022 Failed to load validators: TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at replace.js:34:33
+    at replace.js:19:5
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (replace.js:18:33)
+    at updateAgentStatus ((index):1884:21)
+    at loadValidators ((index):1996:13)
+loadValidators @ (index):2022
+replace.js:34 Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at replace.js:34:33
+    at replace.js:19:5
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (replace.js:18:33)
+    at updateAgentStatus ((index):1884:21)
+    at loadRPCData ((index):1953:17)
+(anonymous) @ replace.js:34
+(anonymous) @ replace.js:19
+n.default @ replace.js:18
+updateAgentStatus @ (index):1884
+loadRPCData @ (index):1953
+replace.js:34 Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'toSvg')
+    at replace.js:34:33
+    at replace.js:19:5
+    at Array.forEach (<anonymous>)
+    at n.default [as replace] (replace.js:18:33)
+    at updateAgentStatus ((index):1884:21)
+    at loadValidators ((index):2024:13)
