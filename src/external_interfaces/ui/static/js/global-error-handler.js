@@ -1,155 +1,229 @@
-// Global Error Handler - Prevents Dashboard Crashes
+// Global Error Handler - Prevents JavaScript Crashes
 console.log("Global error handler loading...");
 
 window.GlobalErrorHandler = {
     errorCount: 0,
     maxErrors: 10,
+    errorLog: [],
     
     init() {
-        this.setupGlobalErrorHandling();
-        this.setupConsoleOverrides();
+        this.setupErrorHandlers();
+        this.setupPromiseRejectionHandler();
         console.log("✅ Global error handler initialized");
     },
     
-    setupGlobalErrorHandling() {
-        // Catch unhandled JavaScript errors
+    setupErrorHandlers() {
         window.addEventListener('error', (event) => {
-            this.handleError('JavaScript Error', event.error, event.filename, event.lineno);
-            event.preventDefault(); // Prevent default browser error handling
+            this.handleError({
+                type: 'JavaScript Error',
+                message: event.message,
+                filename: event.filename,
+                lineno: event.lineno,
+                timestamp: new Date().toISOString()
+            });
         });
         
-        // Catch unhandled promise rejections
         window.addEventListener('unhandledrejection', (event) => {
-            this.handleError('Promise Rejection', event.reason);
+            this.handleError({
+                type: 'Promise Rejection',
+                message: event.reason?.message || event.reason,
+                filename: '',
+                lineno: 0,
+                timestamp: new Date().toISOString()
+            });
+            
+            // Prevent the error from appearing in console
             event.preventDefault();
         });
     },
     
-    setupConsoleOverrides() {
-        const originalError = console.error;
-        console.error = (...args) => {
-            this.logSafeError(...args);
-            originalError.apply(console, args);
+    setupPromiseRejectionHandler() {
+        // Override fetch to handle network errors gracefully
+        const originalFetch = window.fetch;
+        
+        window.fetch = async (...args) => {
+            try {
+                const response = await originalFetch.apply(this, args);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                return response;
+            } catch (error) {
+                this.handleNetworkError(args[0], error);
+                throw error;
+            }
         };
     },
     
-    handleError(type, error, filename = '', lineno = 0) {
+    handleError(errorInfo) {
         this.errorCount++;
+        this.errorLog.push(errorInfo);
         
+        // Keep only last 20 errors
+        if (this.errorLog.length > 20) {
+            this.errorLog.shift();
+        }
+        
+        // Log error safely
+        this.safeLog(errorInfo);
+        
+        // Handle specific error types
+        if (errorInfo.message.includes('toSvg')) {
+            this.handleFeatherError();
+        } else if (errorInfo.message.includes('orchestrator')) {
+            this.handleOrchestratorError();
+        } else if (errorInfo.message.includes('fetch')) {
+            this.handleFetchError();
+        }
+        
+        // Emergency fallback if too many errors
         if (this.errorCount > this.maxErrors) {
-            console.warn("Too many errors, suppressing further error handling");
-            return;
-        }
-        
-        const errorInfo = {
-            type,
-            message: error?.message || error?.toString() || 'Unknown error',
-            filename,
-            lineno,
-            timestamp: new Date().toISOString()
-        };
-        
-        // Log safely
-        this.logSafeError('Handled Error:', errorInfo);
-        
-        // Show user-friendly notification for critical errors
-        if (this.isCriticalError(errorInfo.message)) {
-            this.showErrorNotification(errorInfo.message);
+            this.activateEmergencyMode();
         }
     },
     
-    logSafeError(...args) {
+    handleNetworkError(url, error) {
+        const urlString = typeof url === 'string' ? url : url.toString();
+        
+        if (urlString.includes('/api/')) {
+            this.showUserFriendlyError('Network connection issue. Please check your internet connection.');
+        }
+    },
+    
+    handleFeatherError() {
+        // Replace feather icons with safe fallbacks
+        if (window.FeatherSafe) {
+            window.FeatherSafe.createFallbackIcons();
+        }
+    },
+    
+    handleOrchestratorError() {
+        // Show AI unavailable message
+        this.showUserFriendlyError('AI assistant temporarily unavailable. Basic features are still working.');
+    },
+    
+    handleFetchError() {
+        // Generic fetch error handling
+        this.showUserFriendlyError('Unable to load some data. Retrying automatically...');
+    },
+    
+    safeLog(errorInfo) {
         try {
-            // Safe logging that won't crash
-            const message = args.map(arg => 
-                typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
-            ).join(' ');
-            
-            console.warn('Safe Error Log:', message);
+            console.warn('Safe Error Log:', JSON.stringify(errorInfo, null, 2));
         } catch (e) {
-            // Even logging failed, just continue
+            console.warn('Safe Error Log:', 'Handled Error:', errorInfo);
         }
     },
     
-    isCriticalError(message) {
-        const criticalPatterns = [
-            'feather',
-            'toSvg',
-            'undefined is not an object',
-            'Cannot read properties of undefined',
-            'fetch'
-        ];
-        
-        return criticalPatterns.some(pattern => 
-            message.toLowerCase().includes(pattern.toLowerCase())
-        );
+    showUserFriendlyError(message) {
+        // Show toast notification instead of console error
+        this.showToast(message, 'warning');
     },
     
-    showErrorNotification(message) {
-        // Only show if not already showing
-        if (document.querySelector('.error-notification')) return;
+    showToast(message, type = 'info') {
+        const toast = document.createElement('div');
+        toast.className = `toast toast-${type}`;
+        toast.textContent = message;
         
-        const notification = document.createElement('div');
-        notification.className = 'error-notification';
-        notification.style.cssText = `
+        // Position toast
+        toast.style.cssText = `
             position: fixed;
             top: 20px;
             right: 20px;
-            z-index: 10000;
-            background: rgba(255, 71, 87, 0.9);
+            background: rgba(0, 0, 0, 0.9);
             color: white;
-            padding: 12px 16px;
-            border-radius: 8px;
+            padding: 1rem;
+            border-radius: 6px;
+            border-left: 4px solid ${type === 'warning' ? '#ffa500' : '#4a90e2'};
+            z-index: 10000;
             max-width: 300px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(10px);
+            animation: slideIn 0.3s ease;
         `;
         
-        notification.innerHTML = `
-            <div style="display: flex; align-items: center; gap: 8px;">
-                <span>⚠️</span>
-                <div>
-                    <div style="font-weight: 600; margin-bottom: 4px;">Dashboard Notice</div>
-                    <div style="font-size: 0.9rem;">Some features may be temporarily unavailable. Retrying...</div>
-                </div>
-                <button onclick="this.parentElement.parentElement.remove()" style="background: none; border: none; color: white; font-size: 18px; cursor: pointer; padding: 0; margin-left: 8px;">&times;</button>
-            </div>
-        `;
+        document.body.appendChild(toast);
         
-        document.body.appendChild(notification);
-        
-        // Auto-remove after 5 seconds
+        // Auto remove after 5 seconds
         setTimeout(() => {
-            if (notification.parentElement) {
-                notification.remove();
+            if (toast.parentElement) {
+                toast.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
             }
         }, 5000);
     },
     
-    // Safe function wrapper
-    safeExecute(fn, context = null, ...args) {
-        try {
-            return fn.apply(context, args);
-        } catch (error) {
-            this.handleError('Safe Execute', error);
-            return null;
-        }
+    activateEmergencyMode() {
+        console.warn('Emergency mode activated - too many errors detected');
+        
+        // Disable non-essential features
+        this.disableAnimations();
+        this.simplifyInterface();
+        
+        this.showToast('Simplified mode activated due to technical issues', 'warning');
     },
     
-    // Safe async function wrapper
-    async safeExecuteAsync(fn, context = null, ...args) {
-        try {
-            return await fn.apply(context, args);
-        } catch (error) {
-            this.handleError('Safe Execute Async', error);
-            return null;
-        }
+    disableAnimations() {
+        const style = document.createElement('style');
+        style.textContent = `
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        `;
+        document.head.appendChild(style);
+    },
+    
+    simplifyInterface() {
+        // Hide complex components that might be causing issues
+        const complexElements = document.querySelectorAll('.chart-container, .bim-viewer, [data-feather]');
+        complexElements.forEach(el => {
+            el.style.display = 'none';
+        });
+    },
+    
+    getErrorStats() {
+        return {
+            totalErrors: this.errorCount,
+            recentErrors: this.errorLog.slice(-5),
+            errorTypes: this.errorLog.reduce((acc, error) => {
+                acc[error.type] = (acc[error.type] || 0) + 1;
+                return acc;
+            }, {})
+        };
     }
 };
 
-// Initialize immediately
-window.GlobalErrorHandler.init();
+// Auto-initialize
+document.addEventListener('DOMContentLoaded', () => {
+    window.GlobalErrorHandler.init();
+});
 
-// Export safe execution methods globally
-window.safeExecute = (fn, ...args) => window.GlobalErrorHandler.safeExecute(fn, null, ...args);
-window.safeExecuteAsync = (fn, ...args) => window.GlobalErrorHandler.safeExecuteAsync(fn, null, ...args);
+// Add animation keyframes
+const errorStyle = document.createElement('style');
+errorStyle.textContent = `
+@keyframes slideIn {
+    from { 
+        opacity: 0; 
+        transform: translateX(100%); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateX(0); 
+    }
+}
+
+@keyframes slideOut {
+    from { 
+        opacity: 1; 
+        transform: translateX(0); 
+    }
+    to { 
+        opacity: 0; 
+        transform: translateX(100%); 
+    }
+}
+`;
+document.head.appendChild(errorStyle);

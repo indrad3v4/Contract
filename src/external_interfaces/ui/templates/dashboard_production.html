@@ -655,6 +655,14 @@ body, html {
 {% endblock %}
 
 {% block extra_js %}
+
+    <!-- Critical Dashboard Fixes -->
+    <script src="{{ url_for('static', filename='js/global-error-handler.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/feather-safe-loader.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/orchestrator-dom-fix.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/modal-fixes.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/font-fixes.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout-fixes.css') }}">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="{{ url_for('static', filename='js/ai-chat-enhanced.js') }}"></script>
 <script src="{{ url_for('static', filename='js/bim-viewer.js') }}"></script>
