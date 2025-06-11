@@ -1,0 +1,109 @@
+Perfect. Here’s your full GitHub Push Prompt tailored for DAODISEO, clean architecture, and TRIZ validation, ready to run inside a Replit agent or Claude/GPT-4 to prep your daodiseoAppA branch push:
+
+⸻
+
+🔧 GITHUB PUSH PROMPT (CLEAN ARCHITECTURE + TRIZ VALIDATION)
+
+You're acting as a full-stack AI architect preparing DAODISEO.APP for GitHub deployment in the `daodiseoAppA` branch. 
+
+Enforce Clean Architecture based on the canonical model:
+
+Entities → Use Cases → Interface Adapters → External Interfaces
+
+Validate and clean the codebase by running these actions:
+
+---
+
+### 🧪 1. VALIDATE OBJECTS + FLOW
+
+- Ensure all Python `class` instances (Wallet, Token, Property, etc.) are:
+  - Properly instantiated
+  - Consistently injected (no hardcoding in Flask routes or templates)
+  - Used only in their correct architecture layer
+- Check all variables passed between layers (e.g. orchestrator → dashboard → components) are synced and not redefined.
+- Flag unused or broken logic in any `/service`, `/gateway`, or `/repository` file.
+
+---
+
+### 🧠 2. APPLY TRIZ IDEALIZATION
+
+Use TRIZ principles to review the codebase as a system:
+
+- **Combine**: Support scripts that can be merged into valuable core files? (e.g. `wallet_service.py` + `wallet_repository.py`)
+- **Eliminate**: Remove/flag stale branches, broken test files, orphaned scripts, or UI routes that no longer serve UX
+- **Reprioritize**: Rank files/modules by criticality to clean user experience and AI-driven orchestration
+- **Human-centricity**: Rewrite any unclear variable names, module names, and comments that would confuse new contributors
+
+---
+
+### 📁 3. ENFORCE FOLDER STRUCTURE
+
+Refactor folders into this strict hierarchy (if needed):
+
+src/
+├── entities/                  # Token, Validator, Property models
+├── use_cases/                # tokenize_property.py, dashboard_use_cases.py
+├── interface_adapters/       # Repositories: wallet, BIM
+├── external_interfaces/      # Flask routes, dashboard controller
+├── services/
+│   ├── ai/                   # orchestrator.py (o3-mini)
+│   ├── chain/                # blockchain_gateway.py, cosmos_gateway.py
+│   └── security/            # security_utils.py
+├── static/                   # Fonts, CSS
+├── templates/                # Jinja views (if any)
+└── main.py, app.py, config.py
+
+---
+
+### 📚 4. UPDATE README.md
+
+Generate a README that includes:
+- Clean description of DAODISEO (1-paragraph overview)
+- Diagram/description of Clean Architecture structure
+- How to run locally in Replit
+- How to push to GitHub
+- How to access testnet endpoints (e.g. https://testnet-rpc.daodiseo.chaintools.tech)
+
+---
+
+### 🧱 5. UPDATE architecture.md
+
+Generate an updated `architecture.md` that includes:
+- Folder-by-folder description of all layers
+- How AI orchestrator fetches and syncs real-time blockchain data
+- How wallet connection, token investment, validator queries flow through the system
+
+---
+
+### 🚀 6. GIT CLEANUP + PUSH
+
+Once validated:
+- Keep only `daodiseoAppA` and optionally `replit-sync-clean`
+- Delete stale branches like:
+  - `codex/replace-mode-values-with-cosmos-enum`
+  - `codex/update-broadcasttransaction-logic`
+  - `latest-deployment-fixes`
+- Use this command flow to push:
+
+```bash
+git checkout daodiseoAppA
+git add .
+git commit -m "✅ Cleaned up architecture, validated TRIZ model, synced components, updated README"
+git push origin daodiseoAppA
+
+
+⸻
+
+🛠️ BONUS CHECK (Optional)
+
+Check for:
+	•	Fonts: Replace Google Fonts with Helvetica or local fallback to avoid CSP violation
+	•	RPC 429 Errors: Apply delay or cache for endpoints like /validators, /status, /tx_search
+
+⸻
+
+End goal: ✅ DAODISEO is pushed in perfect clean architecture shape, TRIZ-validated, lightweight, and human-readable.
+
+---
+
+Let me know if you want a **Claude-ready `.md` file** for this prompt or if I should help auto-run validation with a Replit Agent.
