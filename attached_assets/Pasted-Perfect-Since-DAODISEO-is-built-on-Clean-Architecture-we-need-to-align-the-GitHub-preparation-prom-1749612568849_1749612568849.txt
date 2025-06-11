@@ -1,0 +1,111 @@
+Perfect. Since DAODISEO is built on Clean Architecture, we need to align the GitHub preparation prompt with that paradigm—ensuring separation of concerns, dependency rule enforcement, and layered folder integrity.
+
+Here’s the restructured expert prompt for your final refactor and push:
+
+⸻
+
+🧠 Prompt: Prepare DAODISEO Codebase for GitHub Release (Clean Architecture-Aligned)
+
+🎯 Goal
+
+Prepare DAODISEO for a production-ready GitHub push by:
+	•	Validating class and variable integrity across the clean architecture layers
+	•	Prioritizing and optimizing files according to TRIZ principles
+	•	Refactoring the file system into Clean Architecture domains
+	•	Removing dead code
+	•	Enriching human experience flow
+	•	Updating README.md (deployment) and ARCHITECTURE.md (layered diagram)
+
+⸻
+
+🧱 Clean Architecture Structure (Strict Enforcement)
+
+src/
+├── entities/             # Core business objects (domain models)
+│   └── *.py
+├── use_cases/            # Application logic / orchestration
+│   └── *.py
+├── interface_adapters/   # Gateways, Repositories, Presenters
+│   ├── gateways/
+│   ├── repositories/
+│   └── presenters/
+├── external_interfaces/  # Controllers, Web/DB/UI entrypoints
+│   ├── flask_routes/
+│   ├── keplr/
+│   ├── vue_components/
+│   └── ai_agents/         # o3-mini
+
+
+⸻
+
+✅ Tasks
+
+1. Class + Variable Validation
+	•	Verify that all class instances (e.g. agents, presenters, investment flows) initialize with correct state
+	•	Confirm that variable sync across layers (e.g. from use_cases/ → presenters/) follows dependency direction (outer can depend on inner, never inverse)
+	•	Use static analyzers (mypy, pyright) and dynamic asserts (assert var is not None) in critical paths
+	•	Log undefined chains: undefined, toSvg, 0x… misbindings from Keplr
+
+2. TRIZ Expert Review
+	•	Identify contradictions (e.g. modal complexity vs fluid UX, or AI power vs device lag)
+	•	Solve using:
+	•	Segmentation: isolate AI analysis by “click to load” in bottom components
+	•	Dynamicity: modals replaced with dynamic components
+	•	Local Quality: AI returns formatted chain-aware results per component
+
+3. File Prioritization and Cleanup
+	•	Keep: all files used by orchestrator.py, dashboard_use_cases.py, wallet_repository.py
+	•	Concatenate: trivial helpers, security checks, and validators into interface_adapters/utils/
+	•	Remove: any *.bak, mock endpoints, dead JSONs, broken popup renderers, console.log clutter
+	•	Move UI styles/fonts to static folder to resolve CSP errors
+
+4. Human-Centered Enhancements
+	•	Use font-family: Helvetica, sans-serif across all UI CSS
+	•	Align buttons and popups within the component box model
+	•	Fix modal state: ESC-to-close, Z-index, and body scroll-lock
+	•	Add AI analysis preview state (e.g. “Chain snapshot ready. Click to expand.”)
+	•	Smooth interactions via requestIdleCallback for low-resource devices
+
+⸻
+
+📄 Docs to Update
+
+README.md
+
+Include:
+	•	📋 What is DAODISEO
+	•	🔐 How to connect Keplr
+	•	🧪 How to deploy:
+
+git clone https://github.com/daodiseo/app.git
+cd app
+npm install && npm run build
+flask run
+
+
+	•	🌐 Testnet endpoint: https://testnet-rpc.daodiseo.chaintools.tech
+	•	🧠 AI mode: o3-mini orchestrator via src/external_interfaces/ai_agents/orchestrator.py
+
+ARCHITECTURE.md
+
+Add:
+	•	🎯 Layered diagram (see Clean Architecture image)
+	•	🔄 Component flow:
+vue_component → flask_route → use_case → entity
+	•	📦 Endpoints used: /block, /validators, /tx_search
+	•	⚙️ AI loop structure: user action → orchestrator → result → presenter → component
+
+⸻
+
+🔄 Follow-up Options
+
+Would you like:
+	•	✔️ A full JSON of component → use_case → orchestrator mapping?
+	•	✔️ Linter config enforcing Clean Architecture import rules?
+	•	✔️ Auto-deploy GitHub workflow for Replit pushes?
+
+Let’s ship this clean, human-first Daodiseo version to the world 🧠✨
+
+⸻
+
+Would you like me to scaffold a README.md and ARCHITECTURE.md draft next based on this?
