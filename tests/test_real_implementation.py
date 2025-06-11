@@ -14,8 +14,8 @@ logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 # Import real implementations
-from src.gateways.multisig_gateway import MultiSigBlockchainGateway, SignatureRole
-from src.gateways.kepler_gateway import KeplerGateway
+from src.gateways.blockchain_gateways import MultiSigBlockchainGateway, SignatureRole
+from src.gateways.blockchain_gateways import KeplerGateway
 from src.services.account_service import AccountService
 from src.services.transaction_service import TransactionService
 from src.controllers.upload_controller import allowed_file

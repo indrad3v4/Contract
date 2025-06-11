@@ -8,7 +8,7 @@ import logging
 from typing import Union
 from flask import current_app
 from src.gateways.storage_gateway import LocalStorageGateway
-from src.gateways.bimserver_gateway import BIMServerGateway
+from src.gateways.bim_gateways import BIMServerGateway
 
 # Set up logging
 logger = logging.getLogger(__name__)

@@ -1,3 +1,6 @@
+"""Combined BIM controllers"""
+
+# ==== File: src/controllers/bim_agent_controller.py ====
 """
 BIM Agent Controller for handling AI-related routes
 """
@@ -9,10 +12,10 @@ from datetime import datetime
 from flask import Blueprint, jsonify, request, current_app
 import json
 
-from src.services.ai.bim_agent import BIMAgentManager
-from src.services.ai.orchestrator import get_orchestrator
-from src.services.ai.chain_brain_orchestrator import get_chain_brain_orchestrator
-from src.services.ai.chain_brain_service import get_chain_brain_service
+from src.services.ai_services.bim_agent import BIMAgentManager
+from src.services.ai_services.orchestrator import get_orchestrator
+from src.services.ai_services.chain_brain_orchestrator import get_chain_brain_orchestrator
+from src.services.ai_services.chain_brain_service import get_chain_brain_service
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
@@ -718,3 +721,381 @@ def suggest_liquidity(user_history, estimated_value):
 
     # Otherwise suggest 5% of the estimated value
     return round(estimated_value * 0.05, 2)
+
+# ==== File: src/controllers/bim_analysis_controller.py ====
+"""
+BIM Analysis Controller
+Handles property analysis requests using o3-mini AI integration
+"""
+
+import os
+import json
+import logging
+from flask import Blueprint, request, jsonify
+from openai import OpenAI
+from src.security_utils import secure_endpoint
+
+logger = logging.getLogger(__name__)
+
+bim_analysis_bp = Blueprint('bim_analysis', __name__, url_prefix='/api/bim-analysis')
+
+@bim_analysis_bp.route('/analyze-property')
+@secure_endpoint
+def analyze_property():
+    """Analyze property using o3-mini AI"""
+    asset_id = request.args.get('asset_id')
+    if not asset_id:
+        return jsonify({'success': False, 'error': 'Asset ID required'}), 400
+    
+    try:
+        # Property data mapping
+        property_data = {
+            'prop-001': {'name': 'Downtown Office Complex - Miami', 'type': 'Commercial', 'value': '$12.5M'},
+            'prop-002': {'name': 'Luxury Residential Tower - NYC', 'type': 'Residential', 'value': '$45.2M'},
+            'prop-003': {'name': 'Industrial Warehouse - Dallas', 'type': 'Industrial', 'value': '$8.9M'},
+            'prop-004': {'name': 'Mixed-Use Development - LA', 'type': 'Mixed-Use', 'value': '$28.7M'},
+            'property-downtown-001': {'name': 'Downtown Office Complex', 'type': 'Commercial', 'value': '$2.4M'},
+            'property-residential-002': {'name': 'Luxury Residential Tower', 'type': 'Residential', 'value': '$8.9M'},
+            'property-industrial-003': {'name': 'Industrial Warehouse Complex', 'type': 'Industrial', 'value': '$1.2M'}
+        }.get(asset_id, {'name': 'Unknown Property', 'type': 'Unknown', 'value': '$0'})
+        
+        # Use o3-mini for analysis
+        client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+        
+        prompt = f"""
+        Analyze the following real estate property for tokenization and investment potential:
+        
+        Property: {property_data['name']}
+        Type: {property_data['type']}
+        Value: {property_data['value']}
+        
+        Provide comprehensive investment analysis including:
+        - Investment score (1-10)
+        - ROI projection (annual percentage)  
+        - Risk assessment (Low/Medium/High)
+        - Liquidity analysis
+        - Market positioning
+        - Tokenization benefits
+        - Detailed analysis report
+        - Confidence score (0-1)
+        
+        Return as JSON with all metrics calculated.
+        """
+        
+        response = client.chat.completions.create(
+            model="gpt-4o",
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are a real estate investment analyst specializing in tokenization. Provide detailed investment analysis for properties. Always return data in JSON format with real calculations."
+                },
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ],
+            response_format={"type": "json_object"},
+            temperature=0.3
+        )
+        
+        analysis = json.loads(response.choices[0].message.content)
+        
+        return jsonify({
+            'success': True,
+            'analysis': analysis
+        })
+        
+    except Exception as e:
+        logger.error(f"Property analysis error: {e}")
+        return jsonify({
+            'success': False,
+            'error': 'Property analysis service temporarily unavailable'
+        }), 500
+
+@bim_analysis_bp.route('/investment-analysis', methods=['POST'])
+@secure_endpoint
+def investment_analysis():
+    """Generate investment analysis for property"""
+    data = request.get_json()
+    if not data or not data.get('asset_id'):
+        return jsonify({'success': False, 'error': 'Asset ID required'}), 400
+    
+    try:
+        asset_id = data['asset_id']
+        wallet_address = data.get('wallet_address', '')
+        
+        # Property data mapping
+        property_data = {
+            'prop-001': {'name': 'Downtown Office Complex - Miami', 'type': 'Commercial', 'value': '$12.5M'},
+            'prop-002': {'name': 'Luxury Residential Tower - NYC', 'type': 'Residential', 'value': '$45.2M'},
+            'prop-003': {'name': 'Industrial Warehouse - Dallas', 'type': 'Industrial', 'value': '$8.9M'},
+            'prop-004': {'name': 'Mixed-Use Development - LA', 'type': 'Mixed-Use', 'value': '$28.7M'},
+            'property-downtown-001': {'name': 'Downtown Office Complex', 'type': 'Commercial', 'value': '$2.4M'},
+            'property-residential-002': {'name': 'Luxury Residential Tower', 'type': 'Residential', 'value': '$8.9M'},
+            'property-industrial-003': {'name': 'Industrial Warehouse Complex', 'type': 'Industrial', 'value': '$1.2M'}
+        }.get(asset_id, {'name': 'Unknown Property', 'type': 'Unknown', 'value': '$0'})
+        
+        # Use o3-mini for investment analysis
+        client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+        
+        prompt = f"""
+        Generate investment opportunity analysis for tokenized real estate:
+        
+        Property: {property_data['name']}
+        Type: {property_data['type']}
+        Value: {property_data['value']}
+        Investor Wallet: {wallet_address}
+        
+        Calculate and provide:
+        - Minimum investment amount in ODIS tokens
+        - Expected annual returns percentage
+        - Token allocation percentage
+        - Vesting period
+        - Investment strategy recommendations
+        - Risk mitigation factors
+        - Market timing analysis
+        - Confidence score (0-1)
+        
+        Return as JSON with all investment metrics.
+        """
+        
+        response = client.chat.completions.create(
+            model="gpt-4o",
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are an investment advisor specializing in tokenized real estate. Provide detailed investment opportunities with calculated metrics. Always return data in JSON format."
+                },
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ],
+            response_format={"type": "json_object"},
+            temperature=0.3
+        )
+        
+        analysis = json.loads(response.choices[0].message.content)
+        
+        return jsonify({
+            'success': True,
+            'investment_analysis': analysis.get('analysis', 'Investment analysis complete'),
+            'min_investment': analysis.get('min_investment', '1,000 ODIS'),
+            'expected_returns': analysis.get('expected_returns', '15.2% APY'),
+            'token_allocation': analysis.get('token_allocation', '0.05%'),
+            'vesting_period': analysis.get('vesting_period', '12 months'),
+            'confidence': analysis.get('confidence', 0.85)
+        })
+        
+    except Exception as e:
+        logger.error(f"Investment analysis error: {e}")
+        return jsonify({
+            'success': False,
+            'error': 'Investment analysis service temporarily unavailable'
+        }), 500
+# ==== File: src/controllers/bim_controller.py ====
+"""
+BIM Controller for the Real Estate Tokenization platform.
+Handles BIM-related API endpoints and view rendering.
+"""
+
+import logging
+import os
+from typing import Dict, List
+from flask import Blueprint, jsonify, render_template, request, current_app
+
+from src.services.ai_services.bim_agent import BIMAgentManager
+from src.services.ai_services.ai_agent_service import AIAgentService
+from src.gateways.bim_gateways import IFCGateway
+
+# Configure logging
+logger = logging.getLogger(__name__)
+
+# Create a Flask Blueprint
+bim_bp = Blueprint("bim", __name__, url_prefix="/api/bim")
+
+# Initialize services
+bim_agent_manager = BIMAgentManager()
+ai_service = AIAgentService()
+
+@bim_bp.route("/load", methods=["POST"])
+def load_bim_file():
+    """API endpoint to load a BIM file"""
+    try:
+        data = request.json
+        file_path = data.get("file_path")
+        
+        if not file_path:
+            return jsonify({
+                "success": False,
+                "message": "No file path provided"
+            }), 400
+            
+        # Ensure file exists
+        if not os.path.exists(file_path):
+            return jsonify({
+                "success": False,
+                "message": f"File not found: {file_path}"
+            }), 404
+            
+        # Attempt to load file using BIM agent manager
+        result = bim_agent_manager.load_ifc_file(file_path)
+        return jsonify(result)
+        
+    except Exception as e:
+        logger.error(f"Error loading BIM file: {e}")
+        return jsonify({
+            "success": False,
+            "message": f"Error: {str(e)}"
+        }), 500
+
+@bim_bp.route("/building-data", methods=["GET"])
+def get_building_data():
+    """API endpoint to get building data"""
+    try:
+        result = bim_agent_manager.get_building_data()
+        return jsonify(result)
+        
+    except Exception as e:
+        logger.error(f"Error getting building data: {e}")
+        return jsonify({
+            "success": False,
+            "message": f"Error: {str(e)}"
+        }), 500
+
+@bim_bp.route("/process-message", methods=["POST"])
+def process_message():
+    """API endpoint to process a message using the BIM agent"""
+    try:
+        data = request.json
+        message = data.get("message")
+        
+        if not message:
+            return jsonify({
+                "success": False,
+                "message": "No message provided"
+            }), 400
+            
+        # Process the message using BIM agent manager
+        result = bim_agent_manager.process_message(message)
+        return jsonify(result)
+        
+    except Exception as e:
+        logger.error(f"Error processing message: {e}")
+        return jsonify({
+            "success": False,
+            "message": f"Error: {str(e)}"
+        }), 500
+
+@bim_bp.route("/element/<element_id>", methods=["GET"])
+def get_element(element_id):
+    """API endpoint to get element details by ID"""
+    try:
+        result = bim_agent_manager.get_element_by_id(element_id)
+        return jsonify(result)
+        
+    except Exception as e:
+        logger.error(f"Error getting element: {e}")
+        return jsonify({
+            "success": False,
+            "message": f"Error: {str(e)}"
+        }), 500
+
+@bim_bp.route("/element-types", methods=["GET"])
+def get_element_types():
+    """API endpoint to get all element types"""
+    try:
+        element_types = bim_agent_manager.get_element_types()
+        return jsonify({
+            "success": True,
+            "element_types": element_types
+        })
+        
+    except Exception as e:
+        logger.error(f"Error getting element types: {e}")
+        return jsonify({
+            "success": False,
+            "message": f"Error: {str(e)}"
+        }), 500
+
+@bim_bp.route("/elements/<element_type>", methods=["GET"])
+def get_elements_by_type(element_type):
+    """API endpoint to get all elements of a specific type"""
+    try:
+        elements = bim_agent_manager.get_elements_by_type(element_type)
+        return jsonify({
+            "success": True,
+            "elements": elements
+        })
+        
+    except Exception as e:
+        logger.error(f"Error getting elements by type: {e}")
+        return jsonify({
+            "success": False,
+            "message": f"Error: {str(e)}"
+        }), 500
+
+@bim_bp.route("/enhanced-mode", methods=["POST"])
+def toggle_enhanced_mode():
+    """API endpoint to toggle enhanced mode"""
+    try:
+        data = request.json
+        enabled = data.get("enabled", True)
+        
+        result = bim_agent_manager.toggle_enhanced_mode(enabled)
+        return jsonify(result)
+        
+    except Exception as e:
+        logger.error(f"Error toggling enhanced mode: {e}")
+        return jsonify({
+            "success": False,
+            "message": f"Error: {str(e)}"
+        }), 500
+
+@bim_bp.route("/enhanced-status", methods=["GET"])
+def get_enhanced_status():
+    """API endpoint to get enhanced mode status"""
+    try:
+        is_enhanced = bim_agent_manager.get_enhanced_mode()
+        return jsonify({
+            "success": True,
+            "enhanced_mode": is_enhanced
+        })
+        
+    except Exception as e:
+        logger.error(f"Error getting enhanced mode status: {e}")
+        return jsonify({
+            "success": False,
+            "message": f"Error: {str(e)}"
+        }), 500
+
+@bim_bp.route("/analyze", methods=["POST"])
+def analyze_bim_file():
+    """API endpoint to perform AI analysis on a BIM file"""
+    try:
+        data = request.json
+        file_path = data.get("file_path")
+        
+        if not file_path:
+            return jsonify({
+                "success": False,
+                "message": "No file path provided"
+            }), 400
+            
+        # Ensure file exists
+        if not os.path.exists(file_path):
+            return jsonify({
+                "success": False,
+                "message": f"File not found: {file_path}"
+            }), 404
+            
+        # Use AI service to analyze file
+        analysis = ai_service.analyze_ifc_file(file_path)
+        return jsonify(analysis)
+        
+    except Exception as e:
+        logger.error(f"Error analyzing BIM file: {e}")
+        return jsonify({
+            "success": False,
+            "message": f"Error: {str(e)}"
+        }), 500

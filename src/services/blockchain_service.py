@@ -11,7 +11,7 @@ import base64
 import dotenv
 from typing import Dict, Any, Optional, List
 
-from src.gateways.pingpub_gateway import PingPubGateway
+from src.gateways.blockchain_gateways import PingPubGateway
 
 # Set up logging
 logger = logging.getLogger(__name__)
