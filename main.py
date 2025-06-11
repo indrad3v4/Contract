@@ -134,6 +134,43 @@ def contracts():
     return render_template("contracts.html")
 
 
+@app.route('/api/bim/assets')
+def bim_assets():
+    """Get available BIM assets for investment"""
+    # For now, return demo assets until IFC upload system is fully implemented
+    assets = [
+        {
+            'id': 'property-downtown-001',
+            'name': 'Downtown Office Complex',
+            'value': 2400000,
+            'type': 'Commercial',
+            'status': 'verified',
+            'uploaded_at': '2025-06-10T14:30:00Z'
+        },
+        {
+            'id': 'property-residential-002', 
+            'name': 'Luxury Residential Tower',
+            'value': 8900000,
+            'type': 'Residential',
+            'status': 'verified',
+            'uploaded_at': '2025-06-09T09:15:00Z'
+        },
+        {
+            'id': 'property-industrial-003',
+            'name': 'Industrial Warehouse Complex',
+            'value': 1200000,
+            'type': 'Industrial',
+            'status': 'pending',
+            'uploaded_at': '2025-06-11T08:45:00Z'
+        }
+    ]
+    
+    return jsonify({
+        'success': True,
+        'assets': assets
+    })
+
+
 # Error handlers
 @app.errorhandler(404)
 def page_not_found(e):

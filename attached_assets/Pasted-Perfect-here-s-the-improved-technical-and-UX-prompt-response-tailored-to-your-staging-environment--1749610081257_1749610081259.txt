@@ -1,0 +1,78 @@
+Perfect — here’s the improved technical and UX prompt response tailored to your staging environment.
+
+⸻
+
+✅ Prompt: Final Dashboard Fixes for DAODISEO
+
+🎯 GOAL:
+
+Ensure DAODISEO dashboard is fully functional, responsive, and powered by accurate on-demand o3-mini orchestrator insights, consistent Helvetic UI styling, and stable wallet auth. Fix all remaining bugs before deploy.
+
+⸻
+
+📦 RETURN FORMAT:
+	•	Fix Keplr auth (double-connect bug and console toSvg error)
+	•	Standardize font to Helvetica across dashboard
+	•	Fix component layout overflow: components must:
+	•	Be taller (2x current height)
+	•	Fit neatly in grid layout within main body (not bleed into footer)
+	•	Implement on-demand o3-mini loads:
+	•	Show button Load Analysis if not yet loaded
+	•	Fetch real chain data from: https://testnet-rpc.daodiseo.chaintools.tech
+	•	Display analysis results inside each component — not in popup
+	•	Show status badge: 🟡 Fetching live data…, then ✅ Analysis Ready
+	•	BIM Assistant:
+	•	Must include dropdown of available assets
+	•	Buttons (Launch Assistant, Invest Now) must not break layout or render full-screen overlay
+	•	Responses must render in right-side body, not below or behind left panel
+	•	Fix Asset Distribution:
+	•	Format values as $24,000,000 (use Intl.NumberFormat)
+	•	Add $ where missing
+	•	Fix Recent Transactions + Validators:
+	•	Validate chain source is testnet-rpc.daodiseo.chaintools.tech
+	•	Add fallback or retry if response empty
+	•	Improve component response UX:
+	•	When clicked: show skeleton loader → real content
+	•	If failed: show ❌ Error fetching data. Click to retry.
+	•	Fix layout bug:
+	•	Footer should always be below content
+	•	Last row of components shouldn’t be hidden
+	•	Refactor modal behavior (Keplr popup & Assistant overlay):
+	•	Must be closable (Escape key + X button)
+	•	Render modals inside the component container — never full-screen
+	•	Standardize chain data orchestration:
+	•	Use src/services/ai/orchestrator.py to:
+	•	Route chain queries
+	•	Format response (JSON + confidence score)
+	•	Return short insight + detailed breakdown
+	•	Fix 429 (Too Many Requests):
+	•	Add debounce (500–1000ms) on orchestrator calls
+	•	Limit calls to o3-mini with onClick only
+	•	Patch feather.min.js:12 toSvg error:
+	•	Check if feather.replace() is run after DOM is ready
+	•	Add if (el) feather.replace() before call
+	•	Remove deprecated font policy error:
+	•	Load Google Fonts through CDN jsdelivr or self-host Helvetica
+
+⸻
+
+⚠️ WARNINGS:
+	•	Don’t overload DOM on page load with o3-mini calls — use lazy execution
+	•	Don’t allow popup modals to overlay fixed layout (left sidebar or header)
+	•	Don’t fetch chain data if already cached unless manually refreshed
+	•	Don’t ignore Keplr not connected bug — fix silent auth fails
+
+⸻
+
+🧠 CONTEXT:
+	•	Frontend: HTML/CSS/JS (static bundle)
+	•	Backend: Flask (routes render popups currently, must be fixed)
+	•	AI: o3-mini orchestrator (via OpenAI agents SDK)
+	•	Chain: Odiseo Testnet RPC (https://testnet-rpc.daodiseo.chaintools.tech)
+	•	Font: Helvetica only
+	•	Design spec: Dark UI, neon highlights, grid-based layout
+	•	Auth: Keplr wallet connect → unlock dashboard actions
+
+⸻
+
+Would you like this turned into a GitHub issue format or Replit bot-ready spec next?
