@@ -3,7 +3,7 @@ import logging
 from flask import Blueprint, request, jsonify, current_app
 from werkzeug.utils import secure_filename
 from src.external_interfaces.config import Config
-from src.services.ai.bim_agent import BIMAgentManager
+from src.services.ai_services.bim_agent import BIMAgentManager
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)

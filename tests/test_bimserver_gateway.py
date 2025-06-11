@@ -10,7 +10,7 @@ import io
 import logging
 import tempfile
 from unittest.mock import patch, MagicMock, mock_open
-from src.gateways.bimserver_gateway import BIMServerGateway
+from src.gateways.bim_gateways import BIMServerGateway
 from src.gateways.storage_factory import StorageFactory
 from src.gateways.storage_gateway import LocalStorageGateway
 
@@ -45,7 +45,7 @@ def mock_error_response():
 def mock_bimserver_gateway():
     """Create a mock BIMserver gateway with authentication bypassed."""
     with patch(
-        "src.gateways.bimserver_gateway.BIMServerGateway._authenticate"
+        "src.gateways.bim_gateways.BIMServerGateway._authenticate"
     ) as mock_auth:
         gateway = BIMServerGateway(
             base_url=SAMPLE_BASE_URL, username=SAMPLE_USERNAME, password=SAMPLE_PASSWORD
@@ -237,7 +237,7 @@ class TestStorageFactory:
             # App is already configured with BIMSERVER_ENABLED = True in the fixture
             
             with patch(
-                "src.gateways.bimserver_gateway.BIMServerGateway.__init__",
+                "src.gateways.bim_gateways.BIMServerGateway.__init__",
                 side_effect=Exception("BIMserver connection failed"),
             ):
                 storage = StorageFactory.create_storage_gateway()

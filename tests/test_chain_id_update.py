@@ -65,7 +65,7 @@ class TestChainIdUpdate:
     def test_pingpub_gateway_chain_id(self, mock_get, environment_vars):
         """Test that PingPubGateway is initialized with the correct chain ID"""
         # Import here to avoid loading the module outside of the test
-        from src.gateways.pingpub_gateway import PingPubGateway
+        from src.gateways.blockchain_gateways import PingPubGateway
         
         # Setup mock response for validators endpoint
         mock_response = MagicMock()
@@ -74,7 +74,7 @@ class TestChainIdUpdate:
         mock_get.return_value = mock_response
         
         # Initialize gateway with patched contract address check
-        with patch('src.gateways.pingpub_gateway.PingPubGateway.__init__', return_value=None) as mock_init:
+        with patch('src.gateways.blockchain_gateways.PingPubGateway.__init__', return_value=None) as mock_init:
             gateway = PingPubGateway()
             gateway.chain_id = "ithaca-1"
             gateway.base_url = "https://testnet.explorer.chaintools.tech/odiseo/api/"

@@ -6,8 +6,8 @@ import logging
 import os
 from flask import Blueprint, jsonify, request, current_app
 
-from src.services.ai.ai_agent_service import AIAgentService
-from src.gateways.ifc.ifc_gateway import IFCGateway
+from src.services.ai_services.ai_agent_service import AIAgentService
+from src.gateways.bim_gateways import IFCGateway
 
 # Configure logging
 logger = logging.getLogger(__name__)

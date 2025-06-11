@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 agents_bp = Blueprint("agents", __name__, url_prefix="/api/agents")
 
 try:
-    from src.services.ai.agent_initialization import get_initialized_agent_controller
+    from src.services.ai_services.agent_initialization import get_initialized_agent_controller
     agent_controller = get_initialized_agent_controller()
     logger.info("Agent controller initialized successfully")
 except ImportError as e:
@@ -162,7 +162,7 @@ def query_agents():
 def get_orchestrator_status():
     """Get orchestrator performance analytics"""
     try:
-        from src.services.ai.orchestrator import get_orchestrator
+        from src.services.ai_services.orchestrator import get_orchestrator
         orchestrator = get_orchestrator()
         
         analytics = orchestrator.get_performance_analytics()
@@ -182,7 +182,7 @@ def get_orchestrator_status():
 def orchestrate_task():
     """Execute task through orchestrator"""
     try:
-        from src.services.ai.orchestrator import get_orchestrator
+        from src.services.ai_services.orchestrator import get_orchestrator
         orchestrator = get_orchestrator()
         
         data = request.get_json()

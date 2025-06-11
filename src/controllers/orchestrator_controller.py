@@ -5,7 +5,7 @@ Routes all component data requests through o3-mini AI orchestrator with real RPC
 
 import logging
 from flask import Blueprint, jsonify, request
-from src.services.ai.openai_agents_orchestrator import DaodiseoAgentsOrchestrator
+from src.services.ai_services.openai_agents_orchestrator import DaodiseoAgentsOrchestrator
 from src.services.rpc_service import DaodiseoRPCService
 from src.security_utils import secure_endpoint
 
