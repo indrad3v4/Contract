@@ -1,0 +1,37 @@
+Ok focus on 3 last things :
+1. Active validators component content are goes out the borders, and ai part in component even under footer, it’s wrong. Use correct endpoints across all components Available endpoints:
+
+Endpoints that require arguments:
+//testnet-rpc.daodiseo.chaintools.tech/abci_info?
+//testnet-rpc.daodiseo.chaintools.tech/abci_query?path=_&data=_&height=_&prove=_
+//testnet-rpc.daodiseo.chaintools.tech/block?height=_
+//testnet-rpc.daodiseo.chaintools.tech/block_by_hash?hash=_
+//testnet-rpc.daodiseo.chaintools.tech/block_results?height=_
+//testnet-rpc.daodiseo.chaintools.tech/block_search?query=_&page=_&per_page=_&order_by=_
+//testnet-rpc.daodiseo.chaintools.tech/blockchain?minHeight=_&maxHeight=_
+//testnet-rpc.daodiseo.chaintools.tech/broadcast_evidence?evidence=_
+//testnet-rpc.daodiseo.chaintools.tech/broadcast_tx_async?tx=_
+//testnet-rpc.daodiseo.chaintools.tech/broadcast_tx_commit?tx=_
+//testnet-rpc.daodiseo.chaintools.tech/broadcast_tx_sync?tx=_
+//testnet-rpc.daodiseo.chaintools.tech/check_tx?tx=_
+//testnet-rpc.daodiseo.chaintools.tech/commit?height=_
+//testnet-rpc.daodiseo.chaintools.tech/consensus_params?height=_
+//testnet-rpc.daodiseo.chaintools.tech/consensus_state?
+//testnet-rpc.daodiseo.chaintools.tech/dump_consensus_state?
+//testnet-rpc.daodiseo.chaintools.tech/genesis?
+//testnet-rpc.daodiseo.chaintools.tech/genesis_chunked?chunk=_
+//testnet-rpc.daodiseo.chaintools.tech/header?height=_
+//testnet-rpc.daodiseo.chaintools.tech/header_by_hash?hash=_
+//testnet-rpc.daodiseo.chaintools.tech/health?
+//testnet-rpc.daodiseo.chaintools.tech/net_info?
+//testnet-rpc.daodiseo.chaintools.tech/num_unconfirmed_txs?
+//testnet-rpc.daodiseo.chaintools.tech/status?
+//testnet-rpc.daodiseo.chaintools.tech/subscribe?query=_
+//testnet-rpc.daodiseo.chaintools.tech/tx?hash=_&prove=_
+//testnet-rpc.daodiseo.chaintools.tech/tx_search?query=_&prove=_&page=_&per_page=_&order_by=_
+//testnet-rpc.daodiseo.chaintools.tech/unconfirmed_txs?limit=_
+//testnet-rpc.daodiseo.chaintools.tech/unsubscribe?query=_
+//testnet-rpc.daodiseo.chaintools.tech/unsubscribe_all?
+//testnet-rpc.daodiseo.chaintools.tech/validators?height=_&page=_&per_page=_
+
+2. 2 buttons in 3d bim agent components still raise deadend pop ups instead dynamic component itself 

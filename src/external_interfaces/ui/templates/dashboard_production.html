@@ -155,11 +155,40 @@ body, html {
     padding: 1.5rem !important;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
     transition: all 0.3s ease !important;
-    min-height: 440px !important;
+    height: 440px !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: flex-start !important;
     position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Fixed container bounds for all content */
+.agent-card-content {
+    flex: 1 !important;
+    overflow-y: auto !important;
+    max-height: calc(440px - 120px) !important;
+    padding-right: 0.5rem !important;
+}
+
+/* Specific scrollable containers */
+.validators-container,
+.transactions-container,
+.analysis-content {
+    max-height: 280px !important;
+    overflow-y: auto !important;
+    padding-bottom: 1rem !important;
+}
+
+/* BIM agent inline response container */
+.bim-response-container {
+    max-height: 250px !important;
+    overflow-y: auto !important;
+    margin-top: 1rem !important;
+    padding: 1rem !important;
+    background: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 8px !important;
 }
 
 .agent-card:hover {
@@ -520,12 +549,19 @@ body, html {
                     <i data-feather="cube" style="width: 48px; height: 48px; margin-bottom: 1rem;"></i>
                     <p>Enhanced AI-powered real estate analysis</p>
                     <div class="bim-assistant-actions">
-                        <button class="btn btn-sm btn-outline-info" data-ai-assistant>
+                        <button class="btn btn-sm btn-outline-info launch-assistant-btn">
                             <i data-feather="play" class="icon-inline-xs"></i> Launch Assistant
                         </button>
-                        <button class="invest-button" data-invest-modal>
+                        <button class="btn btn-sm btn-success invest-now-btn">
                             <i data-feather="trending-up" class="icon-inline-xs"></i> Invest Now
                         </button>
+                    </div>
+                    
+                    <!-- Asset Selection -->
+                    <div class="mt-3">
+                        <select class="form-control asset-selector" style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); color: white;">
+                            <option value="">Select Property Asset</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -558,9 +594,11 @@ body, html {
                     <i data-feather="loader" class="icon-inline-xs"></i> Loading
                 </span>
             </div>
-            <div id="recent-transactions-container">
-                <div class="loading-spinner"></div>
-                <span class="agent-meta ml-2">Loading transactions...</span>
+            <div class="agent-card-content">
+                <div id="recent-transactions-container" class="transactions-container">
+                    <div class="loading-spinner"></div>
+                    <span class="agent-meta ml-2">Loading transactions...</span>
+                </div>
             </div>
         </div>
 
@@ -575,9 +613,11 @@ body, html {
                     <i data-feather="loader" class="icon-inline-xs"></i> Loading
                 </span>
             </div>
-            <div id="validators-container">
-                <div class="loading-spinner"></div>
-                <span class="agent-meta ml-2">Loading validators...</span>
+            <div class="agent-card-content">
+                <div id="validators-container" class="validators-container">
+                    <div class="loading-spinner"></div>
+                    <span class="agent-meta ml-2">Loading validators...</span>
+                </div>
             </div>
         </div>
 
