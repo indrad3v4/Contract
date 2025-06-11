@@ -1,24 +1,11 @@
-<<<<<<< HEAD
-modules = ["python-3.11", "python3", "nodejs-20"]
-
-[nix]
-channel = "stable-24_05"
-packages = ["boost", "c-ares", "freetype", "geckodriver", "grpc", "icu", "lcms2", "libimagequant", "libjpeg", "libtiff", "libwebp", "libxcrypt", "opencascade-occt", "opencollada", "openjpeg", "openssl", "pcre", "pkg-config", "swig", "tcl", "tk", "zlib"]
-
-[deployment]
-deploymentTarget = "autoscale"
-run = ["sh", "-c", "gunicorn --bind 0.0.0.0:5000 main:app"]
-=======
 modules = ["python-3.11"]
 
 [nix]
 channel = "stable-24_05"
-packages = ["boost", "c-ares", "grpc", "icu", "opencascade-occt", "opencollada", "openssl", "pcre", "pkg-config", "swig", "zlib"]
 
 [deployment]
 deploymentTarget = "autoscale"
 run = ["gunicorn", "--bind", "0.0.0.0:5000", "main:app"]
->>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
 
 [workflows]
 runButton = "Project"
@@ -30,13 +17,6 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-<<<<<<< HEAD
-args = "DAODISEO Main Server"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "Contract Server Updated"
-=======
 args = "Flask Web App"
 
 [[workflows.workflow]]
@@ -47,10 +27,12 @@ author = "agent"
 agentRequireRestartOnSave = false
 
 [[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "python -c \"import dotenv; dotenv.load_dotenv('.env'); print('Environment variables loaded successfully')\" && python main.py"
+args = "python main.py"
 waitForPort = 5000
->>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
 
 [[workflows.workflow]]
 name = "Run Flask App"
@@ -61,70 +43,6 @@ mode = "sequential"
 task = "shell.exec"
 args = "python main.py"
 
-<<<<<<< HEAD
-[[workflows.workflow]]
-name = "Flask Dev + Console"
-author = 19011026
-mode = "parallel"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "export FLASK_APP=main.py FLASK_ENV=development && python -m flask run --host=0.0.0.0 --port=5000"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npx browser-console-log --url http://localhost:5000"
-
-[[workflows.workflow]]
-name = "DAODISEO Main Server"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "python main.py"
-waitForPort = 5000
-
-[[workflows.workflow]]
-name = "Environment Parity Check"
-author = 19011026
-mode = "sequential"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "python scripts/validate_environment_parity.py"
-
-[[workflows.workflow]]
-name = "Interactive Debug Session"
-author = 19011026
-mode = "sequential"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "bash scripts/run_debug_session.sh"
-
-[[workflows.workflow]]
-name = "Debug & Coverage Analysis"
-author = 19011026
-mode = "sequential"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "python scripts/coverage_analysis.py"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "python scripts/interactive_debug_session.py"
-
-[[ports]]
-localPort = 3000
-externalPort = 3000
-
-[[ports]]
-localPort = 3001
-externalPort = 3001
-
-=======
->>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
 [[ports]]
 localPort = 5000
 externalPort = 80
