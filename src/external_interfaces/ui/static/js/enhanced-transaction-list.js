@@ -150,7 +150,7 @@ class EnhancedTransactionList {
 // Initialize enhanced transaction list
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
-        new EnhancedTransactionList();
+        // EnhancedTransactionList disabled - using on-demand loading
     }, 2000);
 });
 

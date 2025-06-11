@@ -204,7 +204,8 @@ window.DashboardOrchestrator = {
         }
         
         // Set up periodic refresh
-        setInterval(() => {
+        // Periodic updates disabled
+        // setInterval(() => {
             this.loadTokenMetrics();
             this.loadStakingMetrics();
             this.loadNetworkHealth();
@@ -215,7 +216,7 @@ window.DashboardOrchestrator = {
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
-        window.DashboardOrchestrator.initializeAll();
+        // Auto-initialization disabled - now on-demand only
     }, 1000);
 });
 

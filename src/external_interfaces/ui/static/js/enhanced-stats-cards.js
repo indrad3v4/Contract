@@ -131,7 +131,7 @@ class EnhancedStatsCards {
 // Initialize enhanced stats cards
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
-        new EnhancedStatsCards();
+        // EnhancedStatsCards disabled - using on-demand AI
     }, 1500);
 });
 
