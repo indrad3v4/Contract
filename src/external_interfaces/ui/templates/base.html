@@ -6,14 +6,8 @@
     <title>{% block title %}DAODISEO - Real Estate Tokenization
 {% endblock %}</title>
     
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Local fonts to avoid CSP violations -->
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
-    </style>
+    <!-- Self-hosted fonts to avoid CSP violations -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fonts.css') }}">
     
     <!-- Icon System - Safe Unicode Replacement -->
     <script>

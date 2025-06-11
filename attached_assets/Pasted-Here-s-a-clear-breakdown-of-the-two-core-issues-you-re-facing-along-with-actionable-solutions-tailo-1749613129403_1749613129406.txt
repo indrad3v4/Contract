@@ -1,0 +1,147 @@
+Here’s a clear breakdown of the two core issues you’re facing, along with actionable solutions tailored for DAODISEO’s clean architecture and Replit deployment context:
+
+⸻
+
+🚫 Issue 1: Google Fonts Blocked by Content Security Policy (CSP)
+
+Error:
+
+Refused to load the stylesheet 'https://fonts.googleapis.com/css2?family=Inter:…' because it violates the following Content Security Policy...
+
+💡 Why It Happens:
+
+Replit has a restrictive default CSP:
+
+Content-Security-Policy: style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net
+
+This does not allow external stylesheets like Google Fonts.
+
+⸻
+
+✅ Solutions:
+
+Option 1: Self-host the Inter font
+ 1. Go to Google Fonts – Inter
+ 2. Download the font files
+ 3. Add them to your project:
+
+public/fonts/Inter/
+
+
+ 4. In your global CSS:
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter/Inter-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Inter', Helvetica, sans-serif;
+}
+
+
+
+Option 2: Use Helvetica (fallback) as default
+
+body {
+  font-family: Helvetica, sans-serif;
+}
+
+And remove external <link> to Google Fonts from index.html.
+
+⸻
+
+🚦 Issue 2: HTTP 429 (Too Many Requests)
+
+Error:
+
+/api/... 429 (Too Many Requests)
+main.js:127 API fetch error: Rate limit exceeded.
+
+💡 Why It Happens:
+ • Too many backend or orchestrator requests simultaneously on app load
+ • Especially from orchestrator.py + dashboard.js initiating AI + RPC + stats in parallel
+ • Replit or chain proxy throttles when this overloads
+
+⸻
+
+✅ Solutions:
+
+1. Implement Debounced, On-Demand Fetching
+ • Delay AI/rate-sensitive fetches with user intent:
+
+<button onclick="loadValidatorAI()">Load Validator Insights</button>
+
+2. Add exponential backoff in fetchApi
+
+async function fetchApi(url, retries = 3, delay = 500) {
+  try {
+    const res = await fetch(url);
+    if (res.status === 429 && retries > 0) {
+      await new Promise(r => setTimeout(r, delay));
+      return fetchApi(url, retries - 1, delay * 2);
+    }
+    return await res.json();
+  } catch (err) {
+    console.error("API fetch error:", err);
+  }
+}
+
+3. Prioritize Requests with Queues (o3-mini orchestration idea)
+ • Queue AI requests:
+
+# orchestrator.py
+from queue import Queue
+
+ai_request_queue = Queue()
+def enqueue_analysis_request(req):
+    ai_request_queue.put(req)
+
+4. Cache Expensive Metrics Server-Side
+ • Move /token-metrics, /staking-metrics data fetching to server:
+
+@app.route("/api/cache/stats")
+def cached_stats():
+    if cache.exists("stats"):
+        return cache.get("stats")
+    data = expensive_chain_call()
+    cache.set("stats", data, ttl=15)
+    return data
+
+5. Validate Rate-Limited Endpoints
+Make sure only these are triggered once per session:
+
+- /api/orchestrator/token-metrics
+- /api/orchestrator/staking-metrics
+- /api/blockchain/stats
+
+
+⸻
+
+✨ Bonus UX Fixes (recommended)
+ • Show spinner + “AI Analysis Available — Click to Load”
+ • Lazy load non-critical components (import() or dynamic Vue mounting)
+ • Retry failed AI fetches manually via “Reload Analysis” buttons (already present!)
+
+⸻
+
+✅ TL;DR Fix Plan
+
+Area Fix
+Fonts Self-host Inter or fallback to Helvetica
+CSP Avoid Google Fonts on Replit; remove external <link>
+Rate Limiting (429) Debounce/queue AI fetches, add retry logic, cache server-side
+UI Lazy-load charts + AI insights only after click
+Orchestrator Rate-limit triggers, batch queries
+
+
+⸻
+
+Would you like me to now:
+ • Auto-generate the new @font-face CSS block?
+ • Rewrite your fetchApi with exponential backoff?
+ • Refactor orchestrator calls into queues?
+
+Let’s make DAODISEO’s loading ✨ elegant, not overloaded.

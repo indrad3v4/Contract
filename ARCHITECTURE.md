@@ -2,39 +2,35 @@
 
 ## Overview
 
-DAODISEO follows Clean Architecture principles with strict separation of concerns and dependency rule enforcement. The system enables real estate tokenization through blockchain integration and AI-powered investment analysis.
+DAODISEO is a cutting-edge blockchain real estate investment platform that follows Clean Architecture principles with strict separation of concerns and dependency rule enforcement. The system enables real estate tokenization through blockchain integration, AI-powered investment analysis, and BIM visualization capabilities.
 
-## Architecture Layers
+## Clean Architecture Layers
 
+### Layer Structure
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    External Interfaces                      │
-│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐           │
-│  │ Flask Routes│ │   Vue UI    │ │ AI Agents   │           │
-│  │             │ │             │ │ (o3-mini)   │           │
-│  └─────────────┘ └─────────────┘ └─────────────┘           │
-└─────────────────────────────────────────────────────────────┘
-┌─────────────────────────────────────────────────────────────┐
-│                  Interface Adapters                         │
-│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐           │
-│  │  Gateways   │ │Repositories │ │ Presenters  │           │
-│  │             │ │             │ │             │           │
-│  └─────────────┘ └─────────────┘ └─────────────┘           │
-└─────────────────────────────────────────────────────────────┘
-┌─────────────────────────────────────────────────────────────┐
-│                     Use Cases                               │
-│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐           │
-│  │ Dashboard   │ │Investment   │ │Orchestrator │           │
-│  │ Analytics   │ │ Analysis    │ │  Control    │           │
-│  └─────────────┘ └─────────────┘ └─────────────┘           │
-└─────────────────────────────────────────────────────────────┘
-┌─────────────────────────────────────────────────────────────┐
-│                      Entities                               │
-│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐           │
-│  │   Asset     │ │   Wallet    │ │ Validator   │           │
-│  │   Model     │ │   Model     │ │   Model     │           │
-│  └─────────────┘ └─────────────┘ └─────────────┘           │
-└─────────────────────────────────────────────────────────────┘
+External Interfaces
+├── Flask Routes (Controllers)
+├── Vue UI Components  
+├── AI Agents (o3-mini)
+└── Static Assets
+
+Interface Adapters
+├── Gateways (Blockchain, OpenAI)
+├── Repositories (Data Access)
+├── Presenters (Data Formatting)
+└── Security Utils
+
+Use Cases (Application Logic)
+├── Dashboard Analytics
+├── Investment Analysis
+├── Orchestrator Control
+└── Property Management
+
+Entities (Core Domain)
+├── Asset Models
+├── Wallet Models
+├── Validator Models
+└── Transaction Models
 ```
 
 ## Component Flow
@@ -57,37 +53,29 @@ UI Component ← Presenter ← Interface Adapter ← Processing ←
 
 ```
 src/
-├── entities/                    # Core business objects
-│   ├── asset.py                # Real estate asset models
-│   ├── wallet.py               # Wallet and transaction models
-│   └── validator.py            # Blockchain validator models
+├── controllers/                 # External interface controllers
+│   ├── rpc_controller.py       # Blockchain RPC endpoints
+│   ├── orchestrator_controller.py # AI orchestration endpoints
+│   └── bim_analysis_controller.py # Property analysis endpoints
 │
-├── use_cases/                   # Application logic
-│   ├── dashboard_analytics.py  # Dashboard data orchestration
-│   ├── investment_analysis.py  # Property investment logic
-│   └── orchestrator_control.py # AI agent coordination
+├── services/                    # Application services
+│   ├── rpc_service.py          # Blockchain data service
+│   └── ai/
+│       └── openai_agents_orchestrator.py # o3-mini integration
 │
-├── interface_adapters/          # Gateways and repositories
-│   ├── gateways/
-│   │   ├── blockchain_gateway.py    # RPC blockchain access
-│   │   └── ai_gateway.py            # OpenAI API access
-│   ├── repositories/
-│   │   ├── asset_repository.py      # Asset data management
-│   │   └── wallet_repository.py     # Wallet state management
-│   └── presenters/
-│       ├── dashboard_presenter.py   # Dashboard data formatting
-│       └── analysis_presenter.py    # AI analysis formatting
+├── external_interfaces/         # UI and static assets
+│   └── ui/
+│       ├── templates/          # Flask templates
+│       └── static/             # CSS, JS, assets
 │
-└── external_interfaces/         # Controllers and UI
-    ├── flask_routes/
-    │   ├── dashboard_routes.py      # Main dashboard endpoints
-    │   └── api_routes.py            # API endpoint controllers
-    ├── vue_components/
-    │   ├── dashboard.vue            # Main dashboard component
-    │   └── bim_viewer.vue           # BIM analysis component
-    └── ai_agents/
-        └── orchestrator.py          # o3-mini integration
+└── security_utils.py           # Security and rate limiting
 ```
+
+Current Implementation Files:
+- main.py - Application entry point
+- src/controllers/ - API endpoint controllers
+- src/services/ - Business logic services
+- src/external_interfaces/ui/ - Frontend templates and assets
 
 ## Data Flow
 
