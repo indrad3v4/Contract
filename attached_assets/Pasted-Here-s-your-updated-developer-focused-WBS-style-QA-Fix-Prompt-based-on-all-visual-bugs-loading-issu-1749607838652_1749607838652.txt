@@ -1,0 +1,124 @@
+Here’s your updated developer-focused WBS-style QA Fix Prompt based on all visual bugs, loading issues, broken integrations, and UX inconsistencies you documented via screenshots.
+
+⸻
+
+🛠️ GOAL
+
+Finalize the Daodiseo Dashboard for redeployment with:
+	•	On-demand AI orchestration (o3-mini)
+	•	Lightweight load (so laptops don’t freeze)
+	•	Responsive UX layout for all components
+	•	Proper smart contract investment integration
+	•	No JS/CSS console errors
+	•	Clear AI response formatting
+
+⸻
+
+🔁 RETURN
+
+A complete patch task list for app/src:
+	•	dashboard.html
+	•	main.css or theme.css
+	•	orchestrator.py
+	•	feather.min.js, kepler.js
+	•	chain endpoints logic in blockchain_gateway.py
+	•	JS handling of modal/grid/fetch orchestration logic
+
+⸻
+
+⚠️ WARNINGS
+	•	Respect Clean Architecture (don’t hardcode AI or chain logic in UI).
+	•	Avoid heavy default loads: o3-mini requests should be on demand.
+	•	Fix layout only with Bootstrap-native grid classes or clean scoped CSS.
+	•	NEVER block the main thread: avoid infinite .then() or long await in loops.
+	•	Keep footer, header, and sidebar static and pinned, only scroll .main-body.
+
+⸻
+
+📐 CONTEXT
+
+You’re running daodiseo.app in Replit. It’s a Flask + HTML + CSS + JS + Bootstrap app.
+Keplr integration exists but JS errors and console freezes happen.
+Chain endpoint = https://testnet-rpc.daodiseo.chaintools.tech.
+AI Orchestrator = o3-mini, with book + OpenAI SDK-based logic in orchestrator.py.
+Footer should show Whitepaper | DAODAO Governance.
+Modals are used for investment and BIM AI.
+
+⸻
+
+✅ FIXES LIST (WBS-style)
+
+🧩 1. GRID + COMPONENT HEIGHTS
+	•	Increase dashboard card height ×2 to fit full o3-mini responses.
+	•	Use Bootstrap .row and .col-md-6 to enforce 2-column body layout.
+	•	Set fixed .card-body { overflow-y: auto; max-height: 340px; }.
+
+⚙️ 2. JS ERRORS (Feather, Keplr)
+	•	Fix toSvg errors from feather.min.js (wait for DOM before replace).
+	•	Patch kepler.js to null-check wallet DOM hooks before toSvg() call.
+	•	Remove Google Fonts if blocked by CSP (replace with Inter via @font-face in local CSS).
+
+🧠 3. O3-MINI AGENT BEHAVIOR
+	•	Make all AI fetches click-to-run, not default on load:
+
+document.querySelector("#run-ai").addEventListener("click", runAI);
+
+
+	•	Display:
+	•	"Fetching live data..."
+	•	"o3-mini Analysis Confidence: 93%"
+	•	"Summary: Chain is stable, block height normal."
+	•	Use o3-mini response in:
+	•	Token Value
+	•	Network Health
+	•	Staking APY
+	•	BIM AI
+	•	Stakeholder Dist.
+	•	Transactions
+	•	Validators
+
+📉 4. COMPONENT ERRORS
+	•	Recent Transactions, Active Validators = ❌ “Failed to load” → Fix API chain fetch / mock fallback.
+	•	Ensure agent insight text fits inside .card-body not overflowing.
+	•	Align o3-mini response text inside visible zone with margin/padding.
+
+📦 5. MODAL FIXES
+	•	Ensure modals close via [X] and Escape.
+	•	Keplr connect() modal = properly dismissable if wallet not found.
+	•	Fix error: "Cannot read properties of undefined (toSvg)" on wallet connect.
+
+📶 6. SMART CONTRACT INVEST
+	•	Use Keplr wallet address to confirm SPV/KYC status + stake call.
+	•	On modal confirm, trigger smart contract execution:
+
+await keplr.signAndBroadcast(...);
+
+
+	•	Display success with Toast alert.
+
+🖼️ 7. VISUAL OVERFLOW
+	•	Fix chart and pie visuals overflowing card-body.
+	•	Add .card-inner-wrap { overflow: hidden; padding: 12px; }.
+
+👣 8. FOOTER RESTORE
+	•	Restore fixed footer:
+
+<footer class="footer fixed-bottom text-center text-muted">
+  <a href="/whitepaper.pdf">Whitepaper</a> | <a href="https://daodao.zone">DAODAO Governance</a>
+</footer>
+
+
+
+🚦 9. DASHBOARD ERROR BANNER
+	•	Replace "Some features may be temporarily unavailable. Retrying..." with:
+“⏳ AI orchestration running. Components will update shortly.”
+Use color-coded banner with progress bar animation.
+
+🔄 10. ON-DEMAND AI FOR LOW-SPEC DEVICES
+	•	For laptop users: add “Run AI” button at top right (global toggle)
+	•	When clicked: activate orchestrator in all components
+	•	Track state per component (agent loading/spinning until response arrives)
+
+⸻
+
+Want a formatted checklist.md for devs or a patch_spec.yaml?

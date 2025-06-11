@@ -78,13 +78,27 @@ class DashboardLayoutFix {
 
     addInsightToCard(card, cardId) {
         const insight = document.createElement('div');
-        insight.className = 'agent-insight mt-2';
+        insight.className = 'agent-insight mt-3';
+        insight.style.cssText = `
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            max-height: 200px;
+            overflow-y: auto;
+        `;
+        
         insight.innerHTML = `
-            <div class="insight-header">
-                <span class="insight-label">o3-mini Analysis</span>
-                <span class="confidence" id="${cardId}-confidence">Loading...</span>
+            <div class="insight-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; font-size: 0.875rem;">
+                <span class="insight-label" style="color: #00d4ff; font-weight: 600;">🤖 o3-mini Analysis</span>
+                <span class="confidence" id="${cardId}-confidence" style="color: #ffd700; font-size: 0.75rem;">Fetching live data...</span>
             </div>
-            <div class="insight-content" id="${cardId}-analysis">Connecting to orchestrator...</div>
+            <div class="insight-content" id="${cardId}-analysis" style="color: #e0e0e0; font-size: 0.8rem; line-height: 1.4; white-space: pre-wrap;">
+                Connecting to orchestrator...
+                ⏳ Loading blockchain data from testnet-rpc.daodiseo.chaintools.tech
+                🧠 Preparing o3-mini analysis engine
+            </div>
         `;
         
         const cardBody = card.querySelector('.agent-card-body') || card;
@@ -144,18 +158,35 @@ class DashboardLayoutFix {
             badge.textContent = 'Verified';
         }
 
-        // Update analysis
+        // Update analysis with proper formatting
         const analysisElement = card.querySelector(`#${cardId}-analysis`);
         if (analysisElement && data.data.analysis) {
-            analysisElement.textContent = typeof data.data.analysis === 'string' 
-                ? data.data.analysis 
-                : JSON.stringify(data.data.analysis);
+            let formattedAnalysis = '';
+            
+            if (typeof data.data.analysis === 'string') {
+                formattedAnalysis = `✅ Analysis Complete\n\n${data.data.analysis}`;
+            } else if (typeof data.data.analysis === 'object') {
+                // Format object analysis nicely
+                formattedAnalysis = '✅ Analysis Complete\n\n';
+                for (const [key, value] of Object.entries(data.data.analysis)) {
+                    if (Array.isArray(value)) {
+                        formattedAnalysis += `${key.replace(/_/g, ' ').toUpperCase()}:\n`;
+                        value.forEach(item => formattedAnalysis += `• ${item}\n`);
+                        formattedAnalysis += '\n';
+                    } else {
+                        formattedAnalysis += `${key.replace(/_/g, ' ').toUpperCase()}: ${value}\n\n`;
+                    }
+                }
+            }
+            
+            analysisElement.textContent = formattedAnalysis;
         }
 
         // Update confidence
         const confidenceElement = card.querySelector(`#${cardId}-confidence`);
         if (confidenceElement && data.metadata && data.metadata.confidence) {
             confidenceElement.textContent = `Confidence: ${Math.round(data.metadata.confidence * 100)}%`;
+            confidenceElement.style.color = data.metadata.confidence > 0.8 ? '#00ff88' : '#ffd700';
         }
     }
 

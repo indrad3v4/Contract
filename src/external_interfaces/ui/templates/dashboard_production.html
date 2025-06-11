@@ -141,11 +141,11 @@ body, html {
     gap: 2rem !important;
     width: 100% !important;
     min-height: 100% !important;
-    padding-bottom: 2rem !important;
+    padding-bottom: 80px !important;
     box-sizing: border-box !important;
 }
 
-/* Unified Agent Cards */
+/* Unified Agent Cards - 2x taller for AI responses */
 .agent-card {
     background: var(--glass-bg) !important;
     backdrop-filter: blur(20px) !important;
@@ -154,10 +154,10 @@ body, html {
     padding: 1.5rem !important;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
     transition: all 0.3s ease !important;
-    min-height: 220px !important;
+    min-height: 440px !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: space-between !important;
+    justify-content: flex-start !important;
     position: relative !important;
 }
 
@@ -283,17 +283,15 @@ body, html {
     box-shadow: 0 8px 25px rgba(224, 13, 121, 0.4) !important;
 }
 
-/* Footer positioned after content */
+/* Fixed Footer - restored as requested */
 .dashboard-footer {
-    grid-area: footer !important;
     background: var(--glass-bg) !important;
     backdrop-filter: blur(20px) !important;
     border-top: 1px solid var(--glass-border) !important;
-    position: relative !important;
-    bottom: auto !important;
-    left: auto !important;
-    right: auto !important;
-    margin-top: 2rem !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 280px !important;
+    right: 0 !important;
     height: 60px !important;
     z-index: 998 !important;
     display: flex !important;
