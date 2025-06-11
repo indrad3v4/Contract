@@ -1,0 +1,112 @@
+/* Layout Fixes for Dashboard Components */
+
+/* Fix card overflow issues */
+.dashboard-card {
+    overflow: hidden;
+    position: relative;
+}
+
+.card-content {
+    max-width: 100%;
+    overflow: hidden;
+}
+
+/* Fix asset distribution chart */
+.asset-distribution-container {
+    max-height: 300px;
+    overflow: hidden;
+}
+
+#asset-distribution-chart {
+    max-width: 100%;
+    max-height: 280px;
+}
+
+/* Fix ODIS price chart */
+.odis-price-chart {
+    max-width: 100%;
+    max-height: 200px;
+    overflow: hidden;
+}
+
+/* Proper Bootstrap grid usage */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.dashboard-card {
+    min-height: 200px;
+    max-height: 400px;
+}
+
+/* Fix transaction list container */
+.recent-transactions-content {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* Fix modal z-index issues */
+.modal {
+    z-index: 10000;
+}
+
+.modal-backdrop {
+    z-index: 9999;
+}
+
+/* Responsive fixes */
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+    
+    .dashboard-card {
+        max-height: 350px;
+    }
+}
+
+/* Status badge fixes */
+.status-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-badge.verified {
+    background: #00ff9d;
+    color: #000;
+}
+
+.status-badge.error {
+    background: #ff4757;
+    color: #fff;
+}
+
+.status-badge.loading {
+    background: #ffa500;
+    color: #000;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+/* Error message styling */
+.error-message {
+    margin-top: 8px;
+    padding: 6px 10px;
+    background: rgba(255, 71, 87, 0.2);
+    border-left: 3px solid #ff4757;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: #ff4757;
+}
