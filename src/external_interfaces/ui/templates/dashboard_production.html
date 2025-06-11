@@ -1009,14 +1009,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Load dashboard final fix for o3-mini integration and UI fixes
-(function() {
-    const script = document.createElement('script');
-    script.src = '/static/js/dashboard-final-fix.js';
-    script.onload = function() {
-        console.log('Dashboard final fix loaded - o3-mini integration active');
-    };
-    document.head.appendChild(script);
-})();
+// Dashboard layout fix is now loaded from base template
+console.log('Dashboard layout fix will be loaded from base template');
 </script>
 {% endblock %}
