@@ -51,10 +51,8 @@ class DaodiseoAgentsOrchestrator:
         if not self.openai_api_key:
             raise ValueError("OPENAI_API_KEY environment variable is required")
         
-        if AGENTS_SDK_AVAILABLE:
-            self._init_agents_sdk()
-        else:
-            self._init_fallback_client()
+        # Always use OpenAI client with agent patterns for o3-mini
+        self._init_fallback_client()
     
     def _init_agents_sdk(self):
         """Initialize using standard OpenAI client with agent-like patterns"""
@@ -79,9 +77,26 @@ class DaodiseoAgentsOrchestrator:
         logger.info("OpenAI client with agent patterns initialized successfully")
     
     def _init_fallback_client(self):
-        """Initialize fallback OpenAI client if Agents SDK unavailable"""
+        """Initialize OpenAI client with agent-like patterns for o3-mini"""
         self.openai_client = OpenAI(api_key=self.openai_api_key)
-        logger.warning("OpenAI Agents SDK not available, using fallback client")
+        
+        # Agent-like system prompts for specialized analysis
+        self.token_analyst_prompt = """You are a blockchain token analyst specializing in real estate tokenization.
+        Analyze token metrics from Daodiseo testnet and provide investment insights.
+        Always return data in JSON format with real calculations.
+        Focus on: price analysis, market dynamics, liquidity assessment, and investment recommendations."""
+        
+        self.staking_analyst_prompt = """You are a blockchain staking specialist for Daodiseo network.
+        Analyze validator data and calculate accurate staking metrics.
+        Always return data in JSON format with real calculations.
+        Focus on: APY calculations, reward distributions, validator performance, staking strategies."""
+        
+        self.network_analyst_prompt = """You are a blockchain network health specialist.
+        Analyze RPC data from Daodiseo testnet and assess network performance.
+        Always return data in JSON format with real calculations.
+        Focus on: block production, peer connectivity, consensus health, network stability."""
+        
+        logger.info("OpenAI client with o3-mini agent patterns initialized successfully")
     
     def fetch_chain_data(self, endpoint: str) -> str:
         """Fetch blockchain data for agent analysis"""
