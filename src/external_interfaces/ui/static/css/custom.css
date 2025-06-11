@@ -679,6 +679,7 @@ input:checked + .toggle-slider:before {
     background: linear-gradient(135deg, #ff1a61, #c40039);
 }
 
+<<<<<<< HEAD
 /* Card improvements for status indicators */
 .card {
     position: relative;
@@ -733,6 +734,8 @@ input:checked + .toggle-slider:before {
     background: #dc3545;
 }
 
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
 /* Custom scrollbar */
 ::-webkit-scrollbar {
     width: 6px;

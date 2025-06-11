@@ -1,9 +1,12 @@
 version = 1
 requires-python = ">=3.11"
+<<<<<<< HEAD
 resolution-markers = [
     "python_full_version >= '3.13'",
     "python_full_version < '3.13'",
 ]
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
 
 [[package]]
 name = "aiohappyeyeballs"
@@ -154,6 +157,7 @@ wheels = [
 ]
 
 [[package]]
+<<<<<<< HEAD
 name = "cachetools"
 version = "5.5.2"
 source = { registry = "https://pypi.org/simple" }
@@ -163,6 +167,8 @@ wheels = [
 ]
 
 [[package]]
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
 name = "certifi"
 version = "2025.1.31"
 source = { registry = "https://pypi.org/simple" }
@@ -388,6 +394,7 @@ wheels = [
 ]
 
 [[package]]
+<<<<<<< HEAD
 name = "flask-cors"
 version = "6.0.0"
 source = { registry = "https://pypi.org/simple" }
@@ -401,6 +408,8 @@ wheels = [
 ]
 
 [[package]]
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
 name = "flask-login"
 version = "0.6.3"
 source = { registry = "https://pypi.org/simple" }
@@ -495,6 +504,7 @@ wheels = [
 ]
 
 [[package]]
+<<<<<<< HEAD
 name = "google-api-core"
 version = "2.24.2"
 source = { registry = "https://pypi.org/simple" }
@@ -566,6 +576,8 @@ wheels = [
 ]
 
 [[package]]
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
 name = "greenlet"
 version = "3.1.1"
 source = { registry = "https://pypi.org/simple" }
@@ -670,6 +682,7 @@ wheels = [
 ]
 
 [[package]]
+<<<<<<< HEAD
 name = "httplib2"
 version = "0.22.0"
 source = { registry = "https://pypi.org/simple" }
@@ -682,6 +695,8 @@ wheels = [
 ]
 
 [[package]]
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
 name = "httpx"
 version = "0.28.1"
 source = { registry = "https://pypi.org/simple" }
@@ -1189,6 +1204,7 @@ wheels = [
 ]
 
 [[package]]
+<<<<<<< HEAD
 name = "proto-plus"
 version = "1.26.1"
 source = { registry = "https://pypi.org/simple" }
@@ -1201,6 +1217,8 @@ wheels = [
 ]
 
 [[package]]
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
 name = "protobuf"
 version = "4.25.6"
 source = { registry = "https://pypi.org/simple" }
@@ -1258,6 +1276,7 @@ wheels = [
 ]
 
 [[package]]
+<<<<<<< HEAD
 name = "pyasn1"
 version = "0.6.1"
 source = { registry = "https://pypi.org/simple" }
@@ -1279,6 +1298,8 @@ wheels = [
 ]
 
 [[package]]
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
 name = "pycodestyle"
 version = "2.13.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1419,6 +1440,7 @@ wheels = [
 ]
 
 [[package]]
+<<<<<<< HEAD
 name = "pyparsing"
 version = "3.2.3"
 source = { registry = "https://pypi.org/simple" }
@@ -1428,6 +1450,8 @@ wheels = [
 ]
 
 [[package]]
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
 name = "pytest"
 version = "8.3.5"
 source = { registry = "https://pypi.org/simple" }
@@ -1511,11 +1535,17 @@ dependencies = [
     { name = "email-validator" },
     { name = "flake8" },
     { name = "flask" },
+<<<<<<< HEAD
     { name = "flask-cors" },
     { name = "flask-login" },
     { name = "flask-sqlalchemy" },
     { name = "flask-wtf" },
     { name = "google-api-python-client" },
+=======
+    { name = "flask-login" },
+    { name = "flask-sqlalchemy" },
+    { name = "flask-wtf" },
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
     { name = "grpcio" },
     { name = "gunicorn" },
     { name = "ifcopenshell" },
@@ -1535,11 +1565,17 @@ requires-dist = [
     { name = "email-validator", specifier = "==2.2.0" },
     { name = "flake8", specifier = ">=7.2.0" },
     { name = "flask", specifier = "==3.1.0" },
+<<<<<<< HEAD
     { name = "flask-cors", specifier = ">=6.0.0" },
     { name = "flask-login", specifier = ">=0.6.3" },
     { name = "flask-sqlalchemy", specifier = "==3.1.1" },
     { name = "flask-wtf", specifier = ">=1.2.2" },
     { name = "google-api-python-client", specifier = ">=2.170.0" },
+=======
+    { name = "flask-login", specifier = ">=0.6.3" },
+    { name = "flask-sqlalchemy", specifier = "==3.1.1" },
+    { name = "flask-wtf", specifier = ">=1.2.2" },
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
     { name = "grpcio", specifier = "==1.51.1" },
     { name = "gunicorn", specifier = ">=23.0.0" },
     { name = "ifcopenshell", specifier = ">=0.8.2" },
@@ -1629,6 +1665,7 @@ wheels = [
 ]
 
 [[package]]
+<<<<<<< HEAD
 name = "rsa"
 version = "4.9.1"
 source = { registry = "https://pypi.org/simple" }
@@ -1641,6 +1678,8 @@ wheels = [
 ]
 
 [[package]]
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
 name = "shapely"
 version = "2.1.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1863,6 +1902,7 @@ wheels = [
 ]
 
 [[package]]
+<<<<<<< HEAD
 name = "uritemplate"
 version = "4.1.1"
 source = { registry = "https://pypi.org/simple" }
@@ -1872,6 +1912,8 @@ wheels = [
 ]
 
 [[package]]
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
 name = "urllib3"
 version = "2.3.0"
 source = { registry = "https://pypi.org/simple" }

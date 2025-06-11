@@ -22,8 +22,11 @@ dependencies = [
     "python-dotenv>=1.1.0",
     "openai>=1.71.0",
     "pytest-asyncio>=0.26.0",
+<<<<<<< HEAD
     "google-api-python-client>=2.170.0",
     "flask-cors>=6.0.0",
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
 ]
 
 [[tool.uv.index]]

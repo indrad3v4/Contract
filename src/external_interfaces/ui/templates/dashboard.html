@@ -5,6 +5,7 @@
 {% block extra_css %}
 <!-- Enhanced Chat CSS -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/chat-enhanced.css') }}">
+<<<<<<< HEAD
 <style>
 /* PIXEL-PERFECT DASHBOARD GRID SYSTEM */
 .dashboard-container {
@@ -206,11 +207,26 @@
                     <div class="update-timestamp">
                         Updated: <span id="token-value-time">--</span>
                     </div>
+=======
+{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4 mb-4">
+        <!-- Dashboard Cards -->
+        <div class="col">
+            <div class="card stats-card">
+                <div class="card-body">
+                    <div class="card-value">15,811.04</div>
+                    <div class="card-title">Token Value <span class="badge bg-info ms-1">ODIS</span></div>
+                    <div class="wave-visual"></div>
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
                     <div class="card-icon info">
                         <i data-feather="dollar-sign"></i>
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
 
             <!-- Total Reserves Agent -->
             <div class="col">
@@ -282,11 +298,49 @@
                         <div class="card-icon success">
                             <i data-feather="gift"></i>
                         </div>
+=======
+        </div>
+        <div class="col">
+            <div class="card stats-card">
+                <div class="card-body">
+                    <div class="card-value">$38,126.50</div>
+                    <div class="card-title">Total Reserves <span class="badge bg-secondary ms-1">USD</span></div>
+                    <div class="wave-visual"></div>
+                    <div class="card-icon secondary">
+                        <i data-feather="trending-up"></i>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="col">
+            <div class="card stats-card">
+                <div class="card-body">
+                    <div class="card-value">9.5%</div>
+                    <div class="card-title">Staking APY <span class="badge bg-success ms-1">Yearly</span></div>
+                    <div class="wave-visual"></div>
+                    <div class="card-icon warning">
+                        <i data-feather="activity"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card stats-card">
+                <div class="card-body">
+                    <div class="card-value">0.318</div>
+                    <div class="card-title">Daily Rewards <span class="badge bg-info ms-1">ODIS</span></div>
+                    <div class="wave-visual"></div>
+                    <div class="card-icon success">
+                        <i data-feather="award"></i>
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
+                    </div>
+                </div>
+            </div>
+        </div>
+<<<<<<< HEAD
     </section>
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
     </div>
 
     <div class="row g-4">
@@ -295,12 +349,15 @@
             <div class="card">
                 <div class="card-header">
                     <h5 class="card-title">
+<<<<<<< HEAD
     <div class="ai-status-indicator" title="AI Enhanced">
         <i data-feather="cpu" class="ai-icon"></i>
     </div>
     <div class="ai-status-indicator" title="AI Enhanced">
         <i data-feather="cpu" class="ai-icon"></i>
     </div>
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
                         <i data-feather="pie-chart" class="icon-inline"></i>
                         Asset Distribution
                     </h5>
@@ -324,17 +381,24 @@
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
             <!-- AI Assistant Panel -->
             <div class="card mt-4">
                 <div class="card-header">
                     <h5 class="card-title">
+<<<<<<< HEAD
     <div class="ai-status-indicator" title="AI Enhanced">
         <i data-feather="cpu" class="ai-icon"></i>
     </div>
     <div class="ai-status-indicator" title="AI Enhanced">
         <i data-feather="cpu" class="ai-icon"></i>
     </div>
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
                         <i data-feather="message-circle" class="icon-inline"></i>
                         BIM AI Assistant
                     </h5>
@@ -345,19 +409,26 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
         <!-- Hot Asset Panel -->
         <div class="col-lg-7">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <div>
                         <h5 class="card-title">
+<<<<<<< HEAD
     <div class="ai-status-indicator" title="AI Enhanced">
         <i data-feather="cpu" class="ai-icon"></i>
     </div>
     <div class="ai-status-indicator" title="AI Enhanced">
         <i data-feather="cpu" class="ai-icon"></i>
     </div>
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
                             <i data-feather="zap" class="icon-inline text-warning"></i>
                             Hot Asset Seeking Liquidity
                         </h5>
@@ -370,10 +441,16 @@
                 </div>
                 <div class="card-footer">
                     <div class="row">
+<<<<<<< HEAD
 
                         <div class="col-md-8">
                             <div class="model-info">
                                 <div class="model-name">Ithaca Project</div>
+=======
+                        <div class="col-md-8">
+                            <div class="model-info">
+                                <div class="model-name">Idaka Project</div>
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
                                 <div class="model-meta">
                                     <span class="model-meta-item">
                                         <i data-feather="layers" class="icon-inline-sm"></i>
@@ -397,7 +474,11 @@
                             </button>
                         </div>
                     </div>
+<<<<<<< HEAD
 
+=======
+                    
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
                     <div class="progress mt-3" style="height: 10px;">
                         <div class="progress-bar bg-info" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
@@ -409,19 +490,26 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
     <div class="row g-4 mt-4">
         <!-- Recent Transactions Panel -->
         <div class="col-lg-8">
             <div class="card">
                 <div class="card-header">
                     <h5 class="card-title">
+<<<<<<< HEAD
     <div class="ai-status-indicator" title="AI Enhanced">
         <i data-feather="cpu" class="ai-icon"></i>
     </div>
     <div class="ai-status-indicator" title="AI Enhanced">
         <i data-feather="cpu" class="ai-icon"></i>
     </div>
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
                         <i data-feather="list" class="icon-inline"></i>
                         Recent Transactions
                     </h5>
@@ -489,18 +577,25 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
         <!-- Stakeholder Distribution Chart -->
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-header">
                     <h5 class="card-title">
+<<<<<<< HEAD
     <div class="ai-status-indicator" title="AI Enhanced">
         <i data-feather="cpu" class="ai-icon"></i>
     </div>
     <div class="ai-status-indicator" title="AI Enhanced">
         <i data-feather="cpu" class="ai-icon"></i>
     </div>
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
                         <i data-feather="users" class="icon-inline"></i>
                         Stakeholder Distribution
                     </h5>
@@ -511,6 +606,7 @@
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
 
 
         </div>
@@ -520,6 +616,43 @@
     <div class="row mt-4">
         <div class="col-12">
             {% include 'components/odis_trading.html' %}
+=======
+            
+            <!-- Validators Section -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5 class="card-title">
+                        <i data-feather="shield" class="icon-inline"></i>
+                        Active Validators
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="validator-list">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="token-circle info">V</div>
+                            <div class="flex-grow-1">
+                                <div class="fw-bold">Validator Node 1</div>
+                                <div class="small text-muted">5 proposals pending</div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="token-circle secondary">V</div>
+                            <div class="flex-grow-1">
+                                <div class="fw-bold">Validator Node 2</div>
+                                <div class="small text-muted">3 proposals pending</div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div class="token-circle success">V</div>
+                            <div class="flex-grow-1">
+                                <div class="fw-bold">Validator Node 3</div>
+                                <div class="small text-muted">1 proposal pending</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
         </div>
     </div>
 </div>
@@ -531,7 +664,11 @@
             <div class="modal-header border-info">
                 <h5 class="modal-title" id="investModalLabel">
                     <i data-feather="dollar-sign" class="icon-inline text-info"></i>
+<<<<<<< HEAD
                     Invest in Ithaca Project
+=======
+                    Invest in Idaka Project
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
                 </h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -676,6 +813,7 @@
 <!-- Custom Scripts -->
 <script src="{{ url_for('static', filename='js/ai-chat-enhanced.js') }}"></script>
 <script src="{{ url_for('static', filename='js/bim-viewer.js') }}"></script>
+<<<<<<< HEAD
 <!-- Prevent JavaScript duplicate variable errors -->
 <script>
 (function() {
@@ -711,6 +849,16 @@
             bimViewer.init('mini-viewer-container');
         }
 
+=======
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize AI Chat
+        aiChat.init('ai-chat-container');
+        
+        // Initialize mini BIM viewer
+        bimViewer.init('mini-viewer-container');
+        
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
         // Initialize asset distribution chart
         const assetCtx = document.getElementById('asset-distribution-chart').getContext('2d');
         const assetChart = new Chart(assetCtx, {
@@ -740,7 +888,11 @@
                 }
             }
         });
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
         // Initialize stakeholder chart
         const stakeholderCtx = document.getElementById('stakeholder-chart').getContext('2d');
         const stakeholderChart = new Chart(stakeholderCtx, {
@@ -772,6 +924,7 @@
                 }
             }
         });
+<<<<<<< HEAD
     });
 
     // Function to populate Data Source Agent cards with real blockchain data
@@ -905,16 +1058,27 @@
         return num.toString();
     }
 
+=======
+        
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
         // Check wallet connection when investment modal is opened
         document.getElementById('investModal').addEventListener('show.bs.modal', function() {
             // Check if wallet is connected (using localStorage)
             const walletConnected = localStorage.getItem('walletConnected') === 'true';
             const userWalletAddress = localStorage.getItem('userWalletAddress');
+<<<<<<< HEAD
 
             // Update wallet address field if available
             if (walletConnected && userWalletAddress) {
                 document.getElementById('walletAddress').value = userWalletAddress;
 
+=======
+            
+            // Update wallet address field if available
+            if (walletConnected && userWalletAddress) {
+                document.getElementById('walletAddress').value = userWalletAddress;
+                
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
                 // Show the proceed button, hide the connect button
                 document.getElementById('investModalConnectBtn').classList.add('d-none');
                 document.getElementById('investModalProceedBtn').classList.remove('d-none');
@@ -924,46 +1088,77 @@
                 document.getElementById('investModalProceedBtn').classList.add('d-none');
             }
         });
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
         // Invest modal wallet connection button
         document.getElementById('investModalConnectBtn').addEventListener('click', function() {
             // Access the main wallet connection function from base.html
             connectKeplrWallet();
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
             // Close the investment modal
             const investModal = bootstrap.Modal.getInstance(document.getElementById('investModal'));
             if (investModal) {
                 investModal.hide();
             }
         });
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
         // Proceed with investment button
         document.getElementById('investModalProceedBtn').addEventListener('click', function() {
             // Get investment amount
             const amount = document.getElementById('investmentAmount').value;
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
             if (!amount || isNaN(amount) || parseFloat(amount) <= 0) {
                 alert('Please enter a valid investment amount.');
                 return;
             }
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
             // Check if SPV/KYC confirmation is checked
             const spvKycChecked = document.getElementById('spvKycCheck').checked;
             if (!spvKycChecked) {
                 alert('Please confirm SPV/KYC verification.');
                 return;
             }
+<<<<<<< HEAD
 
             // Process investment
             alert(`Processing investment of ${amount} ODIS. Transaction will be signed with your Keplr wallet.`);
 
+=======
+            
+            // Process investment
+            alert(`Processing investment of ${amount} ODIS. Transaction will be signed with your Keplr wallet.`);
+            
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
             // Close modal after successful transaction
             const investModal = bootstrap.Modal.getInstance(document.getElementById('investModal'));
             if (investModal) {
                 investModal.hide();
             }
         });
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
         // Open AI Assistant modal button
         document.body.addEventListener('click', function(e) {
             if (e.target.matches('[data-ai-assistant]') || e.target.closest('[data-ai-assistant]')) {
@@ -976,9 +1171,17 @@
         var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl)
         });
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
         // Update feather icons
         feather.replace();
     });
 </script>
+<<<<<<< HEAD
 {% endblock %}
+=======
+{% endblock %}
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113

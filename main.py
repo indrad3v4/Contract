@@ -169,8 +169,6 @@ def bim_assets():
         'success': True,
         'assets': assets
     })
-
-
 # Error handlers
 @app.errorhandler(404)
 def page_not_found(e):
@@ -190,6 +188,7 @@ def server_error(e):
     )
 
 
+<<<<<<< HEAD
 # Register RPC and orchestrator routes
 from src.controllers.rpc_controller import register_rpc_routes
 from src.controllers.orchestrator_controller import orchestrator_bp
@@ -198,7 +197,6 @@ from src.controllers.bim_analysis_controller import bim_analysis_bp
 register_rpc_routes(app)
 app.register_blueprint(orchestrator_bp)
 app.register_blueprint(bim_analysis_bp)
-
 # Run the app
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)

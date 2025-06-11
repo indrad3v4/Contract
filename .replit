@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 modules = ["python-3.11", "python3", "nodejs-20"]
 
 [nix]
@@ -7,6 +8,17 @@ packages = ["boost", "c-ares", "freetype", "geckodriver", "grpc", "icu", "lcms2"
 [deployment]
 deploymentTarget = "autoscale"
 run = ["sh", "-c", "gunicorn --bind 0.0.0.0:5000 main:app"]
+=======
+modules = ["python-3.11"]
+
+[nix]
+channel = "stable-24_05"
+packages = ["boost", "c-ares", "grpc", "icu", "opencascade-occt", "opencollada", "openssl", "pcre", "pkg-config", "swig", "zlib"]
+
+[deployment]
+deploymentTarget = "autoscale"
+run = ["gunicorn", "--bind", "0.0.0.0:5000", "main:app"]
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
 
 [workflows]
 runButton = "Project"
@@ -18,11 +30,27 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
+<<<<<<< HEAD
 args = "DAODISEO Main Server"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
 args = "Contract Server Updated"
+=======
+args = "Flask Web App"
+
+[[workflows.workflow]]
+name = "Flask Web App"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python -c \"import dotenv; dotenv.load_dotenv('.env'); print('Environment variables loaded successfully')\" && python main.py"
+waitForPort = 5000
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
 
 [[workflows.workflow]]
 name = "Run Flask App"
@@ -33,6 +61,7 @@ mode = "sequential"
 task = "shell.exec"
 args = "python main.py"
 
+<<<<<<< HEAD
 [[workflows.workflow]]
 name = "Flask Dev + Console"
 author = 19011026
@@ -94,6 +123,8 @@ externalPort = 3000
 localPort = 3001
 externalPort = 3001
 
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
 [[ports]]
 localPort = 5000
 externalPort = 80

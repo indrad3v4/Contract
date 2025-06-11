@@ -1,0 +1,283 @@
+~/workspace$ git status
+On branch main
+Your branch and 'origin/main' have diverged,
+and have 191 and 258 different commits each, respectively.
+  (use "git pull" if you want to integrate the remote branch with yours)
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+    deleted:    COMPLETE_PR_PACKAGE.md
+    deleted:    FORK_SYNC_SOLUTION.md
+    deleted:    PULL_REQUEST_SOLUTION.md
+    deleted:    attached_assets/IMG_5653_1749612561923.jpeg
+    deleted:    attached_assets/IMG_7264_1749593898097.jpeg
+    deleted:    attached_assets/IMG_7268_1749593898097.jpeg
+    deleted:    attached_assets/IMG_7269_1749594881176.jpeg
+    deleted:    attached_assets/IMG_7270_1749594881178.jpeg
+    deleted:    attached_assets/IMG_7271_1749594881178.jpeg
+    deleted:    attached_assets/IMG_7272_1749594881178.jpeg
+    deleted:    attached_assets/IMG_7273_1749594881178.jpeg
+    deleted:    attached_assets/IMG_7274_1749594881178.jpeg
+    deleted:    attached_assets/IMG_7275_1749595730886.jpeg
+    deleted:    attached_assets/IMG_7276_1749595730884.jpeg
+    deleted:    attached_assets/IMG_7277_1749596875603.jpeg
+    deleted:    attached_assets/IMG_7278_1749596875603.jpeg
+    deleted:    attached_assets/IMG_7279_1749596875602.jpeg
+    deleted:    attached_assets/IMG_7287_1749599201074.jpeg
+    deleted:    attached_assets/IMG_7288_1749599201074.jpeg
+    deleted:    attached_assets/IMG_7289_1749599201074.jpeg
+    deleted:    attached_assets/IMG_7290_1749599201074.jpeg
+    deleted:    attached_assets/IMG_7291_1749599201074.jpeg
+    deleted:    attached_assets/IMG_7292_1749599201074.jpeg
+    deleted:    attached_assets/IMG_7293_1749599201074.jpeg
+    deleted:    attached_assets/IMG_7294_1749599201074.jpeg
+    deleted:    attached_assets/IMG_7296_1749599201074.jpeg
+    deleted:    attached_assets/IMG_7309_1749601116581.jpeg
+    deleted:    attached_assets/IMG_7310_1749601116582.jpeg
+    deleted:    attached_assets/IMG_7311_1749601116582.jpeg
+    deleted:    attached_assets/IMG_7312_1749601116582.jpeg
+    deleted:    attached_assets/IMG_7313_1749601116582.jpeg
+    deleted:    attached_assets/IMG_7314_1749602667323.jpeg
+    deleted:    attached_assets/IMG_7315_1749602667325.jpeg
+    deleted:    attached_assets/IMG_7316_1749602667325.jpeg
+    deleted:    attached_assets/IMG_7317_1749602667325.jpeg
+    deleted:    attached_assets/IMG_7319_1749606927760.jpeg
+    deleted:    attached_assets/IMG_7327_1749607780106.jpeg
+    deleted:    attached_assets/IMG_7329_1749607780105.jpeg
+    deleted:    attached_assets/IMG_7331_1749608970925.jpeg
+    deleted:    attached_assets/IMG_7332_1749608970925.jpeg
+    deleted:    attached_assets/IMG_7333_1749608970925.jpeg
+    deleted:    attached_assets/IMG_7334_1749608970925.jpeg
+    deleted:    attached_assets/IMG_7335_1749608970925.jpeg
+    deleted:    attached_assets/IMG_7336_1749608970925.jpeg
+    deleted:    attached_assets/IMG_7337_1749608970924.jpeg
+    deleted:    attached_assets/IMG_7338_1749610091731.jpeg
+    deleted:    attached_assets/IMG_7339_1749610091731.jpeg
+    deleted:    attached_assets/IMG_7340_1749610091730.jpeg
+    deleted:    attached_assets/IMG_7341_1749610091731.jpeg
+    deleted:    attached_assets/IMG_7346_1749611021835.jpeg
+    deleted:    attached_assets/IMG_7347_1749611021832.jpeg
+    deleted:    attached_assets/IMG_7348_1749611656469.jpeg
+    deleted:    attached_assets/IMG_7349_1749611656469.jpeg
+    deleted:    attached_assets/Pasted--Replit-Agent-Prompt-Agent-I-see-broken-UX-UI-across-routes-in-daodiseo-app-especially-on-th-1749593891316_1749593891318.txt
+    deleted:    attached_assets/Pasted--You-are-my-Replit-Agent-GOAL-Push-the-current-workspace-code-into-the-remote-repository-at-ht-1749044076771.txt
+    deleted:    attached_assets/Pasted--workspace-git-checkout-b-daodiseoAppA-fatal-a-branch-named-daodiseoAppA-already-exists-work-1749616101823_1749616101843.txt
+    deleted:    attached_assets/Pasted--workspace-git-checkout-daodiseoAppA-error-pathspec-daodiseoAppA-did-not-match-any-file-s-know-1749615650652_1749615650658.txt
+    deleted:    attached_assets/Pasted-2025-06-01T01-35-24Z-info-Deployment-1c986472-d10e-4c05-9a8b-c928167ed9e6-2025-06-01T01-35-24Z-inf-1748742033238.txt
+    deleted:    attached_assets/Pasted-2025-06-01T01-41-24Z-info-Deployment-1c986472-d10e-4c05-9a8b-c928167ed9e6-2025-06-01T01-41-24Z-inf-1748742549453.txt
+    deleted:    attached_assets/Pasted-Absolutely-Here-s-your-expert-level-fullstack-solution-prompt-for-final-bug-fixing-and-aesthetic-al-1749599176963_1749599176963.txt
+    deleted:    attached_assets/Pasted-Based-on-the-dashboard-analysis-here-are-all-existing-components-and-specific-enhancement-ideas-for-1749577741861_1749577741866.txt
+    deleted:    attached_assets/Pasted-Based-on-your-6-dashboard-screenshots-and-the-specific-issue-with-the-header-not-aligning-pixel-perf-1749594888456_1749594888457.txt
+    deleted:    attached_assets/Pasted-First-that-I-see-after-previous-prompt-that-components-go-taller-that-good-But-lowest-components-d-1749608911515_1749608911519.txt
+    deleted:    attached_assets/Pasted-First-that-I-see-after-previous-prompt-that-components-go-taller-that-good-But-lowest-components-d-1749608956485_1749608956486.txt
+    deleted:    attached_assets/Pasted-Got-it-here-is-the-improved-and-final-structured-fix-plan-focusing-on-the-3-current-issues-you-mark-1749611043658_1749611043660.txt
+    deleted:    attached_assets/Pasted-Here-s-a-clear-breakdown-of-the-two-core-issues-you-re-facing-along-with-actionable-solutions-tailo-1749613129403_1749613129406.txt
+    deleted:    attached_assets/Pasted-Here-s-your-Replit-Agent-prompt-in-your-requested-structure-with-all-UX-layout-rendering-orchest-1749597798315_1749597798316.txt
+    deleted:    attached_assets/Pasted-Here-s-your-updated-developer-focused-WBS-style-QA-Fix-Prompt-based-on-all-visual-bugs-loading-issu-1749607838652_1749607838652.txt
+    deleted:    attached_assets/Pasted-Now-better-but-now-in-header-1-Game-button-move-outside-display-to-right-2-Keplr-auth-button-mov-1749601790470_1749601790479.txt
+    deleted:    attached_assets/Pasted-Ok-focus-on-3-last-things-1-Active-validators-component-content-are-goes-out-the-borders-and-ai--1749611008279_1749611008283.txt
+    deleted:    attached_assets/Pasted-Perfect-Based-on-your-new-screenshots-and-diagnosis-here-s-the-updated-technical-task-sheet-as-a-W-1749595738585_1749595738585.txt
+    deleted:    attached_assets/Pasted-Perfect-Here-s-your-full-GitHub-Push-Prompt-tailored-for-DAODISEO-clean-architecture-and-TRIZ-val-1749615129772_1749615129773.txt
+    deleted:    attached_assets/Pasted-Perfect-Since-DAODISEO-is-built-on-Clean-Architecture-we-need-to-align-the-GitHub-preparation-prom-1749612568849_1749612568849.txt
+    deleted:    attached_assets/Pasted-Perfect-here-s-the-improved-technical-and-UX-prompt-response-tailored-to-your-staging-environment--1749610081257_1749610081259.txt
+    deleted:    attached_assets/Pasted-Refused-to-load-the-stylesheet-https-fonts-googleapis-com-css2-family-Inter-wght-300-400-500-600--1749609670143_1749609670147.txt
+    deleted:    attached_assets/Pasted-So-now-all-ok-with-left-side-header-footer-and-displaying-of-body-But-focus-as-dev-in-header-whe-1749602671547_1749602671547.txt
+    deleted:    attached_assets/Pasted-Thanks-Indradeva-Below-is-the-updated-prompt-structured-practical-and-fullstack-ready-for-final-U-1749601120368_1749601120368.txt
+    deleted:    attached_assets/Pasted-Thanks-Indradeva-Let-s-lock-in-the-final-UI-UX-AI-integration-fixes-based-on-your-new-observation-1749611684403_1749611684403.txt
+    deleted:    attached_assets/Pasted-return-3-ideas-as-ai-dev-to-use-existing-data-for-components-in-app-especially-in-token-value-it--1749577305140_1749577305144.txt
+    deleted:    attached_assets/Screen Shot 2025-06-01 at 03.49.00.png
+    deleted:    attached_assets/Screen Shot 2025-06-04 at 15.30.43.png
+    deleted:    attached_assets/Screen Shot 2025-06-10 at 12.46.20_1749552400254.png
+    deleted:    attached_assets/Screen Shot 2025-06-10 at 19.00.06_1749574825515.png
+    deleted:    attached_assets/Screen Shot 2025-06-10 at 19.02.06_1749574942681.png
+    deleted:    attached_assets/Screen Shot 2025-06-10 at 19.19.27_1749575988323.png
+    deleted:    attached_assets/Screen Shot 2025-06-10 at 19.29.21_1749576588081.png
+    deleted:    attached_assets/Screen Shot 2025-06-11 at 05.37.05_1749613062632.png
+    deleted:    attached_assets/Screen Shot 2025-06-11 at 05.41.38_1749613325078.png
+    deleted:    attached_assets/Screen Shot 2025-06-11 at 05.53.18_1749614012577.png
+    deleted:    attached_assets/Screen Shot 2025-06-11 at 06.27.31_1749616118442.png
+    deleted:    attached_assets/Screen Shot 2025-06-11 at 06.44.02_1749617061176.png
+    deleted:    attached_assets/apracticalguidetobuildingagents_1749597774929.pdf
+    deleted:    attached_assets/content-1749044171158.md
+    deleted:    attached_assets/content-1749044376863.md
+    deleted:    attached_assets/content-1749574897155.md
+    deleted:    attached_assets/content-1749574899029.md
+    deleted:    attached_assets/content-1749575129451.md
+    deleted:    attached_assets/content-1749597762701.md
+    deleted:    attached_assets/content-1749599212232.md
+    deleted:    attached_assets/content-1749601332646.md
+    deleted:    attached_assets/content-1749615152167.md
+    deleted:    attached_assets/screenshot-1749044171999.png
+    deleted:    attached_assets/screenshot-1749044375851.png
+    deleted:    attached_assets/screenshot-1749599213349.png
+    deleted:    attached_assets/screenshot-1749601331251.png
+    deleted:    attached_assets/telegram-cloud-photo-size-4-5899910228948929128-y_1748743149753.jpg
+    deleted:    attached_assets/telegram-cloud-photo-size-4-5926781610231974057-y_1749591444391.jpg
+    deleted:    attached_assets/telegram-cloud-photo-size-4-5926781610231974095-m_1749591454276.jpg
+    deleted:    attached_assets/telegram-cloud-photo-size-4-5929033410045660928-y_1749616953898.jpg
+    deleted:    attached_assets/telegram-cloud-photo-size-4-5929033410045660928-y_1749617024656.jpg
+    deleted:    attached_assets/telegram-cloud-photo-size-4-5929033410045660929-y_1749616960407.jpg
+    deleted:    attached_assets/telegram-cloud-photo-size-4-5929033410045660930-y_1749616967025.jpg
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+    attached_assets/Pasted--workspace-git-checkout-b-DaodiseoAppA-fatal-cannot-lock-ref-refs-heads-DaodiseoAppA-Unable-t-1749618205441_1749618205464.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+~/workspace$ git fetch origin
+remote: Enumerating objects: 2238, done.
+remote: Counting objects: 100% (2238/2238), done.
+remote: Compressing objects: 100% (674/674), done.
+remote: Total 2148 (delta 1417), reused 2017 (delta 1384), pack-reused 0 (from 0)
+Receiving objects: 100% (2148/2148), 79.54 MiB | 20.31 MiB/s, done.
+Resolving deltas: 100% (1417/1417), completed with 74 local objects.
+From https://github.com/indrad3v4/Contract
+ * [new branch]      DaodiseoAppA -> origin/DaodiseoAppA
+~/workspace$ git branch -v
+  daodiseoAppA     bbaf18d Guide user to resolve pull request issues on GitHub repository
+  daodiseoAppAlpha d7bc110 feat: daodiseo.app Alpha – cleaned architecture + BIM integration prep
+* main             0d16a51 [ahead 191, behind 258] Provide instructions to resolve pull request issues for enhanced code
+  replit-agent     0ea1cd8 Provide instructions to resolve pull request issues for enhanced code
+~/workspace$ git add -A
+~/workspace$ git commit -m "Clean up attached assets and update DAODISEO codebase"
+[main a352a18] Clean up attached assets and update DAODISEO codebase
+ 113 files changed, 164 insertions(+), 7293 deletions(-)
+ delete mode 100644 COMPLETE_PR_PACKAGE.md
+ delete mode 100644 FORK_SYNC_SOLUTION.md
+ delete mode 100644 PULL_REQUEST_SOLUTION.md
+ delete mode 100644 attached_assets/IMG_5653_1749612561923.jpeg
+ delete mode 100644 attached_assets/IMG_7264_1749593898097.jpeg
+ delete mode 100644 attached_assets/IMG_7268_1749593898097.jpeg
+ delete mode 100644 attached_assets/IMG_7269_1749594881176.jpeg
+ delete mode 100644 attached_assets/IMG_7270_1749594881178.jpeg
+ delete mode 100644 attached_assets/IMG_7271_1749594881178.jpeg
+ delete mode 100644 attached_assets/IMG_7272_1749594881178.jpeg
+ delete mode 100644 attached_assets/IMG_7273_1749594881178.jpeg
+ delete mode 100644 attached_assets/IMG_7274_1749594881178.jpeg
+ delete mode 100644 attached_assets/IMG_7275_1749595730886.jpeg
+ delete mode 100644 attached_assets/IMG_7276_1749595730884.jpeg
+ delete mode 100644 attached_assets/IMG_7277_1749596875603.jpeg
+ delete mode 100644 attached_assets/IMG_7278_1749596875603.jpeg
+ delete mode 100644 attached_assets/IMG_7279_1749596875602.jpeg
+ delete mode 100644 attached_assets/IMG_7287_1749599201074.jpeg
+ delete mode 100644 attached_assets/IMG_7288_1749599201074.jpeg
+ delete mode 100644 attached_assets/IMG_7289_1749599201074.jpeg
+ delete mode 100644 attached_assets/IMG_7290_1749599201074.jpeg
+ delete mode 100644 attached_assets/IMG_7291_1749599201074.jpeg
+ delete mode 100644 attached_assets/IMG_7292_1749599201074.jpeg
+ delete mode 100644 attached_assets/IMG_7293_1749599201074.jpeg
+ delete mode 100644 attached_assets/IMG_7294_1749599201074.jpeg
+ delete mode 100644 attached_assets/IMG_7296_1749599201074.jpeg
+ delete mode 100644 attached_assets/IMG_7309_1749601116581.jpeg
+ delete mode 100644 attached_assets/IMG_7310_1749601116582.jpeg
+ delete mode 100644 attached_assets/IMG_7311_1749601116582.jpeg
+ delete mode 100644 attached_assets/IMG_7312_1749601116582.jpeg
+ delete mode 100644 attached_assets/IMG_7313_1749601116582.jpeg
+ delete mode 100644 attached_assets/IMG_7314_1749602667323.jpeg
+ delete mode 100644 attached_assets/IMG_7315_1749602667325.jpeg
+ delete mode 100644 attached_assets/IMG_7316_1749602667325.jpeg
+ delete mode 100644 attached_assets/IMG_7317_1749602667325.jpeg
+ delete mode 100644 attached_assets/IMG_7319_1749606927760.jpeg
+ delete mode 100644 attached_assets/IMG_7327_1749607780106.jpeg
+ delete mode 100644 attached_assets/IMG_7329_1749607780105.jpeg
+ delete mode 100644 attached_assets/IMG_7331_1749608970925.jpeg
+ delete mode 100644 attached_assets/IMG_7332_1749608970925.jpeg
+ delete mode 100644 attached_assets/IMG_7333_1749608970925.jpeg
+ delete mode 100644 attached_assets/IMG_7334_1749608970925.jpeg
+ delete mode 100644 attached_assets/IMG_7335_1749608970925.jpeg
+ delete mode 100644 attached_assets/IMG_7336_1749608970925.jpeg
+ delete mode 100644 attached_assets/IMG_7337_1749608970924.jpeg
+ delete mode 100644 attached_assets/IMG_7338_1749610091731.jpeg
+ delete mode 100644 attached_assets/IMG_7339_1749610091731.jpeg
+ delete mode 100644 attached_assets/IMG_7340_1749610091730.jpeg
+ delete mode 100644 attached_assets/IMG_7341_1749610091731.jpeg
+ delete mode 100644 attached_assets/IMG_7346_1749611021835.jpeg
+ delete mode 100644 attached_assets/IMG_7347_1749611021832.jpeg
+ delete mode 100644 attached_assets/IMG_7348_1749611656469.jpeg
+ delete mode 100644 attached_assets/IMG_7349_1749611656469.jpeg
+ delete mode 100644 attached_assets/Pasted--Replit-Agent-Prompt-Agent-I-see-broken-UX-UI-across-routes-in-daodiseo-app-especially-on-th-1749593891316_1749593891318.txt
+ delete mode 100644 attached_assets/Pasted--You-are-my-Replit-Agent-GOAL-Push-the-current-workspace-code-into-the-remote-repository-at-ht-1749044076771.txt
+ create mode 100644 attached_assets/Pasted--workspace-git-checkout-b-DaodiseoAppA-fatal-cannot-lock-ref-refs-heads-DaodiseoAppA-Unable-t-1749618205441_1749618205464.txt
+ delete mode 100644 attached_assets/Pasted--workspace-git-checkout-b-daodiseoAppA-fatal-a-branch-named-daodiseoAppA-already-exists-work-1749616101823_1749616101843.txt
+ delete mode 100644 attached_assets/Pasted--workspace-git-checkout-daodiseoAppA-error-pathspec-daodiseoAppA-did-not-match-any-file-s-know-1749615650652_1749615650658.txt
+ delete mode 100644 attached_assets/Pasted-2025-06-01T01-35-24Z-info-Deployment-1c986472-d10e-4c05-9a8b-c928167ed9e6-2025-06-01T01-35-24Z-inf-1748742033238.txt
+ delete mode 100644 attached_assets/Pasted-2025-06-01T01-41-24Z-info-Deployment-1c986472-d10e-4c05-9a8b-c928167ed9e6-2025-06-01T01-41-24Z-inf-1748742549453.txt
+ delete mode 100644 attached_assets/Pasted-Absolutely-Here-s-your-expert-level-fullstack-solution-prompt-for-final-bug-fixing-and-aesthetic-al-1749599176963_1749599176963.txt
+ delete mode 100644 attached_assets/Pasted-Based-on-the-dashboard-analysis-here-are-all-existing-components-and-specific-enhancement-ideas-for-1749577741861_1749577741866.txt
+ delete mode 100644 attached_assets/Pasted-Based-on-your-6-dashboard-screenshots-and-the-specific-issue-with-the-header-not-aligning-pixel-perf-1749594888456_1749594888457.txt
+ delete mode 100644 attached_assets/Pasted-First-that-I-see-after-previous-prompt-that-components-go-taller-that-good-But-lowest-components-d-1749608911515_1749608911519.txt
+ delete mode 100644 attached_assets/Pasted-First-that-I-see-after-previous-prompt-that-components-go-taller-that-good-But-lowest-components-d-1749608956485_1749608956486.txt
+ delete mode 100644 attached_assets/Pasted-Got-it-here-is-the-improved-and-final-structured-fix-plan-focusing-on-the-3-current-issues-you-mark-1749611043658_1749611043660.txt
+ delete mode 100644 attached_assets/Pasted-Here-s-a-clear-breakdown-of-the-two-core-issues-you-re-facing-along-with-actionable-solutions-tailo-1749613129403_1749613129406.txt
+ delete mode 100644 attached_assets/Pasted-Here-s-your-Replit-Agent-prompt-in-your-requested-structure-with-all-UX-layout-rendering-orchest-1749597798315_1749597798316.txt
+ delete mode 100644 attached_assets/Pasted-Here-s-your-updated-developer-focused-WBS-style-QA-Fix-Prompt-based-on-all-visual-bugs-loading-issu-1749607838652_1749607838652.txt
+ delete mode 100644 attached_assets/Pasted-Now-better-but-now-in-header-1-Game-button-move-outside-display-to-right-2-Keplr-auth-button-mov-1749601790470_1749601790479.txt
+ delete mode 100644 attached_assets/Pasted-Ok-focus-on-3-last-things-1-Active-validators-component-content-are-goes-out-the-borders-and-ai--1749611008279_1749611008283.txt
+ delete mode 100644 attached_assets/Pasted-Perfect-Based-on-your-new-screenshots-and-diagnosis-here-s-the-updated-technical-task-sheet-as-a-W-1749595738585_1749595738585.txt
+ delete mode 100644 attached_assets/Pasted-Perfect-Here-s-your-full-GitHub-Push-Prompt-tailored-for-DAODISEO-clean-architecture-and-TRIZ-val-1749615129772_1749615129773.txt
+ delete mode 100644 attached_assets/Pasted-Perfect-Since-DAODISEO-is-built-on-Clean-Architecture-we-need-to-align-the-GitHub-preparation-prom-1749612568849_1749612568849.txt
+ delete mode 100644 attached_assets/Pasted-Perfect-here-s-the-improved-technical-and-UX-prompt-response-tailored-to-your-staging-environment--1749610081257_1749610081259.txt
+ delete mode 100644 attached_assets/Pasted-Refused-to-load-the-stylesheet-https-fonts-googleapis-com-css2-family-Inter-wght-300-400-500-600--1749609670143_1749609670147.txt
+ delete mode 100644 attached_assets/Pasted-So-now-all-ok-with-left-side-header-footer-and-displaying-of-body-But-focus-as-dev-in-header-whe-1749602671547_1749602671547.txt
+ delete mode 100644 attached_assets/Pasted-Thanks-Indradeva-Below-is-the-updated-prompt-structured-practical-and-fullstack-ready-for-final-U-1749601120368_1749601120368.txt
+ delete mode 100644 attached_assets/Pasted-Thanks-Indradeva-Let-s-lock-in-the-final-UI-UX-AI-integration-fixes-based-on-your-new-observation-1749611684403_1749611684403.txt
+ delete mode 100644 attached_assets/Pasted-return-3-ideas-as-ai-dev-to-use-existing-data-for-components-in-app-especially-in-token-value-it--1749577305140_1749577305144.txt
+ delete mode 100644 attached_assets/Screen Shot 2025-06-01 at 03.49.00.png
+ delete mode 100644 attached_assets/Screen Shot 2025-06-04 at 15.30.43.png
+ delete mode 100644 attached_assets/Screen Shot 2025-06-10 at 12.46.20_1749552400254.png
+ delete mode 100644 attached_assets/Screen Shot 2025-06-10 at 19.00.06_1749574825515.png
+ delete mode 100644 attached_assets/Screen Shot 2025-06-10 at 19.02.06_1749574942681.png
+ delete mode 100644 attached_assets/Screen Shot 2025-06-10 at 19.19.27_1749575988323.png
+ delete mode 100644 attached_assets/Screen Shot 2025-06-10 at 19.29.21_1749576588081.png
+ delete mode 100644 attached_assets/Screen Shot 2025-06-11 at 05.37.05_1749613062632.png
+ delete mode 100644 attached_assets/Screen Shot 2025-06-11 at 05.41.38_1749613325078.png
+ delete mode 100644 attached_assets/Screen Shot 2025-06-11 at 05.53.18_1749614012577.png
+ delete mode 100644 attached_assets/Screen Shot 2025-06-11 at 06.27.31_1749616118442.png
+ delete mode 100644 attached_assets/Screen Shot 2025-06-11 at 06.44.02_1749617061176.png
+ delete mode 100644 attached_assets/apracticalguidetobuildingagents_1749597774929.pdf
+ delete mode 100644 attached_assets/content-1749044171158.md
+ delete mode 100644 attached_assets/content-1749044376863.md
+ delete mode 100644 attached_assets/content-1749574897155.md
+ delete mode 100644 attached_assets/content-1749574899029.md
+ delete mode 100644 attached_assets/content-1749575129451.md
+ delete mode 100644 attached_assets/content-1749597762701.md
+ delete mode 100644 attached_assets/content-1749599212232.md
+ delete mode 100644 attached_assets/content-1749601332646.md
+ delete mode 100644 attached_assets/content-1749615152167.md
+ delete mode 100644 attached_assets/screenshot-1749044171999.png
+ delete mode 100644 attached_assets/screenshot-1749044375851.png
+ delete mode 100644 attached_assets/screenshot-1749599213349.png
+ delete mode 100644 attached_assets/screenshot-1749601331251.png
+ delete mode 100644 attached_assets/telegram-cloud-photo-size-4-5899910228948929128-y_1748743149753.jpg
+ delete mode 100644 attached_assets/telegram-cloud-photo-size-4-5926781610231974057-y_1749591444391.jpg
+ delete mode 100644 attached_assets/telegram-cloud-photo-size-4-5926781610231974095-m_1749591454276.jpg
+ delete mode 100644 attached_assets/telegram-cloud-photo-size-4-5929033410045660928-y_1749616953898.jpg
+ delete mode 100644 attached_assets/telegram-cloud-photo-size-4-5929033410045660928-y_1749617024656.jpg
+ delete mode 100644 attached_assets/telegram-cloud-photo-size-4-5929033410045660929-y_1749616960407.jpg
+ delete mode 100644 attached_assets/telegram-cloud-photo-size-4-5929033410045660930-y_1749616967025.jpg
+~/workspace$ git pull origin main --no-edit
+From https://github.com/indrad3v4/Contract
+ * branch            main       -> FETCH_HEAD
+hint: You have divergent branches and need to specify how to reconcile them.
+hint: You can do so by running one of the following commands sometime before
+hint: your next pull:
+hint:
+hint:   git config pull.rebase false  # merge
+hint:   git config pull.rebase true   # rebase
+hint:   git config pull.ff only       # fast-forward only
+hint:
+hint: You can replace "git config" with "git config --global" to set a default
+hint: preference for all repositories. You can also pass --rebase, --no-rebase,
+hint: or --ff-only on the command line to override the configured default per
+hint: invocation.
+fatal: Need to specify how to reconcile divergent branches.
+~/workspace$ git push origin main
+To https://github.com/indrad3v4/Contract
+ ! [rejected]        main -> main (non-fast-forward)
+error: failed to push some refs to 'https://github.com/indrad3v4/Contract'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. If you want to integrate the remote changes,
+hint: use 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+~/workspace$ 

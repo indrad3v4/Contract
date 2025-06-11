@@ -102,6 +102,7 @@ class KeplerWallet {
     }
 
     updateUI() {
+<<<<<<< HEAD
         // Update global state first
         if (window.DaodiseoState) {
             window.DaodiseoState.setState('wallet', {
@@ -111,6 +112,8 @@ class KeplerWallet {
             });
         }
 
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
         // Update connect wallet button in sidebar
         const connectKeplrBtn = document.getElementById('connectKeplrBtn');
         if (connectKeplrBtn) {
@@ -118,6 +121,10 @@ class KeplerWallet {
                 connectKeplrBtn.innerHTML = '<i data-feather="check-circle" class="icon-inline-sm"></i> Connected';
                 connectKeplrBtn.classList.remove('btn-outline-info');
                 connectKeplrBtn.classList.add('btn-success');
+<<<<<<< HEAD
+=======
+                // Add disconnect option on click
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
                 connectKeplrBtn.onclick = () => this.disconnect();
             } else {
                 connectKeplrBtn.innerHTML = '<i data-feather="link" class="icon-inline-sm"></i> Connect Keplr Wallet';
@@ -138,12 +145,26 @@ class KeplerWallet {
             }
         }
 
+<<<<<<< HEAD
+=======
+        // Refresh feather icons
+        feather.replace();
+        
+        // Set global window variables for other scripts
+        window.walletConnected = this.connected;
+        window.userWalletAddress = this.address || '';
+
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
         // Legacy connect button support
         const connectButton = document.getElementById('connectWallet');
         if (connectButton) {
             if (this.connected && this.address) {
                 connectButton.innerHTML = `Connected: ${this.address.slice(0, 8)}...`;
                 connectButton.classList.replace('btn-primary', 'btn-success');
+<<<<<<< HEAD
+=======
+                // Add disconnect option
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
                 connectButton.onclick = () => this.disconnect();
             } else {
                 connectButton.innerHTML = '<i class="bi bi-wallet2"></i> Connect Wallet';
@@ -151,9 +172,12 @@ class KeplerWallet {
                 connectButton.onclick = () => this.init();
             }
         }
+<<<<<<< HEAD
 
         // Refresh feather icons
         feather.replace();
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
     }
 
     async signTransaction(transaction) {

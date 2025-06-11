@@ -1,0 +1,62 @@
+~/workspace$ git config pull.rebase false
+~/workspace$ git pull origin main --allow-unrelated-histories
+From https://github.com/indrad3v4/Contract
+ * branch            main       -> FETCH_HEAD
+Auto-merging .replit
+CONFLICT (add/add): Merge conflict in .replit
+Auto-merging README.md
+CONFLICT (add/add): Merge conflict in README.md
+Auto-merging main.py
+CONFLICT (add/add): Merge conflict in main.py
+Auto-merging pyproject.toml
+CONFLICT (add/add): Merge conflict in pyproject.toml
+Auto-merging replit.nix
+CONFLICT (add/add): Merge conflict in replit.nix
+Auto-merging src/controllers/bim_agent_controller.py
+CONFLICT (add/add): Merge conflict in src/controllers/bim_agent_controller.py
+Auto-merging src/controllers/blockchain_controller.py
+CONFLICT (add/add): Merge conflict in src/controllers/blockchain_controller.py
+Auto-merging src/entities/stakeholder.py
+CONFLICT (add/add): Merge conflict in src/entities/stakeholder.py
+Auto-merging src/external_interfaces/ui/static/css/custom.css
+CONFLICT (add/add): Merge conflict in src/external_interfaces/ui/static/css/custom.css
+Auto-merging src/external_interfaces/ui/static/css/main.css
+CONFLICT (add/add): Merge conflict in src/external_interfaces/ui/static/css/main.css
+Auto-merging src/external_interfaces/ui/static/img/logo.svg
+CONFLICT (add/add): Merge conflict in src/external_interfaces/ui/static/img/logo.svg
+Auto-merging src/external_interfaces/ui/static/js/ai-chat-enhanced.js
+CONFLICT (add/add): Merge conflict in src/external_interfaces/ui/static/js/ai-chat-enhanced.js
+Auto-merging src/external_interfaces/ui/static/js/contracts.js
+CONFLICT (add/add): Merge conflict in src/external_interfaces/ui/static/js/contracts.js
+Auto-merging src/external_interfaces/ui/static/js/dashboard.js
+CONFLICT (add/add): Merge conflict in src/external_interfaces/ui/static/js/dashboard.js
+Auto-merging src/external_interfaces/ui/static/js/kepler.js
+CONFLICT (add/add): Merge conflict in src/external_interfaces/ui/static/js/kepler.js
+Auto-merging src/external_interfaces/ui/static/js/micro-rewards-ui.js
+CONFLICT (add/add): Merge conflict in src/external_interfaces/ui/static/js/micro-rewards-ui.js
+Auto-merging src/external_interfaces/ui/static/js/transaction.js
+CONFLICT (add/add): Merge conflict in src/external_interfaces/ui/static/js/transaction.js
+Auto-merging src/external_interfaces/ui/templates/base.html
+CONFLICT (add/add): Merge conflict in src/external_interfaces/ui/templates/base.html
+Auto-merging src/external_interfaces/ui/templates/dashboard.html
+CONFLICT (add/add): Merge conflict in src/external_interfaces/ui/templates/dashboard.html
+Auto-merging src/external_interfaces/ui/templates/upload.html
+CONFLICT (add/add): Merge conflict in src/external_interfaces/ui/templates/upload.html
+Auto-merging src/gateways/pingpub_gateway.py
+CONFLICT (add/add): Merge conflict in src/gateways/pingpub_gateway.py
+Auto-merging src/services/ai/bim_agent.py
+CONFLICT (add/add): Merge conflict in src/services/ai/bim_agent.py
+Auto-merging src/services/blockchain_service.py
+CONFLICT (add/add): Merge conflict in src/services/blockchain_service.py
+Auto-merging uv.lock
+CONFLICT (add/add): Merge conflict in uv.lock
+Automatic merge failed; fix conflicts and then commit the result.
+~/workspace$ git push origin main
+To https://github.com/indrad3v4/Contract
+ ! [rejected]        main -> main (non-fast-forward)
+error: failed to push some refs to 'https://github.com/indrad3v4/Contract'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. If you want to integrate the remote changes,
+hint: use 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+~/workspace$ 

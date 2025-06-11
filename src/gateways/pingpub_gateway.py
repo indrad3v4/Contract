@@ -103,9 +103,12 @@ class PingPubGateway:
         self.validators_endpoint = "validators"
         self.transaction_endpoint = "tx"
         
+<<<<<<< HEAD
         # RPC endpoint for real chain data
         self.rpc_url = os.environ.get("RPC_URL", "https://testnet-rpc.daodiseo.chaintools.tech")
         
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
         # Get gas settings from environment with validation
         try:
             self.default_gas = str(int(os.environ.get("DEFAULT_GAS", "100000")))
@@ -124,10 +127,13 @@ class PingPubGateway:
         if not self.explorer_url and not os.environ.get('FLASK_DEBUG'):
             logger.warning("EXPLORER_URL environment variable is missing")
         
+<<<<<<< HEAD
         # Validate RPC URL
         if not self.rpc_url.startswith(('https://', 'http://localhost')):
             logger.warning(f"SECURITY WARNING: RPC_URL should use HTTPS in production: {self.rpc_url}")
         
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
         # Initialize session with proper timeouts
         self.session = requests.Session()
         # Set default timeout for all requests
@@ -235,7 +241,11 @@ class PingPubGateway:
     
     def get_validators(self):
         """
+<<<<<<< HEAD
         Retrieve list of active validators from real chain data
+=======
+        Retrieve list of active validators
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
         
         Returns:
             list: List of validator information
@@ -243,6 +253,7 @@ class PingPubGateway:
         # Check if running in mock mode due to connection issues
         if hasattr(self, 'is_connected') and not self.is_connected:
             logger.warning("Using MOCK validators list")
+<<<<<<< HEAD
             return self._get_mock_validators()
             
         try:
@@ -286,10 +297,44 @@ class PingPubGateway:
         
         except requests.RequestException as e:
             logger.error(f"Failed to get validators from both RPC and explorer: {str(e)}")
+=======
+            return [
+                {
+                    "operator_address": "odiseovaloper1gghjut3ccd8ay0zduzj64hwre2fxs9ldmqhffj",
+                    "description": {"moniker": "Mock Validator 1"},
+                    "status": "BOND_STATUS_BONDED",
+                    "voting_power": "1000000",
+                    "commission": {"commission_rates": {"rate": "0.05"}}
+                },
+                {
+                    "operator_address": "odiseovaloper1fmprm0sjy6lz9llv7rltn0v2azzwcwzvk2lsyn",
+                    "description": {"moniker": "Mock Validator 2"},
+                    "status": "BOND_STATUS_BONDED",
+                    "voting_power": "2000000",
+                    "commission": {"commission_rates": {"rate": "0.07"}}
+                }
+            ]
+            
+        try:
+            endpoint = f"{self.base_url}{self.validators_endpoint}"
+            logger.debug(f"Requesting validators from: {endpoint}")
+            
+            response = self.session.get(endpoint, timeout=self.timeout)
+            response.raise_for_status()
+            
+            data = response.json()
+            logger.debug(f"Received {len(data)} validators")
+            
+            return data
+        
+        except requests.RequestException as e:
+            logger.error(f"Failed to get validators: {str(e)}")
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
             
             # If in development mode, return mock data
             if self.is_development:
                 logger.warning("Using MOCK validators list due to error")
+<<<<<<< HEAD
                 return self._get_mock_validators()
             else:
                 raise ValueError(f"Failed to fetch validators: {str(e)}")
@@ -323,6 +368,27 @@ class PingPubGateway:
             }
         ]
     
+=======
+                return [
+                    {
+                        "operator_address": "odiseovaloper1gghjut3ccd8ay0zduzj64hwre2fxs9ldmqhffj",
+                        "description": {"moniker": "Mock Validator 1"},
+                        "status": "BOND_STATUS_BONDED",
+                        "voting_power": "1000000",
+                        "commission": {"commission_rates": {"rate": "0.05"}}
+                    },
+                    {
+                        "operator_address": "odiseovaloper1fmprm0sjy6lz9llv7rltn0v2azzwcwzvk2lsyn",
+                        "description": {"moniker": "Mock Validator 2"},
+                        "status": "BOND_STATUS_BONDED",
+                        "voting_power": "2000000",
+                        "commission": {"commission_rates": {"rate": "0.07"}}
+                    }
+                ]
+            else:
+                raise ValueError(f"Failed to fetch validators: {str(e)}")
+    
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
     def broadcast_transaction(self, signed_tx):
         """
         Broadcast a signed transaction to the blockchain through ping.pub

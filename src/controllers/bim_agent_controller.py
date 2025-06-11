@@ -9,10 +9,14 @@ from datetime import datetime
 from flask import Blueprint, jsonify, request, current_app
 import json
 
+<<<<<<< HEAD
 from src.services.ai.bim_agent import BIMAgentManager
 from src.services.ai.orchestrator import get_orchestrator
 from src.services.ai.chain_brain_orchestrator import get_chain_brain_orchestrator
 from src.services.ai.chain_brain_service import get_chain_brain_service
+=======
+from src.bim.bim_agent import BIMAgentManager
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
@@ -34,7 +38,11 @@ def get_bim_agent_instance():
 def chat():
     """
     Process a chat message and return the AI response
+<<<<<<< HEAD
     Expects JSON: {"message": "user message here", "enhanced": true/false}
+=======
+    Expects JSON: {"message": "user message here", "use_agent": true/false}
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
     """
     data = request.get_json()
 
@@ -42,6 +50,7 @@ def chat():
         return jsonify({"success": False, "message": "Message field is required"}), 400
 
     message = data["message"]
+<<<<<<< HEAD
     enhanced_mode = data.get("enhanced", False)
 
     # Log the incoming message
@@ -90,6 +99,42 @@ def chat():
                 logger.info("Falling back to standard AI processing")
         except Exception as e:
             logger.error(f"Error using orchestrator: {str(e)}")
+=======
+    use_agent = data.get("use_agent", False)
+
+    # Log the incoming message
+    logger.debug(f"Received chat message: {message}, use_agent={use_agent}")
+    
+    if use_agent:
+        # Process with IFC agent if specified and available
+        logger.debug("Attempting to use IFC Agent for query")
+        try:
+            # Load the current IFC file into the IFC agent if not already loaded
+            if bim_agent_manager.use_real_ifc and bim_agent_manager.current_ifc_file:
+                bim_agent_manager.ifc_agent.load_ifc_file(bim_agent_manager.current_ifc_file)
+                
+            # Process the query using the IFC agent
+            result = bim_agent_manager.ifc_agent.process_query(message)
+            
+            # If the IFC agent is available and successful, return its result
+            if result.get("success", False):
+                return jsonify({
+                    "success": True,
+                    "message": "Successfully processed with IFC Agent",
+                    "response": result.get("response", "No response generated"),
+                    "metadata": {
+                        "agent_type": "ifc_agent",
+                        "tools_used": result.get("metadata", {}).get("tools_used", []),
+                        "ifc_file": result.get("ifc_file")
+                    }
+                })
+            else:
+                # If IFC agent failed, log the error and fall back to standard processing
+                logger.warning(f"IFC Agent failed: {result.get('message', 'Unknown error')}")
+                logger.info("Falling back to standard AI processing")
+        except Exception as e:
+            logger.error(f"Error using IFC Agent: {str(e)}")
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
             logger.info("Falling back to standard AI processing")
     
     # Process the message with standard AI
@@ -427,6 +472,7 @@ def execute_staking():
         return jsonify({"success": False, "message": str(e)}), 500
 
 
+<<<<<<< HEAD
 @bim_agent_bp.route("/chain-brain-status", methods=["GET"])
 def chain_brain_status():
     """Get the status of the chain brain feeding system"""
@@ -447,6 +493,8 @@ def chain_brain_status():
             "error": str(e)
         }), 500
 
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
 @bim_agent_bp.route("/auto-suggest-liquidity", methods=["POST"])
 def auto_suggest_liquidity():
     """

@@ -24,10 +24,16 @@ const aiChat = {
         this.render();
         this.bindEvents();
         this.checkEnhancedStatus();
+<<<<<<< HEAD
         this.checkChainBrainStatus();
         
         // Add system welcome message
         this.addSystemMessage("Welcome to the BIM AI Assistant with Chain Brain integration. How can I help you today?");
+=======
+        
+        // Add system welcome message
+        this.addSystemMessage("Welcome to the BIM AI Assistant. How can I help you today?");
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
     },
     
     // Render the chat interface
@@ -129,7 +135,11 @@ const aiChat = {
     
     // Check enhanced mode status
     checkEnhancedStatus: function() {
+<<<<<<< HEAD
         fetch('/api/bim-agent/enhanced-status')
+=======
+        fetch('/api/bim/enhanced-status')
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
@@ -144,7 +154,11 @@ const aiChat = {
     
     // Toggle enhanced mode
     toggleEnhancedMode: function(enabled) {
+<<<<<<< HEAD
         fetch('/api/bim-agent/toggle-enhanced', {
+=======
+        fetch('/api/bim/toggle-enhanced', {
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -192,6 +206,7 @@ const aiChat = {
         // Clear input
         inputElement.value = '';
         
+<<<<<<< HEAD
         // Get CSRF token from meta tag or session
         const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || 
                          window.csrf_token || '';
@@ -206,6 +221,17 @@ const aiChat = {
             body: JSON.stringify({
                 message: message,
                 enhanced: this.isEnhancedMode
+=======
+        // Send message to server with the use_agent parameter
+        fetch('/api/bim/message', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: message,
+                use_agent: this.isEnhancedMode
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
             })
         })
         .then(response => response.json())
@@ -466,6 +492,7 @@ const aiChat = {
     // Scroll to the bottom of the chat
     scrollToBottom: function() {
         this.messagesContainer.scrollTop = this.messagesContainer.scrollHeight;
+<<<<<<< HEAD
     },
     
     // Check chain brain status
@@ -506,5 +533,7 @@ const aiChat = {
                     `<br>Recent insights: ${status.recent_insights.length}` : ''}
             </div>
         `;
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
     }
 };

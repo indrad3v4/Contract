@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize contract interaction buttons
     initContractButtons();
+<<<<<<< HEAD
     
     // Listen for cross-route state changes
     initCrossRouteListeners();
@@ -62,12 +63,17 @@ function initCrossRouteListeners() {
     });
 }
 
+=======
+});
+
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
 // Load contracts data from API
 async function initContractsData() {
     try {
         // Fetch contracts from API
         const contracts = await fetchApi('/api/contracts');
         
+<<<<<<< HEAD
         // Normalize contract data for cross-route consistency
         const normalizedContracts = contracts.map(contract => normalizeContractData(contract));
         
@@ -86,6 +92,10 @@ async function initContractsData() {
                 signed: signedContracts
             });
         }
+=======
+        // Display contracts in UI
+        displayContracts(contracts);
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
         
         // Initialize transaction history if available
         const transactionElements = document.querySelectorAll('.transactions-table');
@@ -103,6 +113,7 @@ async function initContractsData() {
     }
 }
 
+<<<<<<< HEAD
 // Normalize contract data to ensure consistent field names across routes
 function normalizeContractData(contract) {
     return {
@@ -151,6 +162,8 @@ function updateContractButtonsState(walletConnected) {
     }
 }
 
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
 // Display contracts in UI
 function displayContracts(contracts) {
     const contractsContainer = document.querySelector('.contracts-grid');

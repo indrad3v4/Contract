@@ -7,6 +7,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     initDashboardData();
     initDashboardCharts();
+<<<<<<< HEAD
     initDashboardStateListeners();
 });
 
@@ -46,6 +47,10 @@ function initDashboardStateListeners() {
     });
 }
 
+=======
+});
+
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
 // Initialize dashboard data from API
 async function initDashboardData() {
     try {
@@ -103,6 +108,7 @@ function updateDashboardMetrics(data) {
     }
 }
 
+<<<<<<< HEAD
 // Refresh portfolio data after cross-route events
 async function refreshPortfolioData() {
     try {
@@ -200,6 +206,8 @@ function updateAssetDistribution(assetData) {
     }
 }
 
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
 // Update hot asset display
 function updateHotAsset(hotAsset) {
     const hotAssetNameElement = document.querySelector('.hot-asset-name');

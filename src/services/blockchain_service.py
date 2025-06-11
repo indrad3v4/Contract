@@ -258,8 +258,12 @@ class BlockchainService:
                 "name": validator.get("description", {}).get("moniker", "Unknown"),
                 "status": validator.get("status", "UNKNOWN"),
                 "voting_power": validator.get("voting_power", 0),
+<<<<<<< HEAD
                 "commission": validator.get("commission", {}).get("commission_rates", {}).get("rate", 0),
                 "proposals_pending": validator.get("proposals_pending", 0)
+=======
+                "commission": validator.get("commission", {}).get("commission_rates", {}).get("rate", 0)
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
             })
         
         return formatted_validators
@@ -280,7 +284,10 @@ class BlockchainService:
             except Exception as e:
                 logger.warning(f"Failed to get validators: {str(e)}")
                 network_alive = False
+<<<<<<< HEAD
                 validators = []
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
                 
             # Try to get token price and staking info
             try:
@@ -323,7 +330,11 @@ class BlockchainService:
             # Get hot asset data
             hot_asset = self._get_hot_asset()
             
+<<<<<<< HEAD
             # Construct response with all data including validators
+=======
+            # Construct response with all data
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
             return {
                 'token_value': token_value,
                 'staking_apy': staking_apy,
@@ -332,8 +343,12 @@ class BlockchainService:
                 'verified_assets': verified_assets,
                 'unverified_assets': unverified_assets,
                 'hot_asset': hot_asset,
+<<<<<<< HEAD
                 'network_status': 'active' if network_alive else 'degraded',
                 'validators': validators  # Include real validator data from blockchain
+=======
+                'network_status': 'active' if network_alive else 'degraded'
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
             }
             
         except Exception as e:
@@ -354,8 +369,12 @@ class BlockchainService:
                     'funded_amount': 1625000,
                     'target_amount': 2500000
                 },
+<<<<<<< HEAD
                 'network_status': 'error',
                 'validators': []  # Empty array when network is unavailable
+=======
+                'network_status': 'error'
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
             }
     
     def _get_hot_asset(self) -> Dict[str, Any]:

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>{% block title %}DAODISEO - Real Estate Tokenization
 {% endblock %}</title>
     
@@ -21,6 +22,26 @@
         
         // Initialize immediately
         feather.replace();
+=======
+    <title>{% block title %}Daodiseo Real Estate Tokenization{% endblock %}</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons - Locally Bundled (implementation fixed) -->
+    <script src="{{ url_for('static', filename='js/lib/feather.min.js') }}"></script>
+    <!-- Initialize Feather Icons immediately and again when document loads -->
+    <script>
+        // First attempt to initialize feather icons immediately
+        if (typeof feather !== 'undefined') {
+            feather.replace();
+            console.log('Feather icons initialized on load');
+        } else {
+            console.error('Feather icons library not loaded');
+        }
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
     </script>
     
     <!-- Bootstrap CSS -->
@@ -31,9 +52,12 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/micro-rewards.css') }}">
+<<<<<<< HEAD
     <link rel="stylesheet" href="{{ url_for('static', filename='css/ai-chat.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/daodiseo-ux.css') }}">
 
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
     
     <style>
         /* User profile menu styles */
@@ -83,6 +107,7 @@
             animation: highlightPulse 1.5s ease-out infinite;
             border: 2px solid rgba(224, 13, 121, 0.7) !important;
         }
+<<<<<<< HEAD
         
         /* FULLSCREEN LAYOUT - EDGE-TO-EDGE DASHBOARD */
         * {
@@ -246,6 +271,8 @@
             color: #ffffff !important;
             transition: all 0.3s ease !important;
         }
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
     </style>
     
     <!-- THREE.js for 3D visualization -->
@@ -253,6 +280,7 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
     
+<<<<<<< HEAD
     <!-- Global State Management -->
     <script src="{{ url_for('static', filename='js/global-state.js') }}"></script>
     
@@ -264,6 +292,9 @@
     
     {% block extra_css %}
 {% endblock %}
+=======
+    {% block extra_css %}{% endblock %}
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
 </head>
 <body class="cosmic-theme">
     <div class="app-container">
@@ -271,33 +302,59 @@
         <div class="sidebar">
             <div class="sidebar-header">
                 <div class="app-logo">
+<<<<<<< HEAD
                     <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="DAODISEO">
                 </div>
                 <div class="app-title">DAODISEO.APP</div>
+=======
+                    <img src="{{ url_for('static', filename='img/cosmic-logo.svg') }}" alt="BIM AI">
+                </div>
+                <div class="app-title">BIM AI</div>
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
             </div>
             
             <nav class="sidebar-nav">
                 <ul>
+<<<<<<< HEAD
                     <li class="nav-item">
                         <a href="{{ url_for('index') }}" class="nav-link {% if request.endpoint == 'index' %}active{% endif %}">
+=======
+                    <li class="nav-item {{ 'active' if request.path == '/' }}">
+                        <a href="{{ url_for('index') }}" class="nav-link">
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
                             <i data-feather="grid"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
+<<<<<<< HEAD
                     <li class="nav-item">
                         <a href="{{ url_for('viewer') }}" class="nav-link {% if request.endpoint == 'viewer' %}active{% endif %}">
+=======
+                    <li class="nav-item {{ 'active' if request.path == '/viewer' }}">
+                        <a href="{{ url_for('viewer') }}" class="nav-link">
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
                             <i data-feather="box"></i>
                             <span>3D Viewer</span>
                         </a>
                     </li>
+<<<<<<< HEAD
                     <li class="nav-item">
                         <a href="{{ url_for('upload') }}" class="nav-link {% if request.endpoint == 'upload' %}active{% endif %}">
+=======
+                    <li class="nav-item {{ 'active' if request.path == '/upload' }}">
+                        <a href="{{ url_for('upload') }}" class="nav-link">
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
                             <i data-feather="upload"></i>
                             <span>Upload</span>
                         </a>
                     </li>
+<<<<<<< HEAD
                     <li class="nav-item">
                         <a href="{{ url_for('contracts') }}" class="nav-link {% if request.endpoint == 'contracts' %}active{% endif %}">
+=======
+                    <li class="nav-item {{ 'active' if request.path == '/contracts' }}">
+                        <a href="{{ url_for('contracts') }}" class="nav-link">
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
                             <i data-feather="file-text"></i>
                             <span>Contracts</span>
                         </a>
@@ -310,6 +367,7 @@
                     <div class="status-indicator active"></div>
                     <span>Odiseo Testnet</span>
                 </div>
+<<<<<<< HEAD
                 
             </div>
         </div>
@@ -328,10 +386,17 @@
                     <button class="btn btn-outline-info btn-sm" id="headerConnectKeplr">
                         <i data-feather="link" class="icon-inline-sm"></i>
                         Connect Keplr
+=======
+                <div class="wallet-connect">
+                    <button class="btn btn-sm btn-outline-info" id="connectKeplrBtn">
+                        <i data-feather="link" class="icon-inline-sm"></i>
+                        Connect Keplr Wallet
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
                     </button>
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
 
         <!-- Main Content -->
         <div class="main-content">
@@ -340,6 +405,37 @@
             <div class="content-wrapper">
                 {% block content %}
 {% endblock %}
+=======
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="page-title">
+                    <h1>{% block page_title %}Dashboard{% endblock %}</h1>
+                </div>
+                <div class="top-actions">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search...">
+                        <i data-feather="search"></i>
+                    </div>
+                    <div class="user-menu">
+                        <div class="notifications" id="notificationBtn">
+                            <i data-feather="bell"></i>
+                            <span class="badge">3</span>
+                        </div>
+                        <div class="user-profile" id="userProfileBtn">
+                            <img src="{{ url_for('static', filename='img/avatar.svg') }}" alt="User">
+                            <span>John Doe</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Content -->
+            <div class="content-wrapper">
+                {% block content %}{% endblock %}
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
             </div>
         </div>
     </div>
@@ -347,6 +443,7 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     
+<<<<<<< HEAD
     <!-- Console Logger - Must Load First -->
     <script src="{{ url_for('static', filename='js/console-logger.js') }}"></script>
     
@@ -358,6 +455,8 @@
     <!-- BIM Agent Interactive System -->
     <script src="{{ url_for('static', filename='js/bim-agent-interactive.js') }}"></script>
     
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
     <!-- Initialize Feather Icons -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -1181,7 +1280,10 @@
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
     <script src="{{ url_for('static', filename='js/contracts.js') }}"></script>
+<<<<<<< HEAD
     <script src="{{ url_for('static', filename='js/dashboard-optimized.js') }}"></script>
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
     
     <!-- Initialize Feather Icons -->
     <script>
@@ -1196,6 +1298,7 @@
         });
     </script>
     
+<<<<<<< HEAD
     {% block extra_js %}
 {% endblock %}
 
@@ -1259,5 +1362,8 @@
         }
     </script>
     
+=======
+    {% block extra_js %}{% endblock %}
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
 </body>
 </html>

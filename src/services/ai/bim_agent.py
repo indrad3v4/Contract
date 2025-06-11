@@ -35,8 +35,13 @@ class BIMAgentManager:
         if not os.path.exists(self.upload_dir):
             os.makedirs(self.upload_dir)
             
+<<<<<<< HEAD
         # Default IFC file loading is now lazy-loaded to prevent startup delays
         # self._load_first_available_ifc()
+=======
+        # Try to load a default IFC file if available
+        self._load_first_available_ifc()
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
         
     def _load_first_available_ifc(self) -> bool:
         """
@@ -63,8 +68,12 @@ class BIMAgentManager:
                 
             # Load the first file
             file_path = ifc_files[0]
+<<<<<<< HEAD
             result = self.load_ifc_file(file_path)
             success = result.get("success", False)
+=======
+            success = self.load_ifc_file(file_path)
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
             if success:
                 logger.info(f"Loaded IFC file: {os.path.basename(file_path)}")
             return success
@@ -73,13 +82,20 @@ class BIMAgentManager:
             logger.error(f"Error loading default IFC file: {e}")
             return False
             
+<<<<<<< HEAD
     def load_ifc_file(self, file_path: str, include_analysis: bool = False) -> Dict:
+=======
+    def load_ifc_file(self, file_path: str) -> Dict:
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
         """
         Load a specific IFC file.
 
         Args:
             file_path: Path to the IFC file
+<<<<<<< HEAD
             include_analysis: Whether to include AI analysis (may cause delays)
+=======
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
 
         Returns:
             Dict: Response with success/failure status
@@ -99,6 +115,7 @@ class BIMAgentManager:
             # Get summary
             summary = self.ifc_gateway.summary()
             
+<<<<<<< HEAD
             # Prepare response
             response = {
                 "success": True,
@@ -118,6 +135,19 @@ class BIMAgentManager:
             
             return response
             
+=======
+            # Do an AI analysis of the IFC file
+            analysis = self.ai_service.analyze_ifc_file(file_path)
+            
+            return {
+                "success": True,
+                "message": f"Successfully loaded {os.path.basename(file_path)}",
+                "building": summary,
+                "agent_enabled": agent_success,
+                "analysis": analysis.get("analysis", "")
+            }
+            
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
         except Exception as e:
             logger.error(f"Error loading IFC file: {e}")
             return {
@@ -184,7 +214,11 @@ class BIMAgentManager:
                     
             return {
                 "success": True,
+<<<<<<< HEAD
                 "response": response_text,
+=======
+                "message": response_text,
+>>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
                 "metadata": metadata
             }
             
