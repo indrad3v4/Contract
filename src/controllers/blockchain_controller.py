@@ -368,7 +368,6 @@ def prepare_upload():
         if current_app.debug:
             return jsonify({'error': str(e)}), 500
         else:
-<<<<<<< HEAD
             return jsonify({'error': 'Failed to process upload'}), 500
 
 # Additional blockchain endpoints for enhanced dashboard
@@ -474,6 +473,3 @@ def get_recent_transactions():
             'success': False,
             'error': str(e)
         }), 500
-=======
-            return jsonify({'error': 'Failed to process upload'}), 500
->>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113

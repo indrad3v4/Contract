@@ -26,7 +26,6 @@ class StakeholderGroup(str, Enum):
             if member.value.lower() == value.lower():
                 return member
         return cls.INVESTOR  # Default to investor if not found
-<<<<<<< HEAD
     
     @classmethod
     def get_name(cls, stakeholder_type):
@@ -41,8 +40,6 @@ class StakeholderGroup(str, Enum):
             cls.INVESTOR: "Investor"
         }
         return name_mapping.get(stakeholder_type, "Unknown")
-=======
->>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
 
 
 class StakeholderProfile:
