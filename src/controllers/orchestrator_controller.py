@@ -5,7 +5,7 @@ Routes all component data requests through o3-mini AI orchestrator with real RPC
 
 import logging
 from flask import Blueprint, jsonify, request
-from src.services.ai.orchestrator_o3_mini import O3MiniOrchestrator
+from src.services.ai.openai_agents_orchestrator import DaodiseoAgentsOrchestrator
 from src.services.rpc_service import DaodiseoRPCService
 from src.security_utils import secure_endpoint
 
@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 orchestrator_bp = Blueprint('orchestrator', __name__, url_prefix='/api/orchestrator')
 
 # Initialize services
-orchestrator = O3MiniOrchestrator()
+orchestrator = DaodiseoAgentsOrchestrator()
 rpc_service = DaodiseoRPCService()
 
 @orchestrator_bp.route('/token-metrics', methods=['GET'])
