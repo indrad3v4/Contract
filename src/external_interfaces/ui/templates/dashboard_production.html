@@ -406,6 +406,14 @@ body, html {
                 </span>
             </div>
             <div class="agent-value" id="token-value">$0.0000</div>
+            <div class="agent-insight" id="token-value-insight" style="display: none;">
+                <div class="insight-header">
+                    <i data-feather="brain" class="icon-inline-xs"></i>
+                    o3-mini Analysis
+                    <span class="confidence" id="token-value-confidence">Confidence: --</span>
+                </div>
+                <div class="insight-content" id="token-value-analysis">Loading analysis...</div>
+            </div>
             <div class="agent-meta">
                 Last updated: <span id="token-value-time">--:--:--</span>
             </div>
@@ -989,5 +997,15 @@ document.addEventListener('DOMContentLoaded', function() {
         feather.replace();
     }
 });
+
+// Load dashboard final fix for o3-mini integration and UI fixes
+(function() {
+    const script = document.createElement('script');
+    script.src = '/static/js/dashboard-final-fix.js';
+    script.onload = function() {
+        console.log('Dashboard final fix loaded - o3-mini integration active');
+    };
+    document.head.appendChild(script);
+})();
 </script>
 {% endblock %}
