@@ -1,0 +1,144 @@
+Absolutely. You’re hitting several architectural UX/UI and performance flaws all at once — mainly from grid misuse, AI overload, and poor layout containment. Let’s break this down into 10 sharp, actionable improvements to resolve:
+
+⸻
+
+🔧 10 FIXES to Optimize Dashboard Layout, UX & AI Orchestration
+
+⸻
+
+1. Switch to Grid Template Rows/Columns
+	•	Problem: Cards overflow their containers and stretch beyond view
+	•	Fix: Replace flex with grid-template-columns and auto-rows
+
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+grid-auto-rows: auto;
+gap: 1.5rem;
+
+
+
+⸻
+
+2. Make Footer Sticky, Not Obstructive
+	•	Problem: Footer overlaps or pushes content awkwardly
+	•	Fix: Use:
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 5;
+}
+body {
+  padding-bottom: 80px; /* room for footer */
+}
+
+
+
+⸻
+
+3. Vertically Stack 3D BIM Assistant (if wide overflow)
+	•	Problem: 3D BIM model and buttons overflow card
+	•	Fix: Wrap content in a .bim-wrapper with:
+
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+
+
+
+⸻
+
+4. Condense Stakeholder Chart
+	•	Problem: It bleeds into surrounding space
+	•	Fix:
+	•	Set fixed max-width
+	•	Chart inside position: relative, canvas max-width: 100%
+
+⸻
+
+5. Card Body Scroll Limit
+	•	Add .card-body { max-height: 400px; overflow-y: auto; }
+→ This prevents cards from expanding infinitely with long content
+
+⸻
+
+6. Move Error Toast Top-Center
+	•	Problem: Error overlaps wallet buttons or cuts off
+	•	Fix:
+
+.toast {
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+
+
+⸻
+
+7. Use requestIdleCallback for o3-mini AI
+	•	Problem: AI blocks page render on low-end devices
+	•	Fix:
+
+requestIdleCallback(() => {
+  runO3Analysis()
+})
+
+
+
+⸻
+
+8. Collapse AI Output into Disclosure Panel
+	•	Default state: “Click to expand analysis”
+	•	Prevent long strings of AI JSON/logs from rendering automatically
+
+⸻
+
+9. Refactor Modal Stack
+	•	Ensure every modal (like Invest, BIM) uses Bootstrap 5 or Z-index hierarchy properly:
+
+.modal-backdrop { z-index: 1040; }
+.modal { z-index: 1050; }
+
+
+
+⸻
+
+10. Throttle AI + Endpoint Fetches
+	•	Limit to 2 components at once using:
+
+const queue = [];
+let active = 0;
+
+function runQueuedFetch(fn) {
+  if (active < 2) {
+    active++;
+    fn().finally(() => {
+      active--;
+      if (queue.length) runQueuedFetch(queue.shift());
+    });
+  } else {
+    queue.push(fn);
+  }
+}
+
+
+
+⸻
+
+BONUS 🧠: Auto-retry Failed Keplr Auth
+
+If user sees:
+
+“Cannot read property of undefined (toSvg)”
+
+It’s often caused by Feather icons trying to render prematurely. Delay icon inject until wallet is fully mounted.
+
+⸻
+
+Next Task?
+
+Want a full dashboard.css and dashboard.js patch implementing these optimizations, or just the component restructure in HTML?
+
+Let me know and I’ll code it for you.
