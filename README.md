@@ -285,3 +285,10 @@ python -m pytest
 
 Copyright © 2025 Real Estate Tokenization Platform. All rights reserved.
 >>>>>>> fb24633dab07b7e0a60328f87ead6e6396c2f113
+
+---
+
+<p align="center">
+  <sub>built by <a href="https://github.com/indrad3v4">indradev_</a> · 
+  <a href="https://buymeacoffee.com/indradev_">☕ support</a></sub>
+</p>
